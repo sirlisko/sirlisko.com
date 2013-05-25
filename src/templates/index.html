@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+	include "partials/head.html"
+<body>
+	include "partials/analytics.html"
+	<article class="container">
+	<section id="life">
+		<p class="heart"></p>
+		<p class="heart"></p>
+		<p class="heart"></p>
+	</section>
+	include "partials/links.html"
+	include "partials/cloud.html"
+	<article class="social">
+		<div id="twitter">
+			<div class="duck"></div>
+			<div id="tweet">In the meanwhile twitter is loading why don't you shoot the Duck??</div>
+		</div>
+	</article>
+	include "partials/lizard.html"
+	<div id="ghost"></div>
+	</article>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+	<script type="text/javascript" src="js/base.js"></script>
+	<script src="https://api.twitter.com/1/statuses/user_timeline.json?screen_name=sirLisko&amp;count=1&amp;callback=twitterCallback"></script>
+</body>
+</html>

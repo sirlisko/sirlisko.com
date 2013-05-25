@@ -1,0 +1,17 @@
+/* TEAM */
+  Author: Luca Lischetti
+  Site: http://sirLisko.com
+  Mail: sirLisko@gmail.com
+  Twitter: @sirLisko
+  Location: London, UK
+  From: Milan, I
+
+
+/* THANKS */
+  Special Thanks: Nintendo
+
+
+/* SITE */
+  Last update: 2013/05/25
+  Language: English / Italian
+  Doctype: HTML5
