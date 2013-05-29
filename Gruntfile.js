@@ -1,6 +1,7 @@
 module.exports = function(grunt) {
 	'use strict';
 
+	grunt.loadNpmTasks('grunt-contrib-clean');
 	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.loadNpmTasks('grunt-contrib-htmlmin');
 	grunt.loadNpmTasks('grunt-contrib-jshint');
@@ -12,6 +13,7 @@ module.exports = function(grunt) {
 
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
+		clean: ['js', 'styles', './*.html'],
 		concat: {
 			dist: {
 				src: ['src/**/*.js'],
