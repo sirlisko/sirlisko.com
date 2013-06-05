@@ -1,20 +1,16 @@
 {
   "name": "sirlisko.com",
   "version": "0.1.0",
+  "author": "Luca Lischetti <sirlisko@gmail.com> (http://sirlisko.com)",
   "description": "personal website",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "https://sirlisko@bitbucket.org/sirLisko/sirlisko.com.git"
+    "url": "git://github.com/sirLisko/sirlisko.com.git"
   },
-  "keywords": [
-    "sirlisko",
-    "personal",
-    "website"
-  ],
-  "author": "Luca Lischetti",
+  "keywords": ["sirlisko", "personal", "website"],
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-contrib-clean": "~0.4.1",
