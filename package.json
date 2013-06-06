@@ -10,9 +10,14 @@
     "type": "git",
     "url": "git://github.com/sirLisko/sirlisko.com.git"
   },
-  "keywords": ["sirlisko", "personal", "website"],
+  "keywords": [
+    "sirlisko",
+    "personal",
+    "website"
+  ],
   "devDependencies": {
     "grunt": "~0.4.1",
+    "grunt-bower-task": "~0.2.3",
     "grunt-contrib-clean": "~0.4.1",
     "grunt-contrib-concat": "~0.3.0",
     "grunt-contrib-htmlmin": "~0.1.3",

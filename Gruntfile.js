@@ -1,6 +1,7 @@
 module.exports = function(grunt) {
 	'use strict';
 
+	grunt.loadNpmTasks('grunt-bower-task');
 	grunt.loadNpmTasks('grunt-contrib-clean');
 	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.loadNpmTasks('grunt-contrib-htmlmin');
@@ -11,8 +12,17 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-includes');
 	grunt.loadNpmTasks('grunt-notify');
 
+
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
+		bower: {
+			install: {
+				options: {
+					cleanBowerDir: true,
+					targetDir: './js/ext'
+				}
+			}
+		},
 		clean: ['js', 'styles', './*.html'],
 		concat: {
 			dist: {
@@ -106,6 +116,6 @@ module.exports = function(grunt) {
 		}
 	});
 
-	grunt.registerTask('dev', ['includes', 'jshint', 'concat', 'less:dev']);
-	grunt.registerTask('default', ['jshint', 'concat', 'uglify', 'less:prod', 'includes', 'htmlmin']);
+	grunt.registerTask('dev', ['includes', 'jshint', 'concat', 'bower', 'less:dev']);
+	grunt.registerTask('default', ['jshint', 'concat', 'uglify', 'less:prod', 'includes', 'bower', 'htmlmin']);
 };
