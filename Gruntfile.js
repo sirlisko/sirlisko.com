@@ -18,7 +18,7 @@ module.exports = function(grunt) {
 		bower: {
 			install: {
 				options: {
-					cleanBowerDir: true,
+					cleanup: true,
 					targetDir: './js/ext'
 				}
 			}
@@ -44,24 +44,26 @@ module.exports = function(grunt) {
 		jshint: {
 			files: ['gruntfile.js', 'src/**/*.js'],
 			options: {
+				bitwise: true,
+				browser: true,
+				camelcase: true,
+				curly: true,
+				eqeqeq: true,
+				eqnull: true,
+				forin: true,
+				immed: true,
+				indent: 1,
+				latedef: true,
+				newcap: true,
+				noarg: true,
+				noempty: true,
+				strict: true,
+				undef: true,
+				trailing: true,
+				unused: true,
 				globals: {
-					bitwise: true,
-					browser: true,
-					camelcase: true,
-					curly: true,
-					eqeqeq: true,
-					eqnull: true,
-					forin: true,
-					immed: true,
-					indent: 1,
-					latedef: true,
-					newcap: true,
-					noarg: true,
-					noempty: true,
-					strict: true,
-					undef: true,
-					trailing: true,
-					unused: true
+					module: true,
+					jQuery:true
 				}
 			}
 		},
