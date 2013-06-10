@@ -1,0 +1,50 @@
+.links {
+	clear: none;
+	float: right;
+	padding: 10px 0;
+	position: relative;
+	width: 350px;
+	a {
+		background: url(../public/images/sprites.png) no-repeat;
+		display: block;
+		height: 32px;
+		width: 32px;
+	}
+	li {
+		float: left;
+		width: 50px;
+		&:hover .caption{
+			display: block;
+		}
+	}
+	.lastfm a {
+		background-position: 0 -144px ;
+	}
+	.github a {
+		background-position: 0 -107px ;
+	}
+	.mail a {
+		background-position: 0 -180px ;
+	}
+	.flickr a {
+		background-position: 0 -216px ;
+	}
+	.blog a {
+		background-position: 0 -71px ;
+	}
+	.tumblr a {
+		background-position: 0 -35px ;
+	}
+	.facebook a {
+		background-position: 0 -251px ;
+	}
+	.caption {
+		display: none;
+		left: 50%;
+		margin-left: -74px;
+		position: absolute;
+		text-align: center;
+		top: 50px;
+		width: 130px;
+	}
+}

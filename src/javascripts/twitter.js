@@ -3,7 +3,7 @@
 
 function twitterCallback (tweet) {
 	'use strict';
-	$('.tweet').html(tweet[0].text
+	$('.tweet .baloon').html(tweet[0].text
 		.replace(/(\b(https?|ftp|file):\/\/[\-A-Z0-9+&@#\/%?=~_|!:,.;]*[\-A-Z0-9+&@#\/%=~_|])/ig, '<a href="$1">$1</a>')
 		.replace(/[@]+[A-Za-z0-9.-_]+/g, function (u) {
 			var username = u.replace('@', '');
