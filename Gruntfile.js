@@ -11,6 +11,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-includes');
 	grunt.loadNpmTasks('grunt-notify');
+	grunt.loadNpmTasks('grunt-recess');
 
 
 	grunt.initConfig({
@@ -28,6 +29,14 @@ module.exports = function(grunt) {
 			dist: {
 				src: ['src/**/*.js'],
 				dest: 'js/base.js'
+			}
+		},
+		recess: {
+			dist: {
+				options: {
+					strictPropertyOrder: false
+				},
+				src: ['src/**/*.less']
 			}
 		},
 		htmlmin: {
@@ -109,7 +118,7 @@ module.exports = function(grunt) {
 			},
 			less: {
 				files: ['src/**/*.less'],
-				tasks: ['less:dev']
+				tasks: ['recess', 'less:dev']
 			},
 			javascripts: {
 				files: ['src/**/*.js'],
@@ -118,6 +127,6 @@ module.exports = function(grunt) {
 		}
 	});
 
-	grunt.registerTask('dev', ['includes', 'jshint', 'concat', 'bower', 'less:dev']);
-	grunt.registerTask('default', ['jshint', 'concat', 'uglify', 'less:prod', 'includes', 'bower', 'htmlmin']);
+	grunt.registerTask('dev', ['includes', 'jshint', 'recess', 'concat', 'bower', 'less:dev']);
+	grunt.registerTask('default', ['jshint', 'recess', 'concat', 'uglify', 'less:prod', 'includes', 'bower', 'htmlmin']);
 };

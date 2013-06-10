@@ -26,6 +26,7 @@
     "grunt-contrib-uglify": "~0.2.1",
     "grunt-contrib-watch": "~0.4.3",
     "grunt-includes": "~0.2.4",
-    "grunt-notify": "~0.2.3"
+    "grunt-notify": "~0.2.3",
+    "grunt-recess": "~0.3.3"
   }
 }

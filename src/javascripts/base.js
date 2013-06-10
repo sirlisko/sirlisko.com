@@ -12,12 +12,12 @@
 	switchTitle();
 
 	$(document).mousemove(function (e) {
-		var ghost = $('#ghost');
+		var ghost = $('.ghost');
 		var offset = ghost.offset();
 		if (e.pageX > offset.left) {
-			ghost.removeClass('bside');
+			ghost.removeClass('ghost-b');
 		} else {
-			ghost.addClass('bside');
+			ghost.addClass('ghost-b');
 		}
 
 		ghost.stop();
@@ -28,13 +28,13 @@
 		}, 5000);
 	});
 
-	$('#ghost').mouseover(function () {
+	$('.ghost').mouseover(function () {
 		var heart = $('.heart');
 		if (heart.length > 1) {
 			$(heart[0]).remove();
 		} else {
 			$(heart[0]).remove();
-			$('#life').html(' - game over - ');
+			$('.life').html(' - game over - ');
 			_gaq.push(['_trackEvent', 'goodies', 'game over', 'Finished Ghost Game']);
 		}
 	});
