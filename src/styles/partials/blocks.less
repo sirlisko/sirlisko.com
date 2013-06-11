@@ -1,11 +1,17 @@
-.cloud li,
-.lizard li {
-	float: left;
-	height: 10px;
-	margin: 1px;
-	position: relative;
-	width: 10px;
+.cloud,
+.lizard {
+	ul {
+		clear: both;
+	}
+	li {
+		float: left;
+		height: 10px;
+		margin: 1px;
+		position: relative;
+		width: 10px;
+	}
 }
+
 .cloud {
 	clear: both;
 	float:right;
@@ -60,4 +66,28 @@
 }
 .y:hover {
 	background-color:#ff0;
+}
+
+@media screen and (max-width: 650px) {
+	.cloud li,
+	.lizard li {
+		height: 5px;
+		width: 5px;
+	}
+	.lizard{
+		display: none;
+	}
+	.cloud {
+		float: none;
+		height: 110px;
+		margin: 10px auto;
+		width: 280px;
+		section{
+			font-size: 15px;
+			height: 111px;
+			margin: 11px 0;
+			width: 285px;
+		}
+
+	}
 }

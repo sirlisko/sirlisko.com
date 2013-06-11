@@ -1,5 +1,4 @@
 .links {
-	clear: none;
 	float: right;
 	padding: 10px 0;
 	position: relative;
@@ -12,7 +11,11 @@
 	}
 	li {
 		float: left;
-		width: 50px;
+		margin-left: 17px;
+		width: 33px;
+		&:first-child{
+			margin-left: 0;
+		}
 		&:hover .caption{
 			display: block;
 		}
@@ -46,5 +49,21 @@
 		text-align: center;
 		top: 50px;
 		width: 130px;
+	}
+}
+
+@media screen and (max-width: 650px) {
+	.links {
+		float: none;
+		height: 33px;
+		padding: 0;
+		margin: 10px auto;
+		width: 291px;
+		li {
+			margin-left: 10px;
+			&:first-child{
+				margin-left: 0;
+			}
+		}
 	}
 }
