@@ -17,7 +17,7 @@ function twitterCallback (tweet) {
 	$('.tweet .baloon').html(tweet);
 }
 
-$.ajax('/twitter', {
+$.ajax('/twitter/', {
 	dataType: 'json',
 	success: twitterCallback
 });
