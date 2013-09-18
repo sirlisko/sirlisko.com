@@ -2,7 +2,7 @@
 	float: right;
 	padding: 10px 0;
 	position: relative;
-	width: 350px;
+	width: 400px;
 	a {
 		background: url(../public/images/sprites.png) no-repeat;
 		display: block;
@@ -41,6 +41,9 @@
 	.facebook a {
 		background-position: 0 -251px ;
 	}
+	.instagram a {
+		background-position: 0 -287px;
+	}
 	.caption {
 		display: none;
 		left: 50%;
@@ -64,6 +67,12 @@
 			&:first-child{
 				margin-left: 0;
 			}
+			&:hover .caption{
+				display: none;
+			}
 		}
+	}
+	.lastfm a {
+		display: none;
 	}
 }
