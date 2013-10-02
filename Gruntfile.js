@@ -4,6 +4,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-bower-task');
 	grunt.loadNpmTasks('grunt-contrib-clean');
 	grunt.loadNpmTasks('grunt-contrib-concat');
+	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-htmlmin');
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-less');
@@ -20,7 +21,7 @@ module.exports = function(grunt) {
 			install: {
 				options: {
 					cleanup: true,
-					targetDir: './js/ext'
+					targetDir: './dist/js/ext'
 				}
 			}
 		},
@@ -28,7 +29,19 @@ module.exports = function(grunt) {
 		concat: {
 			dist: {
 				src: ['src/**/*.js'],
-				dest: 'js/base.js'
+				dest: 'dist/js/base.js'
+			}
+		},
+		copy: {
+			extras: {
+				files: [
+					{expand: true, cwd: 'extras/', src: ['**'], dest: 'dist/'}
+				]
+			},
+			'public': {
+				files: [
+					{expand: true, src: ['public/**'], dest: 'dist/'}
+				]
 			}
 		},
 		recess: {
@@ -83,7 +96,7 @@ module.exports = function(grunt) {
 					yuicompress: false
 				},
 				files: {
-					"styles/style.css": "src/styles/style.less"
+					"dist/styles/style.css": "src/styles/style.less"
 				}
 			},
 			prod: {
@@ -92,14 +105,14 @@ module.exports = function(grunt) {
 					yuicompress: true
 				},
 				files: {
-					"styles/style.css": "src/styles/style.less"
+					"dist/styles/style.css": "src/styles/style.less"
 				}
 			}
 		},
 		includes: {
 			files: {
 				src: ['src/**/*.html', '!src/**/partials/*.html'],
-				dest: '.',
+				dest: 'dist/',
 				flatten: true,
 				cwd: '.'
 			}
@@ -122,11 +135,11 @@ module.exports = function(grunt) {
 			},
 			javascripts: {
 				files: ['src/**/*.js'],
-				tasks: ['jshint', 'concat']
+				tasks: ['concat']
 			}
 		}
 	});
 
-	grunt.registerTask('dev', ['includes', 'jshint', 'recess', 'concat', 'bower', 'less:dev']);
-	grunt.registerTask('default', ['jshint', 'recess', 'concat', 'uglify', 'less:prod', 'includes', 'bower', 'htmlmin']);
+	grunt.registerTask('dev', ['includes', 'jshint', 'recess', 'concat', /*'bower',*/ 'less:dev', 'copy:public', 'copy:extras']);
+	grunt.registerTask('default', ['jshint', 'recess', 'concat', 'uglify', 'less:prod', 'includes', /*'bower',*/ 'htmlmin', 'copy:public', 'copy:extras']);
 };
