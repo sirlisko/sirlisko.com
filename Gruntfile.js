@@ -59,7 +59,7 @@ module.exports = function(grunt) {
 					collapseWhitespace: true
 				},
 				files: {
-					'index.html': 'index.html'
+					'dist/index.html': 'dist/index.html'
 				}
 			}
 		},
@@ -120,7 +120,7 @@ module.exports = function(grunt) {
 		uglify: {
 			dist: {
 				files: {
-					'js/base.js': ['<%= concat.dist.dest %>']
+					'dist/js/base.js': ['<%= concat.dist.dest %>']
 				}
 			}
 		},
@@ -140,6 +140,6 @@ module.exports = function(grunt) {
 		}
 	});
 
-	grunt.registerTask('dev', ['includes', 'jshint', 'recess', 'concat', /*'bower',*/ 'less:dev', 'copy:public', 'copy:extras']);
-	grunt.registerTask('default', ['jshint', 'recess', 'concat', 'uglify', 'less:prod', 'includes', /*'bower',*/ 'htmlmin', 'copy:public', 'copy:extras']);
+	grunt.registerTask('dev', ['includes', 'recess', 'concat', 'jshint', /*'bower',*/ 'less:dev', 'copy:public', 'copy:extras']);
+	grunt.registerTask('default', ['jshint', 'recess', 'concat', 'uglify', 'less:prod', 'includes', 'bower', 'htmlmin', 'copy:public', 'copy:extras']);
 };

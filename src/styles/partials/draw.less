@@ -1,0 +1,52 @@
+.cloud {
+	clear: both;
+	float: right;
+	height: 185px;
+	margin: 50px;
+	position: relative;
+	width: 460px;
+	div {
+		font-size: 21px;
+		height: 125px;
+		margin-top: 35px;
+		position: absolute;
+		text-align: center;
+		top: 0;
+		width: 100%;
+		z-index: 1;
+		p {
+			margin: 10px 0;
+		}
+		.title {
+			display: none;
+		}
+	}
+}
+.lizard {
+	bottom: 0;
+	height: 560px;
+	left: 0;
+	position: fixed;
+	width: 552px;
+}
+@media screen and (max-width: 650px) {
+	.lizard{
+		display: none;
+	}
+	.cloud {
+		float: none;
+		height: 110px;
+		margin: 10px auto;
+		width: 280px;
+		canvas {
+			zoom: 60%;
+		}
+		div {
+			font-size: 15px;
+			height: 111px;
+			margin: 11px 0;
+			width: 285px;
+		}
+
+	}
+}

@@ -1,4 +1,4 @@
-/*global _gaq*/
+/*global _gaq, jQuery*/
 
 (function($){
 	'use strict';
