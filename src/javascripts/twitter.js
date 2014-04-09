@@ -1,7 +1,7 @@
 /*global $*/
 /*jslint unused: false*/
 
-function twitterCallback (tweet) {
+function twitterCallback(tweet) {
 	'use strict';
 
 	tweet = tweet[0].text

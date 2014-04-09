@@ -1,4 +1,4 @@
-module.exports = function(grunt) {
+module.exports = function (grunt) {
 	'use strict';
 
 	grunt.loadNpmTasks('grunt-bower-task');
@@ -11,6 +11,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-includes');
+	grunt.loadNpmTasks('grunt-open');
 	grunt.loadNpmTasks('grunt-notify');
 	grunt.loadNpmTasks('grunt-recess');
 
@@ -44,14 +45,6 @@ module.exports = function(grunt) {
 				]
 			}
 		},
-		recess: {
-			dist: {
-				options: {
-					strictPropertyOrder: false
-				},
-				src: ['src/**/*.less']
-			}
-		},
 		htmlmin: {
 			dist: {
 				options: {
@@ -63,58 +56,52 @@ module.exports = function(grunt) {
 				}
 			}
 		},
-		jshint: {
-			files: ['gruntfile.js', 'src/**/*.js'],
-			options: {
-				bitwise: true,
-				browser: true,
-				camelcase: true,
-				curly: true,
-				eqeqeq: true,
-				eqnull: true,
-				forin: true,
-				immed: true,
-				indent: 1,
-				latedef: true,
-				newcap: true,
-				noarg: true,
-				noempty: true,
-				strict: true,
-				undef: true,
-				trailing: true,
-				unused: true,
-				globals: {
-					module: true,
-					jQuery:true
-				}
-			}
-		},
-		less: {
-			dev: {
-				options: {
-					paths: ["src/styles"],
-					yuicompress: false
-				},
-				files: {
-					"dist/styles/style.css": "src/styles/style.less"
-				}
-			},
-			prod: {
-				options: {
-					paths: ["src/styles"],
-					yuicompress: true
-				},
-				files: {
-					"dist/styles/style.css": "src/styles/style.less"
-				}
-			}
-		},
 		includes: {
 			files: {
 				src: ['src/**/*.html', '!src/**/partials/*.html'],
 				dest: 'dist/',
 				flatten: true,
 				cwd: '.'
+			}
+		},
+		jshint: {
+			files: ['gruntfile.js', 'src/**/*.js'],
+			options: {
+				jshintrc: true
+			}
+		},
+		less: {
+			dev: {
+				options: {
+					paths: ['src/styles'],
+					yuicompress: false
+				},
+				files: {
+					'dist/styles/style.css': 'src/styles/style.less'
+				}
+			},
+			prod: {
+				options: {
+					paths: ['src/styles'],
+					yuicompress: true
+				},
+				files: {
+					'dist/styles/style.css': 'src/styles/style.less'
+				}
+			}
+		},
+		open: {
+			page : {
+				path: './dist/index.html',
+				app: 'Google Chrome'
+			}
+		},
+		recess: {
+			dist: {
+				options: {
+					strictPropertyOrder: false
+				},
+				src: ['src/**/*.less']
 			}
 		},
 		uglify: {
@@ -140,6 +127,6 @@ module.exports = function(grunt) {
 		}
 	});
 
-	grunt.registerTask('dev', ['includes', 'recess', 'concat', 'jshint', /*'bower',*/ 'less:dev', 'copy:public', 'copy:extras']);
+	grunt.registerTask('dev', ['includes', 'recess', 'concat', 'jshint', 'bower', 'less:dev', 'copy:public', 'copy:extras']);
 	grunt.registerTask('default', ['jshint', 'recess', 'concat', 'uglify', 'less:prod', 'includes', 'bower', 'htmlmin', 'copy:public', 'copy:extras']);
 };
