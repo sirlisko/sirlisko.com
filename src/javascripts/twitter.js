@@ -1,5 +1,4 @@
 /*global $*/
-/*jslint unused: false*/
 
 function twitterCallback(tweet) {
 	'use strict';
@@ -14,7 +13,7 @@ function twitterCallback(tweet) {
 			return t.link('http://search.twitter.com/search?q=' + tag);
 		});
 
-	$('.tweet .baloon').html(tweet);
+	$('.tweet p').html(tweet);
 }
 
 $.ajax('/twitter/', {

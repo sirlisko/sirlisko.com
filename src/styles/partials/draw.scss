@@ -5,23 +5,32 @@
 	margin: 50px;
 	position: relative;
 	width: 460px;
-	div {
-		font-size: 21px;
-		height: 125px;
-		margin-top: 35px;
+}
+
+.intro {
+	font-size: 21px;
+	height: 125px;
+	line-height: 35px;
+	margin: 35px 0;
+	position: absolute;
+	text-align: center;
+	top: 0;
+	width: 100%;
+	z-index: 1;
+	span {
+		@include transition(opacity 3s);
+		left: 50%;
+		opacity: 0;
 		position: absolute;
-		text-align: center;
-		top: 0;
+		transform: translateX(-50%);
 		width: 100%;
-		z-index: 1;
-		p {
-			margin: 10px 0;
-		}
-		.title {
-			display: none;
-		}
+	}
+	.intro--active {
+		display: block;
+		opacity: 1;
 	}
 }
+
 .lizard {
 	bottom: 0;
 	height: 560px;
@@ -29,6 +38,7 @@
 	position: fixed;
 	width: 552px;
 }
+
 @media screen and (max-width: 650px) {
 	.lizard{
 		display: none;

@@ -1,0 +1,60 @@
+.ghost {
+	@include transition(left 7s, bottom 7s);
+	bottom: 0;
+	height: 125px;
+	left: 0;
+	opacity: 0.5;
+	perspective: 800px;
+	position: absolute;
+	width: 125px;
+	&:hover {
+		opacity: 1;
+	}
+	figure {
+		@include transition(transform 1s);
+		background: transparent url(../public/images/ghost.png);
+		height: 100%;
+		position: absolute;
+		transform-style: preserve-3d;
+		width: 100%;
+	}
+}
+.ghost--flipped figure {
+	@include transform(rotateY( 180deg ));
+}
+
+.life {
+	float: left;
+	margin: 10px;
+	position: relative;
+	text-transform: uppercase;
+	width: 210px;
+}
+.life__label {
+	@include transition(opacity 2s ease);
+	opacity: 0;
+	position: absolute;
+	top: 25px;
+}
+.life--over .life__label {
+	opacity: 1;
+}
+
+.heart {
+	@include transition(opacity 0.5s ease);
+	background: url(../public/images/heart.png);
+	display: inline-block;
+	height: 45px;
+	opacity: 1;
+	width: 50px;
+}
+.heart--ko {
+	opacity: 0;
+}
+
+@media screen and (max-width: 650px) {
+	.ghost,
+	.life {
+		display: none;
+	}
+}

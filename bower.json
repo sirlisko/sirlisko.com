@@ -1,6 +1,7 @@
 {
-	"dependencies": {
-		"jquery": "http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js",
-		"html5shiv": "https://raw.github.com/aFarkas/html5shiv/3.6.2/dist/html5shiv.js"
-	}
+  "name": "sirlisko",
+  "dependencies": {
+    "jquery": "~2.1.1",
+    "html5shiv": "~3.7.2"
+  }
 }

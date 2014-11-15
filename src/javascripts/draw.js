@@ -1,7 +1,7 @@
 (function () {
 	'use strict';
 
-	var c0 = '#C0DEED', c1 = '#395FB2', c2 = '#F8CD4A', c3 = '#B8200E', c4 = '#000', c5 = '#FFF';
+	var c0 = 'rgba(0,0,0,0)', c1 = '#395FB2', c2 = '#F8CD4A', c3 = '#B8200E', c4 = '#000', c5 = '#FFF';
 
 	var lizard = {
 		container: 'lizard',
