@@ -2,7 +2,7 @@
 	@include transition(left 7s, bottom 7s);
 	bottom: 0;
 	height: 125px;
-	left: 0;
+	left: calc(100% - 125px);
 	opacity: 0.5;
 	perspective: 800px;
 	position: absolute;
@@ -40,15 +40,16 @@
 	opacity: 1;
 }
 
-.heart {
+.life__heart {
 	@include transition(opacity 0.5s ease);
 	background: url(../public/images/heart.png);
 	display: inline-block;
 	height: 45px;
+	margin: 0 5px;
 	opacity: 1;
 	width: 50px;
 }
-.heart--ko {
+.life__heart--ko {
 	opacity: 0;
 }
 

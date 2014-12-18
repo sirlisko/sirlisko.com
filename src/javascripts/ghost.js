@@ -19,9 +19,9 @@
 	});
 
 	$ghost.on('mouseover', function () {
-		var $heart = $('.heart:not(.heart--ko)');
+		var $heart = $('.life__heart:not(.life__heart--ko)');
 
-		$heart.last().addClass('heart--ko');
+		$heart.last().addClass('life__heart--ko');
 
 		if ( $heart.length === 1 ) {
 			$('.life').addClass('life--over');

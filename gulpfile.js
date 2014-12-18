@@ -2,10 +2,15 @@
 
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
+var isDev = false;
 
 var onError = function(err){
     $.util.log(err.plugin + ': ' + $.util.colors.red(err.message));
 	$.util.beep();
+
+	if (!isDev) {
+		process.exit(1);
+	}
 };
 
 
@@ -38,9 +43,10 @@ gulp.task('js', function() {
 });
 
 
-gulp.task('fileinclude', function() {
+gulp.task('html', function() {
   gulp.src(['./src/templates/*.html'])
     .pipe($.fileInclude())
+    .pipe($.minifyHtml())
     .pipe(gulp.dest('./dist'));
 });
 
@@ -53,17 +59,21 @@ gulp.task('open', function(){
 
 gulp.task('sass', function () {
     return gulp.src('./src/styles/*.scss')
-        .pipe($.sass())
+        .pipe($.rubySass())
        	.on('error', onError)
+       	.pipe($.combineMediaQueries())
+       	.pipe($.csso())
         .pipe(gulp.dest('./dist/css'));
 });
 
 
 gulp.task('watch', function() {
+	isDev = true;
+
     gulp.start('default');
-    gulp.watch('./src/**/*.html', ['fileinclude']);
+    gulp.watch('./src/**/*.html', ['html']);
     gulp.watch('./src/**/*.scss', ['sass']);
     gulp.watch('./src/**/*.js', ['js']);
 });
 
-gulp.task('default', ['fileinclude', 'sass', 'js', 'bower', 'copy']);
+gulp.task('default', ['html', 'sass', 'js', 'bower', 'copy']);

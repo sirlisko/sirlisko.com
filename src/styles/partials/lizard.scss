@@ -1,0 +1,14 @@
+.lizard {
+	bottom: 0;
+	height: 560px;
+	left: 0;
+	pointer-events: none;
+	position: fixed;
+	width: 552px;
+}
+
+@media screen and (max-width: 650px) {
+	.lizard{
+		display: none;
+	}
+}

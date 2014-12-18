@@ -2,76 +2,56 @@
 	float: right;
 	margin: 10px;
 	position: relative;
+	li {
+		display: inline-block;
+		margin: 0 10px;
+	}
 	a {
 		background: url(../public/images/sprites.png) no-repeat;
 		display: block;
 		height: 32px;
 		width: 32px;
 	}
-	li {
-		float: left;
-		margin-left: 17px;
-		width: 33px;
-		&:first-child{
-			margin-left: 0;
-		}
-		&:hover .caption{
-			display: block;
-		}
-	}
-	.lastfm a {
-		background-position: 0 -144px ;
-	}
-	.github a {
-		background-position: 0 -107px ;
-	}
-	.mail a {
-		background-position: 0 -180px ;
-	}
-	.flickr a {
-		background-position: 0 -216px ;
-	}
-	.blog a {
-		background-position: 0 -71px ;
-	}
-	.tumblr a {
-		background-position: 0 -35px ;
-	}
-	.facebook a {
-		background-position: 0 -251px ;
-	}
-	.instagram a {
-		background-position: 0 -287px;
-	}
-	.caption {
-		display: none;
-		left: 50%;
-		margin-left: -75px;
-		position: absolute;
-		text-align: center;
-		top: 50px;
-		width: 150px;
+}
+
+.caption {
+	@include transform(translateX(-50%));
+	color: #000;
+	display: none;
+	left: 50%;
+	position: absolute;
+	top: 50px;
+}
+
+$links-sprite: (
+	tumblr: -35,
+	blog: -71,
+	github: -107,
+	lastfm: -144,
+	mail: -180,
+	flickr: -216,
+	facebook: -251,
+	instagram: -287
+);
+
+@each $link, $y in $links-sprite {
+	.#{$link} a {
+		background-position: 0 #{$y}px ;
 	}
 }
+
 
 @media screen and (max-width: 650px) {
 	.links {
 		float: none;
-		height: 33px;
-		padding: 0;
-		margin: 10px auto;
-		width: 291px;
-		li {
-			margin-left: 10px;
-			&:first-child{
-				margin-left: 0;
-			}
-			&:hover .caption{
-				display: none;
-			}
-		}
+		margin: 20px auto 10vh;
+		text-align: center;
 	}
-	.lastfm a {
-		display: none;
+}
+
+
+@media screen and (min-width: 650px + 1) {
+	.links li:hover .caption{
+		display: block;
 	}
 }

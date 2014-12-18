@@ -1,19 +1,16 @@
 .cloud {
 	clear: both;
 	float: right;
-	height: 185px;
 	margin: 50px;
 	position: relative;
-	width: 460px;
+	text-align: center;
 }
 
 .intro {
 	font-size: 21px;
-	height: 125px;
 	line-height: 35px;
 	margin: 35px 0;
 	position: absolute;
-	text-align: center;
 	top: 0;
 	width: 100%;
 	z-index: 1;
@@ -31,32 +28,45 @@
 	}
 }
 
-.lizard {
-	bottom: 0;
-	height: 560px;
-	left: 0;
-	position: fixed;
-	width: 552px;
-}
 
 @media screen and (max-width: 650px) {
-	.lizard{
-		display: none;
-	}
 	.cloud {
 		float: none;
-		height: 110px;
-		margin: 10px auto;
-		width: 280px;
+		margin: 20px auto 10vh;
 		canvas {
 			zoom: 60%;
 		}
-		div {
+		p {
 			font-size: 15px;
-			height: 111px;
-			margin: 11px 0;
-			width: 285px;
+			line-height: 25px;
+			margin: 15px 0;
 		}
 
+	}
+}
+
+
+
+.container {
+	display: block;
+	min-width: 1050px;
+}
+.lisko {
+	display: none;
+}
+
+
+@media screen and (max-width: 650px) {
+	.container {
+		display: block;
+		min-width: 0;
+	}
+	.lisko {
+		background: url(../public/images/lisko.png) no-repeat;
+		background-size: 150px;
+		display: block;
+		height: 180px;
+		margin: 0 auto;
+		width: 150px;
 	}
 }
