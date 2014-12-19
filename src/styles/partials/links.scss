@@ -44,8 +44,14 @@ $links-sprite: (
 @media screen and (max-width: 650px) {
 	.links {
 		float: none;
-		margin: 20px auto 10vh;
+		margin: 5px auto 5vh;
 		text-align: center;
+		li {
+			margin: 5px;
+		}
+		.lastfm {
+			display: none;
+		}
 	}
 }
 

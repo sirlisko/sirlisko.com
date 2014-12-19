@@ -1,0 +1,67 @@
+.me {
+	clear: both;
+	overflow: hidden;
+}
+
+.cloud {
+	margin-top: 100px;
+	position: relative;
+	text-align: center;
+}
+
+.me__intro {
+	font-size: 21px;
+	line-height: 35px;
+	margin: 35px 0;
+	position: absolute;
+	top: 0;
+	width: 100%;
+	z-index: 1;
+	span {
+		@include transform(translateX(-50%));
+		@include transition(opacity 3s);
+		left: 50%;
+		opacity: 0;
+		position: absolute;
+		width: 100%;
+	}
+	.me__intro--active {
+		display: block;
+		opacity: 1;
+	}
+}
+
+.me__face {
+	@include transform(translateX(-50%));
+	background: url(../public/images/lisko.png) no-repeat;
+	background-size: 150px;
+	display: block;
+	left: 50%;
+	height: 180px;
+	width: 150px;
+	position: absolute;
+}
+
+
+@media screen and (max-width: 1500px) {
+	.cloud {
+		margin-top: 0
+	}
+	.me__face {
+		margin-top: -10px;
+	}
+}
+
+@media screen and (max-width: 650px) {
+	.cloud {
+		canvas {
+			zoom: 60%;
+		}
+		p {
+			font-size: 15px;
+			line-height: 25px;
+			margin: 15px 0;
+		}
+
+	}
+}

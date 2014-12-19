@@ -1,8 +1,7 @@
 .tweet {
-	clear: both;
-	float: right;
-	margin: 100px 50px;
-	position: relative;
+	bottom: 10vh;
+	position: fixed;
+	right: 10vh;
 }
 
 .tweet__baloon {
@@ -49,6 +48,13 @@
 	}
 }
 
+
+@media screen and (max-width: 1500px) {
+	.tweet {
+		bottom: 10px;
+		right: 20px;
+	}
+}
 
 @media screen and (max-width: 650px) {
 	.tweet {

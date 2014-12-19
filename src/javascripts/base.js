@@ -4,13 +4,13 @@
 	'use strict';
 
 	function switchTitle() {
-		var $descriptions = $('.intro span');
+		var $descriptions = $('.me__intro span');
 
 		var randomPosition = Math.floor(Math.random() * $descriptions.length);
 
-		$('.intro--active').removeClass();
+		$('.me__intro--active').removeClass();
 
-		$descriptions.eq(randomPosition).addClass('intro--active');
+		$descriptions.eq(randomPosition).addClass('me__intro--active');
 	}
 
 	setInterval(switchTitle, 5000);
