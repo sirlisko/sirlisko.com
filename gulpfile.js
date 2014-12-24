@@ -22,9 +22,12 @@ gulp.task('bower', function() {
 });
 
 
+var del = require('del');
+
 gulp.task('clean', function(){
-  gulp.src(['./dist/*'], {read:false})
-    .pipe($.rimraf({force: true}));
+	del(['dist'], function (err, deletedFiles) {
+    	console.log('Dist deleted!', deletedFiles.join(', '));
+	});
 });
 
 
@@ -38,7 +41,8 @@ gulp.task('js', function() {
 	gulp.src('./src/**/*.js')
         .pipe($.jshint())
         .pipe($.jshint.reporter('default'))
-    	.pipe($.uglifyjs('base.js'))
+    	.pipe($.concat('base.js'))
+    	.pipe($.uglify())
     	.pipe(gulp.dest('dist/js'));
 });
 
