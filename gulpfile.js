@@ -32,7 +32,7 @@ gulp.task('clean', function(){
 
 
 gulp.task('copy', function(){
-  gulp.src('./extras/**/*')
+  gulp.src('./public/**/*')
     .pipe(gulp.dest('./dist'));
 });
 

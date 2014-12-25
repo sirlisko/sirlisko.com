@@ -33,7 +33,7 @@
 
 .me__face {
 	@include transform(translateX(-50%));
-	background: url(../public/images/lisko.png) no-repeat;
+	background: url(../images/lisko.png) no-repeat;
 	background-size: 150px;
 	display: block;
 	left: 50%;

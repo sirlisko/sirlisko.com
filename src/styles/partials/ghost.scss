@@ -12,7 +12,7 @@
 	}
 	figure {
 		@include transition(transform 1s);
-		background: transparent url(../public/images/ghost.png);
+		background: transparent url(../images/ghost.png);
 		height: 100%;
 		position: absolute;
 		transform-style: preserve-3d;
@@ -42,7 +42,7 @@
 
 .life__heart {
 	@include transition(opacity 0.5s ease);
-	background: url(../public/images/heart.png);
+	background: url(../images/heart.png);
 	display: inline-block;
 	height: 45px;
 	margin: 0 5px;
