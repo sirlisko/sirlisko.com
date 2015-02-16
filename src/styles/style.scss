@@ -1,12 +1,12 @@
-@import "helpers/reset";
-@import "helpers/generic";
+@import 'helpers/reset';
+@import 'helpers/generic';
 
-@import "partials/ghost";
-@import "partials/links";
-@import "partials/lizard";
-@import "partials/me";
-@import "partials/me__thinking";
-@import "partials/twitter";
+@import 'partials/ghost';
+@import 'partials/links';
+@import 'partials/lizard';
+@import 'partials/me';
+@import 'partials/me__thinking';
+@import 'partials/twitter';
 
 
 a {
@@ -15,10 +15,6 @@ a {
 
 html {
 	background-color: #c0deed;
-	background-image: -webkit-gradient(radial, circle, 0, circle, 100, color-stop(0%, #6bd3e4), color-stop(100%, #2eaed5));
-	background-image: -webkit-radial-gradient(circle, #6bd3e4, #2eaed5);
-	background-image: -moz-radial-gradient(circle, #6bd3e4, #2eaed5);
-	background-image: -o-radial-gradient(circle, #6bd3e4, #2eaed5);
 	background-image: radial-gradient(circle, #6bd3e4, #2eaed5);
-	font-family: $main-font
+	font-family: $main-font;
 }

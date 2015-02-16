@@ -15,7 +15,7 @@
 }
 
 .caption {
-	@include transform(translateX(-50%));
+	transform: translateX(-50%);
 	color: #000;
 	display: none;
 	left: 50%;

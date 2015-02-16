@@ -18,8 +18,8 @@
 	width: 100%;
 	z-index: 1;
 	span {
-		@include transform(translateX(-50%));
-		@include transition(opacity 3s);
+		transform: translateX(-50%);
+		transition: opacity 3s;
 		left: 50%;
 		opacity: 0;
 		position: absolute;
@@ -32,7 +32,7 @@
 }
 
 .me__face {
-	@include transform(translateX(-50%));
+	transform: translateX(-50%);
 	background: url(../images/lisko.png) no-repeat;
 	background-size: 150px;
 	display: block;
