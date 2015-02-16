@@ -1,8 +1,8 @@
 .me__thinking {
-	width: 150px;
 	height: 100px;
 	margin: 0 auto;
 	position: relative;
+	width: 150px;
 }
 
 .me__think {
@@ -29,6 +29,10 @@
 }
 
 @keyframes bubbles {
-	0% { top: 100px; }
-	100% { top: 0px; }
+	0% {
+		top: 100px;
+	}
+	100% {
+		top: 0;
+	}
 }

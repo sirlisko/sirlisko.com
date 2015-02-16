@@ -1,21 +1,21 @@
 .ghost {
-	transition: left 7s, bottom 7s;
 	bottom: 0;
 	height: 125px;
 	left: calc(100% - 125px);
-	opacity: 0.5;
+	opacity: .5;
 	perspective: 800px;
 	position: absolute;
+	transition: left 7s, bottom 7s;
 	width: 125px;
 	&:hover {
 		opacity: 1;
 	}
 	figure {
-		transition: transform 1s;
 		background: transparent url(../images/ghost.png);
 		height: 100%;
 		position: absolute;
 		transform-style: preserve-3d;
+		transition: transform 1s;
 		width: 100%;
 	}
 }
@@ -31,22 +31,22 @@
 	width: 190px;
 }
 .life__label {
-	transition: opacity 2s ease;
 	opacity: 0;
 	position: absolute;
 	top: 25px;
+	transition: opacity 2s ease;
 }
 .life--over .life__label {
 	opacity: 1;
 }
 
 .life__heart {
-	transition: opacity 0.5s ease;
 	background: url(../images/heart.png);
 	display: inline-block;
 	height: 45px;
 	margin: 0 5px;
 	opacity: 1;
+	transition: opacity .5s ease;
 	width: 50px;
 }
 .life__heart--ko {

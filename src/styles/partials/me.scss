@@ -18,11 +18,11 @@
 	width: 100%;
 	z-index: 1;
 	span {
-		transform: translateX(-50%);
-		transition: opacity 3s;
 		left: 50%;
 		opacity: 0;
 		position: absolute;
+		transform: translateX(-50%);
+		transition: opacity 3s;
 		width: 100%;
 	}
 	.me__intro--active {
@@ -32,20 +32,20 @@
 }
 
 .me__face {
-	transform: translateX(-50%);
 	background: url(../images/lisko.png) no-repeat;
 	background-size: 150px;
 	display: block;
 	left: 50%;
 	height: 180px;
-	width: 150px;
 	position: absolute;
+	transform: translateX(-50%);
+	width: 150px;
 }
 
 
 @media screen and (max-width: 1500px) {
 	.cloud {
-		margin-top: 0
+		margin-top: 0;
 	}
 	.me__face {
 		margin-top: -10px;
@@ -62,6 +62,5 @@
 			line-height: 25px;
 			margin: 15px 0;
 		}
-
 	}
 }
