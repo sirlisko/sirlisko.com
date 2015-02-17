@@ -4,7 +4,7 @@ var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
 var isDev = false;
 
-var onError = function(err){
+var onError = function (err) {
 	$.util.log(err.plugin + ': ' + $.util.colors.red(err.message));
 	$.util.beep();
 
@@ -16,7 +16,7 @@ var onError = function(err){
 
 var bower = require('main-bower-files');
 
-gulp.task('bower', function() {
+gulp.task('bower', function () {
 	return gulp.src(bower())
 		.pipe(gulp.dest('./dist/js/ext/'));
 });
@@ -24,21 +24,22 @@ gulp.task('bower', function() {
 
 var del = require('del');
 
-gulp.task('clean', function(){
+gulp.task('clean', function () {
 	return del(['dist'], function (err, deletedFiles) {
 		console.log('Dist deleted!', deletedFiles.join(', '));
 	});
 });
 
 
-gulp.task('copy', function(){
+gulp.task('copy', function () {
 	return gulp.src('./public/**/*')
 		.pipe(gulp.dest('./dist'));
 });
 
 
-gulp.task('js', function() {
+gulp.task('js', function () {
 	return gulp.src('./src/**/*.js')
+		.pipe($.jscs())
 		.pipe($.jshint())
 		.pipe($.jshint.reporter('jshint-stylish'))
 		.pipe($.jshint.reporter('fail')).on('error', onError)
@@ -48,17 +49,17 @@ gulp.task('js', function() {
 });
 
 
-gulp.task('html', function() {
-  return gulp.src(['./src/templates/*.html'])
-	.pipe($.fileInclude())
-	.pipe($.minifyHtml())
-	.pipe(gulp.dest('./dist'));
+gulp.task('html', function () {
+	return gulp.src(['./src/templates/*.html'])
+		.pipe($.fileInclude())
+		.pipe($.minifyHtml())
+		.pipe(gulp.dest('./dist'));
 });
 
 
-gulp.task('open', function(){
-  return gulp.src('./dist/index.html')
-	.pipe($.open('<%file.path%>'));
+gulp.task('open', function () {
+	return gulp.src('./dist/index.html')
+		.pipe($.open('<%file.path%>'));
 });
 
 
@@ -76,7 +77,37 @@ gulp.task('sass', function () {
 });
 
 
-gulp.task('watch', function() {
+gulp.task('validate', function () {
+	var validate = function (file) {
+		require('w3cjs').validate({
+			input: file.contents,
+			callback: function (res) {
+				if (res.messages && res.messages.length) {
+					$.util.log($.util.colors.red(file.path));
+					$.util.log(res.messages);
+				} else {
+					$.util.log(file.path + $.util.colors.green(' [  OK  ]'));
+				}
+			}
+		});
+	};
+
+	return gulp.src(['./dist/**/*.html'])
+		.pipe(require('map-stream')(validate));
+});
+
+
+gulp.task('deploy', function () {
+	return gulp.src('./dist/**')
+		.pipe($.rsync({
+			root: 'dist',
+			hostname: 'sirlisko@web210.webfaction.com',
+			destination: '/home/sirlisko/webapps/sirlisko',
+			progress: true
+		}));
+});
+
+gulp.task('watch', function () {
 	isDev = true;
 
 	gulp.start('default');

@@ -37,5 +37,4 @@
 	if (document.body.clientWidth > 650) {
 		renderCanvas(lizard);
 	}
-
 })();

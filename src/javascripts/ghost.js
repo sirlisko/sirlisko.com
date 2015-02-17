@@ -6,7 +6,7 @@
 
 	$(document).on('mousemove', function (e) {
 		var offset = $ghost.offset();
-		if ( e.pageX > offset.left ) {
+		if (e.pageX > offset.left) {
 			$ghost.removeClass('ghost--flipped');
 		} else {
 			$ghost.addClass('ghost--flipped');
@@ -23,10 +23,9 @@
 
 		$heart.last().addClass('life__heart--ko');
 
-		if ( $heart.length === 1 ) {
+		if ($heart.length === 1) {
 			$('.life').addClass('life--over');
 			_gaq.push(['_trackEvent', 'goodies', 'game over', 'Finished Ghost Game']);
 		}
 	});
-
 })(jQuery);

@@ -18,5 +18,4 @@
 	$('.links').on('click', 'li', function () {
 		_gaq.push(['_trackEvent', 'outgoing', $(this).attr('class')]);
 	});
-
 })(jQuery);
