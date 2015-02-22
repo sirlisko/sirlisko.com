@@ -32,8 +32,10 @@ gulp.task('clean', function () {
 
 
 gulp.task('copy', function () {
-	return gulp.src('./public/**/*')
-		.pipe(gulp.dest('./dist'));
+	return gulp.src([
+		/*'node_modules/apache-server-configs/dist/.htaccess',*/
+		'./public/**/*'
+	]).pipe(gulp.dest('./dist'));
 });
 
 
@@ -98,7 +100,7 @@ gulp.task('validate', function () {
 
 
 gulp.task('deploy', function () {
-	return gulp.src('./dist/**')
+	return gulp.src('./dist/**', {dot: true})
 		.pipe($.rsync({
 			root: 'dist',
 			hostname: 'sirlisko@web210.webfaction.com',
