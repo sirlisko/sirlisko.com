@@ -8,6 +8,7 @@
 	"eof-newline": true,
 	"leading-zero": false,
 	"quotes": "single",
+	"sort-order": [ [ "$variable" ], [ "$include" ], ["..."] ],
 	"sort-order-fallback": "abc",
 	"space-before-colon": "",
 	"space-after-colon": " ",
