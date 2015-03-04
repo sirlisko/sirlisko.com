@@ -14,14 +14,6 @@ var onError = function (err) {
 };
 
 
-var bower = require('main-bower-files');
-
-gulp.task('bower', function () {
-	return gulp.src(bower())
-		.pipe(gulp.dest('./dist/js/ext/'));
-});
-
-
 var del = require('del');
 
 gulp.task('clean', function () {
@@ -118,4 +110,4 @@ gulp.task('watch', function () {
 	gulp.watch('./src/**/*.js', ['js']);
 });
 
-gulp.task('default', ['html', 'sass', 'js', 'bower', 'copy']);
+gulp.task('default', ['html', 'sass', 'js', 'copy']);

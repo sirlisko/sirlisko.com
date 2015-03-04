@@ -1,21 +1,23 @@
-/*global _gaq, jQuery*/
+/*global _gaq*/
 
-(function ($) {
+(function () {
 	'use strict';
 
 	function switchTitle() {
-		var $descriptions = $('.me__intro span');
+		var descriptions = document.querySelectorAll('.me__intro span');
 
-		var randomPosition = Math.floor(Math.random() * $descriptions.length);
+		var randomPosition = Math.floor(Math.random() * descriptions.length);
 
-		$('.me__intro--active').removeClass();
+		document.querySelector('.me__intro--active').classList.remove('me__intro--active');
 
-		$descriptions.eq(randomPosition).addClass('me__intro--active');
+		descriptions[randomPosition].classList.add('me__intro--active');
 	}
 
 	setInterval(switchTitle, 5000);
 
-	$('.links').on('click', 'li', function () {
-		_gaq.push(['_trackEvent', 'outgoing', $(this).attr('class')]);
+	document.querySelector('.links').addEventListener('click', function (e) {
+		if (e.target && e.target.nodeName === 'A') {
+			_gaq.push(['_trackEvent', 'outgoing', e.target.parentNode.getAttribute('class')]);
+		}
 	});
-})(jQuery);
+})();

@@ -1,31 +1,35 @@
-/*global _gaq, jQuery*/
-(function ($) {
+/*global _gaq*/
+(function () {
 	'use strict';
 
-	var $ghost = $('.ghost');
+	var ghost = document.querySelector('.ghost');
 
-	$(document).on('mousemove', function (e) {
-		var offset = $ghost.offset();
+	document.addEventListener('mousemove', function (e) {
+		var ghostPosition = ghost.getBoundingClientRect();
+
+		var offset = {
+			top: ghostPosition.top + document.body.scrollTop,
+			left: ghostPosition.left + document.body.scrollLeft
+		};
+
 		if (e.pageX > offset.left) {
-			$ghost.removeClass('ghost--flipped');
+			ghost.classList.remove('ghost--flipped');
 		} else {
-			$ghost.addClass('ghost--flipped');
+			ghost.classList.add('ghost--flipped');
 		}
 
-		$ghost.css({
-			left: e.pageX - 55,
-			bottom: window.innerHeight - (e.pageY + 55)
-		});
+		ghost.style.left = e.pageX - 55 + 'px';
+		ghost.style.bottom = window.innerHeight - (e.pageY + 55) + 'px';
 	});
 
-	$ghost.on('mouseover', function () {
-		var $heart = $('.life__heart:not(.life__heart--ko)');
+	ghost.addEventListener('mouseover', function () {
+		var hearts = document.querySelectorAll('.life__heart:not(.life__heart--ko)');
 
-		$heart.last().addClass('life__heart--ko');
+		hearts[hearts.length - 1].classList.add('life__heart--ko');
 
-		if ($heart.length === 1) {
-			$('.life').addClass('life--over');
+		if (hearts.length === 1) {
+			document.querySelector('.life').classList.add('life--over');
 			_gaq.push(['_trackEvent', 'goodies', 'game over', 'Finished Ghost Game']);
 		}
 	});
-})(jQuery);
+})();
