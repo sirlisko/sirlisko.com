@@ -31,12 +31,16 @@ gulp.task('copy', function () {
 });
 
 
-gulp.task('js', function () {
+gulp.task('js:quality', function () {
 	return gulp.src('./src/**/*.js')
 		.pipe($.jscs())
 		.pipe($.jshint())
 		.pipe($.jshint.reporter('jshint-stylish'))
-		.pipe($.jshint.reporter('fail')).on('error', onError)
+		.pipe($.jshint.reporter('fail')).on('error', onError);
+});
+
+gulp.task('js', function () {
+	return gulp.src('./src/**/*.js')
 		.pipe($.concat('base.js'))
 		.pipe($.uglify())
 		.pipe(gulp.dest('dist/js'));
@@ -52,8 +56,7 @@ gulp.task('html', function () {
 
 
 gulp.task('open', function () {
-	return gulp.src('./dist/index.html')
-		.pipe($.open('<%file.path%>'));
+	require('opn')('./dist/index.html');
 });
 
 
@@ -110,4 +113,5 @@ gulp.task('watch', function () {
 	gulp.watch('./src/**/*.js', ['js']);
 });
 
-gulp.task('default', ['html', 'sass', 'js', 'copy']);
+gulp.task('default', ['html', 'sass', 'js:quality', 'js', 'copy']);
+gulp.task('test', ['js:quality']);
