@@ -1,4 +1,4 @@
-/*global _gaq*/
+/*global ga*/
 (function () {
 	'use strict';
 
@@ -29,7 +29,7 @@
 
 		if (hearts.length === 1) {
 			document.querySelector('.life').classList.add('life--over');
-			_gaq.push(['_trackEvent', 'goodies', 'game over', 'Finished Ghost Game']);
+			ga('send', 'event', 'goodies', 'game over', 'Finished Ghost Game');
 		}
 	});
 })();

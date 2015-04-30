@@ -1,4 +1,4 @@
-/*global _gaq*/
+/*global ga*/
 
 (function () {
 	'use strict';
@@ -17,7 +17,7 @@
 
 	document.querySelector('.links').addEventListener('click', function (e) {
 		if (e.target && e.target.nodeName === 'A') {
-			_gaq.push(['_trackEvent', 'outgoing', e.target.parentNode.getAttribute('class')]);
+			ga('send', 'event', 'outgoing', e.target.parentNode.getAttribute('class'));
 		}
 	});
 })();
