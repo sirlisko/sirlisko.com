@@ -5,8 +5,12 @@
 
 .cloud {
 	margin-top: 100px;
+	pointer-events: none;
 	position: relative;
 	text-align: center;
+	canvas {
+		pointer-events: all;
+	}
 }
 
 .me__intro {

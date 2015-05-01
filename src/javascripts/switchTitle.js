@@ -1,5 +1,3 @@
-/*global ga*/
-
 (function () {
 	'use strict';
 
@@ -14,10 +12,4 @@
 	}
 
 	setInterval(switchTitle, 5000);
-
-	document.querySelector('.links').addEventListener('click', function (e) {
-		if (e.target && e.target.nodeName === 'A') {
-			ga('send', 'event', 'outgoing', e.target.parentNode.getAttribute('class'));
-		}
-	});
 })();
