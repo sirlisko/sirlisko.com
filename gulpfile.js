@@ -39,10 +39,13 @@ gulp.task('js:quality', function () {
 		.pipe($.jshint.reporter('fail')).on('error', onError);
 });
 
+var browserify = require('browserify');
+var source = require('vinyl-source-stream');
+
 gulp.task('js', function () {
-	return gulp.src('./src/**/*.js')
-		.pipe($.concat('base.js'))
-		.pipe($.uglify())
+	return browserify('./src/javascripts/main.js')
+		.bundle()
+		.pipe(source('base.js'))
 		.pipe(gulp.dest('dist/js'));
 });
 
@@ -113,5 +116,5 @@ gulp.task('watch', function () {
 	gulp.watch('./src/**/*.js', ['js']);
 });
 
-gulp.task('default', ['html', 'sass', 'js:quality', 'js', 'copy']);
+gulp.task('default', ['html', 'sass', 'js', 'copy']);
 gulp.task('test', ['js:quality']);

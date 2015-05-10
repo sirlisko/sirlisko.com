@@ -1,9 +1,9 @@
-(function () {
-	'use strict';
+'use strict';
+
+function switcher() {
+	var descriptions = document.querySelectorAll('.me__intro span');
 
 	function switchTitle() {
-		var descriptions = document.querySelectorAll('.me__intro span');
-
 		var randomPosition = Math.floor(Math.random() * descriptions.length);
 
 		document.querySelector('.me__intro--active').classList.remove('me__intro--active');
@@ -12,4 +12,6 @@
 	}
 
 	setInterval(switchTitle, 5000);
-})();
+}
+
+module.exports = switcher;
