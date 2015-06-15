@@ -7,9 +7,9 @@
     "url": "git://github.com/sirLisko/sirlisko.com.git"
   },
   "scripts": {
-    "clean": "node_modules/.bin/gulp clean",
-    "start": "node_modules/.bin/opn ./dist/index.html",
-    "postinstall": "node_modules/.bin/gulp"
+    "clean": "./node_modules/.bin/gulp clean",
+    "start": "./node_modules/.bin/opn ./dist/index.html",
+    "postinstall": "./node_modules/.bin/gulp"
   },
   "author": {
     "name": "Luca Lischetti",
