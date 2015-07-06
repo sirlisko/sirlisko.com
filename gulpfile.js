@@ -25,7 +25,7 @@ gulp.task('clean', function () {
 
 gulp.task('copy', function () {
 	return gulp.src([
-		/*'node_modules/apache-server-configs/dist/.htaccess',*/
+		'node_modules/apache-server-configs/dist/.htaccess',
 		'./public/**/*'
 	]).pipe(gulp.dest('./dist'));
 });
@@ -33,7 +33,6 @@ gulp.task('copy', function () {
 
 gulp.task('js:quality', function () {
 	return gulp.src('./src/**/*.js')
-		.pipe($.jscs())
 		.pipe($.jshint())
 		.pipe($.jshint.reporter('jshint-stylish'))
 		.pipe($.jshint.reporter('fail')).on('error', onError);
@@ -96,16 +95,6 @@ gulp.task('validate', function () {
 		.pipe(require('map-stream')(validate));
 });
 
-
-gulp.task('deploy', function () {
-	return gulp.src('./dist/**', {dot: true})
-		.pipe($.rsync({
-			root: 'dist',
-			hostname: 'sirlisko@web210.webfaction.com',
-			destination: '/home/sirlisko/webapps/sirlisko',
-			progress: true
-		}));
-});
 
 gulp.task('watch', function () {
 	isDev = true;
