@@ -7,9 +7,10 @@
     "url": "git://github.com/sirLisko/sirlisko.com.git"
   },
   "scripts": {
-    "clean": "./node_modules/.bin/gulp clean",
-    "start": "./node_modules/.bin/opn ./dist/index.html",
-    "postinstall": "./node_modules/.bin/gulp"
+    "clean": "node_modules/.bin/gulp clean",
+    "start": "node_modules/.bin/opn dist/index.html",
+    "postinstall": "node_modules/.bin/gulp",
+    "test": "node_modules/.bin/browserify test/*.js | node_modules/.bin/tape-run -b chrome"
   },
   "author": {
     "name": "Luca Lischetti",
@@ -36,7 +37,9 @@
     "del": "^1.2.0",
     "gulp-jshint": "^1.11.2",
     "map-stream": "^0.0.6",
-    "opn-cli": "^1.0.0"
+    "opn-cli": "^1.0.0",
+    "tape": "^4.0.1",
+    "tape-run": "^1.0.0"
   },
   "keywords": [
     "sirlisko",
