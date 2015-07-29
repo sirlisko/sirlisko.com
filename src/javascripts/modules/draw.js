@@ -32,9 +32,8 @@ function renderCanvas(draw) {
 	}
 }
 
-module.exports = function(){
-	renderCanvas(cloud);
-	if (document.body.clientWidth > 650) {
-		renderCanvas(lizard);
-	}
-};
+renderCanvas(cloud);
+
+if (document.body.clientWidth > 650) {
+	renderCanvas(lizard);
+}

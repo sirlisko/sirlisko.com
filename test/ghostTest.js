@@ -1,29 +1,23 @@
 'use strict';
 
 var test = require('tape');
-var ghostGame = require('../src/javascripts/modules/ghost');
 
 window.ga = function(){}; //TODO: mock the external dependecy
 
-function createDOM() {
-	document.body.innerHTML =
-		'<section class="ghost">' +
-			'<figure class="ghost__body"></figure>' +
-		'</section>' +
-		'<section class="life">' +
-			'<p class="life__heart"></p>' +
-			'<p class="life__heart"></p>' +
-			'<p class="life__heart"></p>' +
-		'</section>';
+document.body.innerHTML =
+	'<section class="ghost">' +
+		'<figure class="ghost__body"></figure>' +
+	'</section>' +
+	'<section class="life">' +
+		'<p class="life__heart"></p>' +
+		'<p class="life__heart"></p>' +
+		'<p class="life__heart"></p>' +
+	'</section>';
 
-	window.innerHeight = 200;
-}
+require('../src/javascripts/modules/ghost');
 
 test('on ghost mouseover lives are removed', function (t) {
 	t.plan(6);
-
-	createDOM();
-	ghostGame();
 
 	t.notOk(document.querySelector('.life__heart--ko'), 'full life, life__heart--ko is not present');
 
@@ -43,14 +37,11 @@ test('on ghost mouseover lives are removed', function (t) {
 test('on mousemove the ghost is moving following it', function (t) {
 	t.plan(6);
 
-	createDOM();
-	ghostGame();
-
 	var ghost = document.querySelector('.ghost');
 	ghost.style.position = 'absolute';
-
 	ghost.style.left = '100px';
 	ghost.style.bottom = '100px';
+
 	document.dispatchEvent(new MouseEvent('mousemove'));
 
 	t.equal(ghost.style.left, '-55px', 'the ghost moved in the X axis');

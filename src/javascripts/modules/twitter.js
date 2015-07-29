@@ -15,16 +15,14 @@ function twitterCallback(tweet) {
 	document.querySelector('.tweet__message').innerHTML = tweet;
 }
 
-module.exports = function(){
-	var httpRequest = new XMLHttpRequest();
+var httpRequest = new XMLHttpRequest();
 
-	httpRequest.onreadystatechange = function () {
-		if (httpRequest.readyState === 4 && httpRequest.status === 200) {
-			var data = JSON.parse(httpRequest.responseText);
-			twitterCallback(data);
-		}
-	};
-
-	httpRequest.open('GET', '/twitter/');
-	httpRequest.send();
+httpRequest.onreadystatechange = function () {
+	if (httpRequest.readyState === 4 && httpRequest.status === 200) {
+		var data = JSON.parse(httpRequest.responseText);
+		twitterCallback(data);
+	}
 };
+
+httpRequest.open('GET', '/twitter/');
+httpRequest.send();

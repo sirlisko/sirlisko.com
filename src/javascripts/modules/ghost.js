@@ -1,8 +1,7 @@
-/*globals ga*/
 /*jshint latedef: nofunc */
 'use strict';
 
-//var beacon = require('./analytics');
+var beacon = require('./beacon');
 
 var ghost;
 
@@ -11,8 +10,7 @@ function gameOver() {
 
 	document.querySelector('.life').classList.add('life--over');
 
-	ga('send', 'event', 'outgoing', name);
-	//beacon('goodies', 'game over', 'Finished Ghost Game');
+	beacon('goodies', 'game over');
 }
 
 function ghostMove(e) {
@@ -40,10 +38,8 @@ function ghostOver() {
 	}
 }
 
-module.exports = function(){
-	ghost = document.querySelector('.ghost');
+ghost = document.querySelector('.ghost');
 
-	document.addEventListener('mousemove', ghostMove);
+document.addEventListener('mousemove', ghostMove);
 
-	ghost.addEventListener('mouseover', ghostOver);
-};
+ghost.addEventListener('mouseover', ghostOver);
