@@ -1,4 +1,3 @@
-/*jshint latedef: nofunc */
 'use strict';
 
 var beacon = require('./beacon');

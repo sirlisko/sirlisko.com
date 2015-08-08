@@ -18,7 +18,7 @@ var del = require('del');
 
 gulp.task('clean', function () {
 	return del(['dist'], function (err, deletedFiles) {
-		console.log('Dist deleted!', deletedFiles.join(', '));
+		$.util.log('Dist deleted!', deletedFiles.join(', '));
 	});
 });
 
@@ -33,9 +33,8 @@ gulp.task('copy', function () {
 
 gulp.task('js:quality', function () {
 	return gulp.src('./src/**/*.js')
-		.pipe($.jshint())
-		.pipe($.jshint.reporter('jshint-stylish'))
-		.pipe($.jshint.reporter('fail')).on('error', onError);
+		.pipe($.eslint())
+		.pipe($.eslint.format()).on('error', onError);
 });
 
 var browserify = require('browserify');
@@ -102,8 +101,8 @@ gulp.task('watch', function () {
 	gulp.start('default');
 	gulp.watch('./src/**/*.html', ['html']);
 	gulp.watch('./src/**/*.scss', ['sass']);
-	gulp.watch('./src/**/*.js', ['js']);
+	gulp.watch('./src/**/*.js', ['js', 'js:quality']);
 });
 
-gulp.task('default', ['html', 'sass', 'js', 'copy']);
+gulp.task('default', ['html', 'sass', 'js:quality', 'js', 'copy']);
 gulp.task('test', ['js:quality']);
