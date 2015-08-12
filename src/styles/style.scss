@@ -1,13 +1,8 @@
 @import 'helpers/reset';
-@import 'helpers/generic';
 
 @import 'partials/ghost';
 @import 'partials/links';
-@import 'partials/lizard';
 @import 'partials/me';
-@import 'partials/me__thinking';
-@import 'partials/twitter';
-
 
 a {
 	text-decoration: none;
@@ -16,5 +11,9 @@ a {
 html {
 	background-color: #C0DEED;
 	background-image: radial-gradient(circle, #6BD3E4, #2EAED5);
-	font-family: $main-font;
+	font-family: 'Press Start 2P', cursive;
+}
+
+header {
+	height: 10vh;
 }

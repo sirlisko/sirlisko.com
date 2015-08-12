@@ -8,7 +8,9 @@ var onError = function (err) {
 	$.util.log(err.plugin + ': ' + $.util.colors.red(err.message));
 	$.util.beep();
 
-	if (!isDev) {
+	if (isDev) {
+		this.emit('end');
+	} else {
 		process.exit(1);
 	}
 };
