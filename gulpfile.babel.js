@@ -1,10 +1,13 @@
 'use strict';
 
-var gulp = require('gulp');
-var $ = require('gulp-load-plugins')();
-var isDev = false;
+import gulp from 'gulp';
+import gulpLoadPlugins from 'gulp-load-plugins';
 
-var onError = function (err) {
+const $ = gulpLoadPlugins();
+
+let isDev = false;
+
+const onError = err => {
 	$.util.log(err.plugin + ': ' + $.util.colors.red(err.message));
 	$.util.beep();
 
@@ -16,16 +19,14 @@ var onError = function (err) {
 };
 
 
-var del = require('del');
-
-gulp.task('clean', function () {
-	return del(['dist'], function (err, deletedFiles) {
+gulp.task('clean', () => {
+	return require('del')(['dist'], (err, deletedFiles) => {
 		$.util.log('Dist deleted!', deletedFiles.join(', '));
 	});
 });
 
 
-gulp.task('copy', function () {
+gulp.task('copy', () => {
 	return gulp.src([
 		'node_modules/apache-server-configs/dist/.htaccess',
 		'./public/**/*'
@@ -33,16 +34,16 @@ gulp.task('copy', function () {
 });
 
 
-gulp.task('js:quality', function () {
+gulp.task('js:quality', () => {
 	return gulp.src('./src/**/*.js')
 		.pipe($.eslint())
 		.pipe($.eslint.format()).on('error', onError);
 });
 
-var browserify = require('browserify');
-var source = require('vinyl-source-stream');
+import browserify from 'browserify';
+import source from 'vinyl-source-stream';
 
-gulp.task('js', function () {
+gulp.task('js', () => {
 	return browserify('./src/javascripts/main.js')
 		.bundle()
 		.pipe(source('base.js'))
@@ -50,7 +51,7 @@ gulp.task('js', function () {
 });
 
 
-gulp.task('html', function () {
+gulp.task('html', () => {
 	return gulp.src(['./src/templates/*.html'])
 		.pipe($.fileInclude())
 		.pipe($.minifyHtml())
@@ -58,12 +59,12 @@ gulp.task('html', function () {
 });
 
 
-gulp.task('open', function () {
+gulp.task('open', () => {
 	require('opn')('./dist/index.html');
 });
 
 
-gulp.task('sass', function () {
+gulp.task('sass', () => {
 	return gulp.src('./src/styles/*.scss')
 		.pipe($.sass())
 		.on('error', onError)
@@ -77,11 +78,11 @@ gulp.task('sass', function () {
 });
 
 
-gulp.task('validate', function () {
-	var validate = function (file) {
+gulp.task('validate', () => {
+	const validate = file => {
 		require('w3cjs').validate({
 			input: file.contents,
-			callback: function (res) {
+			callback: res => {
 				if (res.messages && res.messages.length) {
 					$.util.log($.util.colors.red(file.path));
 					$.util.log(res.messages);
@@ -97,7 +98,7 @@ gulp.task('validate', function () {
 });
 
 
-gulp.task('watch', function () {
+gulp.task('watch', () => {
 	isDev = true;
 
 	gulp.start('default');
