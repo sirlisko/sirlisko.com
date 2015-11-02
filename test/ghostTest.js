@@ -5,16 +5,6 @@ var fakeEvent = require('simulant');
 
 window.ga = function(){}; //TODO: mock the external dependecy
 
-document.body.innerHTML =
-	'<section class="ghost">' +
-		'<figure class="ghost__body"></figure>' +
-	'</section>' +
-	'<section class="life">' +
-		'<p class="life__heart"></p>' +
-		'<p class="life__heart"></p>' +
-		'<p class="life__heart"></p>' +
-	'</section>';
-
 require('../src/javascripts/modules/ghost');
 
 test('on ghost mouseover lives are removed', function (t) {
@@ -41,20 +31,20 @@ test('on mousemove the ghost is moving following it', function (t) {
 	var ghost = document.querySelector('.ghost');
 	ghost.style.position = 'absolute';
 	ghost.style.left = '100px';
-	ghost.style.bottom = '100px';
+	ghost.style.top = '100px';
 
 	fakeEvent.fire(ghost, fakeEvent('mousemove'));
 
 	t.equal(ghost.style.left, '-55px', 'the ghost moved in the X axis');
-	t.equal(ghost.style.bottom, window.innerHeight - 55 + 'px', 'the ghost moved in the Y axis');
+	t.equal(ghost.style.top, '-55px', 'the ghost moved in the Y axis');
 	t.ok(ghost.classList.contains('ghost--flipped'), 'the ghost is moving on the left (flipped)');
 
 	ghost.style.left = '-100px';
-	ghost.style.bottom = '-100px';
+	ghost.style.top = '-100px';
 
 	fakeEvent.fire(ghost, fakeEvent('mousemove'));
 
 	t.equal(ghost.style.left, '-55px', 'the ghost moved in the X axis');
-	t.equal(ghost.style.bottom, window.innerHeight - 55 + 'px', 'the ghost moved in the Y axis');
+	t.equal(ghost.style.top, '-55px', 'the ghost moved in the Y axis');
 	t.notOk(ghost.classList.contains('ghost--flipped'), 'the ghost is moving on the right (not flipped)');
 });

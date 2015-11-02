@@ -1,25 +1,19 @@
 .ghost {
-	bottom: 0;
+	background: transparent url(../images/ghost.png);
+	top: -125px;
 	height: 125px;
-	left: calc(100% - 125px);
+	left: -125px;
 	opacity: .5;
 	perspective: 800px;
 	position: absolute;
-	transition: left 7s, bottom 7s;
+	transform-style: preserve-3d;
+	transition: left 7s, top 7s, transform 1s;
 	width: 125px;
 	&:hover {
 		opacity: 1;
 	}
-	figure {
-		background: transparent url(../images/ghost.png);
-		height: 100%;
-		position: absolute;
-		transform-style: preserve-3d;
-		transition: transform 1s;
-		width: 100%;
-	}
 }
-.ghost--flipped figure {
+.ghost--flipped {
 	transform: rotateY( 180deg );
 }
 

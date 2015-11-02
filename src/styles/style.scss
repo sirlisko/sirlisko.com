@@ -11,9 +11,10 @@ a {
 html {
 	background-color: #C0DEED;
 	background-image: radial-gradient(circle, #6BD3E4, #2EAED5);
-	font-family: 'Press Start 2P', cursive;
+	font-family: 'Press Start 2P', monospace;
 }
 
-header {
+header,
+footer {
 	height: 10vh;
 }

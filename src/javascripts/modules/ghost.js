@@ -2,7 +2,13 @@
 
 var beacon = require('./beacon');
 
-var ghost;
+var ghost,
+	ghostTemplate =
+	'<section class="life">' +
+		'<p class="life__heart"></p><p class="life__heart"></p><p class="life__heart"></p>' +
+		'<p class="life__label">-Game Over-</p>' +
+	'</section>' +
+	'<figure class="ghost"></figure>';
 
 function gameOver() {
 	ghost.removeEventListener('mouseover', ghostOver);
@@ -24,7 +30,7 @@ function ghostMove(e) {
 	}
 
 	ghost.style.left = e.pageX - 55 + 'px';
-	ghost.style.bottom = window.innerHeight - (e.pageY + 55) + 'px';
+	ghost.style.top = e.pageY - 55 + 'px';
 }
 
 function ghostOver() {
@@ -37,8 +43,11 @@ function ghostOver() {
 	}
 }
 
-ghost = document.querySelector('.ghost');
+if (window.ontouchstart === undefined) {
+	document.body.insertAdjacentHTML('afterbegin', ghostTemplate);
 
-document.addEventListener('mousemove', ghostMove);
+	ghost = document.querySelector('.ghost');
 
-ghost.addEventListener('mouseover', ghostOver);
+	document.addEventListener('mousemove', ghostMove);
+	ghost.addEventListener('mouseover', ghostOver);
+}
