@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>sirLisko... Resume - CV</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="author" content="Luca Lischetti">
+	<link type="text/plain" rel="author" href="http://sirlisko.com/humans.txt" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+	<meta name="keywords" content="Luca Lischetti, sirlisko, web developer, software engineer, resume, cv" />
+	<meta name="description" content="Resume (or CV) of Luca Lischetti also know as sirLisko. Experiences, skills and interests." />
+
+	<meta property="og:url" content="http://sirlisko.com" />
+	<meta property="og:description" content="Resume (or CV) of Luca Lischetti also know as sirLisko. Experiences, skills and interests." />
+	<meta property="og:title" content="sirLisko... Resume - CV" />
+	<meta property="og:image" content="http://sirlisko.com/images/lisko.png" />
+
+	<link rel="stylesheet" type="text/css" href="css/me.css">
+	@@include('./partials/analytics.html')
+</head>
+<body>
+	@@include('./partials/json-ld.html')
+	<section class="me">
+		<div class="me__face">
+			<a href="http://sirlisko.com"><img src="http://sirlisko.com/images/sirlisko.svg" /></a>
+		</div>
+		<p class="me__intro">
+			<span>Luca Lischetti</span>
+			<span>a.k.a. sirLisko</span>
+			<span>Senior Software Engineer</span>
+		</p>
+	</section>
+	<div class="wrapper">
+		<article class="skills">
+			<h1>Skills</h1>
+			<div>
+				<h2>Main</h2>
+				<ul>
+					<li>Javascript</li>
+					<li>Node.JS</li>
+					<li>Markup/CSS</li>
+					<li>Front End Architecture</li>
+					<li>FE Build &amp; CI</li>
+					<li>TDD</li>
+					<li>Functional Testing</li>
+				</ul>
+			</div>
+			<div>
+				<h2>Misc.</h2>
+				<ul>
+					<li>Agile / Scrum</li>
+					<li>Git</li>
+					<li>RegEX</li>
+					<li>NPM</li>
+					<li>Gulp / Grunt</li>
+					<li>Chrome Extensions</li>
+					<li>Bash Scripting</li>
+					<li>User Scripting</li>
+					<li>Web Scraping</li>
+				</ul>
+			</div>
+		</article>
+		<article class="experiences">
+			<h1>Experiences</h1>
+			<div class="experience--current">
+				<h2>Senior Software Engineer @ Shazam Entertainment ltd.</h2>
+				<h4>October 2011 - now</h4>
+				<p>Mainly involved in the development of the website (shazam.com). Co-operated in the realisation of a modular architecture of the Front End (AMD, BEM) and its build system (Node.js and Gulp).</p>
+				<p>Developed a custom solution for running acceptance tests (based in Node.js using Nightwatch.js).</p>
+				<p>Extras: worked on an automation tool for the upload of the charts. Localised the website in Italian and Spanish.</p>
+				<p>Trivial: worked on a little Angular/Node web app to make easier to choose what order for lunch :)</p>
+			</div>
+			<div>
+				<h2>Web Developer (Consultant) @ YOOX</h2>
+				<h4>September 2010 - October 2011</h4>
+				<p>Mainly involved in JavaScript stuff, especially Test Driven Development (TDD), unit and functional testing, continuous integration and build automation. Here I had the possibility to work on huge e-commerce web site and to be involved in the main fields of the front end developing.</p>
+				<p>Projecting and developing a targeted javascript framework. Working on automation of the build process using build machines. Interfacing using public and private APIs. Creation of templates (HTML/XSL and CSS).</p>
+			</div>
+			<div>
+				<h2>Web Developer Intern @ Assistive Solutions ltd.</h2>
+				<h4>November 2009 - April 2010</h4>
+				<p>Developed UI and projected UX of a website for training to dyslexic students. Developed new features for company’s site. Improved some back-end features (PHP).</p>
+			</div>
+			<div>
+				<h2>Once upon a time...</h2>
+				<p>In my past I had the pleasure to work also with Java, Scala, PHP, MySQL, C++, Ruby on Rails. I don't consider myself an expert on those languages but I like, especially in my freetime, playing with other techologies :)</p>
+			</div>
+		</article>
+		<article class="projects">
+			<h1>Side Projects</h1>
+			<div>
+				<h2>Should I listen it?</h2>
+				<p>Little webapp that shows you the most played songs by an artist in the last two years of gig. It's a Node.js project that proxies external APIs and mashes them up to set you up for your next Gig. Backend in Node.js and interaction with serveral APIs (Setlist.fm, Spotify and Songkick).</p>
+			</div>
+			<div>
+				<h2>Shazamify</h2>
+				<p>User Script and Chrome Extension that allows you to play your Shazams in Spotify, directly from the browser. Shazamify adds a small Spotify icon to every Shazam track page and allows you to play that track directly in Spotify.</p>
+			</div>
+			<div>
+				<h2>Deliverance Improved</h2>
+				<p>Little Node/Angular webapp that scraps the original website menu of deliverance.co.uk and it shows it in a more functional way. It adds the possibility to filter, order and search in the menu.</p>
+			</div>
+			<div>To see a full list of my side projects go to <a href="http://sirlisko.com/projects.html">http://sirlisko.com/projects.html</a>.</div>
+		</article>
+		<article class="education">
+			<h1>Education</h1>
+			<p>Degree in Computer Science @ Università degli studi dell'Insubria &amp; Universidad de Salamanca.</p>
+			<p>Thesis on Assistive Technology - <a href="http://assistivetechnology.it">http://assistivetechnology.it</a> (sorry link in Italian).</p>
+		</article>
+		<article class="extras">
+			<h1>Extras</h1>
+			<p>I co-held a workshop about TDD in Javascript @ Università di Cesena.</p>
+			<p>I'm a Volunteer and occasionally collaborator of the Front-End Conference - From The Front.</p>
+			<p>I've a Cisco CCNA cetificate (Cisco Certified Network Associate).</p>
+			<p>I've a training certificate as Fire Marshal.</p>
+		</article>
+		<article class="interests">
+			<h1>Interests</h1>
+			<p>I like very much <a href="http://www.last.fm/user/sirlisko">music</a>, <a href="http://www.imdb.com/user/ur15844029/">cinema</a> and <a href="https://www.goodreads.com/sirLisko">books</a>. I like Art, expecially modern and 8-bit graphic (like old-school videogames), travel, languages. I’m also an active member of <a href="https://www.couchsurfing.com/people/sirlisko">CouchSurfing community</a>.</p>
+		</article>
+		<article class="contacts">
+			<h1>Contacts</h1>
+			<p>My website <a href="http://sirlisko.com">http://sirlisko.com</a></p>
+			<p>My github <a href="http://github.com/sirlisko">http://github.com/sirlisko</a></p>
+			<p>My email address <a href="mailto:hello@sirlisko.com">hello@sirlisko.com</a>.</p>
+			<p>A print friendly version of this: <a href="http://sirlisko.com/cv_alt.pdf">http://sirlisko.com/cv_alt.pdf</a></p>
+		</article>
+	</div>
+</body>
+</html>

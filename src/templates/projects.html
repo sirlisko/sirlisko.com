@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>sirLisko... Side Projects</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="author" content="Luca Lischetti">
+	<link type="text/plain" rel="author" href="http://sirlisko.com/humans.txt" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+	<meta name="keywords" content="Luca Lischetti, sirlisko, web developer, software engineer, projects, ideas" />
+	<meta name="description" content="What I am working on at the moment.. Give a look at my side projects." />
+
+	<meta property="og:url" content="http://sirlisko.com/projects.html" />
+	<meta property="og:description" content="What I am working on at the moment.. Give a look at my side projects." />
+	<meta property="og:title" content="sirLisko... Side Projects" />
+	<meta property="og:image" content="http://sirlisko.com/images/lisko.png" />
+
+	<link href='http://fonts.googleapis.com/css?family=Press+Start+2P' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" href="css/projects.css">
+	@@include('./partials/analytics.html')
+</head>
+<body>
+	@@include('./partials/json-ld.html')
+	<div class="logo">
+		<a href="/" alt="sirLisko' home"><img src="./images/sirlisko.svg" /></a>
+	</div>
+	<section class="projects">
+		<h1>My Side Projects</h1>
+		<ul>
+			<li class="project">
+				<div class="project__main">
+					<h3>Should I listen it</h3>
+					<p>Little webapp that shows you the most played songs by an artist in the last two years of gig. It's a Node.js project that proxies external APIs and mashes them up to set you up for your next Gig.</p>
+				</div>
+				<img src="http://sirlisko.com/imgs/ticket.png">
+				<div class="project__details">
+					<p class="project__details__links">
+						<a href="http://shouldilisten.it">Website</a>
+						<a href="https://github.com/sirLisko/shouldilistenit">GitHub</a>
+					</p>
+					<ul class="project__details__tech">
+						<li>Node</li>
+						<li>Setlist.fm API</li>
+						<li>Spotify API</li>
+						<li>Songkick API</li>
+						<li>Functional Programming</li>
+					</ul>
+				</div>
+			</li>
+			<li class="project">
+				<div class="project__main">
+					<h3>Shazamify</h3>
+					<p>User Script and Chrome Extension that allows you to play your Shazams in Spotify, directly from the browser. Shazamify adds a small Spotify icon to every Shazam track page and allows you to play that track directly in Spotify.</p>
+				</div>
+				<img src="http://sirlisko.com/blog/content/images/2015/04/icon.png">
+				<div class="project__details">
+					<p class="project__details__links">
+						<a href="http://sirlisko.com/blog/shazamify">Blog post</a>
+						<a href="https://github.com/sirLisko/shazamify">GitHub</a>
+					</p>
+					<ul class="project__details__tech">
+						<li>Spotify API</li>
+						<li>Chrome Extension</li>
+						<li>User Script</li>
+					</ul>
+				</div>
+			</li>
+			<li class="project">
+				<div class="project__main">
+					<h3>Deliverance Improved</h3>
+					<p>Little Node/Angular webapp that scraps the original website menu of deliverance.co.uk and it shows it in a more functional way. It adds the possibility to filter, order and search in the menu.</p>
+				</div>
+				<img src="https://www.deliverance.co.uk/Content/images/dlogo.jpg">
+				<div class="project__details">
+					<p class="project__details__links">
+						<a href="http://deliverance.herokuapp.com">Website</a>
+						<a href="https://github.com/sirLisko/deliverance">GitHub</a>
+					</p>
+					<ul class="project__details__tech">
+						<li>Node</li>
+						<li>Angular JS</li>
+						<li>Web Scraping</li>
+						<li>Bootstrap</li>
+						<li>Heroku</li>
+					</ul>
+				</div>
+			</li>
+			<li class="project">
+				<div class="project__main">
+					<h3>Gulp Blacklist Marker</h3>
+					<p>Chrome Extension that marks blacklisted gulp modules when browsing NPM and GitHub.</p>
+				</div>
+				<img src="http://sirlisko.com/blog/content/images/2015/03/icon128-1.png">
+				<div class="project__details">
+					<p class="project__details__links">
+						<a href="https://chrome.google.com/webstore/detail/gulp-blacklist-marker/kifhpjdagaiganbdabkpepncopmbfbal">Chrome Extension</a>
+						<a href="http://sirlisko.com/blog/gulp-blacklist-marker/">Blog post</a>
+						<a href="https://github.com/sirLisko/gulp-blacklist-marker">GitHub</a>
+					</p>
+					<ul class="project__details__tech">
+						<li>Chrome Extension</li>
+						<li>Gulp</li>
+						<li>NPM</li>
+					</ul>
+				</div>
+			</li>
+			<li class="project">
+				<div class="project__main">
+					<h3>Sproxify</h3>
+					<p>Sproxify intercepts Spotify links and let you choose where to play them. Through a fancy-looking button, Sproxify redirects you in the desiderated environment where you can finally play your music. Just where you want!</p>
+				</div>
+				<img src="http://sirlisko.com/blog/content/images/2015/03/icon128.png">
+				<div class="project__details">
+					<p class="project__details__links">
+						<a href="https://chrome.google.com/webstore/detail/sproxify/kiohegnpcjpnamjjlobofaiegnpnepnc">Chrome Extension</a>
+						<a href="http://sirlisko.com/blog/sproxify/">Blog post</a>
+						<a href="https://github.com/sirLisko/sproxify">GitHub</a>
+					</p>
+					<ul class="project__details__tech">
+						<li>Chrome Extension</li>
+						<li>User Script</li>
+					</ul>
+				</div>
+			</li>
+			<li class="project">
+				<div class="project__main">
+					<h3>Pizza Club</h3>
+					<p>Static site generated by Jekyll and hosted as GitHub Page where I collect all the pizzas that I enjoyed around the World. (work in progress)</p>
+				</div>
+				<img src="http://sirlisko.com/imgs/pizza.png">
+				<div class="project__details">
+					<p class="project__details__links">
+						<a href="http://pizzaclub.sirlisko.com/">Website</a>
+						<a href="https://github.com/sirLisko/pizzaclub">GitHub</a>
+					</p>
+					<ul class="project__details__tech">
+						<li>Jekyll</li>
+						<li>GitHub Pages</li>
+					</ul>
+				</div>
+			</li>
+			<li class="project">
+				<div class="project__main">
+					<h3>POMOfy - deprecated</h3>
+					<p>POMOfy introduces the productivity of the Pomodoro Technique in Spotify. Basically a Spotify app that allows you to use songs as timer for the Pomodoro.</p>
+				</div>
+				<img src="https://raw.githubusercontent.com/sirLisko/apps-pomofy/master/img/pomodoro.png">
+				<div class="project__details">
+					<p class="project__details__links">
+						<a href="https://github.com/sirLisko/apps-pomofy">GitHub</a>
+					</p>
+					<ul class="project__details__tech">
+						<li>Spotify App</li>
+					</ul>
+				</div>
+			</li>
+		</ul>
+	</section>
+</body>
+</html>

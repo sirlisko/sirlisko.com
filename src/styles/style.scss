@@ -18,3 +18,15 @@ header,
 footer {
 	height: 10vh;
 }
+
+.my__projects,
+.my__resume {
+	position: absolute;
+	bottom: 20px;
+}
+.my__projects {
+	left: 20px;
+}
+.my__resume {
+	right: 20px;
+}
