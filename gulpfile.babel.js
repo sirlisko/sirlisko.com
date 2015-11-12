@@ -84,14 +84,19 @@ gulp.task('sass', () =>
 );
 
 
-gulp.task('validate', () => {
+gulp.task('validate', ['html'], () => {
 	const validate = file => {
 		require('w3cjs').validate({
 			input: file.contents,
 			callback: res => {
-				if (res.messages && res.messages.length) {
+				let messages = res.messages;
+				messages = messages.filter(message => message.type !== 'info');
+				if (messages && messages.length) {
 					$.util.log($.util.colors.red(file.path));
-					$.util.log(res.messages);
+					messages.forEach(message => {
+						$.util.log($.util.colors.red(message.message));
+						$.util.log(message.extract);
+					});
 				} else {
 					$.util.log(file.path + $.util.colors.green(' [  OK  ]'));
 				}
@@ -102,6 +107,15 @@ gulp.task('validate', () => {
 	return gulp.src(['./dist/**/*.html'])
 		.pipe(require('map-stream')(validate));
 });
+
+
+gulp.task('sitemap', ['html'], () =>
+	gulp.src('./dist/**/*.html')
+		.pipe($.sitemap({
+			siteUrl: 'http://sirlisko.com'
+		}))
+		.pipe(gulp.dest('./public'))
+);
 
 
 gulp.task('watch', ['default'], () => {

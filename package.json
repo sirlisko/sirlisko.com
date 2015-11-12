@@ -10,7 +10,7 @@
     "clean": "node_modules/.bin/gulp clean",
     "start": "node_modules/.bin/opn dist/index.html",
     "postinstall": "node_modules/.bin/gulp",
-    "test": "node_modules/.bin/browserify ./test/*.js | node_modules/.bin/tape-run | node_modules/.bin/faucet"
+    "test": "node_modules/.bin/browserify ./test/*.js | node_modules/.bin/tape-run"
   },
   "author": {
     "name": "Luca Lischetti",
@@ -40,6 +40,7 @@
     "del": "^2.0.2",
     "faucet": "0.0.1",
     "gulp-eslint": "^1.0.0",
+    "gulp-sitemap": "^2.2.0",
     "map-stream": "^0.0.6",
     "simulant": "^0.1.5",
     "tape": "^4.2.2",
