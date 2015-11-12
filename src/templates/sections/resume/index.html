@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>sirLisko... Resume - CV</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="author" content="Luca Lischetti">
+	<link type="text/plain" rel="author" href="http://sirlisko.com/humans.txt" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+	<meta name="keywords" content="Luca Lischetti, sirlisko, web developer, software engineer, resume, cv" />
+	<meta name="description" content="Resume (or CV) of Luca Lischetti also know as sirLisko. Experiences, skills and interests." />
+
+	<meta property="og:url" content="http://sirlisko.com/resume" />
+	<meta property="og:description" content="Resume (or CV) of Luca Lischetti also know as sirLisko. Experiences, skills and interests." />
+	<meta property="og:title" content="sirLisko... Resume - CV" />
+	<meta property="og:image" content="http://sirlisko.com/images/lisko.png" />
+
+	<link href='http://fonts.googleapis.com/css?family=Press+Start+2P' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" href="/css/me.css">
+	@@include('../../partials/analytics.html')
+</head>
+<body>
+	@@include('../../partials/json-ld.html')
+	<section class="me">
+		<div class="me__face">
+			<a href="/"><img src="http://sirlisko.com/images/sirlisko.svg" alt="sirlisko face"/></a>
+		</div>
+		<p class="me__intro">
+			<span>Luca Lischetti</span>
+			<span>a.k.a. sirLisko</span>
+			<span>Senior Software Engineer</span>
+		</p>
+	</section>
+	<div class="wrapper">
+		<article class="skills">
+			@@include('./partials/skills.html')
+		</article>
+		<article class="section experiences">
+			@@include('./partials/experiences.html')
+		</article>
+		<article class="section projects">
+			@@include('./partials/projects.html')
+		</article>
+		<article class="section education">
+			@@include('./partials/education.html')
+		</article>
+		<article class="section extras">
+			@@include('./partials/extras.html')
+		</article>
+		<article class="section interests">
+			@@include('./partials/interests.html')
+		</article>
+		<article class="section contacts">
+		@@include('./partials/contacts.html')
+		</article>
+	</div>
+</body>
+</html>

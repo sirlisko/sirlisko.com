@@ -58,7 +58,7 @@ gulp.task('js-watch', ['js', 'js:quality'], browserSync.reload);
 
 
 gulp.task('html', () =>
-	gulp.src(['./src/templates/*.html'])
+	gulp.src(['./src/templates/*.html', './src/templates/sections/**/*.html', '!./src/templates/sections/**/partials/*.html'])
 		.pipe($.fileInclude())
 		.pipe($.minifyHtml())
 		.pipe(gulp.dest('./dist'))

@@ -20,7 +20,8 @@ footer {
 }
 
 .my__projects,
-.my__resume {
+.my__resume,
+.my__special {
 	position: absolute;
 	bottom: 20px;
 }
@@ -29,4 +30,11 @@ footer {
 }
 .my__resume {
 	right: 20px;
+}
+.my__special {
+	left: 50%;
+	transform: translateX(-50%);
+	@media (max-width: 550px) {
+		display: none;
+	}
 }
