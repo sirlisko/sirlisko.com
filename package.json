@@ -10,7 +10,7 @@
     "clean": "node_modules/.bin/gulp clean",
     "start": "node_modules/.bin/opn dist/index.html",
     "postinstall": "node_modules/.bin/gulp",
-    "test": "node_modules/.bin/browserify ./test/*.js | node_modules/.bin/tape-run"
+    "test": "node test/index.js"
   },
   "author": {
     "name": "Luca Lischetti",
@@ -42,6 +42,7 @@
     "gulp-eslint": "^1.0.0",
     "gulp-sitemap": "^2.2.0",
     "map-stream": "^0.0.6",
+    "proxyquireify": "^3.0.0",
     "simulant": "^0.1.5",
     "tape": "^4.2.2",
     "tape-run": "^2.1.0",

@@ -2,10 +2,18 @@
 
 var test = require('tape');
 var fakeEvent = require('simulant');
+var proxyquire = require('proxyquireify')(require);
 
-window.ga = function(){}; //TODO: mock the external dependecy
+var stubType, stubAction;
 
-require('../src/javascripts/modules/ghost');
+proxyquire('../src/javascripts/modules/ghost', {
+	'./beacon': function(type, action){
+		stubType = type;
+		stubAction = action;
+
+		return true;
+	}
+});
 
 test('on ghost mouseover lives are removed', function (t) {
 	t.plan(6);
@@ -23,6 +31,18 @@ test('on ghost mouseover lives are removed', function (t) {
 	fakeEvent.fire(ghost, fakeEvent('mouseover'));
 	t.equal(document.querySelectorAll('.life__heart--ko').length, 3, 'three lives are missing, life__heart--ko is present 3 times');
 	t.ok(document.querySelector('.life').classList.contains('life--over'), 'life is over, life--over is present');
+});
+
+test('on game over beacon is triggered', function (t) {
+	t.plan(2);
+
+	var ghost = document.querySelector('.ghost');
+	fakeEvent.fire(ghost, fakeEvent('mouseover'));
+	fakeEvent.fire(ghost, fakeEvent('mouseover'));
+	fakeEvent.fire(ghost, fakeEvent('mouseover'));
+
+	t.equal(stubType, 'goodies', 'the correct type is passed');
+	t.equal(stubAction, 'game over', 'the correct type is passed');
 });
 
 test('on mousemove the ghost is moving following it', function (t) {
