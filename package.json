@@ -26,7 +26,7 @@
     "browserify": "^13.0.0",
     "gulp": "^3.9.0",
     "gulp-autoprefixer": "^3.1.0",
-    "gulp-combine-media-queries": "^0.2.0",
+    "gulp-combine-mq": "^0.4.0",
     "gulp-csso": "^1.0.1",
     "gulp-file-include": "^0.13.7",
     "gulp-load-plugins": "^1.0.0",

@@ -76,7 +76,7 @@ gulp.task('sass', () =>
 			browsers: ['> 5%'],
 			cascade: false
 		}))
-		.pipe($.combineMediaQueries())
+		.pipe($.combineMq())
 		.pipe($.csso())
 		.pipe(gulp.dest('./dist/css'))
 		.pipe(browserSync.stream())
