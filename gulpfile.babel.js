@@ -7,21 +7,6 @@ import del from 'del';
 
 const $ = gulpLoadPlugins();
 
-const onError = err => {
-	$.util.log(
-		err.plugin + ': ' + $.util.colors.red(err.message) + ' ' +
-		((err.fileName) ?
-			$.util.colors.bold(err.fileName.replace(process.cwd() + '/', '')) + ':' + err.lineNumber :
-			''
-		)
-	);
-	$.util.beep();
-
-	if (!browserSync.active) {
-		process.exit(1);
-	}
-};
-
 
 gulp.task('clean', cb =>
 	del(['dist/*'], {dot: true}, cb)
@@ -40,13 +25,14 @@ gulp.task('copy', () =>
 gulp.task('js:quality', () =>
 	gulp.src('./src/**/*.js')
 		.pipe($.eslint())
-		.pipe($.eslint.format()).on('error', onError)
+		.pipe($.eslint.format())
+		.pipe($.if(!browserSync.active, $.eslint.failOnError()))
 );
 
 import browserify from 'browserify';
 import source from 'vinyl-source-stream';
 
-gulp.task('js', () =>
+gulp.task('js', () => {
 	browserify('./src/javascripts/main.js')
 		.bundle()
 		.pipe(source('base.js'))
@@ -71,7 +57,7 @@ gulp.task('html-watch', ['html'], browserSync.reload);
 gulp.task('sass', () =>
 	gulp.src('./src/styles/*.scss')
 		.pipe($.sass())
-		.on('error', onError)
+		.on('error', $.sass.logError)
 		.pipe($.autoprefixer({
 			browsers: ['> 5%'],
 			cascade: false
