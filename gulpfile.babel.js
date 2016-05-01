@@ -38,7 +38,13 @@ gulp.task('js', () => {
 		.pipe(source('base.js'))
 		.pipe(gulp.dest('dist/js'))
 		.pipe($.size({title: 'js'}))
-);
+
+	browserify('./src/javascripts/modules/beacon.js')
+		.bundle()
+		.pipe(source('trak.js'))
+		.pipe(gulp.dest('dist/js'))
+		.pipe($.size({title: 'js'}))
+});
 
 gulp.task('js-watch', ['js', 'js:quality'], browserSync.reload);
 
