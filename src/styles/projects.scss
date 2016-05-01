@@ -12,6 +12,10 @@ html {
 	font-family: 'Press Start 2P', monospace;
 }
 
+sup a {
+	text-decoration: none;
+}
+
 .logo {
 	margin: 10px auto;
 	width: 50px;
@@ -76,8 +80,24 @@ html {
 	list-style: initial;
 	padding: 1em;
 }
-.project__details__links a {
+.project__details__links > a {
 	display: block;
 	margin: 0.5em auto;
 }
+.project__details__links--disabled {
+	text-decoration: line-through;
+}
 
+.notes {
+	font-size: 10px;
+	margin: 70px auto;
+	max-width: 1200px;
+	width: 95%;
+	h2 {
+		font-size: 13px;
+	}
+	p a:first-child {
+		font-weight: 700;
+		text-decoration: none;
+	}
+}
