@@ -1,15 +1,16 @@
-var browserify = require('browserify');
-var proxyquire = require('proxyquireify');
-var run = require('tape-run');
+var browserify = require('browserify')
+var proxyquire = require('proxyquireify')
+var run = require('tape-run')
+var path = require('path')
 
-browserify([__dirname + '/beaconTest.js', __dirname + '/switchTitleTest.js'])
+browserify([path.join(__dirname, '/beaconTest.js'), path.join(__dirname, '/switchTitleTest.js')])
 	.bundle()
 	.pipe(run())
-	.pipe(process.stdout);
+	.pipe(process.stdout)
 
-//in order to mock internal dependecy
-browserify(__dirname + '/ghostTest.js')
+// in order to mock internal dependecy
+browserify(path.join(__dirname, '/ghostTest.js'))
 	.plugin(proxyquire.plugin)
 	.bundle()
 	.pipe(run())
-	.pipe(process.stdout);
+	.pipe(process.stdout)
