@@ -55,10 +55,11 @@
     "map-stream": "0.0.6",
     "proxyquireify": "^3.2.0",
     "simulant": "^0.2.2",
+    "sinon": "^1.17.4",
     "tape": "^4.5.1",
     "tape-run": "^2.1.4",
     "w3cjs": "^0.3.0"
-},
+  },
   "eslintConfig": {
     "extends": "standard"
   }
