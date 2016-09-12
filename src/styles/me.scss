@@ -63,6 +63,9 @@ h2 {
 	.alt & {
 		color: blue;
 	}
+	span {
+		display: block;
+	}
 }
 
 $side: 18em;
