@@ -14,7 +14,7 @@
 	<meta property="og:title" content="sirLisko... Side Projects" />
 	<meta property="og:image" content="http://sirlisko.com/images/lisko.png" />
 
-	<link href='http://fonts.googleapis.com/css?family=Press+Start+2P' rel='stylesheet' type='text/css'>
+	<link href="http://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet" type="text/css">
 	<link rel="stylesheet" type="text/css" href="/css/projects.css">
 	@@include('../../partials/analytics.html')
 </head>
@@ -26,7 +26,26 @@
 	<section class="projects">
 		<h1>My Side Projects</h1>
 		<ul>
-			<li class="project">
+            <li class="project">
+				<div class="project__main">
+					<h3>ZoomMEME</h3>
+					<p>Super simple zoom-in meme generator. Drag and drop an image and then create a zoom based meme.</p>
+				</div>
+				<img src="http://sirlisko.com/imgs/zoommeme.png" alt="Zoommeme">
+				<div class="project__details">
+					<p class="project__details__links">
+						<a href="http://zoomme.me" data-beacon>Website</a>
+						<a href="https://github.com/sirlisko/zoommeme" data-beacon>GitHub</a>
+					</p>
+					<ul class="project__details__tech">
+						<li>JSPM</li>
+						<li>ES6</li>
+						<li>Promises</li>
+						<li>Makefile</li>
+					</ul>
+				</div>
+			</li>
+            <li class="project">
 				<div class="project__main">
 					<h3>Should I listen it</h3>
 					<p>Little webapp that shows you the most played songs by an artist in the last two years of gig. It's a Node.js project that proxies external APIs and mashes them up to set you up for your next Gig.</p>
