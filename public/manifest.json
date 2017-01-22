@@ -1,0 +1,20 @@
+{
+  "name": "sirLisko - Luca Lischetti's personal website",
+  "short_name": "sirLisko's",
+  "start_url": "/",
+  "display": "browser",
+  "theme_color": "#c0deed",
+  "background_color": "#FFFFFF",
+  "icons": [
+    {
+      "src": "images/icons/icon-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+  	},
+	{
+      "src": "images/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}
