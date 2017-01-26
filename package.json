@@ -62,5 +62,13 @@
   },
   "eslintConfig": {
     "extends": "standard"
+  },
+  "babel": {
+    "presets": [
+      "es2015"
+    ]
+  },
+  "engines": {
+    "node": ">=5"
   }
 }
