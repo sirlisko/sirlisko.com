@@ -1,6 +1,5 @@
 import gulp from 'gulp'
 import gulpLoadPlugins from 'gulp-load-plugins'
-import browserSync from 'browser-sync'
 
 const $ = gulpLoadPlugins()
 
@@ -10,11 +9,8 @@ gulp.task('copy', () =>
     './public/**/*'
   ])
   .pipe(gulp.dest('./dist'))
-  .pipe($.size({
-    title: 'public'
-  }))
+  .pipe($.size({ title: 'public' }))
 )
-
 
 import browserify from 'browserify'
 import source from 'vinyl-source-stream'
@@ -33,8 +29,6 @@ gulp.task('js', () =>
   )
 )
 
-gulp.task('js-watch', ['js', 'js:quality'], browserSync.reload)
-
 gulp.task('html', () =>
   gulp.src([
     './src/templates/*.html',
@@ -44,12 +38,8 @@ gulp.task('html', () =>
   .pipe($.fileInclude())
   .pipe($.minifyHtml())
   .pipe(gulp.dest('./dist'))
-  .pipe($.size({
-    title: 'html'
-  }))
+  .pipe($.size({ title: 'html' }))
 )
-
-gulp.task('html-watch', ['html'], browserSync.reload)
 
 gulp.task('validate', ['html'], () => {
   const validate = file => {
@@ -84,18 +74,8 @@ gulp.task('sitemap', ['html'], () =>
 )
 
 gulp.task('watch', ['default'], () => {
-<<<<<<< HEAD
-  browserSync({
-    notify: false,
-    server: './dist'
-  })
-
-  gulp.watch('./src/**/*.html', ['html-watch'])
-  gulp.watch('./src/**/*.js', ['js-watch'])
-=======
   gulp.watch('./src/**/*.html', ['html'])
   gulp.watch('./src/**/*.js', ['js'])
->>>>>>> a329dbb... Moved eslint from gulp
 })
 
 gulp.task('default', ['html', 'js', 'copy'])
