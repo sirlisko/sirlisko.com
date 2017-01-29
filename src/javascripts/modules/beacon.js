@@ -16,5 +16,3 @@ function beaconOutbound (e) {
 }
 
 document.addEventListener('click', beaconOutbound)
-
-module.exports = beacon

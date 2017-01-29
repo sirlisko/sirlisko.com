@@ -12,23 +12,6 @@ gulp.task('copy', () =>
   .pipe($.size({ title: 'public' }))
 )
 
-import browserify from 'browserify'
-import source from 'vinyl-source-stream'
-const scopes = [
-  { input: 'main.js', output: 'base.js' },
-  { input: 'modules/beacon.js', output: 'trak.js' }
-]
-gulp.task('js', () =>
-  scopes.forEach(({input, output}) => browserify(`./src/javascripts/${input}`)
-    .bundle()
-    .pipe(source(output))
-    .pipe(gulp.dest('dist/js'))
-    .pipe($.size({
-      title: `js - ${output}`
-    }))
-  )
-)
-
 gulp.task('html', () =>
   gulp.src([
     './src/templates/*.html',
@@ -75,7 +58,6 @@ gulp.task('sitemap', ['html'], () =>
 
 gulp.task('watch', ['default'], () => {
   gulp.watch('./src/**/*.html', ['html'])
-  gulp.watch('./src/**/*.js', ['js'])
 })
 
-gulp.task('default', ['html', 'js', 'copy'])
+gulp.task('default', ['html', 'copy'])
