@@ -5,36 +5,36 @@
 @import 'partials/me';
 
 a {
-	text-decoration: none;
+  text-decoration: none;
 }
 
 html {
-	background-color: #C0DEED;
-	background-image: radial-gradient(circle, #6BD3E4, #2EAED5);
-	font-family: 'Press Start 2P', monospace;
+  background-color: #c0deed;
+  background-image: radial-gradient(circle, #6bd3e4, #2eaed5);
+  font-family: 'Press Start 2P', monospace;
 }
 
 header,
 footer {
-	height: 10vh;
+  height: 10vh;
 }
 
 .my__projects,
 .my__resume,
 .my__special {
-	position: absolute;
-	bottom: 20px;
+  position: absolute;
+  bottom: 20px;
 }
 .my__projects {
-	left: 20px;
+  left: 20px;
 }
 .my__resume {
-	right: 20px;
+  right: 20px;
 }
 .my__special {
-	left: 50%;
-	transform: translateX(-50%);
-	@media (max-width: 550px) {
-		display: none;
-	}
+  left: 50%;
+  transform: translateX(-50%);
+  @media (max-width: 550px) {
+    display: none;
+  }
 }

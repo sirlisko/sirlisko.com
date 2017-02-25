@@ -1,55 +1,55 @@
 .ghost {
-	background: transparent url(../images/ghost.png);
-	top: -125px;
-	height: 125px;
-	left: -125px;
-	opacity: .5;
-	perspective: 800px;
-	position: absolute;
-	transform-style: preserve-3d;
-	transition: left 7s, top 7s, transform 1s;
-	width: 125px;
-	&:hover {
-		opacity: 1;
-	}
+  background: transparent url(../images/ghost.png);
+  top: -125px;
+  height: 125px;
+  left: -125px;
+  opacity: 0.5;
+  perspective: 800px;
+  position: absolute;
+  transform-style: preserve-3d;
+  transition: left 7s, top 7s, transform 1s;
+  width: 125px;
+  &:hover {
+    opacity: 1;
+  }
 }
 .ghost--flipped {
-	transform: rotateY( 180deg );
+  transform: rotateY(180deg);
 }
 
 .life {
-	float: left;
-	margin: 10px;
-	position: relative;
-	text-transform: uppercase;
-	width: 190px;
+  float: left;
+  margin: 10px;
+  position: relative;
+  text-transform: uppercase;
+  width: 190px;
 }
 .life__label {
-	opacity: 0;
-	position: absolute;
-	top: 15px;
-	transition: opacity 2s ease;
+  opacity: 0;
+  position: absolute;
+  top: 15px;
+  transition: opacity 2s ease;
 }
 .life--over .life__label {
-	opacity: 1;
+  opacity: 1;
 }
 
 .life__heart {
-	background: url(../images/heart.png);
-	display: inline-block;
-	height: 45px;
-	margin: 0 5px;
-	opacity: 1;
-	transition: opacity .5s ease;
-	width: 50px;
+  background: url(../images/heart.png);
+  display: inline-block;
+  height: 45px;
+  margin: 0 5px;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+  width: 50px;
 }
 .life__heart--ko {
-	opacity: 0;
+  opacity: 0;
 }
 
 @media screen and (max-width: 650px) {
-	.ghost,
-	.life {
-		display: none;
-	}
+  .ghost,
+  .life {
+    display: none;
+  }
 }

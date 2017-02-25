@@ -1,134 +1,131 @@
 @import 'helpers/normalize';
 
 @font-face {
-	font-family: 'Press Start 2P';
-	font-style: normal;
-	font-weight: 400;
+  font-family: 'Press Start 2P';
+  font-style: normal;
+  font-weight: 400;
 }
 
 @page {
-	margin: 0;
-	padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 html {
-	background-color: #0300AE;
-	background-image: radial-gradient(circle, #0300AE, #000024);
-	color: #FFF;
-	font-family: 'Press Start 2P', monospace;
-	height: 100%;
+  background-color: #0300ae;
+  background-image: radial-gradient(circle, #0300ae, #000024);
+  color: #fff;
+  font-family: 'Press Start 2P', monospace;
+  height: 100%;
 }
 
 html.alt {
-	background: #FFF;
-	color: #000;
+  background: #fff;
+  color: #000;
 }
 
 html,
 body {
-	margin: 0;
-	padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-	@media (max-width: 1150px) {
-		font-size: 1.2vw;
-	}
-	@media print, (max-width: 650px) {
-		font-size: 9px;
-	}
+  @media (max-width: 1150px) {
+    font-size: 1.2vw;
+  }
+  @media print, (max-width: 650px) {
+    font-size: 9px;
+  }
 }
 
 a {
-	color: #FFF;
-	.alt & {
-		color: currentColor;
-	}
+  color: #fff;
+  .alt & {
+    color: currentColor;
+  }
 }
 
 article {
-	line-height: 1.5;
-	margin: 20px;
-	overflow: hidden;
+  line-height: 1.5;
+  margin: 20px;
+  overflow: hidden;
 }
 
 h1 {
-	color: #C200C0;
-	.alt & {
-		color: red;
-	}
+  color: #c200c0;
+  .alt & {
+    color: red;
+  }
 }
 h2 {
-	color: #00BCBC;
-	.alt & {
-		color: blue;
-	}
-	span {
-		display: block;
-	}
+  color: #00bcbc;
+  .alt & {
+    color: blue;
+  }
+  span {
+    display: block;
+  }
 }
 
 $side: 18em;
 
-.me {
-	margin: 20px auto 0;
-	max-width: 1200px;
-}
-
 .wrapper {
-	overflow: hidden;
-	margin: 0 auto;
-	max-width: 1200px;
+  overflow: hidden;
+  margin: 0 auto;
+  max-width: 1200px;
 }
 
+.me {
+  margin: 20px auto 0;
+  max-width: 1200px;
+}
 .me__face {
-	margin: 0 2em;
-	width: $side + 1;
-}
-.me__face img {
-	display: block;
+  margin: 0 2em;
+  width: $side + 1;
+  img {
+    display: block;
     margin: 0 auto;
-	width: 8em;
+    width: 8em;
+  }
 }
-
 .me__face,
 .me__intro {
-	display: inline-block;
-	vertical-align: middle;
+  display: inline-block;
+  vertical-align: middle;
 }
-
 .me__intro {
-	font-size: 2em;
-	line-height: 1.5;
-	span {
-		display: block;
-	}
+  font-size: 2em;
+  line-height: 1.5;
+  span {
+    display: block;
+  }
 }
 
 .skills > div {
-	display: inline-block;
-	vertical-align: top;
+  display: inline-block;
+  vertical-align: top;
 }
 
 @media print,
-screen and (min-width: 650px) {
-	.skills {
-		float: left;
-		width: $side;
-	}
+  screen and (min-width: 650px) {
+  .skills {
+    float: left;
+    width: $side;
+  }
 
-	.experiences {
-		margin-left: $side + 5;
-	}
+  .experiences {
+    margin-left: $side + 5;
+  }
 }
 @media screen and (min-width: 650px) {
-	.section {
-		margin-left: $side + 5;
-	}
+  .section {
+    margin-left: $side + 5;
+  }
 }
 @media screen and (max-width: 649px) {
-	.me {
-		text-align: center;
-		width: 95%;
-	}
+  .me {
+    text-align: center;
+    width: 95%;
+  }
 }

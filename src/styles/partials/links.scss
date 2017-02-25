@@ -1,63 +1,61 @@
 .links {
-	float: right;
-	margin: 10px;
-	position: relative;
-	li {
-		display: inline-block;
-		margin: 0 10px;
-	}
-	a {
-		background: url(../images/sprites.png) no-repeat;
-		display: block;
-		height: 32px;
-		width: 32px;
-	}
+  float: right;
+  margin: 10px;
+  position: relative;
+  li {
+    display: inline-block;
+    margin: 0 10px;
+  }
+  a {
+    background: url(../images/sprites.png) no-repeat;
+    display: block;
+    height: 32px;
+    width: 32px;
+  }
 }
 
 .caption {
-	color: #000;
-	display: none;
-	left: 50%;
-	position: absolute;
-	top: 50px;
-	transform: translateX(-50%);
+  color: #000;
+  display: none;
+  left: 50%;
+  position: absolute;
+  top: 50px;
+  transform: translateX(-50%);
 }
 
 $links-sprite: (
-	tumblr: -35,
-	blog: -71,
-	github: -107,
-	lastfm: -144,
-	mail: -180,
-	flickr: -216,
-	facebook: -251,
-	instagram: -287
+  tumblr: -35,
+  blog: -71,
+  github: -107,
+  lastfm: -144,
+  mail: -180,
+  flickr: -216,
+  facebook: -251,
+  instagram: -287
 );
 
 @each $link, $y in $links-sprite {
-	.#{$link} a {
-		background-position: 0 #{$y}px ;
-	}
+  .#{$link} a {
+    background-position: 0 #{$y}px;
+  }
 }
-
 
 @media screen and (max-width: 650px) {
-	.links {
-		float: none;
-		margin: 5px auto 5vh;
-		text-align: center;
-		li {
-			margin: 5px;
-		}
-		.lastfm {
-			display: none;
-		}
-	}
+  .links {
+    float: none;
+    margin: 5px auto 5vh;
+    text-align: center;
+    li {
+      margin: 5px;
+    }
+    .lastfm {
+      display: none;
+    }
+  }
 }
 
-
 @media screen and (min-width: 650px + 1) {
-	.links li:hover .caption {
-		display: block;
-	}
+  .links li:hover .caption {
+    display: block;
+  }
 }
