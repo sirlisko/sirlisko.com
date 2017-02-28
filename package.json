@@ -9,7 +9,7 @@
   "scripts": {
     "build": "gulp && npm run build:css",
     "build:css": "postcss src/styles/*.css -u postcss-import -u postcss-cssnext -u cssnano -u css-mqpacker -d dist/css",
-    "clean": "gulp clean",
+    "clean": "del dist",
     "lint:css": "stylelint 'src/styles/**/*.css'",
     "postinstall": "gulp",
     "start": "gulp watch && npm run watch:css",
@@ -50,7 +50,7 @@
     "vinyl-source-stream": "^1.1.0"
   },
   "devDependencies": {
-    "del": "^2.2.0",
+    "del-cli": "^0.2.1",
     "eslint": "^3.14.1",
     "eslint-config-standard": "^6.2.1",
     "eslint-plugin-promise": "^3.4.0",

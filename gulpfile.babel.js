@@ -1,15 +1,8 @@
 import gulp from 'gulp'
 import gulpLoadPlugins from 'gulp-load-plugins'
 import browserSync from 'browser-sync'
-import del from 'del'
 
 const $ = gulpLoadPlugins()
-
-gulp.task('clean', cb =>
-  del(['dist/*'], {
-    dot: true
-  }, cb)
-)
 
 gulp.task('copy', () =>
   gulp.src([
