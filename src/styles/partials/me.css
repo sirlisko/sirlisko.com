@@ -4,6 +4,9 @@
   justify-content: space-around;
   height: 80vh;
   width: 100%;
+  @media screen and (max-width: 650px) {
+    flex-direction: column;
+  }
 }
 
 .me__face,
@@ -14,35 +17,29 @@
 .me__face {
   height: 85%;
   z-index: 1;
+  @media screen and (max-width: 650px) {
+    height: 50vh;
+  }
 }
 
 .me__intro {
   font-size: 3vw;
   line-height: 1.5;
+  @media screen and (max-width: 650px) {
+    font-size: 5vw;
+  }
 }
 
 .me__intro__desc {
   display: block;
   position: relative;
-  span {
+  & span {
     opacity: 0;
     position: absolute;
     transition: opacity 3s;
     width: 100%;
   }
-  .me__intro--active {
+  & .me__intro--active {
     opacity: 1;
-  }
-}
-
-@media screen and (max-width: 650px) {
-  .me {
-    flex-direction: column;
-  }
-  .me__face {
-    height: 50vh;
-  }
-  .me__intro {
-    font-size: 5vw;
   }
 }

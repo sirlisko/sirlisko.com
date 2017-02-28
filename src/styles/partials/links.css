@@ -2,11 +2,11 @@
   float: right;
   margin: 10px;
   position: relative;
-  li {
+  & li {
     display: inline-block;
     margin: 0 10px;
   }
-  a {
+  & a {
     background: url(../images/sprites.png) no-repeat;
     display: block;
     height: 32px;
@@ -23,32 +23,24 @@
   transform: translateX(-50%);
 }
 
-$links-sprite: (
-  tumblr: -35,
-  blog: -71,
-  github: -107,
-  lastfm: -144,
-  mail: -180,
-  flickr: -216,
-  facebook: -251,
-  instagram: -287
-);
-
-@each $link, $y in $links-sprite {
-  .#{$link} a {
-    background-position: 0 #{$y}px;
-  }
-}
+.links--tumblr a { background-position: 0 -35px; }
+.links--blog a { background-position: 0 -71px; }
+.links--github a { background-position: 0 -107px; }
+.links--lastfm a { background-position: 0 -144px; }
+.links--mail a { background-position: 0 -180px; }
+.links--flickr a { background-position: 0 -216px; }
+.links--facebook a { background-position: 0 -251px; }
+.links--instagram a { background-position: 0 -287px; }
 
 @media screen and (max-width: 650px) {
   .links {
     float: none;
     margin: 5px auto 5vh;
     text-align: center;
-    li {
+    & li {
       margin: 5px;
     }
-    .lastfm {
+    & .lastfm {
       display: none;
     }
   }

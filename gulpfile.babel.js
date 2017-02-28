@@ -65,23 +65,6 @@ gulp.task('html', () =>
 
 gulp.task('html-watch', ['html'], browserSync.reload)
 
-gulp.task('sass', () =>
-  gulp.src('./src/styles/*.scss')
-  .pipe($.sass())
-  .on('error', $.sass.logError)
-  .pipe($.autoprefixer({
-    browsers: ['> 5%'],
-    cascade: false
-  }))
-  .pipe($.combineMq())
-  .pipe($.csso())
-  .pipe(gulp.dest('./dist/css'))
-  .pipe(browserSync.stream())
-  .pipe($.size({
-    title: 'style'
-  }))
-)
-
 gulp.task('validate', ['html'], () => {
   const validate = file => {
     require('w3cjs').validate({
@@ -121,9 +104,8 @@ gulp.task('watch', ['default'], () => {
   })
 
   gulp.watch('./src/**/*.html', ['html-watch'])
-  gulp.watch('./src/**/*.scss', ['sass'])
   gulp.watch('./src/**/*.js', ['js-watch'])
 })
 
-gulp.task('default', ['html', 'sass', 'js', 'copy'])
+gulp.task('default', ['html', 'js', 'copy'])
 gulp.task('test', ['js:quality'])

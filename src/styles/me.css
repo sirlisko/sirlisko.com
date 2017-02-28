@@ -1,5 +1,9 @@
 @import 'helpers/normalize';
 
+:root {
+  --side: 18em;
+}
+
 @font-face {
   font-family: 'Press Start 2P';
   font-style: normal;
@@ -37,6 +41,9 @@ body {
   @media print, (max-width: 650px) {
     font-size: 9px;
   }
+  @media print {
+    padding: 35px 35px 120px;
+  }
 }
 
 a {
@@ -63,12 +70,10 @@ h2 {
   .alt & {
     color: blue;
   }
-  span {
+  & span {
     display: block;
   }
 }
-
-$side: 18em;
 
 .wrapper {
   overflow: hidden;
@@ -82,8 +87,8 @@ $side: 18em;
 }
 .me__face {
   margin: 0 2em;
-  width: $side + 1;
-  img {
+  width: calc(var(--side) + 1);
+  & img {
     display: block;
     margin: 0 auto;
     width: 8em;
@@ -97,7 +102,7 @@ $side: 18em;
 .me__intro {
   font-size: 2em;
   line-height: 1.5;
-  span {
+  & span {
     display: block;
   }
 }
@@ -111,16 +116,16 @@ $side: 18em;
   screen and (min-width: 650px) {
   .skills {
     float: left;
-    width: $side;
+    width: var(--side);
   }
 
   .experiences {
-    margin-left: $side + 5;
+    margin-left: calc(var(--side) + 5);
   }
 }
 @media screen and (min-width: 650px) {
   .section {
-    margin-left: $side + 5;
+    margin-left: calc(var(--side) + 5);
   }
 }
 @media screen and (max-width: 649px) {

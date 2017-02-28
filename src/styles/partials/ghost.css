@@ -12,6 +12,9 @@
   &:hover {
     opacity: 1;
   }
+  @media screen and (max-width: 650px) {
+    display: none;
+  }
 }
 .ghost--flipped {
   transform: rotateY(180deg);
@@ -23,6 +26,9 @@
   position: relative;
   text-transform: uppercase;
   width: 190px;
+  @media screen and (max-width: 650px) {
+    display: none;
+  }
 }
 .life__label {
   opacity: 0;
@@ -45,11 +51,4 @@
 }
 .life__heart--ko {
   opacity: 0;
-}
-
-@media screen and (max-width: 650px) {
-  .ghost,
-  .life {
-    display: none;
-  }
 }
