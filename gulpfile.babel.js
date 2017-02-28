@@ -15,12 +15,6 @@ gulp.task('copy', () =>
   }))
 )
 
-gulp.task('js:quality', () =>
-  gulp.src('./src/**/*.js')
-  .pipe($.eslint())
-  .pipe($.eslint.format())
-  .pipe($.if(!browserSync.active, $.eslint.failOnError()))
-)
 
 import browserify from 'browserify'
 import source from 'vinyl-source-stream'
@@ -28,7 +22,6 @@ const scopes = [
   { input: 'main.js', output: 'base.js' },
   { input: 'modules/beacon.js', output: 'trak.js' }
 ]
-
 gulp.task('js', () =>
   scopes.forEach(({input, output}) => browserify(`./src/javascripts/${input}`)
     .bundle()
@@ -91,6 +84,7 @@ gulp.task('sitemap', ['html'], () =>
 )
 
 gulp.task('watch', ['default'], () => {
+<<<<<<< HEAD
   browserSync({
     notify: false,
     server: './dist'
@@ -98,7 +92,10 @@ gulp.task('watch', ['default'], () => {
 
   gulp.watch('./src/**/*.html', ['html-watch'])
   gulp.watch('./src/**/*.js', ['js-watch'])
+=======
+  gulp.watch('./src/**/*.html', ['html'])
+  gulp.watch('./src/**/*.js', ['js'])
+>>>>>>> a329dbb... Moved eslint from gulp
 })
 
 gulp.task('default', ['html', 'js', 'copy'])
-gulp.task('test', ['js:quality'])

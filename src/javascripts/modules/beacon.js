@@ -1,4 +1,4 @@
-/*global ga*/
+/* global ga */
 'use strict'
 
 function beacon (category, action, label, value, fieldsObject) {

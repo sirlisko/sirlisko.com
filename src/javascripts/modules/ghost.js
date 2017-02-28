@@ -4,11 +4,11 @@ var beacon = require('./beacon')
 
 var ghost
 var ghostTemplate =
-	'<section class="life">' +
-		'<p class="life__heart"></p><p class="life__heart"></p><p class="life__heart"></p>' +
-		'<p class="life__label">-Game Over-</p>' +
-	'</section>' +
-	'<figure class="ghost"></figure>'
+  '<section class="life">' +
+    '<p class="life__heart"></p><p class="life__heart"></p><p class="life__heart"></p>' +
+    '<p class="life__label">-Game Over-</p>' +
+  '</section>' +
+  '<figure class="ghost"></figure>'
 
 function gameOver () {
   ghost.removeEventListener('mouseover', ghostOver)
