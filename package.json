@@ -10,7 +10,7 @@
     "build": "gulp && npm run build:css",
     "build:css": "postcss src/styles/*.css -u postcss-import -u postcss-cssnext -u cssnano -u css-mqpacker -d dist/css",
     "clean": "gulp clean",
-    "lint:css": "stylelint **/*.scss",
+    "lint:css": "stylelint 'src/styles/**/*.css'",
     "postinstall": "gulp",
     "start": "gulp watch && npm run watch:css",
     "test": "node test/index.js",
@@ -42,9 +42,11 @@
     "gulp-size": "^2.1.0",
     "gulp-util": "^3.0.7",
     "if": "^2.0.0",
+    "normalize.css": "^5.0.0",
     "postcss-cli": "^3.0.0-beta",
     "postcss-cssnext": "^2.9.0",
     "postcss-import": "^9.1.0",
+    "reset-css": "^2.2.0",
     "vinyl-source-stream": "^1.1.0"
   },
   "devDependencies": {

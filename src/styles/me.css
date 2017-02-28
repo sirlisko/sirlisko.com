@@ -1,4 +1,4 @@
-@import 'helpers/normalize';
+@import 'normalize.css';
 
 :root {
   --side: 18em;
