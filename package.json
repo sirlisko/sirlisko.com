@@ -6,6 +6,7 @@
     "type": "git",
     "url": "git://github.com/sirLisko/sirlisko.com.git"
   },
+  "license": "MIT",
   "scripts": {
     "build": "gulp && npm run build:js && npm run build:css",
     "build:css": "postcss src/styles/*.css -u postcss-import -u postcss-cssnext -u cssnano -u css-mqpacker -d dist/css",
