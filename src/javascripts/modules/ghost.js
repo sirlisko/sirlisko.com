@@ -1,14 +1,13 @@
-'use strict'
-
-var beacon = require('./beacon')
+import beacon from './beacon'
 
 var ghost
-var ghostTemplate =
-  '<section class="life">' +
-    '<p class="life__heart"></p><p class="life__heart"></p><p class="life__heart"></p>' +
-    '<p class="life__label">-Game Over-</p>' +
-  '</section>' +
-  '<figure class="ghost"></figure>'
+
+const ghostTemplate = `
+  <section class="life">
+    <p class="life__heart"></p><p class="life__heart"></p><p class="life__heart"></p>
+    <p class="life__label">-Game Over-</p>
+  </section>
+  <figure class="ghost"></figure>`
 
 function gameOver () {
   ghost.removeEventListener('mouseover', ghostOver)
@@ -19,18 +18,12 @@ function gameOver () {
 }
 
 function ghostMove (e) {
-  var ghostPosition = ghost.getBoundingClientRect()
+  e.screenX > ghost.getBoundingClientRect().left + document.body.scrollLeft
+    ? ghost.classList.remove('ghost--flipped')
+    : ghost.classList.add('ghost--flipped')
 
-  var offsetLeft = ghostPosition.left + document.body.scrollLeft
-
-  if (e.pageX > offsetLeft) {
-    ghost.classList.remove('ghost--flipped')
-  } else {
-    ghost.classList.add('ghost--flipped')
-  }
-
-  ghost.style.left = e.pageX - 55 + 'px'
-  ghost.style.top = e.pageY - 55 + 'px'
+  ghost.style.left = `${e.screenX - 55}px`
+  ghost.style.top = `${e.screenY - 55}px`
 }
 
 function ghostOver () {
@@ -38,12 +31,10 @@ function ghostOver () {
 
   hearts[hearts.length - 1].classList.add('life__heart--ko')
 
-  if (hearts.length === 1) {
-    gameOver()
-  }
+  hearts.length === 1 && gameOver()
 }
 
-if (window.ontouchstart === undefined) {
+function attachEvents () {
   document.body.insertAdjacentHTML('afterbegin', ghostTemplate)
 
   ghost = document.querySelector('.ghost')
@@ -51,3 +42,5 @@ if (window.ontouchstart === undefined) {
   document.addEventListener('mousemove', ghostMove)
   ghost.addEventListener('mouseover', ghostOver)
 }
+
+!window.ontouchstart && attachEvents()

@@ -1,18 +1,18 @@
 /* global ga */
-'use strict'
 
 function beacon (category, action, label, value, fieldsObject) {
   ga('send', 'event', category, action, label, value, fieldsObject)
 }
 
-function beaconOutbound (e) {
-  if ((e.target.getAttribute('data-beacon') !== undefined)) {
-    var url = e.target.getAttribute('href')
-    beacon('outbound', 'click', url, {
+function onClick ({ target }) {
+  target.getAttribute('data-beacon') !== undefined && beacon(
+    'outbound',
+    'click',
+    target.getAttribute('href'),
+    {
       transport: 'beacon',
-      hitCallback: function () { document.location = url }
+      hitCallback: () => { document.location = target.getAttribute('href') }
     })
-  }
 }
 
-document.addEventListener('click', beaconOutbound)
+document.addEventListener('click', onClick)

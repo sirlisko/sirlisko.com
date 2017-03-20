@@ -7,6 +7,13 @@ module.exports = {
     base: ['./beacon', './ghost', './switchTitle'],
     trak: ['./beacon']
   },
+  module: {
+    loaders: [{
+      test: /\.js$/,
+      loaders: ['babel-loader'],
+      exclude: '/node_modules/'
+    }]
+  },
   output: {
     filename: 'dist/js/[name].js'
   }
