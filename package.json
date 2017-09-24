@@ -9,7 +9,7 @@
   "license": "MIT",
   "scripts": {
     "build": "run-p build:*",
-    "build:css": "postcss src/styles/*.css -u postcss-import -u postcss-cssnext -u cssnano -u css-mqpacker -d dist/css",
+    "build:css": "postcss src/styles/*.css -d dist/css -m",
     "build:js": "webpack -p",
     "build:other": "gulp",
     "clean": "del dist",
@@ -23,7 +23,7 @@
     "test": "run-p -r lint unit",
     "unit": "mocha src/**/*.spec.js --compilers js:babel-core/register --reporter spec",
     "watch": "run-p watch:*",
-    "watch:css": "postcss src/styles/*.css -u postcss-import -u postcss-cssnext -w -d dist/css",
+    "watch:css": "postcss src/styles/*.css -d dist/css -w",
     "watch:js": "webpack -w",
     "watch:other": "gulp watch"
   },
@@ -43,7 +43,6 @@
     "babel-core": "^6.24.0",
     "babel-loader": "^6.4.1",
     "babel-preset-es2015": "^6.24.0",
-    "css-mqpacker": "^5.0.1",
     "cssnano": "^3.10.0",
     "gulp": "^3.9.1",
     "gulp-file-include": "^1.0.0",
