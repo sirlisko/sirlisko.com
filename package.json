@@ -13,14 +13,14 @@
     "build:js": "webpack -p",
     "build:other": "gulp",
     "clean": "del dist",
-    "coverage": "istanbul cover node_modules/.bin/_mocha src/**/*.spec.js -- --require babel-register",
+    "coverage": "jest --coverage",
     "lint": "run-p -r lint:*",
     "lint:css": "stylelint src/**/*.css",
     "lint:js": "eslint src/**/*.js",
     "postinstall": "npm run build",
     "serve": "live-server dist",
     "start": "run-p -r watch serve",
-    "test": "run-p -r lint unit",
+    "test": "jest",
     "unit": "mocha src/**/*.spec.js --compilers js:babel-core/register --reporter spec",
     "watch": "run-p watch:*",
     "watch:css": "postcss src/styles/*.css -d dist/css -w",
@@ -60,20 +60,17 @@
     "webpack": "^2.2.1"
   },
   "devDependencies": {
-    "chai": "^3.5.0",
+    "babel-jest": "^22.4.1",
     "del-cli": "^0.2.1",
     "eslint": "^3.18.0",
     "eslint-config-standard": "^7.1.0",
+    "eslint-plugin-jest": "^21.14.0",
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-standard": "^2.1.1",
     "gulp-sitemap": "^4.2.0",
-    "istanbul": "^1.1.0-alpha.1",
-    "jsdom": "^9.12.0",
-    "jsdom-global": "^2.1.1",
+    "jest": "^22.4.2",
     "live-server": "^1.2.0",
     "map-stream": "0.0.7",
-    "mocha": "^3.2.0",
-    "proxyquire": "^1.7.11",
     "simulant": "^0.2.2",
     "sinon": "^2.1.0",
     "stylelint": "^7.9.0",
@@ -89,7 +86,12 @@
     "node": ">=6"
   },
   "eslintConfig": {
-    "extends": "standard"
+    "extends": "standard",
+    "plugins": ["jest"],
+    "env": {
+      "browser": true,
+      "jest/globals": true
+    }
   },
   "stylelint": {
     "extends": "stylelint-config-standard",

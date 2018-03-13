@@ -1,44 +1,39 @@
-/* eslint-env mocha */
-
-import 'jsdom-global/register'
-import { expect } from 'chai'
 import fakeEvent from 'simulant'
-import proxyquire from 'proxyquire'
 
 const $ = sel => document.querySelector(sel)
 const $$ = sel => document.querySelectorAll(sel)
 
 var stubType, stubAction
 
+jest.mock('./beacon', () => (type, action) => {
+  stubType = type
+  stubAction = action
+})
+
 describe('testing ghost', () => {
   beforeEach(() => {
-    proxyquire('./ghost', {
-      './beacon': (type, action) => {
-        stubType = type
-        stubAction = action
-        return true
-      }
-    })
+    require('./ghost.js')
   })
 
   afterEach(() => {
     document.body.innerHTML = ''
+    jest.resetModules()
   })
 
   it('should remove lives on ghost mouseover', () => {
     const ghost = $('.ghost')
-    expect($('.life__heart--ko')).to.be.equal(null)
+    expect($('.life__heart--ko')).toBeNull()
 
     fakeEvent.fire(ghost, fakeEvent('mouseover'))
-    expect($('.life__heart--ko')).to.be.not.equal(null)
+    expect($('.life__heart--ko')).not.toBeNull()
 
     fakeEvent.fire(ghost, fakeEvent('mouseover'))
-    expect($$('.life__heart--ko').length).to.be.equal(2)
-    expect($('.life').classList.contains('life--over')).to.be.equal(false)
+    expect($$('.life__heart--ko')).toHaveLength(2)
+    expect($('.life').classList.contains('life--over')).toBeFalsy()
 
     fakeEvent.fire(ghost, fakeEvent('mouseover'))
-    expect($$('.life__heart--ko').length).to.be.equal(3)
-    expect($('.life').classList.contains('life--over')).to.be.equal(true)
+    expect($$('.life__heart--ko')).toHaveLength(3)
+    expect($('.life').classList.contains('life--over')).toBeTruthy()
   })
 
   it('should trigger becaon on game over', function () {
@@ -47,8 +42,8 @@ describe('testing ghost', () => {
     fakeEvent.fire(ghost, fakeEvent('mouseover'))
     fakeEvent.fire(ghost, fakeEvent('mouseover'))
 
-    expect(stubType).to.be.equal('goodies')
-    expect(stubAction).to.be.equal('game over')
+    expect(stubType).toBe('goodies')
+    expect(stubAction).toBe('game over')
   })
 
   it('should the ghost follow on mousemove', () => {
@@ -58,16 +53,16 @@ describe('testing ghost', () => {
     ghost.style.top = '100px'
 
     fakeEvent.fire(ghost, 'mousemove', {screenX: 100})
-    expect(ghost.style.left).to.be.equal('45px')
-    expect(ghost.style.top).to.be.equal('-55px')
-    expect(ghost.classList.contains('ghost--flipped')).to.be.not.equal(true)
+    expect(ghost.style.left).toBe('45px')
+    expect(ghost.style.top).toBe('-55px')
+    expect(ghost.classList.contains('ghost--flipped')).not.toBeTruthy()
 
     ghost.style.left = '-100px'
     ghost.style.top = '-100px'
 
     fakeEvent.fire(ghost, 'mousemove', {screenX: -100})
-    expect(ghost.style.left).to.be.equal('-155px')
-    expect(ghost.style.top).to.be.equal('-55px')
-    expect(ghost.classList.contains('ghost--flipped')).to.be.equal(true)
+    expect(ghost.style.left).toBe('-155px')
+    expect(ghost.style.top).toBe('-55px')
+    expect(ghost.classList.contains('ghost--flipped')).toBeTruthy()
   })
 })
