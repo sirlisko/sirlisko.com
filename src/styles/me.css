@@ -134,3 +134,14 @@ h2 {
     width: 95%;
   }
 }
+
+/* Fixed print pagination */
+
+@media print {
+  .projects {
+    padding-top: 50px;
+  }
+  .wrapper {
+    padding-bottom: 7px;
+  }
+}

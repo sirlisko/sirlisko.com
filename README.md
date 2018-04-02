@@ -24,7 +24,7 @@ Now the build consists of 2 steps:
 
 Once NodeJs is installed, its package manager NPM will be available, all you need to do is run in the main directory of the project the following command.
 
-```
+```bash
 $ npm install --production
 ```
 
@@ -34,7 +34,7 @@ In addition of that NPM allows us to run base commands that could be plugged to 
 
 ### Build the Front-End
 
-```
+```bash
 $ npm run build
 ```
 
@@ -57,7 +57,7 @@ Gulp gives us the ability to run several tasks contained in the main gulp file `
 
 The easier way to build the Front-End in Develop mode is with:
 
-```
+```bash
 $ npm run watch
 ```
 
@@ -67,14 +67,21 @@ In addition to the build, this command is also **watching the file system** look
 
 In order to running the tests and linters the **dev dependencies** need to be installed.
 
-```
+```bash
 $ npm install
 ```
 
 Once the dependencies are installed:
 
-```
+```bash
 $ npm test
 ```
 
 The test command is running the unit test relative to the javascript and the linting of the code (JS/CSS).
+
+### Generate the resume in pdf format
+
+```bash
+$ npm start
+$ npx electron-pdf http://127.0.0.1:8080/resume/ resume.pdf
+```
