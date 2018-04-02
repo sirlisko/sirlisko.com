@@ -3,7 +3,7 @@ import fakeEvent from 'simulant'
 const $ = sel => document.querySelector(sel)
 const $$ = sel => document.querySelectorAll(sel)
 
-var stubType, stubAction
+let stubType, stubAction
 
 jest.mock('./beacon', () => (type, action) => {
   stubType = type

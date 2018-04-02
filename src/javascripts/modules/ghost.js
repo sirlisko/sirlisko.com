@@ -23,7 +23,7 @@ const ghostMove = (ghost) => (e) => {
 }
 
 const ghostOver = (ghost) => () => {
-  var hearts = document.querySelectorAll('.life__heart:not(.life__heart--ko)')
+  const hearts = document.querySelectorAll('.life__heart:not(.life__heart--ko)')
   hearts[hearts.length - 1].classList.add('life__heart--ko')
   hearts.length === 1 && gameOver(ghost)()
 }
