@@ -1,20 +1,25 @@
-var path = require('path')
+const path = require('path')
 
 module.exports = {
   devtool: 'source-map',
+  devServer: {
+    contentBase: './dist'
+  },
   context: path.resolve(__dirname, 'src/javascripts/modules'),
   entry: {
     base: ['./beacon', './ghost', './switchTitle'],
     trak: ['./beacon']
   },
   module: {
-    loaders: [{
+    rules: [{
       test: /\.js$/,
-      loaders: ['babel-loader'],
+      use: {
+        loader: 'babel-loader'
+      },
       exclude: '/node_modules/'
     }]
   },
   output: {
-    filename: 'dist/js/[name].js'
+    filename: 'js/[name].js'
   }
 }

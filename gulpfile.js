@@ -1,30 +1,30 @@
-import gulp from 'gulp'
-import gulpLoadPlugins from 'gulp-load-plugins'
+var gulp = require('gulp')
+var gulpLoadPlugins = require('gulp-load-plugins')
 
-const $ = gulpLoadPlugins()
+var $ = gulpLoadPlugins()
 
-gulp.task('copy', () =>
+gulp.task('copy', function () {
   gulp.src([
     'node_modules/apache-server-configs/dist/.htaccess',
     './public/**/*'
   ])
-  .pipe(gulp.dest('./dist'))
-  .pipe($.size({ title: 'public' }))
-)
+    .pipe(gulp.dest('./dist'))
+    .pipe($.size({ title: 'public' }))
+})
 
-gulp.task('html', () =>
-  gulp.src([
+gulp.task('html', function () {
+  return gulp.src([
     './src/templates/*.html',
     './src/templates/sections/**/*.html',
     '!./src/templates/sections/**/partials/*.html'
   ])
-  .pipe($.fileInclude())
-  .pipe($.minifyHtml())
-  .pipe(gulp.dest('./dist'))
-  .pipe($.size({ title: 'html' }))
-)
+    .pipe($.fileInclude())
+    .pipe($.minifyHtml())
+    .pipe(gulp.dest('./dist'))
+    .pipe($.size({ title: 'html' }))
+})
 
-gulp.task('validate', ['html'], () => {
+gulp.task('validate', ['html'], function () {
   const validate = file => {
     require('w3cjs').validate({
       input: file.contents,
@@ -48,16 +48,16 @@ gulp.task('validate', ['html'], () => {
     .pipe(require('map-stream')(validate))
 })
 
-gulp.task('sitemap', ['html'], () =>
-  gulp.src('./dist/**/*.html')
-  .pipe($.sitemap({
-    siteUrl: 'http://sirlisko.com'
-  }))
-  .pipe(gulp.dest('./public'))
-)
+gulp.task('sitemap', ['html'], function () {
+  return gulp.src('./dist/**/*.html')
+    .pipe($.sitemap({
+      siteUrl: 'http://sirlisko.com'
+    }))
+    .pipe(gulp.dest('./public'))
+})
 
-gulp.task('watch', ['default'], () => {
-  gulp.watch('./src/**/*.html', ['html'])
+gulp.task('watch', ['default'], function () {
+  gulp.watch('./src/**/*.html', ['html', 'copy'])
 })
 
 gulp.task('default', ['html', 'copy'])
