@@ -42,13 +42,13 @@ body {
     font-size: 9px;
   }
   @media print {
-    padding: 35px 35px 120px;
+    padding: 0 35px 120px;
   }
 }
 
 a {
   color: #fff;
-  .alt & {
+  @nest .alt & {
     color: currentColor;
   }
 }
@@ -61,13 +61,15 @@ article {
 
 h1 {
   color: #c200c0;
-  .alt & {
+  @nest .alt & {
     color: red;
   }
 }
 h2 {
-  color: #00bcbc;
-  .alt & {
+  &, & a {
+    color: #00bcbc;
+  }
+  @nest .alt & {
     color: blue;
   }
   & span {
@@ -87,7 +89,7 @@ h2 {
 }
 .me__face {
   margin: 0 2em;
-  width: calc(var(--side) + 1);
+  width: calc(var(--side));
   & img {
     display: block;
     margin: 0 auto;
@@ -125,7 +127,7 @@ h2 {
 }
 @media screen and (min-width: 650px) {
   .section {
-    margin-left: calc(var(--side) + 5);
+    margin-left: calc(var(--side) + 5em);
   }
 }
 @media screen and (max-width: 649px) {
@@ -135,13 +137,27 @@ h2 {
   }
 }
 
+.alt--visible {
+  display: none;
+  @nest .alt & {
+    display: block;
+  }
+}
+.alt--invisible {
+  @nest .alt & {
+    display: none;
+  }
+}
+
+
 /* Fixed print pagination */
 
 @media print {
-  .projects {
-    padding-top: 50px;
+  h2 a {
+    text-decoration: none;
   }
-  .wrapper {
-    padding-bottom: 7px;
+
+  .projects {
+    padding-top: 45px;
   }
 }
