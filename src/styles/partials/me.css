@@ -1,9 +1,8 @@
 .me {
   align-items: center;
   display: flex;
+  height: 100%;
   justify-content: space-around;
-  height: 80vh;
-  width: 100%;
   @media screen and (max-width: 650px) {
     flex-direction: column;
   }
@@ -18,15 +17,17 @@
   height: 85%;
   z-index: 1;
   @media screen and (max-width: 650px) {
-    height: 50vh;
+    height: 50%;
   }
 }
 
 .me__intro {
   font-size: 3vw;
   line-height: 1.5;
+  padding-bottom: 3vw;
   @media screen and (max-width: 650px) {
     font-size: 5vw;
+    padding-bottom: 5vw;
   }
 }
 

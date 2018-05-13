@@ -1,10 +1,19 @@
 .links {
-  float: right;
-  margin: 10px;
-  position: relative;
   & li {
     display: inline-block;
-    margin: 0 10px;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+    @media (min-width: 650px) {
+      margin-right: 1rem;
+    }
+    &:hover .caption {
+      @media (min-width: 650px) {
+        display: block;
+      }
+    }
+    &:last-child {
+      margin-right: 0;
+    }
   }
   & a {
     background: url(../images/sprites.png) no-repeat;
@@ -31,23 +40,3 @@
 .links--flickr a { background-position: 0 -216px; }
 .links--facebook a { background-position: 0 -251px; }
 .links--instagram a { background-position: 0 -287px; }
-
-@media screen and (max-width: 650px) {
-  .links {
-    float: none;
-    margin: 5px auto 5vh;
-    text-align: center;
-    & li {
-      margin: 5px;
-    }
-    & .lastfm {
-      display: none;
-    }
-  }
-}
-
-@media screen and (min-width: 650px + 1) {
-  .links li:hover .caption {
-    display: block;
-  }
-}
