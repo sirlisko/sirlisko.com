@@ -91,5 +91,8 @@
       "at-rule-empty-line-before": null,
       "rule-empty-line-before": null
     }
+  },
+  "jest": {
+    "testURL": "http://localhost/"
   }
 }
