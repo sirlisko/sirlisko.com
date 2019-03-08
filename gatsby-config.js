@@ -25,18 +25,7 @@ module.exports = {
         display: "browser",
         theme_color: "#c0deed",
         background_color: "#FFFFFF",
-        icons: [
-          {
-            src: "images/icons/icon-144x144.png",
-            sizes: "144x144",
-            type: "image/png"
-          },
-          {
-            src: "images/icons/icon-192x192.png",
-            sizes: "192x192",
-            type: "image/png"
-          }
-        ]
+        icon: `src/images/icon.png`
       }
     }
     // this (optional) plugin enables Progressive Web App + Offline functionality
