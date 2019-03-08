@@ -1,13 +1,23 @@
 @import url("https://fonts.googleapis.com/css?family=Press+Start+2P");
 
-html {
+.projects-page {
   background-color: #c0deed;
   background-image: radial-gradient(circle, #6bd3e4, #2eaed5);
-  font-family: "Press Start 2P", monospace;
-}
-
-sup a {
-  text-decoration: none;
+  overflow: auto;
+  line-height: 1.15;
+  & sup a {
+    text-decoration: none;
+  }
+  & h1 {
+    text-align: center;
+    font-size: 2em;
+    margin: 1em 0 1.5em;
+  }
+  & section {
+    margin: 20px auto;
+    max-width: 1200px;
+    width: 95%;
+  }
 }
 
 .logo {
@@ -18,15 +28,6 @@ sup a {
   }
   @media (min-width: 650px) {
     width: 100px;
-  }
-}
-
-.projects {
-  margin: 20px auto;
-  max-width: 1200px;
-  width: 95%;
-  & h1 {
-    text-align: center;
   }
 }
 
