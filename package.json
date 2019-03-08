@@ -29,6 +29,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "classnames": "^2.2.6",
     "gatsby": "^2.1.27",
     "gatsby-plugin-manifest": "^2.0.22",
     "gatsby-plugin-offline": "^2.0.24",
@@ -36,6 +37,7 @@
     "gatsby-plugin-sass": "^2.0.10",
     "gatsby-source-filesystem": "^2.0.23",
     "gatsby-transformer-json": "^2.1.8",
+    "lodash.debounce": "^4.0.8",
     "node-sass": "^4.11.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.4",
