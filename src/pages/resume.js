@@ -4,17 +4,17 @@ import resume from "../../data/resume.json";
 
 import "./resume.scss";
 
-import SEO from "../components/seo";
-import Me from "../components/resume/Me";
-import Skills from "../components/resume/Skills";
-import Education from "../components/resume/Education";
-import Extras from "../components/resume/Extras";
-import Contacts from "../components/resume/Contacts";
-import Projects from "../components/resume/Projects";
-import Experiences from "../components/resume/Experiences";
-import Interests from "../components/resume/Interests";
+import SEO from "../components/Seo.jsx";
+import Me from "../components/resume/Me.jsx";
+import Skills from "../components/resume/Skills.jsx";
+import Education from "../components/resume/Education.jsx";
+import Extras from "../components/resume/Extras.jsx";
+import Contacts from "../components/resume/Contacts.jsx";
+import Projects from "../components/resume/Projects.jsx";
+import Experiences from "../components/resume/Experiences.jsx";
+import Interests from "../components/resume/Interests.jsx";
 
-export default () => (
+const ResumePage = () => (
   <div className="resume">
     <SEO
       title="Resume"
@@ -40,3 +40,5 @@ export default () => (
     </div>
   </div>
 );
+
+export default ResumePage;

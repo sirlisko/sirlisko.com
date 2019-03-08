@@ -4,7 +4,7 @@ const Education = () => (
   <article className="section education">
     <h1>Education</h1>
     <p>
-      Degree in Computer Science @ Università degli studi dell'Insubria &amp;
+      Degree in Computer Science @ Università degli studi dell’Insubria &amp;
       Universidad de Salamanca.
     </p>
     <p>

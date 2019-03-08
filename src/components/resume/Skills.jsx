@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const Skills = ({ skills }) => (
   <article className="skills">
@@ -15,5 +16,9 @@ const Skills = ({ skills }) => (
     ))}
   </article>
 );
+
+Skills.propTypes = {
+  skills: PropTypes.array.isRequired
+};
 
 export default Skills;

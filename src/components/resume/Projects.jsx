@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const Projects = ({ projects }) => (
   <article className="section projects">
@@ -19,5 +20,9 @@ const Projects = ({ projects }) => (
     </div>
   </article>
 );
+
+Projects.propTypes = {
+  projects: PropTypes.array.isRequired
+};
 
 export default Projects;
