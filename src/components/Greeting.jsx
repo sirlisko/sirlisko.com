@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import "./Greeting.scss";
+
 class Greeting extends React.Component {
   constructor(props) {
     super(props);
@@ -26,13 +28,16 @@ class Greeting extends React.Component {
     const { selected } = this.state;
     const { descriptions } = this.props;
     return (
-      <div className="me__intro">
+      <div className="greeting__intro">
         <p>Ciao!</p>
         <p>I'm sirLisko,</p>
         <p>another f@$#&amp;n'</p>
-        <p className="me__intro__desc">
+        <p className="greeting__intro__desc">
           {descriptions.map(d => (
-            <span key={d} className={d === selected ? "me__intro--active" : ""}>
+            <span
+              key={d}
+              className={d === selected ? "greeting__intro--active" : ""}
+            >
               {d}
             </span>
           ))}

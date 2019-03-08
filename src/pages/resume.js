@@ -2,8 +2,7 @@ import React from "react";
 
 import resume from "../../data/resume.json";
 
-import "normalize.css";
-import "../styles/resume.scss";
+import "./resume.scss";
 
 import SEO from "../components/seo";
 import Me from "../components/resume/Me";
@@ -16,7 +15,7 @@ import Experiences from "../components/resume/Experiences";
 import Interests from "../components/resume/Interests";
 
 export default () => (
-  <>
+  <div className="resume">
     <SEO
       title="Resume"
       description="Resume (or CV) of Luca Lischetti also know as sirLisko. Experiences, skills and interests."
@@ -39,5 +38,5 @@ export default () => (
       <Interests />
       <Contacts />
     </div>
-  </>
+  </div>
 );

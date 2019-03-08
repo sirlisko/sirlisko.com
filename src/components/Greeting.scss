@@ -1,0 +1,49 @@
+.greeting {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: space-around;
+  @media screen and (max-width: 650px) {
+    flex-direction: column;
+  }
+}
+
+.greeting__face,
+.greeting__intro {
+  margin: 20px;
+}
+.greeting__face {
+  height: 85%;
+  z-index: 1;
+  display: block;
+  @media screen and (max-width: 650px) {
+    height: 50%;
+  }
+}
+
+.greeting__intro {
+  font-size: 3vw;
+  line-height: 1.5;
+  padding-bottom: 3vw;
+  & p {
+    margin: 0;
+  }
+  @media screen and (max-width: 650px) {
+    font-size: 5vw;
+    padding-bottom: 5vw;
+  }
+}
+
+.greeting__intro__desc {
+  display: block;
+  position: relative;
+  & span {
+    opacity: 0;
+    position: absolute;
+    transition: opacity 3s;
+    width: 100%;
+  }
+  & .greeting__intro--active {
+    opacity: 1;
+  }
+}

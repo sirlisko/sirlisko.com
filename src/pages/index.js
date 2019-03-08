@@ -1,16 +1,16 @@
 import React from "react";
 import { Link } from "gatsby";
 
-import me from "../../data/me.json";
+import "./index.scss";
 
-import "../styles/style.scss";
+import me from "../../data/me.json";
 
 import SEO from "../components/seo";
 import Links from "../components/Links";
 import Greeting from "../components/Greeting";
 
 export default () => (
-  <>
+  <div className="home">
     <SEO
       title="Home"
       keywords={[
@@ -26,9 +26,9 @@ export default () => (
       <Links links={me.links} />
     </header>
     <article>
-      <section className="me">
+      <section className="greeting">
         <img
-          className="me__face"
+          className="greeting__face"
           src="./images/sirlisko.svg"
           alt="sirlisko face"
         />
@@ -43,5 +43,5 @@ export default () => (
         Resume
       </Link>
     </footer>
-  </>
+  </div>
 );
