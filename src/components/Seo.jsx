@@ -28,7 +28,7 @@ function SEO({ description, lang, meta, keywords, title, image }) {
               },
               {
                 property: `og:image`,
-                content: data.site.siteMetadata.image
+                content: image || data.site.siteMetadata.image
               },
               {
                 property: `og:description`,
