@@ -5,11 +5,11 @@ import "./index.scss";
 
 import me from "../../data/me.json";
 
-import SEO from "../components/seo";
-import Links from "../components/Links";
-import Greeting from "../components/Greeting";
+import SEO from "../components/Seo.jsx";
+import Links from "../components/Links.jsx";
+import Greeting from "../components/Greeting.jsx";
 
-export default () => (
+const HomePage = () => (
   <div className="home">
     <SEO
       title="Home"
@@ -45,3 +45,5 @@ export default () => (
     </footer>
   </div>
 );
+
+export default HomePage;

@@ -30,8 +30,8 @@ class Greeting extends React.Component {
     return (
       <div className="greeting__intro">
         <p>Ciao!</p>
-        <p>I'm sirLisko,</p>
-        <p>another f@$#&amp;n'</p>
+        <p>I’m sirLisko,</p>
+        <p>another f@$#&amp;n’</p>
         <p className="greeting__intro__desc">
           {descriptions.map(d => (
             <span
@@ -46,5 +46,9 @@ class Greeting extends React.Component {
     );
   }
 }
+
+Greeting.propTypes = {
+  descriptions: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired
+};
 
 export default Greeting;

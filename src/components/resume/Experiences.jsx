@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const Experiences = ({ experiences }) => (
   <article className="section experiences">
@@ -16,5 +17,9 @@ const Experiences = ({ experiences }) => (
     ))}
   </article>
 );
+
+Experiences.propTypes = {
+  experiences: PropTypes.array.isRequired
+};
 
 export default Experiences;

@@ -5,10 +5,10 @@ import projects from "../../data/projects.json";
 
 import "./projects.scss";
 
-import SEO from "../components/seo";
-import ProjectCard from "../components/ProjectCard";
+import SEO from "../components/Seo.jsx";
+import ProjectCard from "../components/ProjectCard.jsx";
 
-export default () => (
+const ProjectsPage = () => (
   <div className="projects-page">
     <SEO
       title="Projects"
@@ -39,3 +39,5 @@ export default () => (
     </section>
   </div>
 );
+
+export default ProjectsPage;
