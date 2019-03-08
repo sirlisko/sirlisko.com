@@ -16,7 +16,7 @@
     }
   }
   & a {
-    background: url(../images/sprites.png) no-repeat;
+    background: url(/images/sprites.png) no-repeat;
     display: block;
     height: 32px;
     width: 32px;
@@ -32,11 +32,27 @@
   transform: translateX(-50%);
 }
 
-.links--tumblr a { background-position: 0 -35px; }
-.links--blog a { background-position: 0 -71px; }
-.links--github a { background-position: 0 -107px; }
-.links--lastfm a { background-position: 0 -144px; }
-.links--mail a { background-position: 0 -180px; }
-.links--flickr a { background-position: 0 -216px; }
-.links--facebook a { background-position: 0 -251px; }
-.links--instagram a { background-position: 0 -287px; }
+.links--tumblr a {
+  background-position: 0 -35px;
+}
+.links--blog a {
+  background-position: 0 -71px;
+}
+.links--github a {
+  background-position: 0 -107px;
+}
+.links--lastfm a {
+  background-position: 0 -144px;
+}
+.links--mail a {
+  background-position: 0 -180px;
+}
+.links--flickr a {
+  background-position: 0 -216px;
+}
+.links--facebook a {
+  background-position: 0 -251px;
+}
+.links--instagram a {
+  background-position: 0 -287px;
+}

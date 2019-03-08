@@ -1,0 +1,156 @@
+@import url("https://fonts.googleapis.com/css?family=Press+Start+2P");
+
+:root {
+  --side: 18em;
+}
+
+@page {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background-color: #0300ae;
+  background-image: radial-gradient(circle, #0300ae, #000024);
+  color: #fff;
+  font-family: "Press Start 2P", monospace;
+  height: 100%;
+}
+
+html.alt {
+  background: #fff;
+  color: #000;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  @media (max-width: 1150px) {
+    font-size: 1.2vw;
+  }
+  @media print, (max-width: 650px) {
+    font-size: 9px;
+  }
+  @media print {
+    padding: 0 35px 120px;
+  }
+}
+
+a {
+  color: #fff;
+  .alt & {
+    color: currentColor;
+  }
+}
+
+article {
+  line-height: 1.5;
+  margin: 20px;
+  overflow: hidden;
+}
+
+h1 {
+  color: #c200c0;
+  .alt & {
+    color: red;
+  }
+}
+h2 {
+  &,
+  & a {
+    color: #00bcbc;
+  }
+  .alt & {
+    color: blue;
+  }
+  & span {
+    display: block;
+  }
+}
+
+.wrapper {
+  overflow: hidden;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+.me {
+  margin: 20px auto 0;
+  max-width: 1200px;
+}
+.me__face {
+  margin: 0 2em;
+  width: calc(var(--side));
+  & img {
+    display: block;
+    margin: 0 auto;
+    width: 8em;
+  }
+}
+.me__face,
+.me__intro {
+  display: inline-block;
+  vertical-align: middle;
+}
+.me__intro {
+  font-size: 2em;
+  line-height: 1.5;
+  & span {
+    display: block;
+  }
+}
+
+.skills > div {
+  display: inline-block;
+  vertical-align: top;
+}
+
+@media print, screen and (min-width: 650px) {
+  .skills {
+    float: left;
+    width: var(--side);
+  }
+
+  .experiences {
+    margin-left: calc(var(--side) + 5);
+  }
+}
+@media screen and (min-width: 650px) {
+  .section {
+    margin-left: calc(var(--side) + 5em);
+  }
+}
+@media screen and (max-width: 649px) {
+  .me {
+    text-align: center;
+    width: 95%;
+  }
+}
+
+.alt--visible {
+  display: none;
+  .alt & {
+    display: block;
+  }
+}
+.alt--invisible {
+  .alt & {
+    display: none;
+  }
+}
+
+/* Fixed print pagination */
+
+@media print {
+  h2 a {
+    text-decoration: none;
+  }
+
+  .projects {
+    padding-top: 45px;
+  }
+}

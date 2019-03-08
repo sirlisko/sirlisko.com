@@ -1,5 +1,5 @@
 .ghost {
-  background: transparent url(../images/ghost.png);
+  background: transparent url(/images/ghost.png);
   top: -125px;
   height: 125px;
   left: -125px;
@@ -41,7 +41,7 @@
 }
 
 .life__heart {
-  background: url(../images/heart.png);
+  background: url(/images/heart.png);
   display: inline-block;
   height: 45px;
   margin-right: 0.5rem;

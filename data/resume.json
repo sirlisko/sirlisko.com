@@ -1,0 +1,105 @@
+{
+  "skills": {
+    "main": [
+        "Javascript",
+        "React",
+        "Node.JS",
+        "Markup/CSS",
+        "Front End Architecture",
+        "FE Build & CI",
+        "TDD",
+        "Functional Testing"
+    ],
+    "misc.": [
+        "Agile / Scrum",
+        "Webpack",
+        "Gulp / Grunt",
+        "NPM",
+        "Git",
+        "RegEX",
+        "Chrome Extensions",
+        "Bash Scripting",
+        "User Scripting",
+        "Web Scraping"
+    ]
+  },
+  "experiences": [
+    {
+      "role": "Contractor as Barbooto ltd",
+      "blurp": [
+        "To infinity and beyond..."
+      ]
+    },
+    {
+      "role": "Senior Frontend Engineer",
+      "where": "Verve",
+      "when": "May 2017 - July 2018",
+      "blurp": [
+        "Worked on improving the user experience through the check-out with technologies involving React/Redux, Relay and GraphQL.",
+        "Improved the Front End unit testing environment, migrated to Jest and introduced snapshot testing.",
+        "Integrated 3rd party payment methods (Stripe).",
+        "Worked with the design team to improve the UI/UX."
+      ]
+    },
+    {
+      "role": "Frontend Engineer",
+      "where": "Pobble Education",
+      "when": "June 2016 - May 2017",
+      "blurp": [
+        "Rewrote the whole Front End architecture following the Angular.js best practices. Decoupled the FE from Rails.",
+        "Introduced a Front End build system. Defined a code style guide. Introduced unit/functional test frameworks."
+      ]
+    },
+    {
+      "role": "Senior Software Engineer",
+      "where": "Shazam Entertainment",
+      "when": "October 2011 - May 2016",
+      "blurp": [
+        "Mainly involved in the development of the website (shazam.com). Co-operated in the realisation of a modular architecture of the Front End (AMD, BEM) and its build system (Node.js and Gulp).",
+        "Developed a custom solution for functional tests.",
+        "Worked on automation tools and localisations."
+      ]
+    },
+    {
+      "role": "Web Developer (Consultant)",
+      "where": "YOOX Group",
+      "when": "September 2010 - October 2011",
+      "blurp": [
+        "Mainly involved in JavaScript stuff, especially Test Driven Development (TDD), unit and functional testing, continuous integration and build automation.",
+        "Projected and developed a targeted JS framework."
+      ]
+    },
+    {
+      "role": "Once upon a time...",
+      "blurp": [
+        "In my past, I had the pleasure to work also with Java, Scala, PHP, MySQL, C++, Ruby on Rails. I don't consider myself an expert on those languages but I like, especially in my free time, playing with other technologies :)"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "ZoomME.ME",
+      "url": "https://zoomme.me/",
+      "blurp": [
+        "Super simple zoom-in meme generator. Drag and drop an image and then create your meme.",
+        "PWA (Progressive Web App) powered by pure and sweet Vanilla Javascript."
+      ]
+    },
+    {
+      "name": "Should I listen it?",
+      "url": "https://shouldilistenit.sirlisko.com/",
+      "blurp": [
+        "Little webapp that shows you the most played songs by an artist in the last two years of gigs.",
+        "Node.js app that proxies external APIs (Setlist.fm, Spotify and Songkick) and mashes them up to set you up for your next Gig."
+      ]
+    },
+    {
+      "name": "Shazamify",
+      "url": "https://chrome.google.com/webstore/detail/zamify/foilfgbdcipbajipeodmjjnkflkfocin",
+      "blurp": [
+        "Shazamify allows you to play your Shazams in Spotify, directly from the browser, by adding a small Spotify icon to every Shazam track page.",
+        "Chrome Extension powered by Spotify OAuth and Web API."
+      ]
+    }
+  ]
+}

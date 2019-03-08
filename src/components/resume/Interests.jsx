@@ -1,0 +1,23 @@
+import React from "react";
+
+const Interests = () => (
+  <article className="section interests">
+    <h1>Interests</h1>
+    <p>
+      I like very much <a href="https://www.last.fm/user/sirlisko">music</a>,{" "}
+      <a href="https://www.imdb.com/user/ur15844029/">cinema</a>,{" "}
+      <a href="https://www.goodreads.com/sirLisko">books</a>, and, last but not
+      least, <a href="https://pizzaclub.sirlisko.com/">pizza</a>.
+    </p>
+    <p>
+      I like Art, especially modern and 8-bit graphic (like old-school video
+      games), travel, languages. I’m also an active member of{" "}
+      <a href="https://www.couchsurfing.com/people/sirlisko">
+        CouchSurfing community
+      </a>
+      .
+    </p>
+  </article>
+);
+
+export default Interests;
