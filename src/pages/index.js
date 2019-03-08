@@ -8,6 +8,7 @@ import me from "../../data/me.json";
 import SEO from "../components/Seo.jsx";
 import Links from "../components/Links.jsx";
 import Greeting from "../components/Greeting.jsx";
+import Ghost from "../components/Ghost.jsx";
 
 const HomePage = () => (
   <div className="home">
@@ -22,6 +23,7 @@ const HomePage = () => (
         "super hero"
       ]}
     />
+    {typeof window !== `undefined` && !window.ontouchstart && <Ghost />}
     <header>
       <Links links={me.links} />
     </header>
