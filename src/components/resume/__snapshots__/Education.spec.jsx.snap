@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Education Component should render properly 1`] = `
+<article
+  className="section education"
+>
+  <h1>
+    Education
+  </h1>
+  <p>
+    Degree in Computer Science @ Università degli studi dell’Insubria & Universidad de Salamanca.
+  </p>
+  <p>
+    Thesis on Assistive Technology -
+     
+    <a
+      data-beacon={true}
+      href="http://assistivetechnology.it"
+    >
+      http://assistivetechnology.it
+    </a>
+     
+    (sorry link in Italian).
+  </p>
+</article>
+`;

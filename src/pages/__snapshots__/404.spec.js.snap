@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`404 Page should render properly 1`] = `
+Array [
+  <h1>
+    NOT FOUND
+  </h1>,
+  <p>
+    You just hit a route that doesn't exist... the sadness.
+  </p>,
+]
+`;

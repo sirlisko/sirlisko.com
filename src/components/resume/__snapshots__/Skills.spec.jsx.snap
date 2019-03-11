@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Skills Component should render properly 1`] = `
+<article
+  className="skills"
+>
+  <h1>
+    Skills
+  </h1>
+  <div>
+    <h2>
+      main
+    </h2>
+    <ul>
+      <li>
+        foo
+      </li>
+      <li>
+        bar
+      </li>
+    </ul>
+  </div>
+  <div>
+    <h2>
+      misc.
+    </h2>
+    <ul>
+      <li>
+        foobar
+      </li>
+    </ul>
+  </div>
+</article>
+`;
