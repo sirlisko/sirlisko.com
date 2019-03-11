@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Me Component should render properly 1`] = `
+<section
+  className="me"
+>
+  <div
+    className="me__face"
+  >
+    <a
+      href="/"
+    >
+      <img
+        alt="sirlisko face"
+        src="https://sirlisko.com/images/sirlisko.svg"
+      />
+    </a>
+  </div>
+  <p
+    className="me__intro"
+  >
+    <span>
+      Luca Lischetti
+    </span>
+    <span>
+      a.k.a. sirLisko
+    </span>
+    <span>
+      Senior Software Engineer
+    </span>
+  </p>
+</section>
+`;

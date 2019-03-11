@@ -1,0 +1,438 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Resume Page should render properly 1`] = `
+<div
+  className="resume"
+>
+  <section
+    className="me"
+  >
+    <div
+      className="me__face"
+    >
+      <a
+        href="/"
+      >
+        <img
+          alt="sirlisko face"
+          src="https://sirlisko.com/images/sirlisko.svg"
+        />
+      </a>
+    </div>
+    <p
+      className="me__intro"
+    >
+      <span>
+        Luca Lischetti
+      </span>
+      <span>
+        a.k.a. sirLisko
+      </span>
+      <span>
+        Senior Software Engineer
+      </span>
+    </p>
+  </section>
+  <div
+    className="wrapper"
+  >
+    <article
+      className="skills"
+    >
+      <h1>
+        Skills
+      </h1>
+      <div>
+        <h2>
+          main
+        </h2>
+        <ul>
+          <li>
+            Javascript
+          </li>
+          <li>
+            React
+          </li>
+          <li>
+            Node.JS
+          </li>
+          <li>
+            Markup/CSS
+          </li>
+          <li>
+            Front End Architecture
+          </li>
+          <li>
+            FE Build & CI
+          </li>
+          <li>
+            TDD
+          </li>
+          <li>
+            Functional Testing
+          </li>
+        </ul>
+      </div>
+      <div>
+        <h2>
+          misc.
+        </h2>
+        <ul>
+          <li>
+            Agile / Scrum
+          </li>
+          <li>
+            Webpack
+          </li>
+          <li>
+            Gulp / Grunt
+          </li>
+          <li>
+            NPM
+          </li>
+          <li>
+            Git
+          </li>
+          <li>
+            RegEX
+          </li>
+          <li>
+            Chrome Extensions
+          </li>
+          <li>
+            Bash Scripting
+          </li>
+          <li>
+            User Scripting
+          </li>
+          <li>
+            Web Scraping
+          </li>
+        </ul>
+      </div>
+    </article>
+    <article
+      className="section experiences"
+    >
+      <h1>
+        Experiences
+      </h1>
+      <div>
+        <h2>
+          Contractor as Barbooto ltd
+           
+        </h2>
+        <p>
+          To infinity and beyond...
+        </p>
+      </div>
+      <div>
+        <h2>
+          Senior Frontend Engineer
+           
+          <span>
+            @ 
+            Verve
+          </span>
+        </h2>
+        <h4>
+          May 2017 - July 2018
+        </h4>
+        <p>
+          Worked on improving the user experience through the check-out with technologies involving React/Redux, Relay and GraphQL.
+        </p>
+        <p>
+          Improved the Front End unit testing environment, migrated to Jest and introduced snapshot testing.
+        </p>
+        <p>
+          Integrated 3rd party payment methods (Stripe).
+        </p>
+        <p>
+          Worked with the design team to improve the UI/UX.
+        </p>
+      </div>
+      <div>
+        <h2>
+          Frontend Engineer
+           
+          <span>
+            @ 
+            Pobble Education
+          </span>
+        </h2>
+        <h4>
+          June 2016 - May 2017
+        </h4>
+        <p>
+          Rewrote the whole Front End architecture following the Angular.js best practices. Decoupled the FE from Rails.
+        </p>
+        <p>
+          Introduced a Front End build system. Defined a code style guide. Introduced unit/functional test frameworks.
+        </p>
+      </div>
+      <div>
+        <h2>
+          Senior Software Engineer
+           
+          <span>
+            @ 
+            Shazam Entertainment
+          </span>
+        </h2>
+        <h4>
+          October 2011 - May 2016
+        </h4>
+        <p>
+          Mainly involved in the development of the website (shazam.com). Co-operated in the realisation of a modular architecture of the Front End (AMD, BEM) and its build system (Node.js and Gulp).
+        </p>
+        <p>
+          Developed a custom solution for functional tests.
+        </p>
+        <p>
+          Worked on automation tools and localisations.
+        </p>
+      </div>
+      <div>
+        <h2>
+          Web Developer (Consultant)
+           
+          <span>
+            @ 
+            YOOX Group
+          </span>
+        </h2>
+        <h4>
+          September 2010 - October 2011
+        </h4>
+        <p>
+          Mainly involved in JavaScript stuff, especially Test Driven Development (TDD), unit and functional testing, continuous integration and build automation.
+        </p>
+        <p>
+          Projected and developed a targeted JS framework.
+        </p>
+      </div>
+      <div>
+        <h2>
+          Once upon a time...
+           
+        </h2>
+        <p>
+          In my past, I had the pleasure to work also with Java, Scala, PHP, MySQL, C++, Ruby on Rails. I don't consider myself an expert on those languages but I like, especially in my free time, playing with other technologies :)
+        </p>
+      </div>
+    </article>
+    <article
+      className="section projects"
+    >
+      <h1>
+        Side Projects
+      </h1>
+      <div>
+        <h2>
+          <a
+            href="https://zoomme.me/"
+          >
+            ZoomME.ME
+          </a>
+        </h2>
+        <p>
+          Super simple zoom-in meme generator. Drag and drop an image and then create your meme.
+        </p>
+        <p>
+          PWA (Progressive Web App) powered by pure and sweet Vanilla Javascript.
+        </p>
+      </div>
+      <div>
+        <h2>
+          <a
+            href="https://shouldilistenit.sirlisko.com/"
+          >
+            Should I listen it?
+          </a>
+        </h2>
+        <p>
+          Little webapp that shows you the most played songs by an artist in the last two years of gigs.
+        </p>
+        <p>
+          Node.js app that proxies external APIs (Setlist.fm, Spotify and Songkick) and mashes them up to set you up for your next Gig.
+        </p>
+      </div>
+      <div>
+        <h2>
+          <a
+            href="https://chrome.google.com/webstore/detail/zamify/foilfgbdcipbajipeodmjjnkflkfocin"
+          >
+            Shazamify
+          </a>
+        </h2>
+        <p>
+          Shazamify allows you to play your Shazams in Spotify, directly from the browser, by adding a small Spotify icon to every Shazam track page.
+        </p>
+        <p>
+          Chrome Extension powered by Spotify OAuth and Web API.
+        </p>
+      </div>
+      <div>
+        To see a full list of my side projects go to
+         
+        <a
+          href="/projects"
+        >
+          https://sirlisko.com/projects
+        </a>
+        .
+      </div>
+    </article>
+    <article
+      className="section education"
+    >
+      <h1>
+        Education
+      </h1>
+      <p>
+        Degree in Computer Science @ Università degli studi dell’Insubria & Universidad de Salamanca.
+      </p>
+      <p>
+        Thesis on Assistive Technology -
+         
+        <a
+          data-beacon={true}
+          href="http://assistivetechnology.it"
+        >
+          http://assistivetechnology.it
+        </a>
+         
+        (sorry link in Italian).
+      </p>
+    </article>
+    <article
+      className="section extras"
+    >
+      <h1>
+        Extras
+      </h1>
+      <p>
+        I co-held a workshop about TDD in Javascript @ Università di Cesena.
+      </p>
+      <p>
+        I’m a Volunteer and occasional collaborator of the Front-End Conference -
+         
+        <a
+          data-beacon={true}
+          href="https://fromthefront.it"
+        >
+          From The Front
+        </a>
+        .
+      </p>
+      <p>
+        I have a Cisco CCNA cetificate (Cisco Certified Network Associate).
+      </p>
+      <p>
+        I have a training certificate as Fire Marshal.
+      </p>
+    </article>
+    <article
+      className="section interests"
+    >
+      <h1>
+        Interests
+      </h1>
+      <p>
+        I like very much 
+        <a
+          href="https://www.last.fm/user/sirlisko"
+        >
+          music
+        </a>
+        ,
+         
+        <a
+          href="https://www.imdb.com/user/ur15844029/"
+        >
+          cinema
+        </a>
+        ,
+         
+        <a
+          href="https://www.goodreads.com/sirLisko"
+        >
+          books
+        </a>
+        , and, last but not least, 
+        <a
+          href="https://pizzaclub.sirlisko.com/"
+        >
+          pizza
+        </a>
+        .
+      </p>
+      <p>
+        I like Art, especially modern and 8-bit graphic (like old-school video games), travel, languages. I’m also an active member of
+         
+        <a
+          href="https://www.couchsurfing.com/people/sirlisko"
+        >
+          CouchSurfing community
+        </a>
+        .
+      </p>
+    </article>
+    <article
+      className="section contacts"
+    >
+      <h1>
+        Contacts
+      </h1>
+      <p>
+        My website 
+        <a
+          href="https://sirlisko.com"
+        >
+          https://sirlisko.com
+        </a>
+      </p>
+      <p>
+        My Github
+         
+        <a
+          href="https://github.com/sirlisko"
+        >
+          https://github.com/sirlisko
+        </a>
+      </p>
+      <p>
+        My email address 
+        <a
+          href="mailto:luca@sirlisko.com"
+        >
+          luca@sirlisko.com
+        </a>
+        .
+      </p>
+      <p
+        className="alt--invisible"
+      >
+        A print-friendly version of this:
+         
+        <a
+          href="https://sirlisko.com/cv/alt.pdf"
+        >
+          https://sirlisko.com/cv/alt.pdf
+        </a>
+      </p>
+      <p
+        className="alt--visible"
+      >
+        A live version of this resume:
+         
+        <a
+          href="https://sirlisko.com/resume"
+        >
+          https://sirlisko.com/resume
+        </a>
+      </p>
+    </article>
+  </div>
+</div>
+`;

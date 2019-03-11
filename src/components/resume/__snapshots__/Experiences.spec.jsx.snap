@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Experiences Component should render properly 1`] = `
+<article
+  className="section experiences"
+>
+  <h1>
+    Experiences
+  </h1>
+  <div>
+    <h2>
+      foo
+       
+    </h2>
+    <p>
+      ...
+    </p>
+  </div>
+  <div>
+    <h2>
+      foo
+       
+      <span>
+        @ 
+        bar
+      </span>
+    </h2>
+    <h4>
+      May 2000 - July 2001
+    </h4>
+    <p>
+      foo
+    </p>
+    <p>
+      bar
+    </p>
+    <p>
+      foobar
+    </p>
+  </div>
+</article>
+`;
