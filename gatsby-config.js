@@ -3,12 +3,14 @@ module.exports = {
     title: `sirLisko... Luca Lischetti`,
     description: `personal (and experimental) website of Luca Lischetti aka sirLisko or just another f@$#&amp;n' web developer, full time dreamer and sometimes sleeper, true 8-bit lover and sunday super hero..`,
     author: `Luca Lischetti`,
-    image: `https://sirlisko.com/images/lisko.png`
+    image: `https://sirlisko.com/images/lisko.png`,
+    siteUrl: `https://sirlisko.com`
   },
   plugins: [
     `gatsby-plugin-sass`,
     `gatsby-plugin-react-helmet`,
     `gatsby-transformer-json`,
+    `gatsby-plugin-sitemap`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -27,9 +29,7 @@ module.exports = {
         background_color: "#FFFFFF",
         icon: `src/images/icon.png`
       }
-    }
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.app/offline
-    // 'gatsby-plugin-offline',
+    },
+    `gatsby-plugin-offline`
   ]
 };
