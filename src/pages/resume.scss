@@ -14,15 +14,14 @@
   background-image: radial-gradient(circle, #0300ae, #000024);
   color: #fff;
   overflow: auto;
+  &.alt {
+    background: #fff;
+    color: #000;
+  }
   & h1 {
     font-size: 2em;
     margin: 0.67em 0;
   }
-}
-
-html.alt {
-  background: #fff;
-  color: #000;
 }
 
 .resume {
@@ -37,9 +36,9 @@ html.alt {
   }
   & a {
     color: #fff;
-    .alt & {
-      color: currentColor;
-    }
+  }
+  &.alt a {
+    color: currentColor;
   }
 
   & article {
@@ -50,9 +49,9 @@ html.alt {
 
   & h1 {
     color: #c200c0;
-    .alt & {
-      color: red;
-    }
+  }
+  &.alt h1 {
+    color: red;
   }
   & h2 {
     text-transform: capitalize;
@@ -61,12 +60,12 @@ html.alt {
     & a {
       color: #00bcbc;
     }
-    .alt & {
-      color: blue;
-    }
     & span {
       display: block;
     }
+  }
+  &.alt h2 {
+    color: blue;
   }
 
   & h4 {
@@ -132,18 +131,6 @@ html.alt {
   .resume .me {
     text-align: center;
     width: 95%;
-  }
-}
-
-.alt--visible {
-  display: none;
-  .alt & {
-    display: block;
-  }
-}
-.alt--invisible {
-  .alt & {
-    display: none;
   }
 }
 
