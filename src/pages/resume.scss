@@ -44,7 +44,7 @@ html.alt {
 
   & article {
     line-height: 1.5;
-    margin: 20px;
+    margin: 1rem;
     overflow: hidden;
   }
 
@@ -56,6 +56,7 @@ html.alt {
   }
   & h2 {
     text-transform: capitalize;
+    margin: 1rem auto 0.5rem;
     &,
     & a {
       color: #00bcbc;
@@ -66,6 +67,10 @@ html.alt {
     & span {
       display: block;
     }
+  }
+
+  & h4 {
+    margin-top: 0.5rem;
   }
 
   & .wrapper {
@@ -101,8 +106,10 @@ html.alt {
   }
 
   & .skills > div {
-    display: inline-block;
-    vertical-align: top;
+    @media print, (max-width: 650px) {
+      display: inline-block;
+      vertical-align: top;
+    }
   }
 }
 
@@ -149,7 +156,7 @@ html.alt {
     }
 
     & .projects {
-      padding-top: 45px;
+      padding-top: 34px;
     }
   }
 }

@@ -13,10 +13,8 @@
     "misc.": [
         "Agile / Scrum",
         "Webpack",
+        "Gatsby",
         "Gulp / Grunt",
-        "NPM",
-        "Git",
-        "RegEX",
         "Chrome Extensions",
         "Bash Scripting",
         "User Scripting",
@@ -25,9 +23,12 @@
   },
   "experiences": [
     {
-      "role": "Contractor as Barbooto ltd",
+      "where": "Reason",
       "blurp": [
-        "To infinity and beyond..."
+        "Developed from scratch the whole Front End and some basic services for 3rd party client Coverly.",
+        "The stack included React/Redux, Jest for unit testing, Storybook for documentation and Node for the API integration.",
+        "Deployed the services to AWS and Azure using Bitbucket pipelines.",
+        "Dealt with the client and the 3rd party API provider. Iterated on the product and the designs to facilitate the development."
       ]
     },
     {
@@ -70,9 +71,9 @@
       ]
     },
     {
-      "role": "Once upon a time...",
+      "where": "Once upon a time...",
       "blurp": [
-        "In my past, I had the pleasure to work also with Java, Scala, PHP, MySQL, C++, Ruby on Rails. I don't consider myself an expert on those languages but I like, especially in my free time, playing with other technologies :)"
+        "I had the pleasure to work also with Java, Scala, PHP, MySQL, C++, Ruby on Rails. I don't consider myself an expert on those languages but I like, especially in my free time, playing with other technologies :)"
       ]
     }
   ],

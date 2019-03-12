@@ -6,9 +6,7 @@ const Experiences = ({ experiences }) => (
     <h1>Experiences</h1>
     {experiences.map(exp => (
       <div key={exp.where || exp.role}>
-        <h2>
-          {exp.role} {exp.where && <span>@ {exp.where}</span>}
-        </h2>
+        {exp.where && <h2>{exp.where}</h2>}
         {exp.when && <h4>{exp.when}</h4>}
         {exp.blurp.map((blr, i) => (
           <p key={i}>{blr}</p>

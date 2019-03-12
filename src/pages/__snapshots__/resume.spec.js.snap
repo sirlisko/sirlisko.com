@@ -85,16 +85,10 @@ exports[`Resume Page should render properly 1`] = `
             Webpack
           </li>
           <li>
+            Gatsby
+          </li>
+          <li>
             Gulp / Grunt
-          </li>
-          <li>
-            NPM
-          </li>
-          <li>
-            Git
-          </li>
-          <li>
-            RegEX
           </li>
           <li>
             Chrome Extensions
@@ -119,21 +113,24 @@ exports[`Resume Page should render properly 1`] = `
       </h1>
       <div>
         <h2>
-          Contractor as Barbooto ltd
-           
+          Reason
         </h2>
         <p>
-          To infinity and beyond...
+          Developed from scratch the whole Front End and some basic services for 3rd party client Coverly.
+        </p>
+        <p>
+          The stack included React/Redux, Jest for unit testing, Storybook for documentation and Node for the API integration.
+        </p>
+        <p>
+          Deployed the services to AWS and Azure using Bitbucket pipelines.
+        </p>
+        <p>
+          Dealt with the client and the 3rd party API provider. Iterated on the product and the designs to facilitate the development.
         </p>
       </div>
       <div>
         <h2>
-          Senior Frontend Engineer
-           
-          <span>
-            @ 
-            Verve
-          </span>
+          Verve
         </h2>
         <h4>
           May 2017 - July 2018
@@ -153,12 +150,7 @@ exports[`Resume Page should render properly 1`] = `
       </div>
       <div>
         <h2>
-          Frontend Engineer
-           
-          <span>
-            @ 
-            Pobble Education
-          </span>
+          Pobble Education
         </h2>
         <h4>
           June 2016 - May 2017
@@ -172,12 +164,7 @@ exports[`Resume Page should render properly 1`] = `
       </div>
       <div>
         <h2>
-          Senior Software Engineer
-           
-          <span>
-            @ 
-            Shazam Entertainment
-          </span>
+          Shazam Entertainment
         </h2>
         <h4>
           October 2011 - May 2016
@@ -194,12 +181,7 @@ exports[`Resume Page should render properly 1`] = `
       </div>
       <div>
         <h2>
-          Web Developer (Consultant)
-           
-          <span>
-            @ 
-            YOOX Group
-          </span>
+          YOOX Group
         </h2>
         <h4>
           September 2010 - October 2011
@@ -214,10 +196,9 @@ exports[`Resume Page should render properly 1`] = `
       <div>
         <h2>
           Once upon a time...
-           
         </h2>
         <p>
-          In my past, I had the pleasure to work also with Java, Scala, PHP, MySQL, C++, Ruby on Rails. I don't consider myself an expert on those languages but I like, especially in my free time, playing with other technologies :)
+          I had the pleasure to work also with Java, Scala, PHP, MySQL, C++, Ruby on Rails. I don't consider myself an expert on those languages but I like, especially in my free time, playing with other technologies :)
         </p>
       </div>
     </article>
