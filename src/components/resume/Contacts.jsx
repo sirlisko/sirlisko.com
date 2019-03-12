@@ -1,6 +1,7 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-const Contacts = () => (
+const Contacts = ({ isAltVersion }) => (
   <article className="section contacts">
     <h1>Contacts</h1>
     <p>
@@ -13,17 +14,24 @@ const Contacts = () => (
     <p>
       My email address <a href="mailto:luca@sirlisko.com">luca@sirlisko.com</a>.
     </p>
-    <p className="alt--invisible">
-      A print-friendly version of this:{" "}
-      <a href="https://sirlisko.com/cv/alt.pdf">
-        https://sirlisko.com/cv/alt.pdf
-      </a>
-    </p>
-    <p className="alt--visible">
-      A live version of this resume:{" "}
-      <a href="https://sirlisko.com/resume">https://sirlisko.com/resume</a>
-    </p>
+    {!isAltVersion ? (
+      <p>
+        A print-friendly version of this:{" "}
+        <a href="https://sirlisko.com/cv/alt.pdf">
+          https://sirlisko.com/cv/alt.pdf
+        </a>
+      </p>
+    ) : (
+      <p>
+        A live version of this resume:{" "}
+        <a href="https://sirlisko.com/resume">https://sirlisko.com/resume</a>
+      </p>
+    )}
   </article>
 );
+
+Contacts.propTypes = {
+  isAltVersion: PropTypes.bool
+};
 
 export default Contacts;

@@ -33,9 +33,7 @@ exports[`Contacts Component should render properly 1`] = `
     </a>
     .
   </p>
-  <p
-    className="alt--invisible"
-  >
+  <p>
     A print-friendly version of this:
      
     <a
@@ -44,9 +42,43 @@ exports[`Contacts Component should render properly 1`] = `
       https://sirlisko.com/cv/alt.pdf
     </a>
   </p>
-  <p
-    className="alt--visible"
-  >
+</article>
+`;
+
+exports[`Contacts Component should render properly the alt version 1`] = `
+<article
+  className="section contacts"
+>
+  <h1>
+    Contacts
+  </h1>
+  <p>
+    My website 
+    <a
+      href="https://sirlisko.com"
+    >
+      https://sirlisko.com
+    </a>
+  </p>
+  <p>
+    My Github
+     
+    <a
+      href="https://github.com/sirlisko"
+    >
+      https://github.com/sirlisko
+    </a>
+  </p>
+  <p>
+    My email address 
+    <a
+      href="mailto:luca@sirlisko.com"
+    >
+      luca@sirlisko.com
+    </a>
+    .
+  </p>
+  <p>
     A live version of this resume:
      
     <a

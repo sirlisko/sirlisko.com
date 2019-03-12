@@ -6,11 +6,13 @@ import Contacts from "./Contacts.jsx";
 describe("Contacts Component", () => {
   let wrapper;
 
-  beforeEach(() => {
+  it("should render properly", () => {
     wrapper = renderer.create(<Contacts />).toJSON();
+    expect(wrapper).toMatchSnapshot();
   });
 
-  it("should render properly", () => {
+  it("should render properly the alt version", () => {
+    wrapper = renderer.create(<Contacts isAltVersion />).toJSON();
     expect(wrapper).toMatchSnapshot();
   });
 });
