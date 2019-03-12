@@ -4,6 +4,7 @@ module.exports = {
     "plugin:import/errors",
     "plugin:import/warnings",
     "plugin:jest/recommended",
+    "plugin:jsx-a11y/recommended",
     "plugin:react/recommended",
     "plugin:prettier/recommended"
   ],

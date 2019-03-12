@@ -64,6 +64,7 @@ class Ghost extends Component {
           className={classNames("ghost", isGhostFlipped && "ghost--flipped")}
           style={{ left: `${x - 55}px`, top: `${y - 55}px` }}
           onMouseOver={this.handleMouseOver}
+          onFocus={this.handleMouseOver}
         />
       </>
     );
