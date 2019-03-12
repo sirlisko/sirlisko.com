@@ -8,22 +8,13 @@ exports[`Experiences Component should render properly 1`] = `
     Experiences
   </h1>
   <div>
-    <h2>
-      foo
-       
-    </h2>
     <p>
       ...
     </p>
   </div>
   <div>
     <h2>
-      foo
-       
-      <span>
-        @ 
-        bar
-      </span>
+      bar
     </h2>
     <h4>
       May 2000 - July 2001
