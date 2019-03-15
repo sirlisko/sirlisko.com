@@ -19,6 +19,7 @@ exports[`Index Page should render properly 1`] = `
   </section>
   <figure
     className="ghost"
+    onFocus={[Function]}
     onMouseOver={[Function]}
     style={
       Object {

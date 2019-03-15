@@ -1,74 +1,49 @@
-import React, { Component } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 import classNames from "classnames";
 import debounce from "lodash.debounce";
 
 import "./Ghost.scss";
 
-class Ghost extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      life: 3,
-      mousePosition: { x: -100, y: -100 }
-    };
-    this.ghost = React.createRef();
-    this.handleMouseOver = this.handleMouseOver.bind(this);
-    this.handleMouseMove = this.handleMouseMove.bind(this);
-    this.ghostMove = this.ghostMove.bind(this);
-  }
+const getLives = life =>
+  Array.apply(null, { length: life }).map((e, i) => (
+    <span className="life__heart" key={i} />
+  ));
 
-  componentDidMount() {
-    document.addEventListener("mousemove", this.handleMouseMove());
-  }
+const Ghost = () => {
+  const [life, setLife] = useState(3);
+  const [mousePosition, setMousePosition] = useState({ x: -100, y: -100 });
+  const ghost = useRef(null);
 
-  componentWillUnmount() {
-    document.removeEventListener("mousemove", this.handleMouseMove());
-  }
+  const handleMouseOver = () => setLife(life - 1);
 
-  handleMouseMove() {
-    return debounce(this.ghostMove, 100);
-  }
+  useEffect(() => {
+    const ghostMove = e => setMousePosition({ x: e.screenX, y: e.screenY });
+    const handleMouseMove = () => debounce(ghostMove, 100);
+    document.addEventListener("mousemove", handleMouseMove());
+    return () => document.removeEventListener("mousemove", handleMouseMove());
+  }, []);
 
-  handleMouseOver() {
-    this.setState({ life: this.state.life - 1 });
-  }
-
-  ghostMove(e) {
-    this.setState({ mousePosition: { x: e.screenX, y: e.screenY } });
-  }
-
-  render() {
-    const {
-      life,
-      mousePosition: { x, y }
-    } = this.state;
-    const isGhostFlipped =
-      this.ghost.current &&
-      x <
-        this.ghost.current.getBoundingClientRect().left +
-          document.body.scrollLeft;
-    const isGameOver = life === 0;
-    const lives = Array.apply(null, { length: life }).map((e, i) => (
-      <span className="life__heart" key={i} />
-    ));
-    return (
-      <>
-        {!isGameOver ? (
-          <section className="life">{lives}</section>
-        ) : (
-          <p className="life__label">-Game Over-</p>
-        )}
-        <figure
-          ref={this.ghost}
-          className={classNames("ghost", isGhostFlipped && "ghost--flipped")}
-          style={{ left: `${x - 55}px`, top: `${y - 55}px` }}
-          onMouseOver={this.handleMouseOver}
-          onFocus={this.handleMouseOver}
-        />
-      </>
-    );
-  }
-}
+  const { x, y } = mousePosition;
+  const isGhostFlipped =
+    ghost.current &&
+    x < ghost.current.getBoundingClientRect().left + document.body.scrollLeft;
+  return (
+    <>
+      {!(life === 0) ? (
+        <section className="life">{getLives(life)}</section>
+      ) : (
+        <p className="life__label">-Game Over-</p>
+      )}
+      <figure
+        ref={ghost}
+        className={classNames("ghost", isGhostFlipped && "ghost--flipped")}
+        style={{ left: `${x - 55}px`, top: `${y - 55}px` }}
+        onMouseOver={handleMouseOver}
+        onFocus={handleMouseOver}
+      />
+    </>
+  );
+};
 
 export default Ghost;
