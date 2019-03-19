@@ -66,7 +66,7 @@ exports[`Resume Page should render properly 1`] = `
             FE Build & CI
           </li>
           <li>
-            TDD
+            BDD/TDD
           </li>
           <li>
             Functional Testing
@@ -80,6 +80,9 @@ exports[`Resume Page should render properly 1`] = `
         <ul>
           <li>
             Agile / Scrum
+          </li>
+          <li>
+            Redux
           </li>
           <li>
             Webpack
@@ -114,6 +117,10 @@ exports[`Resume Page should render properly 1`] = `
       <div>
         <h2>
           Reason
+           
+          <span>
+            09.18 - 12.18
+          </span>
         </h2>
         <p>
           Developed from scratch the whole Front End and some basic services for 3rd party client Coverly.
@@ -131,10 +138,11 @@ exports[`Resume Page should render properly 1`] = `
       <div>
         <h2>
           Verve
+           
+          <span>
+            05.17 - 07.18
+          </span>
         </h2>
-        <h4>
-          May 2017 - July 2018
-        </h4>
         <p>
           Worked on improving the user experience through the check-out with technologies involving React/Redux, Relay and GraphQL.
         </p>
@@ -151,12 +159,13 @@ exports[`Resume Page should render properly 1`] = `
       <div>
         <h2>
           Pobble Education
+           
+          <span>
+            06.16 - 05.17
+          </span>
         </h2>
-        <h4>
-          June 2016 - May 2017
-        </h4>
         <p>
-          Rewrote the whole Front End architecture following the Angular.js best practices. Decoupled the FE from Rails.
+          Rewrote the whole Front End architecture following the Angular.js best practices. Decoupled the Front End from Rails.
         </p>
         <p>
           Introduced a Front End build system. Defined a code style guide. Introduced unit/functional test frameworks.
@@ -165,12 +174,16 @@ exports[`Resume Page should render properly 1`] = `
       <div>
         <h2>
           Shazam Entertainment
+           
+          <span>
+            10.11 - 05.16
+          </span>
         </h2>
-        <h4>
-          October 2011 - May 2016
-        </h4>
         <p>
-          Mainly involved in the development of the website (shazam.com). Co-operated in the realisation of a modular architecture of the Front End (AMD, BEM) and its build system (Node.js and Gulp).
+          Developed the main website (shazam.com).
+        </p>
+        <p>
+          Co-operated in the realisation of a modular architecture of the Front End (AMD, BEM) and its build system (Node.js and Gulp).
         </p>
         <p>
           Developed a custom solution for functional tests.
@@ -181,11 +194,12 @@ exports[`Resume Page should render properly 1`] = `
       </div>
       <div>
         <h2>
-          YOOX Group
+          YOOX Net-a-Porter Group
+           
+          <span>
+            09.10 - 10.11
+          </span>
         </h2>
-        <h4>
-          September 2010 - October 2011
-        </h4>
         <p>
           Mainly involved in JavaScript stuff, especially Test Driven Development (TDD), unit and functional testing, continuous integration and build automation.
         </p>
@@ -196,6 +210,7 @@ exports[`Resume Page should render properly 1`] = `
       <div>
         <h2>
           Once upon a time...
+           
         </h2>
         <p>
           I had the pleasure to work also with Java, Scala, PHP, MySQL, C++, Ruby on Rails. I don't consider myself an expert on those languages but I like, especially in my free time, playing with other technologies :)

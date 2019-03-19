@@ -15,10 +15,11 @@ exports[`Experiences Component should render properly 1`] = `
   <div>
     <h2>
       bar
+       
+      <span>
+        May 2000 - July 2001
+      </span>
     </h2>
-    <h4>
-      May 2000 - July 2001
-    </h4>
     <p>
       foo
     </p>

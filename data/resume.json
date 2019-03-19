@@ -7,11 +7,12 @@
         "Markup/CSS",
         "Front End Architecture",
         "FE Build & CI",
-        "TDD",
+        "BDD/TDD",
         "Functional Testing"
     ],
     "misc.": [
         "Agile / Scrum",
+        "Redux",
         "Webpack",
         "Gatsby",
         "Gulp / Grunt",
@@ -24,6 +25,7 @@
   "experiences": [
     {
       "where": "Reason",
+      "when": "09.18 - 12.18",
       "blurp": [
         "Developed from scratch the whole Front End and some basic services for 3rd party client Coverly.",
         "The stack included React/Redux, Jest for unit testing, Storybook for documentation and Node for the API integration.",
@@ -34,7 +36,7 @@
     {
       "role": "Senior Frontend Engineer",
       "where": "Verve",
-      "when": "May 2017 - July 2018",
+      "when": "05.17 - 07.18",
       "blurp": [
         "Worked on improving the user experience through the check-out with technologies involving React/Redux, Relay and GraphQL.",
         "Improved the Front End unit testing environment, migrated to Jest and introduced snapshot testing.",
@@ -45,26 +47,27 @@
     {
       "role": "Frontend Engineer",
       "where": "Pobble Education",
-      "when": "June 2016 - May 2017",
+      "when": "06.16 - 05.17",
       "blurp": [
-        "Rewrote the whole Front End architecture following the Angular.js best practices. Decoupled the FE from Rails.",
+        "Rewrote the whole Front End architecture following the Angular.js best practices. Decoupled the Front End from Rails.",
         "Introduced a Front End build system. Defined a code style guide. Introduced unit/functional test frameworks."
       ]
     },
     {
       "role": "Senior Software Engineer",
       "where": "Shazam Entertainment",
-      "when": "October 2011 - May 2016",
+      "when": "10.11 - 05.16",
       "blurp": [
-        "Mainly involved in the development of the website (shazam.com). Co-operated in the realisation of a modular architecture of the Front End (AMD, BEM) and its build system (Node.js and Gulp).",
+        "Developed the main website (shazam.com).",
+        "Co-operated in the realisation of a modular architecture of the Front End (AMD, BEM) and its build system (Node.js and Gulp).",
         "Developed a custom solution for functional tests.",
         "Worked on automation tools and localisations."
       ]
     },
     {
       "role": "Web Developer (Consultant)",
-      "where": "YOOX Group",
-      "when": "September 2010 - October 2011",
+      "where": "YOOX Net-a-Porter Group",
+      "when": "09.10 - 10.11",
       "blurp": [
         "Mainly involved in JavaScript stuff, especially Test Driven Development (TDD), unit and functional testing, continuous integration and build automation.",
         "Projected and developed a targeted JS framework."
