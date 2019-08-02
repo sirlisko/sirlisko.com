@@ -1,25 +1,27 @@
 {
   "skills": {
     "main": [
-        "Javascript",
-        "React",
-        "Node.JS",
-        "Markup/CSS",
-        "Front End Architecture",
-        "FE Build & CI",
-        "BDD/TDD",
-        "Functional Testing"
+      "Javascript",
+      "React",
+      "Node",
+      "Markup/CSS",
+      "Front End Architecture",
+      "FE Build & CI",
+      "BDD/TDD",
+      "Functional Testing"
     ],
     "misc.": [
-        "Agile / Scrum",
-        "Redux",
-        "Webpack",
-        "Gatsby",
-        "Gulp / Grunt",
-        "Chrome Extensions",
-        "Bash Scripting",
-        "User Scripting",
-        "Web Scraping"
+      "Agile / Scrum",
+      "Redux",
+      "Styled-Components",
+      "Webpack",
+      "Gatsby",
+      "JAM stack",
+      "Gulp / Grunt",
+      "Chrome Extensions",
+      "Bash Scripting",
+      "User Scripting",
+      "Web Scraping"
     ]
   },
   "experiences": [
