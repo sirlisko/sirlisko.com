@@ -31,9 +31,6 @@
   @media print, (max-width: 650px) {
     font-size: 9px;
   }
-  @media print {
-    padding: 0 35px 120px;
-  }
   & a {
     color: #fff;
   }
@@ -151,6 +148,8 @@
 
 @media print {
   .resume {
+    padding: 0 35px 88px;
+
     & h2 a {
       text-decoration: none;
     }
