@@ -91,11 +91,12 @@
   ],
   "projects": [
     {
-      "name": "ZoomME.ME",
-      "url": "https://zoomme.me/",
+      "name": "Been",
+      "url": "https://been.netlify.com/",
       "blurp": [
-        "Super simple zoom-in meme generator. Drag and drop an image and then create your meme.",
-        "PWA (Progressive Web App) powered by pure and sweet Vanilla Javascript."
+        "Web companion to keep track of where you have BEEN, listing your visited countries.",
+        "React app, with auth and databased powered by Firebase. Styled using Styled-Components. And a handcrafted World Map SVG.",
+        "The project is still Work in Progress :)"
       ]
     },
     {
