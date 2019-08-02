@@ -24,13 +24,22 @@
   },
   "experiences": [
     {
+      "where": "Kalo",
+      "when": "04.19 - 06.19",
+      "blurp": [
+        "Analized, standardized and improved the whole Front End, with a main focus on the common UI library.",
+        "Architected and created an MVP for a Front End Monorepo.",
+        "Worked on improving performances and the Dev experience."
+      ]
+    },
+    {
       "where": "Reason",
       "when": "09.18 - 12.18",
       "blurp": [
         "Developed from scratch the whole Front End and some basic services for 3rd party client Coverly.",
-        "The stack included React/Redux, Jest for unit testing, Storybook for documentation and Node for the API integration.",
-        "Deployed the services to AWS and Azure using Bitbucket pipelines.",
-        "Dealt with the client and the 3rd party API provider. Iterated on the product and the designs to facilitate the development."
+        "Worked with React/Redux, Jest for testing, Storybook for documentation, and Node for API proxy.",
+        "Deployed to AWS and Azure using Bitbucket pipelines.",
+        "Dealt with the client and the API provider. Iterated on product and design to facilitate the development."
       ]
     },
     {
@@ -38,7 +47,7 @@
       "where": "Verve",
       "when": "05.17 - 07.18",
       "blurp": [
-        "Worked on improving the user experience through the check-out with technologies involving React/Redux, Relay and GraphQL.",
+        "Worked on improving the user experience through the check-out with technologies involving React/Redux, Relay, and GraphQL.",
         "Improved the Front End unit testing environment, migrated to Jest and introduced snapshot testing.",
         "Integrated 3rd party payment methods (Stripe).",
         "Worked with the design team to improve the UI/UX."
@@ -49,8 +58,8 @@
       "where": "Pobble Education",
       "when": "06.16 - 05.17",
       "blurp": [
-        "Rewrote the whole Front End architecture following the Angular.js best practices. Decoupled the Front End from Rails.",
-        "Introduced a Front End build system. Defined a code style guide. Introduced unit/functional test frameworks."
+        "Rewrote the whole Front End architecture following the Angular best practices, decoupling it from Rails.",
+        "Introduced a Front End build system. Defined a code style guide. Introduced unit/e2e test frameworks."
       ]
     },
     {
@@ -59,7 +68,7 @@
       "when": "10.11 - 05.16",
       "blurp": [
         "Developed the main website (shazam.com).",
-        "Co-operated in the realisation of a modular architecture of the Front End (AMD, BEM) and its build system (Node.js and Gulp).",
+        "Co-operated in the realization of a modular architecture of the Front End (AMD, BEM) and its build system (Node and Gulp).",
         "Developed a custom solution for functional tests.",
         "Worked on automation tools and localisations."
       ]
@@ -69,7 +78,7 @@
       "where": "YOOX Net-a-Porter Group",
       "when": "09.10 - 10.11",
       "blurp": [
-        "Mainly involved in JavaScript stuff, especially Test Driven Development (TDD), unit and functional testing, continuous integration and build automation.",
+        "Mainly involved in JavaScript stuff, especially in testing TDD, unit and functional, continuous integration, and build automation.",
         "Projected and developed a targeted JS framework."
       ]
     },
