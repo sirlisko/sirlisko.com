@@ -54,7 +54,7 @@ exports[`Resume Page should render properly 1`] = `
             React
           </li>
           <li>
-            Node.JS
+            Node
           </li>
           <li>
             Markup/CSS
@@ -85,10 +85,16 @@ exports[`Resume Page should render properly 1`] = `
             Redux
           </li>
           <li>
+            Styled-Components
+          </li>
+          <li>
             Webpack
           </li>
           <li>
             Gatsby
+          </li>
+          <li>
+            JAM stack
           </li>
           <li>
             Gulp / Grunt
@@ -116,6 +122,24 @@ exports[`Resume Page should render properly 1`] = `
       </h1>
       <div>
         <h2>
+          Kalo
+           
+          <span>
+            04.19 - 06.19
+          </span>
+        </h2>
+        <p>
+          Analized, standardized and improved the whole Front End, with a main focus on the common UI library.
+        </p>
+        <p>
+          Architected and created an MVP for a Front End Monorepo.
+        </p>
+        <p>
+          Worked on improving performances and the Dev experience.
+        </p>
+      </div>
+      <div>
+        <h2>
           Reason
            
           <span>
@@ -126,13 +150,13 @@ exports[`Resume Page should render properly 1`] = `
           Developed from scratch the whole Front End and some basic services for 3rd party client Coverly.
         </p>
         <p>
-          The stack included React/Redux, Jest for unit testing, Storybook for documentation and Node for the API integration.
+          Worked with React/Redux, Jest for testing, Storybook for documentation, and Node for API proxy.
         </p>
         <p>
-          Deployed the services to AWS and Azure using Bitbucket pipelines.
+          Deployed to AWS and Azure using Bitbucket pipelines.
         </p>
         <p>
-          Dealt with the client and the 3rd party API provider. Iterated on the product and the designs to facilitate the development.
+          Dealt with the client and the API provider. Iterated on product and design to facilitate the development.
         </p>
       </div>
       <div>
@@ -144,7 +168,7 @@ exports[`Resume Page should render properly 1`] = `
           </span>
         </h2>
         <p>
-          Worked on improving the user experience through the check-out with technologies involving React/Redux, Relay and GraphQL.
+          Worked on improving the user experience through the check-out with technologies involving React/Redux, Relay, and GraphQL.
         </p>
         <p>
           Improved the Front End unit testing environment, migrated to Jest and introduced snapshot testing.
@@ -165,10 +189,10 @@ exports[`Resume Page should render properly 1`] = `
           </span>
         </h2>
         <p>
-          Rewrote the whole Front End architecture following the Angular.js best practices. Decoupled the Front End from Rails.
+          Rewrote the whole Front End architecture following the Angular best practices, decoupling it from Rails.
         </p>
         <p>
-          Introduced a Front End build system. Defined a code style guide. Introduced unit/functional test frameworks.
+          Introduced a Front End build system. Defined a code style guide. Introduced unit/e2e test frameworks.
         </p>
       </div>
       <div>
@@ -183,7 +207,7 @@ exports[`Resume Page should render properly 1`] = `
           Developed the main website (shazam.com).
         </p>
         <p>
-          Co-operated in the realisation of a modular architecture of the Front End (AMD, BEM) and its build system (Node.js and Gulp).
+          Co-operated in the realization of a modular architecture of the Front End (AMD, BEM) and its build system (Node and Gulp).
         </p>
         <p>
           Developed a custom solution for functional tests.
@@ -201,7 +225,7 @@ exports[`Resume Page should render properly 1`] = `
           </span>
         </h2>
         <p>
-          Mainly involved in JavaScript stuff, especially Test Driven Development (TDD), unit and functional testing, continuous integration and build automation.
+          Mainly involved in JavaScript stuff, especially in testing TDD, unit and functional, continuous integration, and build automation.
         </p>
         <p>
           Projected and developed a targeted JS framework.
@@ -226,16 +250,19 @@ exports[`Resume Page should render properly 1`] = `
       <div>
         <h2>
           <a
-            href="https://zoomme.me/"
+            href="https://been.netlify.com/"
           >
-            ZoomME.ME
+            Been
           </a>
         </h2>
         <p>
-          Super simple zoom-in meme generator. Drag and drop an image and then create your meme.
+          Web companion to keep track of where you have BEEN, listing your visited countries.
         </p>
         <p>
-          PWA (Progressive Web App) powered by pure and sweet Vanilla Javascript.
+          React app, with auth and databased powered by Firebase. Styled using Styled-Components. And a handcrafted World Map SVG.
+        </p>
+        <p>
+          The project is still Work in Progress :)
         </p>
       </div>
       <div>
