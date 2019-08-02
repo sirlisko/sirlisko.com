@@ -76,6 +76,9 @@
   }
   &.alt h2 {
     color: blue;
+    & span {
+      color: #000;
+    }
   }
 
   & h4 {
