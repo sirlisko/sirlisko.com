@@ -114,7 +114,7 @@ exports[`Index Page should render properly 1`] = `
         className="links--lastfm"
       >
         <a
-          href="https://lastfm.com/user/sirlisko"
+          href="https://www.last.fm/user/sirlisko"
         >
           <p
             className="caption"
