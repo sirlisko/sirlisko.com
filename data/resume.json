@@ -13,8 +13,11 @@
     "misc.": [
       "Agile / Scrum",
       "Redux",
+      "GraphQL",
+      "Typescript",
       "Styled-Components",
       "Webpack",
+      "NextJS",
       "Gatsby",
       "JAM stack",
       "Gulp / Grunt",
