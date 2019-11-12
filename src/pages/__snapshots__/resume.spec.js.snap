@@ -85,10 +85,19 @@ exports[`Resume Page should render properly 1`] = `
             Redux
           </li>
           <li>
+            GraphQL
+          </li>
+          <li>
+            Typescript
+          </li>
+          <li>
             Styled-Components
           </li>
           <li>
             Webpack
+          </li>
+          <li>
+            NextJS
           </li>
           <li>
             Gatsby
