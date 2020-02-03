@@ -29,12 +29,28 @@
   },
   "experiences": [
     {
+      "where": "Hackney Council",
+      "when": "11.19 - 12.19",
+      "blurp": [
+        "Refactored the whole Hackney website using JAM stack (Gatsby, WP, Netlify), introducing React best practices, Unit and E2E tests. Wrote a Lambda function to handle the search. Improved CI/CD.",
+        "Mentored internal team."
+      ]
+    },
+    {
+      "where": "Architecture Consultant",
+      "when": "09.19 - 11.19",
+      "blurp": [
+        "Bootstrapped a brand new project based on a Next.js (Typescript) with Apollo (FE/BE) and a GraphQL Gateway, consuming REST API (internal and 3rd party) plus WordPress data via WP-GraphQL.",
+        "CD/CI via Gitlab Pipelines and E2E using Cypress. Storybook, Jest + React Testing Library."
+      ]
+    },
+    {
       "where": "Kalo",
       "when": "04.19 - 06.19",
       "blurp": [
         "Analysed, standardized and improved the whole Front End, with a main focus on the common UI library.",
-        "Architected and created an MVP for a Front End Monorepo.",
-        "Worked on improving performances and the Dev experience."
+        "Architected and created an MVP for a FE Monorepo.",
+        "Improving performances and the Dev experience."
       ]
     },
     {
@@ -53,38 +69,14 @@
       "when": "05.17 - 07.18",
       "blurp": [
         "Worked on improving the user experience through the check-out with technologies involving React/Redux, Relay, and GraphQL.",
-        "Improved the Front End unit testing environment, migrated to Jest and introduced snapshot testing.",
         "Integrated 3rd party payment methods (Stripe).",
         "Worked with the design team to improve the UI/UX."
       ]
     },
     {
-      "role": "Frontend Engineer",
-      "where": "Pobble Education",
-      "when": "06.16 - 05.17",
+      "where": "In the past...",
       "blurp": [
-        "Rewrote the whole Front End architecture following the Angular best practices, decoupling it from Rails.",
-        "Introduced a Front End build system. Defined a code style guide. Introduced unit/e2e test frameworks."
-      ]
-    },
-    {
-      "role": "Senior Software Engineer",
-      "where": "Shazam Entertainment",
-      "when": "10.11 - 05.16",
-      "blurp": [
-        "Developed the main website (shazam.com).",
-        "Co-operated in the realization of a modular architecture of the Front End (AMD, BEM) and its build system (Node and Gulp).",
-        "Developed a custom solution for functional tests.",
-        "Worked on automation tools and localisations."
-      ]
-    },
-    {
-      "role": "Web Developer (Consultant)",
-      "where": "YOOX Net-a-Porter Group",
-      "when": "09.10 - 10.11",
-      "blurp": [
-        "Mainly involved in JavaScript stuff, especially in testing TDD, unit and functional, continuous integration, and build automation.",
-        "Projected and developed a targeted JS framework."
+        "I had the pleasure to work for Shazam (~5years), YOOX Net-a-Porter (>1year), Pobble (>1year), for a detailed list of my past experiences check my Linkedin profile :)"
       ]
     },
     {

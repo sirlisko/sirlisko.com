@@ -8,7 +8,8 @@ exports[`Contacts Component should render properly 1`] = `
     Contacts
   </h1>
   <p>
-    My website 
+    My personal website
+     
     <a
       href="https://sirlisko.com"
     >
@@ -25,7 +26,17 @@ exports[`Contacts Component should render properly 1`] = `
     </a>
   </p>
   <p>
-    My email address 
+    My LinkedIn
+     
+    <a
+      href="https://www.linkedin.com/in/lucalischetti/"
+    >
+      https://www.linkedin.com/in/lucalischetti/
+    </a>
+  </p>
+  <p>
+    Drop me an email at
+     
     <a
       href="mailto:luca@sirlisko.com"
     >
@@ -53,7 +64,8 @@ exports[`Contacts Component should render properly the alt version 1`] = `
     Contacts
   </h1>
   <p>
-    My website 
+    My personal website
+     
     <a
       href="https://sirlisko.com"
     >
@@ -70,7 +82,17 @@ exports[`Contacts Component should render properly the alt version 1`] = `
     </a>
   </p>
   <p>
-    My email address 
+    My LinkedIn
+     
+    <a
+      href="https://www.linkedin.com/in/lucalischetti/"
+    >
+      https://www.linkedin.com/in/lucalischetti/
+    </a>
+  </p>
+  <p>
+    Drop me an email at
+     
     <a
       href="mailto:luca@sirlisko.com"
     >
