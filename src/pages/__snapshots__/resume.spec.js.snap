@@ -131,6 +131,36 @@ exports[`Resume Page should render properly 1`] = `
       </h1>
       <div>
         <h2>
+          Hackney Council
+           
+          <span>
+            11.19 - 12.19
+          </span>
+        </h2>
+        <p>
+          Refactored the whole Hackney website using JAM stack (Gatsby, WP, Netlify), introducing React best practices, Unit and E2E tests. Wrote a Lambda function to handle the search. Improved CI/CD.
+        </p>
+        <p>
+          Mentored internal team.
+        </p>
+      </div>
+      <div>
+        <h2>
+          Architecture Consultant
+           
+          <span>
+            09.19 - 11.19
+          </span>
+        </h2>
+        <p>
+          Bootstrapped a brand new project based on a Next.js (Typescript) with Apollo (FE/BE) and a GraphQL Gateway, consuming REST API (internal and 3rd party) plus WordPress data via WP-GraphQL.
+        </p>
+        <p>
+          CD/CI via Gitlab Pipelines and E2E using Cypress. Storybook, Jest + React Testing Library.
+        </p>
+      </div>
+      <div>
+        <h2>
           Kalo
            
           <span>
@@ -141,10 +171,10 @@ exports[`Resume Page should render properly 1`] = `
           Analysed, standardized and improved the whole Front End, with a main focus on the common UI library.
         </p>
         <p>
-          Architected and created an MVP for a Front End Monorepo.
+          Architected and created an MVP for a FE Monorepo.
         </p>
         <p>
-          Worked on improving performances and the Dev experience.
+          Improving performances and the Dev experience.
         </p>
       </div>
       <div>
@@ -180,9 +210,6 @@ exports[`Resume Page should render properly 1`] = `
           Worked on improving the user experience through the check-out with technologies involving React/Redux, Relay, and GraphQL.
         </p>
         <p>
-          Improved the Front End unit testing environment, migrated to Jest and introduced snapshot testing.
-        </p>
-        <p>
           Integrated 3rd party payment methods (Stripe).
         </p>
         <p>
@@ -191,53 +218,11 @@ exports[`Resume Page should render properly 1`] = `
       </div>
       <div>
         <h2>
-          Pobble Education
+          In the past...
            
-          <span>
-            06.16 - 05.17
-          </span>
         </h2>
         <p>
-          Rewrote the whole Front End architecture following the Angular best practices, decoupling it from Rails.
-        </p>
-        <p>
-          Introduced a Front End build system. Defined a code style guide. Introduced unit/e2e test frameworks.
-        </p>
-      </div>
-      <div>
-        <h2>
-          Shazam Entertainment
-           
-          <span>
-            10.11 - 05.16
-          </span>
-        </h2>
-        <p>
-          Developed the main website (shazam.com).
-        </p>
-        <p>
-          Co-operated in the realization of a modular architecture of the Front End (AMD, BEM) and its build system (Node and Gulp).
-        </p>
-        <p>
-          Developed a custom solution for functional tests.
-        </p>
-        <p>
-          Worked on automation tools and localisations.
-        </p>
-      </div>
-      <div>
-        <h2>
-          YOOX Net-a-Porter Group
-           
-          <span>
-            09.10 - 10.11
-          </span>
-        </h2>
-        <p>
-          Mainly involved in JavaScript stuff, especially in testing TDD, unit and functional, continuous integration, and build automation.
-        </p>
-        <p>
-          Projected and developed a targeted JS framework.
+          I had the pleasure to work for Shazam (~5years), YOOX Net-a-Porter (&gt;1year), Pobble (&gt;1year), for a detailed list of my past experiences check my Linkedin profile :)
         </p>
       </div>
       <div>
@@ -417,7 +402,8 @@ exports[`Resume Page should render properly 1`] = `
         Contacts
       </h1>
       <p>
-        My website 
+        My personal website
+         
         <a
           href="https://sirlisko.com"
         >
@@ -434,7 +420,17 @@ exports[`Resume Page should render properly 1`] = `
         </a>
       </p>
       <p>
-        My email address 
+        My LinkedIn
+         
+        <a
+          href="https://www.linkedin.com/in/lucalischetti/"
+        >
+          https://www.linkedin.com/in/lucalischetti/
+        </a>
+      </p>
+      <p>
+        Drop me an email at
+         
         <a
           href="mailto:luca@sirlisko.com"
         >
