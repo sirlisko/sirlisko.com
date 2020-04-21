@@ -131,6 +131,21 @@ exports[`Resume Page should render properly 1`] = `
       </h1>
       <div>
         <h2>
+          uSwitch / RVU
+           
+          <span>
+            01.20 - 03.20
+          </span>
+        </h2>
+        <p>
+          Worked on internal tools using React/Redux-Saga, improving code quality and User Experience.
+        </p>
+        <p>
+          Contributed to the internal UI/component library.
+        </p>
+      </div>
+      <div>
+        <h2>
           Hackney Council
            
           <span>
@@ -189,13 +204,7 @@ exports[`Resume Page should render properly 1`] = `
           Developed from scratch the whole Front End and some basic services for 3rd party client Coverly.
         </p>
         <p>
-          Worked with React/Redux, Jest for testing, Storybook for documentation, and Node for API proxy.
-        </p>
-        <p>
-          Deployed to AWS and Azure using Bitbucket pipelines.
-        </p>
-        <p>
-          Dealt with the client and the API provider. Iterated on product and design to facilitate the development.
+          Worked with React/Redux, Jest for testing, Storybook for documentation, Node for API proxy, and deployment using Bitbucket pipelines.
         </p>
       </div>
       <div>
