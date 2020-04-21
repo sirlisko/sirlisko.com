@@ -29,6 +29,14 @@
   },
   "experiences": [
     {
+      "where": "uSwitch / RVU",
+      "when": "01.20 - 03.20",
+      "blurp": [
+        "Worked on internal tools using React/Redux-Saga, improving code quality and User Experience.",
+        "Contributed to the internal UI/component library."
+      ]
+    },
+    {
       "where": "Hackney Council",
       "when": "11.19 - 12.19",
       "blurp": [
@@ -58,9 +66,7 @@
       "when": "09.18 - 12.18",
       "blurp": [
         "Developed from scratch the whole Front End and some basic services for 3rd party client Coverly.",
-        "Worked with React/Redux, Jest for testing, Storybook for documentation, and Node for API proxy.",
-        "Deployed to AWS and Azure using Bitbucket pipelines.",
-        "Dealt with the client and the API provider. Iterated on product and design to facilitate the development."
+        "Worked with React/Redux, Jest for testing, Storybook for documentation, Node for API proxy, and deployment using Bitbucket pipelines."
       ]
     },
     {
