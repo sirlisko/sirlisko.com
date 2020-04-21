@@ -13,9 +13,9 @@ describe("Projects Component", () => {
         logo: "imgs/foobar.png",
         links: {
           website: "https://foobar.me",
-          github: "https://github.com/sirlisko/foobar"
+          github: "https://github.com/sirlisko/foobar",
         },
-        tech: ["foo", "bar", "foobar"]
+        tech: ["foo", "bar", "foobar"],
       },
       {
         name: "asd",
@@ -23,11 +23,11 @@ describe("Projects Component", () => {
         logo: "imgs/asd.png",
         links: {
           website: "https://asd.me",
-          github: "https://github.com/sirlisko/asd"
+          github: "https://github.com/sirlisko/asd",
         },
-        tech: ["asd", "qwe", "foobar"]
-      }
-    ]
+        tech: ["asd", "qwe", "foobar"],
+      },
+    ],
   };
 
   beforeEach(() => {

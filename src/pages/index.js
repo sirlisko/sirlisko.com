@@ -20,7 +20,7 @@ const HomePage = () => (
         "web developer",
         "dreamer",
         "8-bit",
-        "super hero"
+        "super hero",
       ]}
     />
     {typeof window !== `undefined` && !window.ontouchstart && <Ghost />}

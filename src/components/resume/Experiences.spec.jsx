@@ -9,15 +9,15 @@ describe("Experiences Component", () => {
     experiences: [
       {
         role: "foo",
-        blurp: ["..."]
+        blurp: ["..."],
       },
       {
         role: "foo",
         where: "bar",
         when: "May 2000 - July 2001",
-        blurp: ["foo", "bar", "foobar"]
-      }
-    ]
+        blurp: ["foo", "bar", "foobar"],
+      },
+    ],
   };
 
   beforeEach(() => {

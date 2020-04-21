@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 const Projects = ({ projects }) => (
   <article className="section projects">
     <h1>Side Projects</h1>
-    {projects.map(prj => (
+    {projects.map((prj) => (
       <div key={prj.name}>
         <h2>
           <a href={prj.url}>{prj.name}</a>
@@ -22,7 +22,7 @@ const Projects = ({ projects }) => (
 );
 
 Projects.propTypes = {
-  projects: PropTypes.array.isRequired
+  projects: PropTypes.array.isRequired,
 };
 
 export default Projects;

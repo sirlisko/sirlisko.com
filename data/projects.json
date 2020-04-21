@@ -10,12 +10,7 @@
       "website": "https://zoomme.me",
       "github": "https://github.com/sirlisko/zoommeme"
     },
-    "tech": [
-      "PWA",
-      "Vanilla JS",
-      "Webpack",
-      "Jest"
-    ]
+    "tech": ["PWA", "Vanilla JS", "Webpack", "Jest"]
   },
   {
     "title": "Audible RSS",
@@ -28,12 +23,7 @@
       "website": "https://audiblerss.sirlisko.com",
       "github": "https://github.com/sirlisko/audible-rss"
     },
-    "tech": [
-      "Node",
-      "Express",
-      "React",
-      "Web Scraping"
-    ]
+    "tech": ["Node", "Express", "React", "Web Scraping"]
   },
   {
     "title": "Should I listen it",
@@ -66,11 +56,7 @@
       "blog": "https://sirlisko.com/blog/shazamify",
       "github": "https://github.com/sirLisko/shazamify"
     },
-    "tech": [
-      "Chrome Extension",
-      "Spotify OAuth",
-      "Spotify API"
-    ]
+    "tech": ["Chrome Extension", "Spotify OAuth", "Spotify API"]
   },
   {
     "title": "Deliverance Improved",
@@ -82,13 +68,7 @@
       "website": "http://deliverance.herokuapp.com",
       "github": "https://github.com/sirLisko/deliverance"
     },
-    "tech": [
-      "Node",
-      "Angular JS",
-      "Web Scraping",
-      "Bootstrap",
-      "Heroku"
-    ]
+    "tech": ["Node", "Angular JS", "Web Scraping", "Bootstrap", "Heroku"]
   },
   {
     "title": "Gulp Blacklist Marker",
@@ -101,11 +81,7 @@
       "blog": "https://sirlisko.com/blog/gulp-blacklist-marker/",
       "github": "https://github.com/sirLisko/gulp-blacklist-marker"
     },
-    "tech": [
-      "Chrome Extension",
-      "Gulp",
-      "NPM"
-    ]
+    "tech": ["Chrome Extension", "Gulp", "NPM"]
   },
   {
     "title": "Sproxify",
@@ -118,10 +94,7 @@
       "blog": "https://sirlisko.com/blog/sproxify/",
       "github": "https://github.com/sirLisko/sproxify"
     },
-    "tech": [
-      "Chrome Extension",
-      "User Script"
-    ]
+    "tech": ["Chrome Extension", "User Script"]
   },
   {
     "title": "Pizza Club",
@@ -133,11 +106,7 @@
       "website": "http://pizzaclub.sirlisko.com/",
       "github": "https://github.com/sirLisko/pizzaclub"
     },
-    "tech": [
-      "Gatsby",
-      "React",
-      "GitHub Pages"
-    ]
+    "tech": ["Gatsby", "React", "GitHub Pages"]
   },
   {
     "title": "POMOfy - deprecated",
@@ -149,8 +118,6 @@
       "screenshot": "https://sirlisko.com/imgs/archive/pomofy.png",
       "github": "https://github.com/sirLisko/apps-pomofy"
     },
-    "tech": [
-      "Spotify App"
-    ]
+    "tech": ["Spotify App"]
   }
 ]

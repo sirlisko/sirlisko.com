@@ -5,7 +5,7 @@ import "./Links.scss";
 
 const Links = ({ links }) => (
   <ul className="links">
-    {links.map(link => (
+    {links.map((link) => (
       <li key={link.name} className={`links--${link.name}`}>
         <a href={link.url}>
           <p className="caption">{link.label}</p>
@@ -16,7 +16,7 @@ const Links = ({ links }) => (
 );
 
 Links.propTypes = {
-  links: PropTypes.arrayOf(PropTypes.shape().isRequired).isRequired
+  links: PropTypes.arrayOf(PropTypes.shape().isRequired).isRequired,
 };
 
 export default Links;

@@ -30,7 +30,7 @@ const ResumePage = () => {
           "web developer",
           "software engineer",
           "resume",
-          "cv"
+          "cv",
         ]}
       />
       <Me />
