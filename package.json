@@ -22,7 +22,7 @@
     "build": "gatsby build",
     "develop": "gatsby develop",
     "start": "npm run develop",
-    "format": "prettier --write \"**/*\"",
+    "format": "prettier --write \"**/*.{js,jsx,json,scss,css,md}\"",
     "coverage": "jest --coverage",
     "lint": "eslint src --ext=js,jsx",
     "test": "npm run lint && jest"

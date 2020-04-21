@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 const Experiences = ({ experiences }) => (
   <article className="section experiences">
     <h1>Experiences</h1>
-    {experiences.map(exp => (
+    {experiences.map((exp) => (
       <div key={exp.where || exp.role}>
         {exp.where && (
           <h2>
@@ -20,7 +20,7 @@ const Experiences = ({ experiences }) => (
 );
 
 Experiences.propTypes = {
-  experiences: PropTypes.array.isRequired
+  experiences: PropTypes.array.isRequired,
 };
 
 export default Experiences;

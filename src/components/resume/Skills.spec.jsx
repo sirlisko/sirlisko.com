@@ -8,8 +8,8 @@ describe("Skills Component", () => {
   const props = {
     skills: {
       main: ["foo", "bar"],
-      "misc.": ["foobar"]
-    }
+      "misc.": ["foobar"],
+    },
   };
 
   beforeEach(() => {

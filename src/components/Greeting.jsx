@@ -23,7 +23,7 @@ const Greeting = ({ descriptions }) => {
       <p>I’m sirLisko,</p>
       <p>another f@$#&amp;n’</p>
       <p className="greeting__intro__desc">
-        {descriptions.map(d => (
+        {descriptions.map((d) => (
           <span
             key={d}
             className={
@@ -39,7 +39,7 @@ const Greeting = ({ descriptions }) => {
 };
 
 Greeting.propTypes = {
-  descriptions: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired
+  descriptions: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
 };
 
 export default Greeting;
