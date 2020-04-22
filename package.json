@@ -25,7 +25,7 @@
     "format": "prettier --write \"**/*.{js,jsx,json,scss,css,md}\"",
     "coverage": "jest --coverage",
     "lint": "eslint src --ext=js,jsx",
-    "test": "npm run lint && jest"
+    "test": "jest"
   },
   "dependencies": {
     "classnames": "^2.2.6",
