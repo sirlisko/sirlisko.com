@@ -39,7 +39,7 @@ const Contacts = ({ isAltVersion }) => (
 );
 
 Contacts.propTypes = {
-  isAltVersion: PropTypes.bool
+  isAltVersion: PropTypes.bool,
 };
 
 export default Contacts;

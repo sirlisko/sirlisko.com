@@ -19,7 +19,7 @@ const ProjectsPage = () => (
         "web developer",
         "software engineer",
         "projects",
-        "ideas"
+        "ideas",
       ]}
     />
     <div className="logo">
@@ -30,7 +30,7 @@ const ProjectsPage = () => (
     <section>
       <h1>My Side Projects</h1>
       <ul>
-        {projects.map(project => (
+        {projects.map((project) => (
           <li className="project" key={project.title}>
             <ProjectCard {...project} />
           </li>

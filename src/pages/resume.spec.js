@@ -9,9 +9,9 @@ beforeEach(() => {
     render({
       site: {
         siteMetadata: {
-          title: `I am the title`
-        }
-      }
+          title: `I am the title`,
+        },
+      },
     })
   );
 });
