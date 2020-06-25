@@ -32,6 +32,7 @@
     "gatsby": "^2.20.28",
     "gatsby-plugin-manifest": "^2.3.6",
     "gatsby-plugin-offline": "^3.1.4",
+    "gatsby-plugin-plausible": "0.0.6",
     "gatsby-plugin-react-helmet": "^3.2.4",
     "gatsby-plugin-sass": "^2.2.3",
     "gatsby-plugin-sitemap": "^2.3.5",

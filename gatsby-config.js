@@ -31,5 +31,11 @@ module.exports = {
       },
     },
     `gatsby-plugin-offline`,
+    {
+      resolve: `gatsby-plugin-plausible`,
+      options: {
+        domain: `sirlisko.com`,
+      },
+    },
   ],
 };
