@@ -29,6 +29,14 @@
   },
   "experiences": [
     {
+      "where": "Hackney Council",
+      "when": "04.20 - 07.20 / 11.19 - 12.19",
+      "blurp": [
+        "Refactored the whole Hackney website using JAM stack (Gatsby, WP, Netlify), introducing React best practices, Unit and E2E tests. Improved CI/CD.",
+        "Developed various new services, using React/NextJS, lambda functions and deployed to AWS."
+      ]
+    },
+    {
       "where": "uSwitch / RVU",
       "when": "01.20 - 03.20",
       "blurp": [
@@ -37,18 +45,10 @@
       ]
     },
     {
-      "where": "Hackney Council",
-      "when": "11.19 - 12.19",
-      "blurp": [
-        "Refactored the whole Hackney website using JAM stack (Gatsby, WP, Netlify), introducing React best practices, Unit and E2E tests. Wrote a Lambda function to handle the search. Improved CI/CD.",
-        "Mentored internal team."
-      ]
-    },
-    {
       "where": "Architecture Consultant",
       "when": "09.19 - 11.19",
       "blurp": [
-        "Bootstrapped a brand new project based on a Next.js (Typescript) with Apollo (FE/BE) and a GraphQL Gateway, consuming REST API (internal and 3rd party) plus WordPress data via WP-GraphQL.",
+        "Bootstrapped a brand new project based on a NextJS (Typescript) with Apollo (FE/BE) and a GraphQL Gateway, consuming REST API (internal and 3rd party) plus WordPress data via WP-GraphQL.",
         "CD/CI via Gitlab Pipelines and E2E using Cypress. Storybook, Jest + React Testing Library."
       ]
     },
