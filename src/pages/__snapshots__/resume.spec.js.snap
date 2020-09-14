@@ -131,6 +131,21 @@ exports[`Resume Page should render properly 1`] = `
       </h1>
       <div>
         <h2>
+          Hackney Council
+           
+          <span>
+            04.20 - 07.20 / 11.19 - 12.19
+          </span>
+        </h2>
+        <p>
+          Refactored the whole Hackney website using JAM stack (Gatsby, WP, Netlify), introducing React best practices, Unit and E2E tests. Improved CI/CD.
+        </p>
+        <p>
+          Developed various new services, using React/NextJS, lambda functions and deployed to AWS.
+        </p>
+      </div>
+      <div>
+        <h2>
           uSwitch / RVU
            
           <span>
@@ -146,21 +161,6 @@ exports[`Resume Page should render properly 1`] = `
       </div>
       <div>
         <h2>
-          Hackney Council
-           
-          <span>
-            11.19 - 12.19
-          </span>
-        </h2>
-        <p>
-          Refactored the whole Hackney website using JAM stack (Gatsby, WP, Netlify), introducing React best practices, Unit and E2E tests. Wrote a Lambda function to handle the search. Improved CI/CD.
-        </p>
-        <p>
-          Mentored internal team.
-        </p>
-      </div>
-      <div>
-        <h2>
           Architecture Consultant
            
           <span>
@@ -168,7 +168,7 @@ exports[`Resume Page should render properly 1`] = `
           </span>
         </h2>
         <p>
-          Bootstrapped a brand new project based on a Next.js (Typescript) with Apollo (FE/BE) and a GraphQL Gateway, consuming REST API (internal and 3rd party) plus WordPress data via WP-GraphQL.
+          Bootstrapped a brand new project based on a NextJS (Typescript) with Apollo (FE/BE) and a GraphQL Gateway, consuming REST API (internal and 3rd party) plus WordPress data via WP-GraphQL.
         </p>
         <p>
           CD/CI via Gitlab Pipelines and E2E using Cypress. Storybook, Jest + React Testing Library.
