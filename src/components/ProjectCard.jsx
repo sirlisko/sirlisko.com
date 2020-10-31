@@ -29,9 +29,9 @@ const ProjectCard = ({ title, description, logo, links, tech }) => (
 
 ProjectCard.propTypes = {
   title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
+  description: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   logo: PropTypes.string.isRequired,
-  links: PropTypes.array.isRequired,
+  links: PropTypes.object.isRequired,
   tech: PropTypes.array.isRequired,
 };
 
