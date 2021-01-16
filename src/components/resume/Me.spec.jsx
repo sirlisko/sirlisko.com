@@ -1,16 +1,11 @@
 import React from "react";
-import renderer from "react-test-renderer";
+import { render } from "@testing-library/react";
 
 import Me from "./Me.jsx";
 
 describe("Me Component", () => {
-  let wrapper;
-
-  beforeEach(() => {
-    wrapper = renderer.create(<Me />).toJSON();
-  });
-
   it("should render properly", () => {
-    expect(wrapper).toMatchSnapshot();
+    const { asFragment } = render(<Me />);
+    expect(asFragment()).toMatchSnapshot();
   });
 });

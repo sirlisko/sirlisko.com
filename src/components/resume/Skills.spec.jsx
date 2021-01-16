@@ -1,10 +1,9 @@
 import React from "react";
-import renderer from "react-test-renderer";
+import { render } from "@testing-library/react";
 
 import Skills from "./Skills.jsx";
 
 describe("Skills Component", () => {
-  let wrapper;
   const props = {
     skills: {
       main: ["foo", "bar"],
@@ -12,11 +11,8 @@ describe("Skills Component", () => {
     },
   };
 
-  beforeEach(() => {
-    wrapper = renderer.create(<Skills {...props} />).toJSON();
-  });
-
   it("should render properly", () => {
-    expect(wrapper).toMatchSnapshot();
+    const { asFragment } = render(<Skills {...props} />);
+    expect(asFragment()).toMatchSnapshot();
   });
 });

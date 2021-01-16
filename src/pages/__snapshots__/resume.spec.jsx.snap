@@ -1,0 +1,444 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Resume Page should render properly 1`] = `
+<DocumentFragment>
+  <div
+    class="resume"
+  >
+    <section
+      class="me"
+    >
+      <div
+        class="me__face"
+      >
+        <a
+          href="/"
+        >
+          <img
+            alt="sirlisko face"
+            src="https://sirlisko.com/images/sirlisko.svg"
+          />
+        </a>
+      </div>
+      <p
+        class="me__intro"
+      >
+        <span>
+          Luca Lischetti
+        </span>
+        <span>
+          a.k.a. sirLisko
+        </span>
+        <span>
+          Senior Software Engineer
+        </span>
+      </p>
+    </section>
+    <div
+      class="wrapper"
+    >
+      <article
+        class="skills"
+      >
+        <h1>
+          Skills
+        </h1>
+        <div>
+          <h2>
+            main
+          </h2>
+          <ul>
+            <li>
+              Javascript
+            </li>
+            <li>
+              React
+            </li>
+            <li>
+              Node
+            </li>
+            <li>
+              Markup/CSS
+            </li>
+            <li>
+              Front End Architecture
+            </li>
+            <li>
+              FE Build & CI
+            </li>
+            <li>
+              BDD/TDD
+            </li>
+            <li>
+              Functional Testing
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h2>
+            misc.
+          </h2>
+          <ul>
+            <li>
+              Agile / Scrum
+            </li>
+            <li>
+              Redux
+            </li>
+            <li>
+              GraphQL
+            </li>
+            <li>
+              Typescript
+            </li>
+            <li>
+              Styled-Components
+            </li>
+            <li>
+              Webpack
+            </li>
+            <li>
+              NextJS
+            </li>
+            <li>
+              Gatsby
+            </li>
+            <li>
+              JAM stack
+            </li>
+            <li>
+              Gulp / Grunt
+            </li>
+            <li>
+              Chrome Extensions
+            </li>
+            <li>
+              Bash Scripting
+            </li>
+            <li>
+              User Scripting
+            </li>
+            <li>
+              Web Scraping
+            </li>
+          </ul>
+        </div>
+      </article>
+      <article
+        class="section experiences"
+      >
+        <h1>
+          Experiences
+        </h1>
+        <div>
+          <h2>
+            Hackney Council 
+            <span>
+              04.20 - 07.20 / 11.19 - 12.19
+            </span>
+          </h2>
+          <p>
+            Refactored the whole Hackney website using JAM stack (Gatsby, WP, Netlify), introducing React best practices, Unit and E2E tests. Improved CI/CD.
+          </p>
+          <p>
+            Developed various new services, using React/NextJS, lambda functions and deployed to AWS.
+          </p>
+        </div>
+        <div>
+          <h2>
+            uSwitch / RVU 
+            <span>
+              01.20 - 03.20
+            </span>
+          </h2>
+          <p>
+            Worked on internal tools using React/Redux-Saga, improving code quality and User Experience.
+          </p>
+          <p>
+            Contributed to the internal UI/component library.
+          </p>
+        </div>
+        <div>
+          <h2>
+            Architecture Consultant 
+            <span>
+              09.19 - 11.19
+            </span>
+          </h2>
+          <p>
+            Bootstrapped a brand new project based on a NextJS (Typescript) with Apollo (FE/BE) and a GraphQL Gateway, consuming REST API (internal and 3rd party) plus WordPress data via WP-GraphQL.
+          </p>
+          <p>
+            CD/CI via Gitlab Pipelines and E2E using Cypress. Storybook, Jest + React Testing Library.
+          </p>
+        </div>
+        <div>
+          <h2>
+            Kalo 
+            <span>
+              04.19 - 06.19
+            </span>
+          </h2>
+          <p>
+            Analysed, standardized and improved the whole Front End, with a main focus on the common UI library.
+          </p>
+          <p>
+            Architected and created an MVP for a FE Monorepo.
+          </p>
+          <p>
+            Improving performances and the Dev experience.
+          </p>
+        </div>
+        <div>
+          <h2>
+            Reason 
+            <span>
+              09.18 - 12.18
+            </span>
+          </h2>
+          <p>
+            Developed from scratch the whole Front End and some basic services for 3rd party client Coverly.
+          </p>
+          <p>
+            Worked with React/Redux, Jest for testing, Storybook for documentation, Node for API proxy, and deployment using Bitbucket pipelines.
+          </p>
+        </div>
+        <div>
+          <h2>
+            Verve 
+            <span>
+              05.17 - 07.18
+            </span>
+          </h2>
+          <p>
+            Worked on improving the user experience through the check-out with technologies involving React/Redux, Relay, and GraphQL.
+          </p>
+          <p>
+            Integrated 3rd party payment methods (Stripe).
+          </p>
+          <p>
+            Worked with the design team to improve the UI/UX.
+          </p>
+        </div>
+        <div>
+          <h2>
+            In the past... 
+          </h2>
+          <p>
+            I had the pleasure to work for Shazam (~5years), YOOX Net-a-Porter (&gt;1year), Pobble (&gt;1year), for a detailed list of my past experiences check my Linkedin profile :)
+          </p>
+        </div>
+        <div>
+          <h2>
+            Once upon a time... 
+          </h2>
+          <p>
+            I had the pleasure to work also with Java, Scala, PHP, MySQL, C++, Ruby on Rails. I don't consider myself an expert on those languages but I like, especially in my free time, playing with other technologies :)
+          </p>
+        </div>
+      </article>
+      <article
+        class="section projects"
+      >
+        <h1>
+          Side Projects
+        </h1>
+        <div>
+          <h2>
+            <a
+              href="https://been.netlify.com/"
+            >
+              Been
+            </a>
+          </h2>
+          <p>
+            Web companion to keep track of where you have BEEN, listing your visited countries.
+          </p>
+          <p>
+            React app, with auth and databased powered by Firebase. Styled using Styled-Components. And a handcrafted World Map SVG.
+          </p>
+          <p>
+            The project is still Work in Progress :)
+          </p>
+        </div>
+        <div>
+          <h2>
+            <a
+              href="https://shouldilistenit.sirlisko.com/"
+            >
+              Should I listen it?
+            </a>
+          </h2>
+          <p>
+            Little webapp that shows you the most played songs by an artist in the last two years of gigs.
+          </p>
+          <p>
+            Node.js app that proxies external APIs (Setlist.fm, Spotify and Songkick) and mashes them up to set you up for your next Gig.
+          </p>
+        </div>
+        <div>
+          <h2>
+            <a
+              href="https://chrome.google.com/webstore/detail/zamify/foilfgbdcipbajipeodmjjnkflkfocin"
+            >
+              Shazamify
+            </a>
+          </h2>
+          <p>
+            Shazamify allows you to play your Shazams in Spotify, directly from the browser, by adding a small Spotify icon to every Shazam track page.
+          </p>
+          <p>
+            Chrome Extension powered by Spotify OAuth and Web API.
+          </p>
+        </div>
+        <div>
+          To see a full list of my side projects go to 
+          <a
+            href="/projects"
+          >
+            https://sirlisko.com/projects
+          </a>
+          .
+        </div>
+      </article>
+      <article
+        class="section education"
+      >
+        <h1>
+          Education
+        </h1>
+        <p>
+          Degree in Computer Science @ Università degli studi dell’Insubria & Universidad de Salamanca.
+        </p>
+        <p>
+          Thesis on Assistive Technology - 
+          <a
+            data-beacon="true"
+            href="http://assistivetechnology.it"
+          >
+            http://assistivetechnology.it
+          </a>
+           (sorry link in Italian).
+        </p>
+      </article>
+      <article
+        class="section extras"
+      >
+        <h1>
+          Extras
+        </h1>
+        <p>
+          I co-held a workshop about TDD in Javascript @ Università di Cesena.
+        </p>
+        <p>
+          I’m a Volunteer and occasional collaborator of the Front-End Conference - 
+          <a
+            data-beacon="true"
+            href="https://fromthefront.it"
+          >
+            From The Front
+          </a>
+          .
+        </p>
+        <p>
+          I have a Cisco CCNA cetificate (Cisco Certified Network Associate).
+        </p>
+        <p>
+          I have a training certificate as Fire Marshal.
+        </p>
+      </article>
+      <article
+        class="section interests"
+      >
+        <h1>
+          Interests
+        </h1>
+        <p>
+          I like very much 
+          <a
+            href="https://www.last.fm/user/sirlisko"
+          >
+            music
+          </a>
+          , 
+          <a
+            href="https://www.imdb.com/user/ur15844029/"
+          >
+            cinema
+          </a>
+          , 
+          <a
+            href="https://www.goodreads.com/sirLisko"
+          >
+            books
+          </a>
+          , and, last but not least, 
+          <a
+            href="https://pizzaclub.sirlisko.com/"
+          >
+            pizza
+          </a>
+          .
+        </p>
+        <p>
+          I like Art, especially modern and 8-bit graphic (like old-school video games), travel, languages. I’m also an active member of 
+          <a
+            href="https://www.couchsurfing.com/people/sirlisko"
+          >
+            CouchSurfing community
+          </a>
+          .
+        </p>
+      </article>
+      <article
+        class="section contacts"
+      >
+        <h1>
+          Contacts
+        </h1>
+        <p>
+          My personal website 
+          <a
+            href="https://sirlisko.com"
+          >
+            https://sirlisko.com
+          </a>
+        </p>
+        <p>
+          My Github 
+          <a
+            href="https://github.com/sirlisko"
+          >
+            https://github.com/sirlisko
+          </a>
+        </p>
+        <p>
+          My LinkedIn 
+          <a
+            href="https://www.linkedin.com/in/lucalischetti/"
+          >
+            https://www.linkedin.com/in/lucalischetti/
+          </a>
+        </p>
+        <p>
+          Drop me an email at 
+          <a
+            href="mailto:luca@sirlisko.com"
+          >
+            luca@sirlisko.com
+          </a>
+          .
+        </p>
+        <p>
+          A print-friendly version of this: 
+          <a
+            href="https://sirlisko.com/cv/alt.pdf"
+          >
+            https://sirlisko.com/cv/alt.pdf
+          </a>
+        </p>
+      </article>
+    </div>
+  </div>
+</DocumentFragment>
+`;

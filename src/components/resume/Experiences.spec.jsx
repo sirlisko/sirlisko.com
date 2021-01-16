@@ -1,10 +1,9 @@
 import React from "react";
-import renderer from "react-test-renderer";
+import { render } from "@testing-library/react";
 
 import Experiences from "./Experiences.jsx";
 
 describe("Experiences Component", () => {
-  let wrapper;
   const props = {
     experiences: [
       {
@@ -20,11 +19,8 @@ describe("Experiences Component", () => {
     ],
   };
 
-  beforeEach(() => {
-    wrapper = renderer.create(<Experiences {...props} />).toJSON();
-  });
-
   it("should render properly", () => {
-    expect(wrapper).toMatchSnapshot();
+    const { asFragment } = render(<Experiences {...props} />);
+    expect(asFragment()).toMatchSnapshot();
   });
 });

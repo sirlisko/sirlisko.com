@@ -1,8 +1,8 @@
 import React from "react";
-import renderer from "react-test-renderer";
+import { render } from "@testing-library/react";
 import { StaticQuery } from "gatsby";
 
-import Index from "./index.js";
+import Index from "./index.jsx";
 
 beforeEach(() => {
   StaticQuery.mockImplementationOnce(({ render }) =>
@@ -17,13 +17,8 @@ beforeEach(() => {
 });
 
 describe("Index Page", () => {
-  let wrapper;
-
-  beforeEach(() => {
-    wrapper = renderer.create(<Index />).toJSON();
-  });
-
   it("should render properly", () => {
-    expect(wrapper).toMatchSnapshot();
+    const { asFragment } = render(<Index />);
+    expect(asFragment()).toMatchSnapshot();
   });
 });
