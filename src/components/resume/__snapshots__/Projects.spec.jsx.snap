@@ -1,47 +1,48 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Projects Component should render properly 1`] = `
-<article
-  className="section projects"
->
-  <h1>
-    Side Projects
-  </h1>
-  <div>
-    <h2>
-      <a>
-        foo
-      </a>
-    </h2>
-    <p>
-      bar
-    </p>
-    <p>
-      foobar.
-    </p>
-  </div>
-  <div>
-    <h2>
-      <a>
+<DocumentFragment>
+  <article
+    class="section projects"
+  >
+    <h1>
+      Side Projects
+    </h1>
+    <div>
+      <h2>
+        <a>
+          foo
+        </a>
+      </h2>
+      <p>
+        bar
+      </p>
+      <p>
+        foobar.
+      </p>
+    </div>
+    <div>
+      <h2>
+        <a>
+          asd
+        </a>
+      </h2>
+      <p>
         asd
+      </p>
+      <p>
+        qwe.
+      </p>
+    </div>
+    <div>
+      To see a full list of my side projects go to 
+      <a
+        href="/projects"
+      >
+        https://sirlisko.com/projects
       </a>
-    </h2>
-    <p>
-      asd
-    </p>
-    <p>
-      qwe.
-    </p>
-  </div>
-  <div>
-    To see a full list of my side projects go to
-     
-    <a
-      href="/projects"
-    >
-      https://sirlisko.com/projects
-    </a>
-    .
-  </div>
-</article>
+      .
+    </div>
+  </article>
+</DocumentFragment>
 `;

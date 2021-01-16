@@ -1,8 +1,8 @@
 import React from "react";
-import renderer from "react-test-renderer";
+import { render } from "@testing-library/react";
 import { StaticQuery } from "gatsby";
 
-import Resume from "./resume.js";
+import Projects from "./projects.jsx";
 
 beforeEach(() => {
   StaticQuery.mockImplementationOnce(({ render }) =>
@@ -16,14 +16,9 @@ beforeEach(() => {
   );
 });
 
-describe("Resume Page", () => {
-  let wrapper;
-
-  beforeEach(() => {
-    wrapper = renderer.create(<Resume />).toJSON();
-  });
-
+describe("Projects Page", () => {
   it("should render properly", () => {
-    expect(wrapper).toMatchSnapshot();
+    const { asFragment } = render(<Projects />);
+    expect(asFragment()).toMatchSnapshot();
   });
 });

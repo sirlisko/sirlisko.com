@@ -1,0 +1,506 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Projects Page should render properly 1`] = `
+<DocumentFragment>
+  <div
+    class="projects-page"
+  >
+    <div
+      class="logo"
+    >
+      <a
+        href="/"
+      >
+        <img
+          alt="sirlisko face"
+          src="/images/sirlisko.svg"
+        />
+      </a>
+    </div>
+    <section>
+      <h1>
+        My Side Projects
+      </h1>
+      <ul>
+        <li
+          class="project"
+        >
+          <div
+            class="project__main"
+          >
+            <h3>
+              ZoomMEME
+            </h3>
+            <p>
+              Super simple zoom-in meme generator. Drag and drop an image and then create your meme.
+            </p>
+            <p>
+              PWA (Progressive Web App) powered by pure and sweet Vanilla Javascript.
+            </p>
+          </div>
+          <img
+            alt="ZoomMEME logo"
+            src="https://sirlisko.com/imgs/zoommeme.png"
+          />
+          <div
+            class="project__details"
+          >
+            <p
+              class="project__details__links"
+            >
+              <a
+                href="https://zoomme.me"
+              >
+                website
+              </a>
+              <a
+                href="https://github.com/sirlisko/zoommeme"
+              >
+                github
+              </a>
+            </p>
+            <ul
+              class="project__details__tech"
+            >
+              <li>
+                PWA
+              </li>
+              <li>
+                Vanilla JS
+              </li>
+              <li>
+                Webpack
+              </li>
+              <li>
+                Jest
+              </li>
+            </ul>
+          </div>
+        </li>
+        <li
+          class="project"
+        >
+          <div
+            class="project__main"
+          >
+            <h3>
+              Audible RSS
+            </h3>
+            <p>
+              Get an RSS feed of the latest audiobook relases on Audible.
+            </p>
+            <p>
+              RSS Feed powered by Node/Express, created scraping Audible website.
+            </p>
+          </div>
+          <img
+            alt="Audible RSS logo"
+            src="https://sirlisko.com/imgs/audible-rss.png"
+          />
+          <div
+            class="project__details"
+          >
+            <p
+              class="project__details__links"
+            >
+              <a
+                href="https://audiblerss.sirlisko.com"
+              >
+                website
+              </a>
+              <a
+                href="https://github.com/sirlisko/audible-rss"
+              >
+                github
+              </a>
+            </p>
+            <ul
+              class="project__details__tech"
+            >
+              <li>
+                Node
+              </li>
+              <li>
+                Express
+              </li>
+              <li>
+                React
+              </li>
+              <li>
+                Web Scraping
+              </li>
+            </ul>
+          </div>
+        </li>
+        <li
+          class="project"
+        >
+          <div
+            class="project__main"
+          >
+            <h3>
+              Should I listen it
+            </h3>
+            <p>
+              Little webapp that shows you the most played songs by an artist in the last two years of gigs.
+            </p>
+            <p>
+              Node.js app that proxies external APIs (Setlist.fm, Spotify and Songkick) and mashes them up to set you up for your next Gig.
+            </p>
+          </div>
+          <img
+            alt="Should I listen it logo"
+            src="https://sirlisko.com/imgs/ticket.png"
+          />
+          <div
+            class="project__details"
+          >
+            <p
+              class="project__details__links"
+            >
+              <a
+                href="https://shouldilistenit.sirlisko.com"
+              >
+                website
+              </a>
+              <a
+                href="https://github.com/sirLisko/shouldilistenit"
+              >
+                github
+              </a>
+            </p>
+            <ul
+              class="project__details__tech"
+            >
+              <li>
+                Node
+              </li>
+              <li>
+                Setlist.fm API
+              </li>
+              <li>
+                Spotify API
+              </li>
+              <li>
+                Songkick API
+              </li>
+              <li>
+                Functional Programming
+              </li>
+            </ul>
+          </div>
+        </li>
+        <li
+          class="project"
+        >
+          <div
+            class="project__main"
+          >
+            <h3>
+              Shazamify (a.k.a. Zamify
+            </h3>
+            <p>
+              Shazamify allows you to play your Shazams in Spotify, directly from the browser, by adding a small Spotify icon to every Shazam track page.
+            </p>
+            <p>
+              Chrome Extension powered by Spotify OAuth and Web API.
+            </p>
+          </div>
+          <img
+            alt="Shazamify (a.k.a. Zamify logo"
+            src="https://sirlisko.com/blog/content/images/2015/04/icon.png"
+          />
+          <div
+            class="project__details"
+          >
+            <p
+              class="project__details__links"
+            >
+              <a
+                href="https://chrome.google.com/webstore/detail/zamify/foilfgbdcipbajipeodmjjnkflkfocin"
+              >
+                chrome_extension
+              </a>
+              <a
+                href="https://sirlisko.com/blog/shazamify"
+              >
+                blog
+              </a>
+              <a
+                href="https://github.com/sirLisko/shazamify"
+              >
+                github
+              </a>
+            </p>
+            <ul
+              class="project__details__tech"
+            >
+              <li>
+                Chrome Extension
+              </li>
+              <li>
+                Spotify OAuth
+              </li>
+              <li>
+                Spotify API
+              </li>
+            </ul>
+          </div>
+        </li>
+        <li
+          class="project"
+        >
+          <div
+            class="project__main"
+          >
+            <h3>
+              Deliverance Improved
+            </h3>
+            <p>
+              Little Node/Angular webapp that scraps the original website menu of deliverance.co.uk and it shows it in a more functional way.It adds the possibility to filter, order and search in the menu.
+            </p>
+          </div>
+          <img
+            alt="Deliverance Improved logo"
+            src="https://sirlisko.com/imgs/archive/dlogo.jpg"
+          />
+          <div
+            class="project__details"
+          >
+            <p
+              class="project__details__links"
+            >
+              <a
+                href="http://deliverance.herokuapp.com"
+              >
+                website
+              </a>
+              <a
+                href="https://github.com/sirLisko/deliverance"
+              >
+                github
+              </a>
+            </p>
+            <ul
+              class="project__details__tech"
+            >
+              <li>
+                Node
+              </li>
+              <li>
+                Angular JS
+              </li>
+              <li>
+                Web Scraping
+              </li>
+              <li>
+                Bootstrap
+              </li>
+              <li>
+                Heroku
+              </li>
+            </ul>
+          </div>
+        </li>
+        <li
+          class="project"
+        >
+          <div
+            class="project__main"
+          >
+            <h3>
+              Gulp Blacklist Marker
+            </h3>
+            <p>
+              Chrome Extension that marks blacklisted gulp modules when browsing NPM and GitHub.
+            </p>
+          </div>
+          <img
+            alt="Gulp Blacklist Marker logo"
+            src="https://sirlisko.com/blog/content/images/2015/03/icon128-1.png"
+          />
+          <div
+            class="project__details"
+          >
+            <p
+              class="project__details__links"
+            >
+              <a
+                href="https://chrome.google.com/webstore/detail/gulp-blacklist-marker/kifhpjdagaiganbdabkpepncopmbfbal"
+              >
+                chrome_extension
+              </a>
+              <a
+                href="https://sirlisko.com/blog/gulp-blacklist-marker/"
+              >
+                blog
+              </a>
+              <a
+                href="https://github.com/sirLisko/gulp-blacklist-marker"
+              >
+                github
+              </a>
+            </p>
+            <ul
+              class="project__details__tech"
+            >
+              <li>
+                Chrome Extension
+              </li>
+              <li>
+                Gulp
+              </li>
+              <li>
+                NPM
+              </li>
+            </ul>
+          </div>
+        </li>
+        <li
+          class="project"
+        >
+          <div
+            class="project__main"
+          >
+            <h3>
+              Sproxify
+            </h3>
+            <p>
+              Sproxify intercepts Spotify links and let you choose where to play them. Through a fancy-looking button, Sproxify redirects you in the desiderated environment where you can finally play your music.Just where you want!
+            </p>
+          </div>
+          <img
+            alt="Sproxify logo"
+            src="https://sirlisko.com/blog/content/images/2015/03/icon128.png"
+          />
+          <div
+            class="project__details"
+          >
+            <p
+              class="project__details__links"
+            >
+              <a
+                href="https://chrome.google.com/webstore/detail/sproxify/kiohegnpcjpnamjjlobofaiegnpnepnc"
+              >
+                chrome_extension
+              </a>
+              <a
+                href="https://sirlisko.com/blog/sproxify/"
+              >
+                blog
+              </a>
+              <a
+                href="https://github.com/sirLisko/sproxify"
+              >
+                github
+              </a>
+            </p>
+            <ul
+              class="project__details__tech"
+            >
+              <li>
+                Chrome Extension
+              </li>
+              <li>
+                User Script
+              </li>
+            </ul>
+          </div>
+        </li>
+        <li
+          class="project"
+        >
+          <div
+            class="project__main"
+          >
+            <h3>
+              Pizza Club
+            </h3>
+            <p>
+              Static site generated by Gatsby and hosted as GitHub Page where I collect all the pizzas that I enjoyed around the World.(work in progress)
+            </p>
+          </div>
+          <img
+            alt="Pizza Club logo"
+            src="https://sirlisko.com/imgs/pizza.png"
+          />
+          <div
+            class="project__details"
+          >
+            <p
+              class="project__details__links"
+            >
+              <a
+                href="http://pizzaclub.sirlisko.com/"
+              >
+                website
+              </a>
+              <a
+                href="https://github.com/sirLisko/pizzaclub"
+              >
+                github
+              </a>
+            </p>
+            <ul
+              class="project__details__tech"
+            >
+              <li>
+                Gatsby
+              </li>
+              <li>
+                React
+              </li>
+              <li>
+                GitHub Pages
+              </li>
+            </ul>
+          </div>
+        </li>
+        <li
+          class="project"
+        >
+          <div
+            class="project__main"
+          >
+            <h3>
+              POMOfy - deprecated
+            </h3>
+            <p>
+              POMOfy introduces the productivity of the Pomodoro Technique in Spotify. Basically a Spotify app that allows you to use songs as timer for the Pomodoro.
+            </p>
+          </div>
+          <img
+            alt="POMOfy - deprecated logo"
+            src="https://raw.githubusercontent.com/sirLisko/apps-pomofy/master/img/pomodoro.png"
+          />
+          <div
+            class="project__details"
+          >
+            <p
+              class="project__details__links"
+            >
+              <a
+                href="https://sirlisko.com/imgs/archive/pomofy.png"
+              >
+                screenshot
+              </a>
+              <a
+                href="https://github.com/sirLisko/apps-pomofy"
+              >
+                github
+              </a>
+            </p>
+            <ul
+              class="project__details__tech"
+            >
+              <li>
+                Spotify App
+              </li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </section>
+  </div>
+</DocumentFragment>
+`;

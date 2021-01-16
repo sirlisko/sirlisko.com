@@ -1,16 +1,11 @@
 import React from "react";
-import renderer from "react-test-renderer";
+import { render } from "@testing-library/react";
 
 import Interests from "./Interests.jsx";
 
 describe("Interests Component", () => {
-  let wrapper;
-
-  beforeEach(() => {
-    wrapper = renderer.create(<Interests />).toJSON();
-  });
-
   it("should render properly", () => {
-    expect(wrapper).toMatchSnapshot();
+    const { asFragment } = render(<Interests />);
+    expect(asFragment()).toMatchSnapshot();
   });
 });
