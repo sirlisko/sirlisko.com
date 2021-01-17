@@ -2,9 +2,9 @@ import React from "react";
 import { render } from "@testing-library/react";
 import { StaticQuery } from "gatsby";
 
-import Projects from "./projects.jsx";
+import Projects from "../projects.jsx";
 
-jest.mock("../../data/projects.json", () => [
+jest.mock("../../../data/projects.json", () => [
   {
     title: "Foo",
     description: ["line 1", "line 2"],

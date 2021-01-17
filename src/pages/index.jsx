@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "gatsby";
 
-import "./index.scss";
+import "../styles/style.scss";
+import "../styles/index.scss";
 
 import me from "../../data/me.json";
 

@@ -2,6 +2,8 @@ import React from "react";
 
 import SEO from "../components/Seo.jsx";
 
+import "../styles/style.scss";
+
 const NotFoundPage = () => (
   <>
     <SEO title="404: Not found" />

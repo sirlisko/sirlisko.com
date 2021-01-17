@@ -3,7 +3,8 @@ import React from "react";
 import classNames from "classnames";
 import resume from "../../data/resume.json";
 
-import "./resume.scss";
+import "../styles/style.scss";
+import "../styles/resume.scss";
 
 import SEO from "../components/Seo.jsx";
 import Me from "../components/resume/Me.jsx";

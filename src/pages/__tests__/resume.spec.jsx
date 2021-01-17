@@ -2,9 +2,9 @@ import React from "react";
 import { render } from "@testing-library/react";
 import { StaticQuery } from "gatsby";
 
-import Resume from "./resume.jsx";
+import Resume from "../resume.jsx";
 
-jest.mock("../../data/resume.json", () => ({
+jest.mock("../../../data/resume.json", () => ({
   skills: {
     main: ["main_1", "main_2", "main_3"],
     "misc.": ["misc_1", "misc_2", "misc_3"],
