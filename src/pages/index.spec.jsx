@@ -4,6 +4,15 @@ import { StaticQuery } from "gatsby";
 
 import Index from "./index.jsx";
 
+jest.mock("../../data/me.json", () => ({
+  descriptions: ["foo", "bar"],
+  keywords: ["k_foo", "k_bar"],
+  links: [
+    { name: "foo", label: "Foo", url: "https://foo" },
+    { name: "bar", label: "Bar", url: "https://Bar" },
+  ],
+}));
+
 beforeEach(() => {
   StaticQuery.mockImplementationOnce(({ render }) =>
     render({
