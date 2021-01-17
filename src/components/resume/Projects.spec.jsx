@@ -1,10 +1,9 @@
 import React from "react";
-import renderer from "react-test-renderer";
+import { render } from "@testing-library/react";
 
 import Projects from "./Projects.jsx";
 
 describe("Projects Component", () => {
-  let wrapper;
   const props = {
     projects: [
       {
@@ -30,11 +29,8 @@ describe("Projects Component", () => {
     ],
   };
 
-  beforeEach(() => {
-    wrapper = renderer.create(<Projects {...props} />).toJSON();
-  });
-
   it("should render properly", () => {
-    expect(wrapper).toMatchSnapshot();
+    const { asFragment } = render(<Projects {...props} />);
+    expect(asFragment()).toMatchSnapshot();
   });
 });

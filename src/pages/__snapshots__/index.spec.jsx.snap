@@ -1,0 +1,111 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Index Page should render properly 1`] = `
+<DocumentFragment>
+  <div
+    class="home"
+  >
+    <section
+      class="life"
+    >
+      <span
+        class="life__heart"
+      />
+      <span
+        class="life__heart"
+      />
+      <span
+        class="life__heart"
+      />
+    </section>
+    <figure
+      class="ghost"
+      style="left: -155px; top: -155px;"
+    />
+    <header>
+      <ul
+        class="links"
+      >
+        <li
+          class="links--foo"
+        >
+          <a
+            href="https://foo"
+          >
+            <p
+              class="caption"
+            >
+              Foo
+            </p>
+          </a>
+        </li>
+        <li
+          class="links--bar"
+        >
+          <a
+            href="https://Bar"
+          >
+            <p
+              class="caption"
+            >
+              Bar
+            </p>
+          </a>
+        </li>
+      </ul>
+    </header>
+    <article>
+      <section
+        class="greeting"
+      >
+        <img
+          alt="sirlisko face"
+          class="greeting__face"
+          src="./images/sirlisko.svg"
+        />
+        <div
+          class="greeting__intro"
+        >
+          <p>
+            Ciao!
+          </p>
+          <p>
+            I’m sirLisko,
+          </p>
+          <p>
+            another f@$#&n’
+          </p>
+          <p
+            class="greeting__intro__desc"
+          >
+            <span
+              class="greeting__intro--active"
+            >
+              foo
+            </span>
+            <span
+              class=""
+            >
+              bar
+            </span>
+          </p>
+        </div>
+      </section>
+    </article>
+    <footer>
+      <a
+        class="my__projects"
+        href="/projects"
+      >
+        Projects
+      </a>
+      <a
+        class="my__resume"
+        href="/resume"
+      >
+        Resume
+      </a>
+    </footer>
+  </div>
+</DocumentFragment>
+`;

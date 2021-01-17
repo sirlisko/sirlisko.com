@@ -1,8 +1,8 @@
 import React from "react";
-import renderer from "react-test-renderer";
+import { render } from "@testing-library/react";
 import { StaticQuery } from "gatsby";
 
-import Index from "./index.js";
+import Page404 from "./404.jsx";
 
 beforeEach(() => {
   StaticQuery.mockImplementationOnce(({ render }) =>
@@ -16,14 +16,9 @@ beforeEach(() => {
   );
 });
 
-describe("Index Page", () => {
-  let wrapper;
-
-  beforeEach(() => {
-    wrapper = renderer.create(<Index />).toJSON();
-  });
-
+describe("404 Page", () => {
   it("should render properly", () => {
-    expect(wrapper).toMatchSnapshot();
+    const { asFragment } = render(<Page404 />);
+    expect(asFragment()).toMatchSnapshot();
   });
 });
