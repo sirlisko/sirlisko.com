@@ -2,16 +2,7 @@ import React from "react";
 import { render } from "@testing-library/react";
 import { StaticQuery } from "gatsby";
 
-import Index from "./index.jsx";
-
-jest.mock("../../data/me.json", () => ({
-  descriptions: ["foo", "bar"],
-  keywords: ["k_foo", "k_bar"],
-  links: [
-    { name: "foo", label: "Foo", url: "https://foo" },
-    { name: "bar", label: "Bar", url: "https://Bar" },
-  ],
-}));
+import Page404 from "../404.jsx";
 
 beforeEach(() => {
   StaticQuery.mockImplementationOnce(({ render }) =>
@@ -25,9 +16,9 @@ beforeEach(() => {
   );
 });
 
-describe("Index Page", () => {
+describe("404 Page", () => {
   it("should render properly", () => {
-    const { asFragment } = render(<Index />);
+    const { asFragment } = render(<Page404 />);
     expect(asFragment()).toMatchSnapshot();
   });
 });

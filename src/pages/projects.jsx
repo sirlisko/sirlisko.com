@@ -3,7 +3,8 @@ import { Link } from "gatsby";
 
 import projects from "../../data/projects.json";
 
-import "./projects.scss";
+import "../styles/style.scss";
+import "../styles/projects.scss";
 
 import SEO from "../components/Seo.jsx";
 import ProjectCard from "../components/ProjectCard.jsx";
