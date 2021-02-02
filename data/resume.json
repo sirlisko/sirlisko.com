@@ -30,10 +30,11 @@
   "experiences": [
     {
       "where": "Hackney Council",
-      "when": "04.20 - 07.20 / 11.19 - 12.19",
+      "when": "02.21-10.20 / 04.20-07.20 / 11.19-12.19",
       "blurp": [
-        "Refactored the whole Hackney website using JAM stack (Gatsby, WP, Netlify), introducing React best practices, Unit and E2E tests. Improved CI/CD.",
-        "Developed various new services, using React/NextJS, lambda functions and deployed to AWS."
+        "Developed various new services, using React/NextJS, lambda functions and deployed to AWS.",
+        "Contributed to internal Component Libraries, knowledge sharing and mentored junior devs.",
+        "Refactored the main Hackney website using JAM stack (Gatsby, WP, Netlify), introducing React best practices, Unit and E2E tests. Improved CI/CD."
       ]
     },
     {
@@ -48,8 +49,7 @@
       "where": "Architecture Consultant",
       "when": "09.19 - 11.19",
       "blurp": [
-        "Bootstrapped a brand new project based on a NextJS (Typescript) with Apollo (FE/BE) and a GraphQL Gateway, consuming REST API (internal and 3rd party) plus WordPress data via WP-GraphQL.",
-        "CD/CI via Gitlab Pipelines and E2E using Cypress. Storybook, Jest + React Testing Library."
+        "Bootstrapped a brand new project based on a NextJS (Typescript) with Apollo (FE/BE) and a GraphQL Gateway, consuming REST API (internal and 3rd party) plus WordPress data via WP-GraphQL."
       ]
     },
     {
@@ -65,8 +65,7 @@
       "where": "Reason",
       "when": "09.18 - 12.18",
       "blurp": [
-        "Developed from scratch the whole Front End and some basic services for 3rd party client Coverly.",
-        "Worked with React/Redux, Jest for testing, Storybook for documentation, Node for API proxy, and deployment using Bitbucket pipelines."
+        "Developed from scratch a new service for a Clinet. Worked with React/Redux, Jest for testing, Storybook for documentation, Node for API proxy."
       ]
     },
     {
