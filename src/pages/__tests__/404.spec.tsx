@@ -2,10 +2,12 @@ import React from "react";
 import { render } from "@testing-library/react";
 import { StaticQuery } from "gatsby";
 
-import Page404 from "../404.jsx";
+import Page404 from "../404";
+
+const mockedStaticQuery = StaticQuery as jest.Mock;
 
 beforeEach(() => {
-  StaticQuery.mockImplementationOnce(({ render }) =>
+  mockedStaticQuery.mockImplementationOnce(({ render }) =>
     render({
       site: {
         siteMetadata: {

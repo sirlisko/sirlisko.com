@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from "@testing-library/react";
 
-import Extras from "./Extras.jsx";
+import Extras from "./Extras";
 
 describe("Extras Component", () => {
   it("should render properly", () => {

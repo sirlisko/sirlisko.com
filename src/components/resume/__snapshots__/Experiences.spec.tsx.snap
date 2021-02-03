@@ -9,6 +9,9 @@ exports[`Experiences Component should render properly 1`] = `
       Experiences
     </h1>
     <div>
+      <h2>
+        foo 
+      </h2>
       <p>
         ...
       </p>

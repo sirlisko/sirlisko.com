@@ -1,7 +1,15 @@
 import React from "react";
-import PropTypes from "prop-types";
 
-const Experiences = ({ experiences }) => (
+interface ExperiencesProps {
+  experiences: Array<{
+    where: string;
+    blurp: string[];
+    when?: string;
+    role?: string;
+  }>;
+}
+
+const Experiences = ({ experiences }: ExperiencesProps) => (
   <article className="section experiences">
     <h1>Experiences</h1>
     {experiences.map((exp) => (
@@ -18,9 +26,5 @@ const Experiences = ({ experiences }) => (
     ))}
   </article>
 );
-
-Experiences.propTypes = {
-  experiences: PropTypes.array.isRequired,
-};
 
 export default Experiences;

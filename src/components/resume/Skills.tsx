@@ -1,7 +1,12 @@
 import React from "react";
-import PropTypes from "prop-types";
 
-const Skills = ({ skills }) => (
+interface SkillsProps {
+  skills: {
+    [type: string]: string[];
+  };
+}
+
+const Skills = ({ skills }: SkillsProps) => (
   <article className="skills">
     <h1>Skills</h1>
     {Object.keys(skills).map((type) => (
@@ -16,9 +21,5 @@ const Skills = ({ skills }) => (
     ))}
   </article>
 );
-
-Skills.propTypes = {
-  skills: PropTypes.shape(PropTypes.array.isRequired).isRequired,
-};
 
 export default Skills;

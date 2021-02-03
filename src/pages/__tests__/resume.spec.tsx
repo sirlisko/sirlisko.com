@@ -2,7 +2,7 @@ import React from "react";
 import { render } from "@testing-library/react";
 import { StaticQuery } from "gatsby";
 
-import Resume from "../resume.jsx";
+import Resume from "../resume";
 
 jest.mock("../../../data/resume.json", () => ({
   skills: {
@@ -30,8 +30,10 @@ jest.mock("../../../data/resume.json", () => ({
   ],
 }));
 
+const mockedStaticQuery = StaticQuery as jest.Mock;
+
 beforeEach(() => {
-  StaticQuery.mockImplementationOnce(({ render }) =>
+  mockedStaticQuery.mockImplementationOnce(({ render }) =>
     render({
       site: {
         siteMetadata: {

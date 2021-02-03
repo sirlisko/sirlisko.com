@@ -6,10 +6,10 @@ import "../styles/index.scss";
 
 import me from "../../data/me.json";
 
-import SEO from "../components/Seo.jsx";
-import Links from "../components/Links.jsx";
-import Greeting from "../components/Greeting.jsx";
-import Ghost from "../components/Ghost.jsx";
+import SEO from "../components/Seo";
+import Links from "../components/Links";
+import Greeting from "../components/Greeting";
+import Ghost from "../components/Ghost";
 
 const HomePage = () => (
   <div className="home">

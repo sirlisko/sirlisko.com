@@ -1,11 +1,11 @@
 import React from "react";
 import { render } from "@testing-library/react";
 
-import Me from "./Me.jsx";
+import Interests from "./Interests";
 
-describe("Me Component", () => {
+describe("Interests Component", () => {
   it("should render properly", () => {
-    const { asFragment } = render(<Me />);
+    const { asFragment } = render(<Interests />);
     expect(asFragment()).toMatchSnapshot();
   });
 });
