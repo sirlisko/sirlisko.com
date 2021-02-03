@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from "@testing-library/react";
 
-import Contacts from "./Contacts.jsx";
+import Contacts from "./Contacts";
 
 describe("Contacts Component", () => {
   it("should render properly", () => {

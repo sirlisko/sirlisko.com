@@ -6,8 +6,8 @@ import projects from "../../data/projects.json";
 import "../styles/style.scss";
 import "../styles/projects.scss";
 
-import SEO from "../components/Seo.jsx";
-import ProjectCard from "../components/ProjectCard.jsx";
+import SEO from "../components/Seo";
+import ProjectCard from "../components/ProjectCard";
 
 const ProjectsPage = () => (
   <div className="projects-page">

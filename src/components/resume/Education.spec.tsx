@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from "@testing-library/react";
 
-import Education from "./Education.jsx";
+import Education from "./Education";
 
 describe("Education Component", () => {
   it("should render properly", () => {

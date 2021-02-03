@@ -2,7 +2,7 @@ import React from "react";
 import { render } from "@testing-library/react";
 import { StaticQuery } from "gatsby";
 
-import Projects from "../projects.jsx";
+import Projects from "../projects";
 
 jest.mock("../../../data/projects.json", () => [
   {
@@ -27,8 +27,10 @@ jest.mock("../../../data/projects.json", () => [
   },
 ]);
 
+const mockedStaticQuery = StaticQuery as jest.Mock;
+
 beforeEach(() => {
-  StaticQuery.mockImplementationOnce(({ render }) =>
+  mockedStaticQuery.mockImplementationOnce(({ render }) =>
     render({
       site: {
         siteMetadata: {

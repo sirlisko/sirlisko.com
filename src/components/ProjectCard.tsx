@@ -1,7 +1,22 @@
 import React from "react";
-import PropTypes from "prop-types";
 
-const ProjectCard = ({ title, description, logo, links, tech }) => (
+interface ProjectCardProsp {
+  title: string;
+  description: string[];
+  logo: string;
+  links: {
+    [type: string]: string | undefined;
+  };
+  tech: string[];
+}
+
+const ProjectCard = ({
+  title,
+  description,
+  logo,
+  links,
+  tech,
+}: ProjectCardProsp) => (
   <>
     <div className="project__main">
       <h3>{title}</h3>
@@ -26,13 +41,5 @@ const ProjectCard = ({ title, description, logo, links, tech }) => (
     </div>
   </>
 );
-
-ProjectCard.propTypes = {
-  title: PropTypes.string.isRequired,
-  description: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-  logo: PropTypes.string.isRequired,
-  links: PropTypes.object.isRequired,
-  tech: PropTypes.array.isRequired,
-};
 
 export default ProjectCard;

@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
 
 import "./Greeting.scss";
 
-const Greeting = ({ descriptions }) => {
+interface GreetingProps {
+  descriptions: string[];
+}
+
+const Greeting = ({ descriptions }: GreetingProps) => {
   const [selectedDescription, setSelectedDescription] = useState(
     descriptions[0]
   );
@@ -36,10 +39,6 @@ const Greeting = ({ descriptions }) => {
       </p>
     </div>
   );
-};
-
-Greeting.propTypes = {
-  descriptions: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
 };
 
 export default Greeting;

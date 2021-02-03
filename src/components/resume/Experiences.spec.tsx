@@ -1,13 +1,13 @@
 import React from "react";
 import { render } from "@testing-library/react";
 
-import Experiences from "./Experiences.jsx";
+import Experiences from "./Experiences";
 
 describe("Experiences Component", () => {
   const props = {
     experiences: [
       {
-        role: "foo",
+        where: "foo",
         blurp: ["..."],
       },
       {

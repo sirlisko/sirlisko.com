@@ -1,9 +1,16 @@
 import React from "react";
-import PropTypes from "prop-types";
 
 import "./Links.scss";
 
-const Links = ({ links }) => (
+interface LinksProps {
+  links: Array<{
+    name: string;
+    url: string;
+    label: string;
+  }>;
+}
+
+const Links = ({ links }: LinksProps) => (
   <ul className="links">
     {links.map((link) => (
       <li key={link.name} className={`links--${link.name}`}>
@@ -14,9 +21,5 @@ const Links = ({ links }) => (
     ))}
   </ul>
 );
-
-Links.propTypes = {
-  links: PropTypes.arrayOf(PropTypes.shape().isRequired).isRequired,
-};
 
 export default Links;

@@ -1,7 +1,10 @@
 import React from "react";
-import PropTypes from "prop-types";
 
-const Contacts = ({ isAltVersion }) => (
+interface ContactsProps {
+  isAltVersion?: boolean;
+}
+
+const Contacts = ({ isAltVersion }: ContactsProps) => (
   <article className="section contacts">
     <h1>Contacts</h1>
     <p>
@@ -37,9 +40,5 @@ const Contacts = ({ isAltVersion }) => (
     )}
   </article>
 );
-
-Contacts.propTypes = {
-  isAltVersion: PropTypes.bool,
-};
 
 export default Contacts;

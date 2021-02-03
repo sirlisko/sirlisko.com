@@ -1,7 +1,14 @@
 import React from "react";
-import PropTypes from "prop-types";
 
-const Projects = ({ projects }) => (
+interface ProjectProps {
+  projects: Array<{
+    name: string;
+    url?: string;
+    blurp: string[];
+  }>;
+}
+
+const Projects = ({ projects }: ProjectProps) => (
   <article className="section projects">
     <h1>Side Projects</h1>
     {projects.map((prj) => (
@@ -20,9 +27,5 @@ const Projects = ({ projects }) => (
     </div>
   </article>
 );
-
-Projects.propTypes = {
-  projects: PropTypes.array.isRequired,
-};
 
 export default Projects;

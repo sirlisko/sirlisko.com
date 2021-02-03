@@ -5,20 +5,19 @@ import debounce from "lodash.debounce";
 
 import "./Ghost.scss";
 
-const getLives = (life) =>
-  Array.apply(null, { length: life }).map((e, i) => (
-    <span className="life__heart" key={i} />
-  ));
+const getLives = (life: number) =>
+  [...Array(life)].map((e, i) => <span className="life__heart" key={i} />);
 
 const Ghost = () => {
   const [life, setLife] = useState(3);
   const [mousePosition, setMousePosition] = useState({ x: -100, y: -100 });
-  const ghost = useRef(null);
+  const ghost = useRef<HTMLElement | null>(null);
 
   const handleMouseOver = () => setLife(life - 1);
 
   useEffect(() => {
-    const ghostMove = (e) => setMousePosition({ x: e.screenX, y: e.screenY });
+    const ghostMove = (e: MouseEvent) =>
+      setMousePosition({ x: e.screenX, y: e.screenY });
     const handleMouseMove = () => debounce(ghostMove, 100);
     document.addEventListener("mousemove", handleMouseMove());
     return () => document.removeEventListener("mousemove", handleMouseMove());
