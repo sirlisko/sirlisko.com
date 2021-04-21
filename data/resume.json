@@ -103,7 +103,7 @@
     },
     {
       "name": "Should I listen it?",
-      "url": "https://shouldilistenit.sirlisko.com/",
+      "url": "https://shouldilisten.it/",
       "blurp": [
         "Little webapp that shows you the most played songs by an artist in the last two years of gigs.",
         "Node.js app that proxies external APIs (Setlist.fm, Spotify and Songkick) and mashes them up to set you up for your next Gig."

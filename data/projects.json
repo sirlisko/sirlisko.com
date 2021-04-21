@@ -1,5 +1,18 @@
 [
   {
+    "title": "Martellone Alexa Skill",
+    "description": [
+      "Amazon Alexa Skill created as a tribute to the mythological Nando Martellone, character of the TV Show Boris."
+    ],
+    "logo": "https://sirlisko.com/imgs/martellone.png",
+    "links": {
+      "Amazon UK store": "https://www.amazon.co.uk/sirLisko-Martellone-Boris/dp/B08C7SHW3T/",
+      "Amazon IT store": "https://www.amazon.it/sirLisko-Martellone-Boris/dp/B08C7SHW3T/",
+      "Github": "https://github.com/sirLisko/martellone-alexa-skill"
+    },
+    "tech": ["Alexa skill", "AWS", "Lambda", "Serverless"]
+  },
+  {
     "title": "ZoomMEME",
     "description": [
       "Super simple zoom-in meme generator. Drag and drop an image and then create your meme.",
@@ -7,8 +20,8 @@
     ],
     "logo": "https://sirlisko.com/imgs/zoommeme.png",
     "links": {
-      "website": "https://zoomme.me",
-      "github": "https://github.com/sirlisko/zoommeme"
+      "Website": "https://zoomme.me",
+      "Github": "https://github.com/sirlisko/zoommeme"
     },
     "tech": ["PWA", "Vanilla JS", "Webpack", "Jest"]
   },
@@ -20,8 +33,8 @@
     ],
     "logo": "https://sirlisko.com/imgs/audible-rss.png",
     "links": {
-      "website": "https://audiblerss.sirlisko.com",
-      "github": "https://github.com/sirlisko/audible-rss"
+      "Website": "https://audiblerss.sirlisko.com",
+      "Github": "https://github.com/sirlisko/audible-rss"
     },
     "tech": ["Node", "Express", "React", "Web Scraping"]
   },
@@ -33,8 +46,8 @@
     ],
     "logo": "https://sirlisko.com/imgs/ticket.png",
     "links": {
-      "website": "https://shouldilistenit.sirlisko.com",
-      "github": "https://github.com/sirLisko/shouldilistenit"
+      "Website": "https://shouldilistenit.sirlisko.com",
+      "Github": "https://github.com/sirLisko/shouldilistenit"
     },
     "tech": [
       "Node",
@@ -52,9 +65,9 @@
     ],
     "logo": "https://sirlisko.com/blog/content/images/2015/04/icon.png",
     "links": {
-      "chrome_extension": "https://chrome.google.com/webstore/detail/zamify/foilfgbdcipbajipeodmjjnkflkfocin",
-      "blog": "https://sirlisko.com/blog/shazamify",
-      "github": "https://github.com/sirLisko/shazamify"
+      "Chrome_extension": "https://chrome.google.com/webstore/detail/zamify/foilfgbdcipbajipeodmjjnkflkfocin",
+      "Blog": "https://sirlisko.com/blog/shazamify",
+      "Github": "https://github.com/sirLisko/shazamify"
     },
     "tech": ["Chrome Extension", "Spotify OAuth", "Spotify API"]
   },
@@ -65,8 +78,8 @@
     ],
     "logo": "https://sirlisko.com/imgs/archive/dlogo.jpg",
     "links": {
-      "website": "http://deliverance.herokuapp.com",
-      "github": "https://github.com/sirLisko/deliverance"
+      "Website": "http://deliverance.herokuapp.com",
+      "Github": "https://github.com/sirLisko/deliverance"
     },
     "tech": ["Node", "Angular JS", "Web Scraping", "Bootstrap", "Heroku"]
   },
@@ -77,9 +90,9 @@
     ],
     "logo": "https://sirlisko.com/blog/content/images/2015/03/icon128-1.png",
     "links": {
-      "chrome_extension": "https://chrome.google.com/webstore/detail/gulp-blacklist-marker/kifhpjdagaiganbdabkpepncopmbfbal",
-      "blog": "https://sirlisko.com/blog/gulp-blacklist-marker/",
-      "github": "https://github.com/sirLisko/gulp-blacklist-marker"
+      "Chrome_extension": "https://chrome.google.com/webstore/detail/gulp-blacklist-marker/kifhpjdagaiganbdabkpepncopmbfbal",
+      "Blog": "https://sirlisko.com/blog/gulp-blacklist-marker/",
+      "Github": "https://github.com/sirLisko/gulp-blacklist-marker"
     },
     "tech": ["Chrome Extension", "Gulp", "NPM"]
   },
@@ -90,9 +103,9 @@
     ],
     "logo": "https://sirlisko.com/blog/content/images/2015/03/icon128.png",
     "links": {
-      "chrome_extension": "https://chrome.google.com/webstore/detail/sproxify/kiohegnpcjpnamjjlobofaiegnpnepnc",
-      "blog": "https://sirlisko.com/blog/sproxify/",
-      "github": "https://github.com/sirLisko/sproxify"
+      "Chrome_extension": "https://chrome.google.com/webstore/detail/sproxify/kiohegnpcjpnamjjlobofaiegnpnepnc",
+      "Blog": "https://sirlisko.com/blog/sproxify/",
+      "Github": "https://github.com/sirLisko/sproxify"
     },
     "tech": ["Chrome Extension", "User Script"]
   },
@@ -103,8 +116,8 @@
     ],
     "logo": "https://sirlisko.com/imgs/pizza.png",
     "links": {
-      "website": "http://pizzaclub.sirlisko.com/",
-      "github": "https://github.com/sirLisko/pizzaclub"
+      "Website": "http://pizzaclub.sirlisko.com/",
+      "Github": "https://github.com/sirLisko/pizzaclub"
     },
     "tech": ["Gatsby", "React", "GitHub Pages"]
   },
@@ -115,8 +128,8 @@
     ],
     "logo": "https://raw.githubusercontent.com/sirLisko/apps-pomofy/master/img/pomodoro.png",
     "links": {
-      "screenshot": "https://sirlisko.com/imgs/archive/pomofy.png",
-      "github": "https://github.com/sirLisko/apps-pomofy"
+      "Screenshot": "https://sirlisko.com/imgs/archive/pomofy.png",
+      "Github": "https://github.com/sirLisko/apps-pomofy"
     },
     "tech": ["Spotify App"]
   }
