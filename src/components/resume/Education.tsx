@@ -9,9 +9,7 @@ const Education = () => (
     </p>
     <p>
       Thesis on Assistive Technology -{" "}
-      <a href="http://assistivetechnology.it" data-beacon>
-        http://assistivetechnology.it
-      </a>{" "}
+      <a href="http://assistivetechnology.it">http://assistivetechnology.it</a>{" "}
       (sorry link in Italian).
     </p>
   </article>

@@ -151,7 +151,6 @@ exports[`Resume Page should render properly 1`] = `
         <p>
           Thesis on Assistive Technology - 
           <a
-            data-beacon="true"
             href="http://assistivetechnology.it"
           >
             http://assistivetechnology.it
@@ -171,8 +170,7 @@ exports[`Resume Page should render properly 1`] = `
         <p>
           I’m a Volunteer and occasional collaborator of the Front-End Conference - 
           <a
-            data-beacon="true"
-            href="https://fromthefront.it"
+            href="https://twitter.com/fromthefront"
           >
             From The Front
           </a>

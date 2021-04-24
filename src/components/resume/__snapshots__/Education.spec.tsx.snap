@@ -14,7 +14,6 @@ exports[`Education Component should render properly 1`] = `
     <p>
       Thesis on Assistive Technology - 
       <a
-        data-beacon="true"
         href="http://assistivetechnology.it"
       >
         http://assistivetechnology.it
