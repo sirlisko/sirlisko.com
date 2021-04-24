@@ -6,10 +6,7 @@ const Extras = () => (
     <p>I co-held a workshop about TDD in Javascript @ Università di Cesena.</p>
     <p>
       I’m a Volunteer and occasional collaborator of the Front-End Conference -{" "}
-      <a href="https://fromthefront.it" data-beacon>
-        From The Front
-      </a>
-      .
+      <a href="https://twitter.com/fromthefront">From The Front</a>.
     </p>
     <p>I have a Cisco CCNA cetificate (Cisco Certified Network Associate).</p>
     <p>I have a training certificate as Fire Marshal.</p>

@@ -14,8 +14,7 @@ exports[`Extras Component should render properly 1`] = `
     <p>
       I’m a Volunteer and occasional collaborator of the Front-End Conference - 
       <a
-        data-beacon="true"
-        href="https://fromthefront.it"
+        href="https://twitter.com/fromthefront"
       >
         From The Front
       </a>
