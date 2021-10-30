@@ -1,6 +1,6 @@
 # sirlisko.com
 
-[![Build Status](https://travis-ci.org/sirLisko/sirlisko.com.svg)](https://travis-ci.org/sirLisko/sirlisko.com) [![dependency Status](https://david-dm.org/sirlisko/sirlisko.com/status.svg)](https://david-dm.org/sirlisko/sirlisko.com#info=dependencies) [![devDependency Status](https://david-dm.org/sirlisko/sirlisko.com/dev-status.svg)](https://david-dm.org/sirlisko/sirlisko.com#info=devDependencies) [![Coverage Status](https://coveralls.io/repos/github/sirLisko/sirlisko.com/badge.svg?branch=master)](https://coveralls.io/github/sirLisko/sirlisko.com?branch=master)
+[![dependency Status](https://david-dm.org/sirlisko/sirlisko.com/status.svg)](https://david-dm.org/sirlisko/sirlisko.com#info=dependencies) [![devDependency Status](https://david-dm.org/sirlisko/sirlisko.com/dev-status.svg)](https://david-dm.org/sirlisko/sirlisko.com#info=devDependencies) [![Coverage Status](https://coveralls.io/repos/github/sirLisko/sirlisko.com/badge.svg?branch=master)](https://coveralls.io/github/sirLisko/sirlisko.com?branch=master)
 
 > [https://sirlisko.com](https://sirlisko.com) - personal (and experimental) website.
 
