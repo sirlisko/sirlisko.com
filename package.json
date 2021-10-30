@@ -27,7 +27,7 @@
     "lint": "eslint src --ext=ts,tsx",
     "type-check": "tsc",
     "unit": "jest",
-    "test": "yarn lint && yarn type-check && yarn unit"
+    "test": "npm run lint && npm run type-check && npm run unit"
   },
   "dependencies": {
     "classnames": "^2.3.1",
