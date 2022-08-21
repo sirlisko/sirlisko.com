@@ -1,4 +1,5 @@
 module.exports = {
+  testEnvironment: "jsdom",
   preset: "ts-jest",
   moduleNameMapper: {
     ".+\\.(css|styl|less|sass|scss)$": `identity-obj-proxy`,
@@ -6,5 +7,7 @@ module.exports = {
   },
   collectCoverageFrom: ["src/**/*.{js,jsx,ts,tsx}"],
   testPathIgnorePatterns: [`node_modules`, `.cache`],
-  testURL: `http://localhost`,
+  testEnvironmentOptions: {
+    url: "http://localhost",
+  },
 };
