@@ -1,6 +1,6 @@
 # sirlisko.com
 
-[![dependency Status](https://david-dm.org/sirlisko/sirlisko.com/status.svg)](https://david-dm.org/sirlisko/sirlisko.com#info=dependencies) [![devDependency Status](https://david-dm.org/sirlisko/sirlisko.com/dev-status.svg)](https://david-dm.org/sirlisko/sirlisko.com#info=devDependencies) [![Coverage Status](https://coveralls.io/repos/github/sirLisko/sirlisko.com/badge.svg?branch=master)](https://coveralls.io/github/sirLisko/sirlisko.com?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/sirLisko/sirlisko.com/badge.svg?branch=master)](https://coveralls.io/github/sirLisko/sirlisko.com?branch=master)
 
 > [https://sirlisko.com](https://sirlisko.com) - personal (and experimental) website.
 
@@ -10,7 +10,7 @@ I tried to keep this website as a proof of concept of the technologies I am curr
 
 The Website is built using [Gatsby](https://gatsbyjs.org).
 
-In order to have the Website up and running NodeJs is mandatory, it can be installed using [n](https://github.com/tj/n), a handy NodeJs binary manager, or using the official installer present in the NodeJs website ([https://nodejs.org/download/](https://nodejs.org/download/)).
+In order to have the Website up and running NodeJs is mandatory, it can be installed using [nvm](https://github.com/nvm-sh/nvm), a handy NodeJs binary manager, or using the official installer present in the NodeJs website ([https://nodejs.org/download/](https://nodejs.org/download/)).
 
 ## Install the dependencies
 
