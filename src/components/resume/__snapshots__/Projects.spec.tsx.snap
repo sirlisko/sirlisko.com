@@ -10,7 +10,9 @@ exports[`Projects Component should render properly 1`] = `
     </h1>
     <div>
       <h2>
-        <a>
+        <a
+          href="https://foobar.me"
+        >
           foo
         </a>
       </h2>
@@ -23,7 +25,9 @@ exports[`Projects Component should render properly 1`] = `
     </div>
     <div>
       <h2>
-        <a>
+        <a
+          href="https://asd.me"
+        >
           asd
         </a>
       </h2>

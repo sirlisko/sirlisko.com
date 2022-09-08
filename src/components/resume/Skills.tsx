@@ -1,9 +1,8 @@
 import React from "react";
+import { Resume } from "../../types";
 
 interface SkillsProps {
-  skills: {
-    [type: string]: string[];
-  };
+  skills: Resume["skills"];
 }
 
 const Skills = ({ skills }: SkillsProps) => (
@@ -13,7 +12,7 @@ const Skills = ({ skills }: SkillsProps) => (
       <div key={type}>
         <h2>{type}</h2>
         <ul>
-          {skills[type].map((skill) => (
+          {skills[type as keyof Resume["skills"]].map((skill) => (
             <li key={skill}>{skill}</li>
           ))}
         </ul>

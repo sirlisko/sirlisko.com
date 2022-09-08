@@ -9,22 +9,12 @@ describe("Projects Component", () => {
       {
         name: "foo",
         blurp: ["bar", "foobar."],
-        logo: "imgs/foobar.png",
-        links: {
-          website: "https://foobar.me",
-          github: "https://github.com/sirlisko/foobar",
-        },
-        tech: ["foo", "bar", "foobar"],
+        url: "https://foobar.me",
       },
       {
         name: "asd",
         blurp: ["asd", "qwe."],
-        logo: "imgs/asd.png",
-        links: {
-          website: "https://asd.me",
-          github: "https://github.com/sirlisko/asd",
-        },
-        tech: ["asd", "qwe", "foobar"],
+        url: "https://asd.me",
       },
     ],
   };

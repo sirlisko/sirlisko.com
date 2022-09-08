@@ -4,7 +4,7 @@ import { StaticQuery } from "gatsby";
 
 import Projects from "../projects";
 
-jest.mock("../../../data/projects.json", () => [
+jest.mock("../../../data/projects.ts", () => [
   {
     title: "Foo",
     description: ["line 1", "line 2"],

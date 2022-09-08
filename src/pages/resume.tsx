@@ -1,7 +1,7 @@
 import React from "react";
 
 import classNames from "classnames";
-import resume from "../../data/resume.json";
+import resume from "../../data/resume";
 
 import "../styles/style.scss";
 import "../styles/resume.scss";

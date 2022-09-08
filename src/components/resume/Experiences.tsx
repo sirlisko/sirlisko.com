@@ -1,12 +1,8 @@
 import React from "react";
+import { Resume } from "../../types";
 
 interface ExperiencesProps {
-  experiences: Array<{
-    where: string;
-    blurp: string[];
-    when?: string;
-    role?: string;
-  }>;
+  experiences: Resume["experiences"];
 }
 
 const Experiences = ({ experiences }: ExperiencesProps) => (

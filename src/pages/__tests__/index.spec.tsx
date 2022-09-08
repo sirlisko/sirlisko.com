@@ -4,7 +4,7 @@ import { StaticQuery } from "gatsby";
 
 import Index from "../index";
 
-jest.mock("../../../data/me.json", () => ({
+jest.mock("../../../data/me.ts", () => ({
   descriptions: ["foo", "bar"],
   keywords: ["k_foo", "k_bar"],
   links: [
