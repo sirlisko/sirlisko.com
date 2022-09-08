@@ -1,11 +1,8 @@
 import React from "react";
+import { Resume } from "../../types";
 
 interface ProjectProps {
-  projects: Array<{
-    name: string;
-    url?: string;
-    blurp: string[];
-  }>;
+  projects: Resume["projects"];
 }
 
 const Projects = ({ projects }: ProjectProps) => (

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "gatsby";
 
-import projects from "../../data/projects.json";
+import projects from "../../data/projects";
 
 import "../styles/style.scss";
 import "../styles/projects.scss";

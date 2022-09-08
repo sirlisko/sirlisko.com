@@ -4,7 +4,7 @@ import { Link } from "gatsby";
 import "../styles/style.scss";
 import "../styles/index.scss";
 
-import me from "../../data/me.json";
+import me from "../../data/me";
 
 import SEO from "../components/Seo";
 import Links from "../components/Links";

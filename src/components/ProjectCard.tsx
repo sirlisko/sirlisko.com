@@ -1,22 +1,8 @@
 import React from "react";
 
-interface ProjectCardProsp {
-  title: string;
-  description: string[];
-  logo: string;
-  links: {
-    [type: string]: string | undefined;
-  };
-  tech: string[];
-}
+import { Project } from "../types";
 
-const ProjectCard = ({
-  title,
-  description,
-  logo,
-  links,
-  tech,
-}: ProjectCardProsp) => (
+const ProjectCard = ({ title, description, logo, links, tech }: Project) => (
   <>
     <div className="project__main">
       <h3>{title}</h3>

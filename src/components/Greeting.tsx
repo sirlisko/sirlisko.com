@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { Me } from "../types";
 
 import "./Greeting.scss";
 
 interface GreetingProps {
-  descriptions: string[];
+  descriptions: Me["descriptions"];
 }
 
 const Greeting = ({ descriptions }: GreetingProps) => {

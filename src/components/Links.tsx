@@ -1,13 +1,11 @@
 import React from "react";
 
+import { Me } from "../types";
+
 import "./Links.scss";
 
 interface LinksProps {
-  links: Array<{
-    name: string;
-    url: string;
-    label: string;
-  }>;
+  links: Me["links"];
 }
 
 const Links = ({ links }: LinksProps) => (
