@@ -20,7 +20,7 @@ exports[`Index Page should render properly 1`] = `
     </section>
     <figure
       class="ghost"
-      style="left: -155px; top: -155px;"
+      style="left: -200px; top: -300px;"
     />
     <header>
       <ul
