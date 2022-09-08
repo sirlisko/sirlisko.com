@@ -37,7 +37,7 @@ const Ghost = () => {
       <figure
         ref={ghost}
         className={classNames("ghost", isGhostFlipped && "ghost--flipped")}
-        style={{ left: `${x - 55}px`, top: `${y - 55}px` }}
+        style={{ left: `${x - 100}px`, top: `${y - 200}px` }}
         onMouseOver={life > 0 ? handleMouseOver : undefined}
         onFocus={life > 0 ? handleMouseOver : undefined}
       />
