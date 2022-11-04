@@ -3,3 +3,6 @@ coverage/
 public/
 .cache/
 .vscode/
+
+# Local Netlify folder
+.netlify

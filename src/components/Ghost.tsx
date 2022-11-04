@@ -16,6 +16,9 @@ const Ghost = () => {
   const handleMouseOver = () => setLife(life - 1);
 
   useEffect(() => {
+    if (window.ontouchstart) {
+      return;
+    }
     const ghostMove = (e: MouseEvent) =>
       setMousePosition({ x: e.screenX, y: e.screenY });
     const handleMouseMove = () => debounce(ghostMove, 100);

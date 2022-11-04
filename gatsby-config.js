@@ -1,4 +1,7 @@
 module.exports = {
+  flags: {
+    DEV_SSR: true,
+  },
   siteMetadata: {
     title: `sirLisko... Luca Lischetti`,
     description: `personal (and experimental) website of Luca Lischetti aka sirLisko or just another f@$#&amp;n' web developer, full time dreamer and sometimes sleeper, true 8-bit lover and sunday super hero..`,
@@ -31,11 +34,5 @@ module.exports = {
       },
     },
     `gatsby-plugin-offline`,
-    {
-      resolve: `gatsby-plugin-plausible`,
-      options: {
-        domain: `sirlisko.com`,
-      },
-    },
   ],
 };
