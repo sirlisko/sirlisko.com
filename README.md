@@ -1,6 +1,7 @@
 # sirlisko.com
 
 [![Coverage Status](https://coveralls.io/repos/github/sirLisko/sirlisko.com/badge.svg?branch=master)](https://coveralls.io/github/sirLisko/sirlisko.com?branch=master)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/fd6aac84-e915-4db6-aaf1-eb996620da79/deploy-status)](https://app.netlify.com/sites/sirlisko/deploys)
 
 > [https://sirlisko.com](https://sirlisko.com) - personal (and experimental) website.
 

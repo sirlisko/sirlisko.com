@@ -31,6 +31,7 @@ exports[`Index Page should render properly 1`] = `
         >
           <a
             href="https://foo"
+            title="foo"
           >
             <p
               class="caption"
@@ -44,6 +45,7 @@ exports[`Index Page should render properly 1`] = `
         >
           <a
             href="https://Bar"
+            title="bar"
           >
             <p
               class="caption"

@@ -1,5 +1,18 @@
+[build]
+  command = "gatsby build"
+  publish = "public"
+
 [[redirects]]
-  from = "/blog"
-  to = "https://blog.sirlisko.com"
+  from = "/blog/*"
+  to = "https://blog.sirlisko.com/blog/:splat"
   status = 200
-  force = true
+
+[[redirects]]
+  from = "/js/script.js"
+  to = "https://plausible.io/js/script.js"
+  status = 200
+
+[[redirects]]
+  from = "/api/event"
+  to = "https://plausible.io/api/event"
+  status = 200

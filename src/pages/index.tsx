@@ -14,7 +14,7 @@ import Ghost from "../components/Ghost";
 const HomePage = () => (
   <div className="home">
     <SEO title="Home" keywords={me.keywords} />
-    {typeof window !== `undefined` && !window.ontouchstart && <Ghost />}
+    <Ghost />
     <header>
       <Links links={me.links} />
     </header>
