@@ -104,11 +104,11 @@ const resume: Resume = {
       ],
     },
     {
-      name: "Should I listen it?",
-      url: "https://shouldilisten.it/",
+      name: "GigPlaylist",
+      url: "https://gigplaylist.sirlisko.com/",
       blurp: [
         "Little webapp that shows you the most played songs by an artist in the last two years of gigs.",
-        "Node.js app that proxies external APIs (Setlist.fm, Spotify and Songkick) and mashes them up to set you up for your next Gig.",
+        "Node.js app that proxies external APIs (Setlist.fm, Spotify and Songkick), mashes them up and create a Spotify playlist to set you up for your next Gig.",
       ],
     },
     {
