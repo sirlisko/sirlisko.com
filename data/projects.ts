@@ -43,15 +43,15 @@ const projects: Project[] = [
     tech: ["Node", "Express", "React", "Web Scraping"],
   },
   {
-    title: "Should I listen it",
+    title: "GigPlayList",
     description: [
       "Create a playlist with the most probable songs that are going to be played to a given artist gig.",
-      "Next.js app that proxies external APIs (Setlist.fm, Spotify and Songkick) and mashes them up and creates a Spotify playlist for you.",
+      "Next.js app that proxies external APIs (Setlist.fm, Spotify and Songkick), mashes them up and creates a Spotify playlist for you.",
     ],
     logo: "/images/projects/ticket.png",
     links: {
-      Website: "https://shouldilistenit.sirlisko.com",
-      Github: "https://github.com/sirLisko/shouldilistenit",
+      Website: "https://gigplaylist.sirlisko.com",
+      Github: "https://github.com/sirLisko/gigplaylist",
     },
     tech: ["Next.js", "3rd party APIs", "Spotify Auth", "Vercel CI/CD"],
   },
