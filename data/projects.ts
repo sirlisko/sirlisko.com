@@ -56,10 +56,11 @@ const projects: Project[] = [
     tech: ["Next.js", "3rd party APIs", "Spotify Auth", "Vercel CI/CD"],
   },
   {
-    title: "Shazamify (a.k.a. Zamify)",
+    title: "Shazamify (a.k.a. Zamify) - deprecated",
     description: [
       "Shazamify allows you to play your Shazams in Spotify, directly from the browser, by adding a small Spotify icon to every Shazam track page.",
       "Chrome Extension powered by Spotify OAuth and Web API.",
+      "Unfortunately, it has been deprecated as google keep suspending it for copyright infrangement -.-",
     ],
     logo: "https://sirlisko.com/blog/content/images/2015/04/icon.png",
     links: {

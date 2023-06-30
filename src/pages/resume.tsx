@@ -38,6 +38,12 @@ const ResumePage = () => {
       <div className="wrapper">
         <Skills skills={resume.skills} />
         <Experiences experiences={resume.experiences} />
+        <article className="section ouat">
+          <h1>Once upon a time...</h1>I had the pleasure to work also with Java,
+          Scala, PHP, MySQL, C++, Ruby on Rails. I don&#39;t consider myself an
+          expert on those languages but I like, especially in my free time,
+          playing with other technologies :)
+        </article>
         <Projects projects={resume.projects} />
         <Education />
         <Extras />

@@ -31,6 +31,14 @@ const resume: Resume = {
   },
   experiences: [
     {
+      where: "YLD",
+      when: "05.21 - now",
+      blurp: [
+        "Working on a NextJS application involving proxing and data meshing from multiple 3rd party APIs.",
+        "Standardised the code, improved accessibility, and test stack.",
+      ],
+    },
+    {
       where: "Hackney Council",
       when: "10.20-05.21 / 04.20-07.20 / 11.19-12.19",
       blurp: [
@@ -86,12 +94,6 @@ const resume: Resume = {
         "I had the pleasure to work for Shazam (~5years), YOOX Net-a-Porter (>1year), Pobble (>1year), for a detailed list of my past experiences check my Linkedin profile :)",
       ],
     },
-    {
-      where: "Once upon a time...",
-      blurp: [
-        "I had the pleasure to work also with Java, Scala, PHP, MySQL, C++, Ruby on Rails. I don't consider myself an expert on those languages but I like, especially in my free time, playing with other technologies :)",
-      ],
-    },
   ],
   projects: [
     {
@@ -109,14 +111,6 @@ const resume: Resume = {
       blurp: [
         "Little webapp that shows you the most played songs by an artist in the last two years of gigs.",
         "Node.js app that proxies external APIs (Setlist.fm, Spotify and Songkick), mashes them up and create a Spotify playlist to set you up for your next Gig.",
-      ],
-    },
-    {
-      name: "Shazamify",
-      url: "https://chrome.google.com/webstore/detail/zamify/foilfgbdcipbajipeodmjjnkflkfocin",
-      blurp: [
-        "Shazamify allows you to play your Shazams in Spotify, directly from the browser, by adding a small Spotify icon to every Shazam track page.",
-        "Chrome Extension powered by Spotify OAuth and Web API.",
       ],
     },
   ],
