@@ -106,6 +106,14 @@ exports[`Resume Page should render properly 1`] = `
         </div>
       </article>
       <article
+        class="section ouat"
+      >
+        <h1>
+          Once upon a time...
+        </h1>
+        I had the pleasure to work also with Java, Scala, PHP, MySQL, C++, Ruby on Rails. I don't consider myself an expert on those languages but I like, especially in my free time, playing with other technologies :)
+      </article>
+      <article
         class="section projects"
       >
         <h1>
