@@ -31,34 +31,14 @@ const me: Me = {
       label: "blog",
     },
     {
-      name: "twitter",
-      url: "https://twitter.com/sirLisko",
-      label: "twitter",
-    },
-    {
-      name: "facebook",
-      url: "https://www.facebook.com/sirLisko",
-      label: "facebook",
-    },
-    {
-      name: "tumblr",
-      url: "https://sirLisko.tumblr.com",
-      label: "tumblr",
-    },
-    {
       name: "github",
       url: "https://github.com/sirLisko",
       label: "github",
     },
     {
-      name: "instagram",
-      url: "https://instagram.com/sirlisko",
-      label: "instagram",
-    },
-    {
-      name: "lastfm",
-      url: "https://www.last.fm/user/sirlisko",
-      label: "lastfm",
+      name: "linkedIn",
+      url: "https://linkedin.com/in/lucalischetti",
+      label: "linkedIn",
     },
     {
       name: "mail",

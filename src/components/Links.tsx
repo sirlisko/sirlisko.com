@@ -13,7 +13,7 @@ const Links = ({ links }: LinksProps) => (
     {links.map((link) => (
       <li key={link.name} className={`links--${link.name}`}>
         <a href={link.url} title={link.name}>
-          <p className="caption">{link.label}</p>
+          <span className="caption">{link.label}</span>
         </a>
       </li>
     ))}

@@ -1,6 +1,7 @@
 .links {
   margin: 0;
   padding: 0;
+  position: relative;
   & li {
     display: inline-block;
     margin-right: 0.5rem;
@@ -18,10 +19,10 @@
     }
   }
   & a {
-    background: url(/images/sprites.png) no-repeat;
     display: block;
     height: 32px;
     width: 32px;
+    background-size: contain;
   }
 }
 
@@ -32,29 +33,19 @@
   position: absolute;
   top: 50px;
   transform: translateX(-50%);
+  width: 100%;
+  text-align: center;
 }
 
-.links--tumblr a {
-  background-position: 0 -35px;
-}
 .links--blog a {
-  background-position: 0 -71px;
+  background-image: url(/images/links/blog.png);
 }
 .links--github a {
-  background-position: 0 -107px;
+  background-image: url(/images/links/github.png);
 }
-.links--lastfm a {
-  background-position: 0 -144px;
+.links--linkedIn a {
+  background-image: url(/images/links/linkedIn.png);
 }
 .links--mail a {
-  background-position: 0 -180px;
-}
-.links--flickr a {
-  background-position: 0 -216px;
-}
-.links--facebook a {
-  background-position: 0 -251px;
-}
-.links--instagram a {
-  background-position: 0 -287px;
+  background-image: url(/images/links/mail.png);
 }

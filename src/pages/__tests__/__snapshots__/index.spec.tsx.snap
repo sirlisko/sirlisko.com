@@ -33,11 +33,11 @@ exports[`Index Page should render properly 1`] = `
             href="https://foo"
             title="foo"
           >
-            <p
+            <span
               class="caption"
             >
               Foo
-            </p>
+            </span>
           </a>
         </li>
         <li
@@ -47,11 +47,11 @@ exports[`Index Page should render properly 1`] = `
             href="https://Bar"
             title="bar"
           >
-            <p
+            <span
               class="caption"
             >
               Bar
-            </p>
+            </span>
           </a>
         </li>
       </ul>
