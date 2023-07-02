@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import { StaticQuery } from "gatsby";
+import { useStaticQuery } from "gatsby";
 
 import Index from "../index";
 
@@ -13,18 +13,25 @@ jest.mock("../../../data/me.ts", () => ({
   ],
 }));
 
-const mockedStaticQuery = StaticQuery as jest.Mock;
+jest.mock("gatsby", () => ({
+  useStaticQuery: jest.fn(),
+  graphql: jest.fn(),
+  Link: jest.fn().mockImplementation(({ to, children, ...rest }) => (
+    <a href={to} {...rest}>
+      {children}
+    </a>
+  )),
+}));
+const mockedStaticQuery = useStaticQuery as jest.Mock;
 
 beforeEach(() => {
-  mockedStaticQuery.mockImplementationOnce(({ render }) =>
-    render({
-      site: {
-        siteMetadata: {
-          title: `I am the title`,
-        },
+  mockedStaticQuery.mockImplementationOnce(() => ({
+    site: {
+      siteMetadata: {
+        title: `I am the title`,
       },
-    })
-  );
+    },
+  }));
 });
 
 describe("Index Page", () => {

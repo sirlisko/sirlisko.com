@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import { StaticQuery } from "gatsby";
+import { useStaticQuery } from "gatsby";
 
 import Projects from "../projects";
 
@@ -27,18 +27,23 @@ jest.mock("../../../data/projects.ts", () => [
   },
 ]);
 
-const mockedStaticQuery = StaticQuery as jest.Mock;
+jest.mock("gatsby", () => ({
+  useStaticQuery: jest.fn(),
+  graphql: jest.fn(),
+  Link: jest
+    .fn()
+    .mockImplementation(({ to, children }) => <a href={to}>{children}</a>),
+}));
+const mockedStaticQuery = useStaticQuery as jest.Mock;
 
 beforeEach(() => {
-  mockedStaticQuery.mockImplementationOnce(({ render }) =>
-    render({
-      site: {
-        siteMetadata: {
-          title: `I am the title`,
-        },
+  mockedStaticQuery.mockImplementationOnce(() => ({
+    site: {
+      siteMetadata: {
+        title: `I am the title`,
       },
-    })
-  );
+    },
+  }));
 });
 
 describe("Projects Page", () => {

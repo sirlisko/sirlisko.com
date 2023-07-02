@@ -1,21 +1,23 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import { StaticQuery } from "gatsby";
+import { useStaticQuery } from "gatsby";
 
 import Page404 from "../404";
 
-const mockedStaticQuery = StaticQuery as jest.Mock;
+jest.mock("gatsby", () => ({
+  useStaticQuery: jest.fn(),
+  graphql: jest.fn(),
+}));
+const mockedStaticQuery = useStaticQuery as jest.Mock;
 
 beforeEach(() => {
-  mockedStaticQuery.mockImplementationOnce(({ render }) =>
-    render({
-      site: {
-        siteMetadata: {
-          title: `I am the title`,
-        },
+  mockedStaticQuery.mockImplementationOnce(() => ({
+    site: {
+      siteMetadata: {
+        title: `I am the title`,
       },
-    })
-  );
+    },
+  }));
 });
 
 describe("404 Page", () => {
