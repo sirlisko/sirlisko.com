@@ -13,7 +13,6 @@ import Ghost from "../components/Ghost";
 
 const HomePage = () => (
   <div className="home">
-    <SEO title="Home" keywords={me.keywords} />
     <Ghost />
     <header>
       <Links links={me.links} />
@@ -38,5 +37,7 @@ const HomePage = () => (
     </footer>
   </div>
 );
+
+export const Head = () => <SEO pageTitle="Home" keywords={me.keywords} />;
 
 export default HomePage;
