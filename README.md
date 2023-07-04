@@ -9,7 +9,7 @@ I tried to keep this website as a proof of concept of the technologies I am curr
 
 ---
 
-The Website is built using [Gatsby](https://gatsbyjs.org).
+The Website is built using [Next.js](https://nextjs.org/).
 
 In order to have the Website up and running NodeJs is mandatory, it can be installed using [nvm](https://github.com/nvm-sh/nvm), a handy NodeJs binary manager, or using the official installer present in the NodeJs website ([https://nodejs.org/download/](https://nodejs.org/download/)).
 

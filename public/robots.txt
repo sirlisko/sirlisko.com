@@ -1,0 +1,2 @@
+User-agent: * Allow: /
+sitemap: https://sirlisko.com/sitemap.xml

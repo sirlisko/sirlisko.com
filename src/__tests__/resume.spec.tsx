@@ -1,10 +1,9 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import { useStaticQuery } from "gatsby";
 
-import Resume from "../resume";
+import Resume from "../pages/resume";
 
-jest.mock("../../../data/resume.ts", () => ({
+jest.mock("../../data/resume.ts", () => ({
   skills: {
     main: ["main_1", "main_2", "main_3"],
     "misc.": ["misc_1", "misc_2", "misc_3"],
@@ -30,27 +29,8 @@ jest.mock("../../../data/resume.ts", () => ({
   ],
 }));
 
-jest.mock("gatsby", () => ({
-  useStaticQuery: jest.fn(),
-  graphql: jest.fn(),
-  Link: jest
-    .fn()
-    .mockImplementation(({ to, children }) => <a href={to}>{children}</a>),
-}));
-const mockedStaticQuery = useStaticQuery as jest.Mock;
-
-beforeEach(() => {
-  mockedStaticQuery.mockImplementationOnce(() => ({
-    site: {
-      siteMetadata: {
-        title: `I am the title`,
-      },
-    },
-  }));
-});
-
 describe("Resume Page", () => {
-  it("should render properly", () => {
+  it("should render properly", async () => {
     const { asFragment } = render(<Resume />);
     expect(asFragment()).toMatchSnapshot();
   });

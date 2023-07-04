@@ -1,10 +1,9 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import { useStaticQuery } from "gatsby";
 
-import Projects from "../projects";
+import Projects from "../pages/projects";
 
-jest.mock("../../../data/projects.ts", () => [
+jest.mock("../../data/projects.ts", () => [
   {
     title: "Foo",
     description: ["line 1", "line 2"],
@@ -26,25 +25,6 @@ jest.mock("../../../data/projects.ts", () => [
     tech: ["bar", "Bar"],
   },
 ]);
-
-jest.mock("gatsby", () => ({
-  useStaticQuery: jest.fn(),
-  graphql: jest.fn(),
-  Link: jest
-    .fn()
-    .mockImplementation(({ to, children }) => <a href={to}>{children}</a>),
-}));
-const mockedStaticQuery = useStaticQuery as jest.Mock;
-
-beforeEach(() => {
-  mockedStaticQuery.mockImplementationOnce(() => ({
-    site: {
-      siteMetadata: {
-        title: `I am the title`,
-      },
-    },
-  }));
-});
 
 describe("Projects Page", () => {
   it("should render properly", () => {

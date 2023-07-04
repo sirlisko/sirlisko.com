@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 import { Project } from "../types";
 
@@ -10,7 +11,7 @@ const ProjectCard = ({ title, description, logo, links, tech }: Project) => (
         <p key={desc}>{desc}</p>
       ))}
     </div>
-    <img src={logo} alt={`${title} logo`} />
+    <Image src={logo} alt={`${title} logo`} height={144} width={100} />
     <div className="project__details">
       <p className="project__details__links">
         {Object.keys(links).map((link) => (

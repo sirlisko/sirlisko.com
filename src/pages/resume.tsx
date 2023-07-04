@@ -3,9 +3,6 @@ import React from "react";
 import classNames from "classnames";
 import resume from "../../data/resume";
 
-import "../styles/style.scss";
-import "../styles/resume.scss";
-
 import SEO from "../components/Seo";
 import Me from "../components/resume/Me";
 import Skills from "../components/resume/Skills";
@@ -22,6 +19,18 @@ const ResumePage = () => {
     window.location.search.indexOf("alt") !== -1;
   return (
     <div className={classNames("resume", isAltVersion && "alt")}>
+      <SEO
+        pageTitle="Resume"
+        description="Resume (or CV) of Luca Lischetti also know as sirLisko. Experiences, skills and interests."
+        keywords={[
+          "Luca Lischetti",
+          "sirlisko",
+          "web developer",
+          "software engineer",
+          "resume",
+          "cv",
+        ]}
+      />
       <Me />
       <div className="wrapper">
         <Skills skills={resume.skills} />
@@ -41,20 +50,5 @@ const ResumePage = () => {
     </div>
   );
 };
-
-export const Head = () => (
-  <SEO
-    pageTitle="Resume"
-    description="Resume (or CV) of Luca Lischetti also know as sirLisko. Experiences, skills and interests."
-    keywords={[
-      "Luca Lischetti",
-      "sirlisko",
-      "web developer",
-      "software engineer",
-      "resume",
-      "cv",
-    ]}
-  />
-);
 
 export default ResumePage;

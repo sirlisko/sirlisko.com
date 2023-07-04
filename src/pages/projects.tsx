@@ -1,19 +1,34 @@
 import React from "react";
-import { Link } from "gatsby";
+import Image from "next/image";
+import Link from "next/link";
 
 import projects from "../../data/projects";
-
-import "../styles/style.scss";
-import "../styles/projects.scss";
 
 import SEO from "../components/Seo";
 import ProjectCard from "../components/ProjectCard";
 
 const ProjectsPage = () => (
   <div className="projects-page">
+    <SEO
+      pageTitle="Projects"
+      description="What I am working on at the moment.. Give a look at my side projects."
+      keywords={[
+        "Luca Lischetti",
+        "sirlisko",
+        "web developer",
+        "software engineer",
+        "projects",
+        "ideas",
+      ]}
+    />
     <div className="logo">
-      <Link to="/">
-        <img src="/images/sirlisko.svg" alt="sirlisko face" />
+      <Link href="/">
+        <Image
+          src="/images/sirlisko.svg"
+          alt="sirlisko face"
+          height={144}
+          width={100}
+        />
       </Link>
     </div>
     <section>
@@ -27,21 +42,6 @@ const ProjectsPage = () => (
       </ul>
     </section>
   </div>
-);
-
-export const Head = () => (
-  <SEO
-    pageTitle="Projects"
-    description="What I am working on at the moment.. Give a look at my side projects."
-    keywords={[
-      "Luca Lischetti",
-      "sirlisko",
-      "web developer",
-      "software engineer",
-      "projects",
-      "ideas",
-    ]}
-  />
 );
 
 export default ProjectsPage;

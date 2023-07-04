@@ -1,6 +1,6 @@
 [build]
-  command = "gatsby build"
-  publish = "public"
+  command = "next build"
+  publish = "out"
 
 [[redirects]]
   from = "/blog/*"

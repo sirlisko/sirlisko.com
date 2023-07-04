@@ -13,7 +13,13 @@ exports[`Projects Page should render properly 1`] = `
       >
         <img
           alt="sirlisko face"
+          data-nimg="1"
+          decoding="async"
+          height="144"
+          loading="lazy"
           src="/images/sirlisko.svg"
+          style="color: transparent;"
+          width="100"
         />
       </a>
     </div>
@@ -40,7 +46,14 @@ exports[`Projects Page should render properly 1`] = `
           </div>
           <img
             alt="Foo logo"
-            src="https://sirlisko.com/logo"
+            data-nimg="1"
+            decoding="async"
+            height="144"
+            loading="lazy"
+            src="/_next/image?url=https%3A%2F%2Fsirlisko.com%2Flogo&w=256&q=75"
+            srcset="/_next/image?url=https%3A%2F%2Fsirlisko.com%2Flogo&w=128&q=75 1x, /_next/image?url=https%3A%2F%2Fsirlisko.com%2Flogo&w=256&q=75 2x"
+            style="color: transparent;"
+            width="100"
           />
           <div
             class="project__details"
@@ -89,7 +102,14 @@ exports[`Projects Page should render properly 1`] = `
           </div>
           <img
             alt="Bar logo"
-            src="https://sirlisko.com/logo"
+            data-nimg="1"
+            decoding="async"
+            height="144"
+            loading="lazy"
+            src="/_next/image?url=https%3A%2F%2Fsirlisko.com%2Flogo&w=256&q=75"
+            srcset="/_next/image?url=https%3A%2F%2Fsirlisko.com%2Flogo&w=128&q=75 1x, /_next/image?url=https%3A%2F%2Fsirlisko.com%2Flogo&w=256&q=75 2x"
+            style="color: transparent;"
+            width="100"
           />
           <div
             class="project__details"

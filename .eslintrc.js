@@ -6,6 +6,7 @@ module.exports = {
     "plugin:jest/recommended",
     "plugin:jsx-a11y/recommended",
     "plugin:react/recommended",
+    "plugin:@next/next/recommended",
   ],
   parser: "@typescript-eslint/parser",
   settings: {
@@ -18,8 +19,5 @@ module.exports = {
     browser: true,
     es6: true,
     node: true,
-  },
-  rules: {
-    "@typescript-eslint/explicit-module-boundary-types": "off",
   },
 };
