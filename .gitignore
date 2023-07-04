@@ -1,8 +1,9 @@
 node_modules/
 coverage/
-public/
+out/
 .cache/
 .vscode/
+.next
 
 # Local Netlify folder
 .netlify

@@ -13,7 +13,13 @@ exports[`Me Component should render properly 1`] = `
       >
         <img
           alt="sirlisko face"
+          data-nimg="1"
+          decoding="async"
+          height="184"
+          loading="lazy"
           src="https://sirlisko.com/images/sirlisko.svg"
+          style="color: transparent;"
+          width="128"
         />
       </a>
     </div>

@@ -2,18 +2,18 @@ import React from "react";
 
 import { Me } from "../types";
 
-import "./Links.scss";
+import styles from "./Links.module.scss";
 
 interface LinksProps {
   links: Me["links"];
 }
 
 const Links = ({ links }: LinksProps) => (
-  <ul className="links">
+  <ul className={styles.links}>
     {links.map((link) => (
-      <li key={link.name} className={`links--${link.name}`}>
+      <li key={link.name} className={styles[link.name]}>
         <a href={link.url} title={link.name}>
-          <span className="caption">{link.label}</span>
+          <span className={styles.caption}>{link.label}</span>
         </a>
       </li>
     ))}

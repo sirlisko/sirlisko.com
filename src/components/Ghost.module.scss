@@ -16,7 +16,7 @@
     display: none;
   }
 }
-.ghost--flipped {
+.ghostFlipped {
   transform: rotateY(180deg);
 }
 
@@ -29,13 +29,13 @@
     display: none;
   }
 }
-.life__label {
+.lifeLabel {
   position: absolute;
   top: 0;
   transition: opacity 2s ease;
   white-space: nowrap;
 }
-.life__heart {
+.heart {
   background: url(/images/heart.png);
   display: inline-block;
   height: 45px;

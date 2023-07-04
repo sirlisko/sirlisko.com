@@ -1,4 +1,6 @@
 import React from "react";
+import Link from "next/link";
+
 import { Resume } from "../../types";
 
 interface ProjectProps {
@@ -20,7 +22,7 @@ const Projects = ({ projects }: ProjectProps) => (
     ))}
     <div>
       To see a full list of my side projects go to{" "}
-      <a href="/projects">https://sirlisko.com/projects</a>.
+      <Link href="/projects">https://sirlisko.com/projects</Link>.
     </div>
   </article>
 );

@@ -3,10 +3,10 @@ import React, { useState, useEffect, useRef } from "react";
 import classNames from "classnames";
 import debounce from "lodash.debounce";
 
-import "./Ghost.scss";
+import styles from "./Ghost.module.scss";
 
 const getLives = (life: number) =>
-  [...Array(life)].map((e, i) => <span className="life__heart" key={i} />);
+  [...Array(life)].map((e, i) => <span className={styles.heart} key={i} />);
 
 const Ghost = () => {
   const [life, setLife] = useState(3);
@@ -33,13 +33,16 @@ const Ghost = () => {
   return (
     <>
       {!(life === 0) ? (
-        <section className="life">{getLives(life)}</section>
+        <section className={styles.life}>{getLives(life)}</section>
       ) : (
-        <p className="life__label">-Game Over-</p>
+        <p className={styles.lifeLabel}>-Game Over-</p>
       )}
       <figure
         ref={ghost}
-        className={classNames("ghost", isGhostFlipped && "ghost--flipped")}
+        className={classNames(
+          styles.ghost,
+          isGhostFlipped && styles.ghostFlipped
+        )}
         style={{ left: `${x - 100}px`, top: `${y - 200}px` }}
         onMouseOver={life > 0 ? handleMouseOver : undefined}
         onFocus={life > 0 ? handleMouseOver : undefined}
