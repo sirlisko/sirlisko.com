@@ -15,10 +15,18 @@ In order to have the Website up and running NodeJs is mandatory, it can be insta
 
 ## Install the dependencies
 
-Once NodeJs is installed, its package manager NPM will be available, all you need to do is run in the main directory of the project the following command.
+> this project is using [`pnpm`](https://pnpm.io/) as package manager but it should work with `npm` as well
+
+Once NodeJs is installed, its package manager NPM will be available, and you will be able to [install `pnpm`](https://pnpm.io/installation).
 
 ```bash
-npm install --production
+npm install -g pnpm
+```
+
+Then all you need to do is run in the main directory of the project the following command.
+
+```bash
+pnpm install --production
 ```
 
 This will install all the software needed in order to build and run the Website.
@@ -26,7 +34,7 @@ This will install all the software needed in order to build and run the Website.
 ## Build the Front-End
 
 ```bash
-npm run build
+pnpm run build
 ```
 
 ## Work with the Front-End (Develop)
@@ -34,7 +42,7 @@ npm run build
 The easier way to build the Front-End in Develop mode is with:
 
 ```bash
-npm start
+pnpm start
 ```
 
 In addition to the build, this command is also **watching the file system** looking for files change. Once one of the resources changes the relative assets are immediately recompiled.
@@ -44,13 +52,13 @@ In addition to the build, this command is also **watching the file system** look
 In order to running the tests and linters the **dev dependencies** need to be installed.
 
 ```bash
-npm install
+pnpm install
 ```
 
 Once the dependencies are installed:
 
 ```bash
-npm test
+pnpm test
 ```
 
 The test command is running the unit test relative to the javascript and the linting of the JS code.
@@ -58,6 +66,6 @@ The test command is running the unit test relative to the javascript and the lin
 ## Generate the resume in pdf format
 
 ```bash
-npm start
-npx electron-pdf http://127.0.0.1:8000/resume/ resume.pdf
+pnpm start
+pnpx electron-pdf http://127.0.0.1:8000/resume/ resume.pdf
 ```
