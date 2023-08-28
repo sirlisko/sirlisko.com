@@ -1,12 +1,14 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 
 import classNames from "classnames";
 import debounce from "lodash.debounce";
 
 import styles from "./Ghost.module.scss";
 
+const GHOST_WIDTH = 64;
+
 const getLives = (life: number) =>
-  [...Array(life)].map((e, i) => <span className={styles.heart} key={i} />);
+  [...Array(life)].map((_, i) => <span className={styles.heart} key={i} />);
 
 const Ghost = () => {
   const [life, setLife] = useState(3);
@@ -14,13 +16,12 @@ const Ghost = () => {
   const ghost = useRef<HTMLElement | null>(null);
 
   const handleMouseOver = () => setLife(life - 1);
-
   useEffect(() => {
     if (window.ontouchstart) {
       return;
     }
-    const ghostMove = (e: MouseEvent) =>
-      setMousePosition({ x: e.screenX, y: e.screenY });
+    const ghostMove = (e: MouseEvent) => setMousePosition({ x: e.x, y: e.y });
+
     const handleMouseMove = () => debounce(ghostMove, 100);
     document.addEventListener("mousemove", handleMouseMove());
     return () => document.removeEventListener("mousemove", handleMouseMove());
@@ -29,7 +30,8 @@ const Ghost = () => {
   const { x, y } = mousePosition;
   const isGhostFlipped =
     ghost.current &&
-    x < ghost.current.getBoundingClientRect().left + document.body.scrollLeft;
+    x < ghost.current.getBoundingClientRect().left + GHOST_WIDTH;
+
   return (
     <>
       {!(life === 0) ? (
@@ -43,7 +45,7 @@ const Ghost = () => {
           styles.ghost,
           isGhostFlipped && styles.ghostFlipped
         )}
-        style={{ left: `${x - 100}px`, top: `${y - 200}px` }}
+        style={{ left: `${x - GHOST_WIDTH}px`, top: `${y - GHOST_WIDTH}px` }}
         onMouseOver={life > 0 ? handleMouseOver : undefined}
         onFocus={life > 0 ? handleMouseOver : undefined}
       />

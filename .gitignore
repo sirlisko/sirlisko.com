@@ -1,11 +1,19 @@
 node_modules/
 coverage/
-out/
+dist/
 .cache/
 .vscode/
-.next
 
-tsconfig.tsbuildinfo
+# generated types
+.astro/
+
+# logs
+pnpm-debug.log*
 
 # Local Netlify folder
 .netlify
+
+# macOS-specific files
+.DS_Store
+
+tsconfig.tsbuildinfo

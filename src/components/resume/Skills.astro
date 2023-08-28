@@ -1,0 +1,25 @@
+---
+import type { Resume } from "../../types";
+
+interface Props {
+  skills: Resume["skills"];
+}
+
+const { skills } = Astro.props;
+---
+
+<article class="skills">
+  <h1>Skills</h1>
+  {
+    Object.keys(skills).map((type) => (
+      <div>
+        <h2>{type}</h2>
+        <ul>
+          {skills[type as keyof Resume["skills"]].map((skill) => (
+            <li>{skill}</li>
+          ))}
+        </ul>
+      </div>
+    ))
+  }
+</article>

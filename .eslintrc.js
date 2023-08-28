@@ -3,10 +3,9 @@ module.exports = {
     "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended",
     "eslint:recommended",
-    "plugin:jest/recommended",
     "plugin:jsx-a11y/recommended",
     "plugin:react/recommended",
-    "plugin:@next/next/recommended",
+    "plugin:astro/recommended",
   ],
   parser: "@typescript-eslint/parser",
   settings: {
@@ -19,5 +18,8 @@ module.exports = {
     browser: true,
     es6: true,
     node: true,
+  },
+  rules: {
+    "react/react-in-jsx-scope": "off",
   },
 };

@@ -1,0 +1,27 @@
+---
+import type { Resume } from "../../types";
+
+interface Props {
+  experiences: Resume["experiences"];
+}
+
+const { experiences } = Astro.props;
+---
+
+<article class="section experiences">
+  <h1>Experiences</h1>
+  {
+    experiences.map((exp) => (
+      <div>
+        {exp.where && (
+          <h2>
+            {exp.where} {exp.when && <span>{exp.when}</span>}
+          </h2>
+        )}
+        {exp.blurp.map((blr) => (
+          <p>{blr}</p>
+        ))}
+      </div>
+    ))
+  }
+</article>

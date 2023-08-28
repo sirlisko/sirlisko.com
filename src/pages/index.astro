@@ -1,0 +1,61 @@
+---
+import me from "../../data/me";
+
+import Links from "../components/Links.astro";
+import Greeting from "../components/Greeting";
+import Ghost from "../components/Ghost";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Home" keywords={me.keywords}>
+  <div class="home">
+    <Ghost client:only="react" />
+    <header>
+      <Links links={me.links} />
+    </header>
+    <article>
+      <Greeting descriptions={me.descriptions} client:only="react" />
+    </article>
+    <footer>
+      <a class="my__projects" href="/projects">Projects</a>
+      <a class="my__resume" href="/resume">Resume</a>
+    </footer>
+  </div>
+</Layout>
+<style>
+  .home {
+    background-color: #c0deed;
+    background-image: radial-gradient(circle, #6bd3e4, #2eaed5);
+    height: 100%;
+    position: relative;
+
+    & a {
+      text-decoration: none;
+    }
+
+    & header,
+    & footer {
+      display: flex;
+      height: 10%;
+      padding: 1rem;
+      text-transform: uppercase;
+    }
+
+    & header {
+      justify-content: center;
+      @media (min-width: 650px) {
+        justify-content: flex-end;
+      }
+    }
+
+    & footer {
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    & article {
+      height: 80%;
+      width: 100%;
+    }
+  }
+</style>
