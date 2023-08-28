@@ -1,4 +1,4 @@
-import { Me } from "../src/types";
+import type { Me } from "../src/types";
 
 const me: Me = {
   keywords: [

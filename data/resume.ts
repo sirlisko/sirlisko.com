@@ -1,4 +1,4 @@
-import { Resume } from "../src/types";
+import type { Resume } from "../src/types";
 
 const resume: Resume = {
   skills: {

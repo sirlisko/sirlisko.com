@@ -1,0 +1,19 @@
+---
+import type { Project as Props } from "../types";
+
+const { title, description, logo, links, tech } = Astro.props;
+---
+
+<div class="project__main">
+  <h3>{title}</h3>
+  {description.map((desc) => <p>{desc}</p>)}
+</div>
+<img src={logo} alt={`${title} logo`} height={144} width={100} />
+<div class="project__details">
+  <p class="project__details__links">
+    {Object.keys(links).map((link) => <a href={links[link]}>{link}</a>)}
+  </p>
+  <ul class="project__details__tech">
+    {tech.map((t) => <li>{t}</li>)}
+  </ul>
+</div>

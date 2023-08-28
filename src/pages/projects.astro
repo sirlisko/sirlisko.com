@@ -1,0 +1,45 @@
+---
+import "../styles/projects.scss";
+import projects from "../../data/projects";
+
+import ProjectCard from "../components/ProjectCard.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+  title="Projects"
+  description="What I am working on at the moment.. Give a look at my side projects."
+  keywords={[
+    "Luca Lischetti",
+    "sirlisko",
+    "web developer",
+    "software engineer",
+    "projects",
+    "ideas",
+  ]}
+>
+  <div class="projects-page">
+    <div class="logo">
+      <a href="/">
+        <img
+          src="/images/sirlisko.svg"
+          alt="sirlisko face"
+          height={144}
+          width={100}
+        />
+      </a>
+    </div>
+    <section>
+      <h1>My Side Projects</h1>
+      <ul>
+        {
+          projects.map((project) => (
+            <li class="project">
+              <ProjectCard {...project} />
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+  </div>
+</Layout>

@@ -1,0 +1,66 @@
+---
+const data = {
+  title: `sirLisko... Luca Lischetti`,
+  description: `personal (and experimental) website of Luca Lischetti aka sirLisko or just another f@$#&amp;n' web developer, full time dreamer and sometimes sleeper, true 8-bit lover and sunday super hero..`,
+  author: `Luca Lischetti`,
+  image: `https://sirlisko.com/images/lisko.png`,
+  siteUrl: `https://sirlisko.com`,
+};
+
+const { title, description, image, keywords } = Astro.props;
+
+const metaDescription = description || data.description;
+const formattedTitle = `${title} | ${data.title}`;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/images/heart.png" />
+    <title>{formattedTitle}</title>
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={metaDescription} />
+    <meta property="og:title" content={title} />
+    <meta property="og:image" content={image || data.image} />
+    <meta property="og:description" content="metaDescription" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:creator" content={data.author} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={metaDescription} />
+    {
+      keywords && keywords.length > 0 ? (
+        <meta name="keywords" content={keywords.join(`, `)} />
+      ) : null
+    }
+    <link
+      type="text/plain"
+      rel="author"
+      href="https://sirlisko.com/humans.txt"
+    />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html,
+  body,
+  body > div {
+    height: 100%;
+  }
+
+  body {
+    font-family: "Press Start 2P", monospace;
+    font-size: 16px;
+    margin: 0;
+  }
+</style>

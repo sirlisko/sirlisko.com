@@ -1,29 +1,7 @@
 {
+  "extends": "astro/tsconfigs/strictest",
   "compilerOptions": {
-    "target": "es5",
-    "module": "commonjs",
-    "lib": [
-      "dom",
-      "es2017"
-    ],
-    "jsx": "preserve",
-    "resolveJsonModule": true,
-    "strict": true,
-    "esModuleInterop": true,
-    "noEmit": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "allowJs": true,
-    "incremental": true,
-    "moduleResolution": "node",
-    "isolatedModules": true
-  },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+    "jsx": "react-jsx",
+    "jsxImportSource": "react"
+  }
 }

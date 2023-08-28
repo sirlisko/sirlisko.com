@@ -1,6 +1,5 @@
 # sirlisko.com
 
-[![Coverage Status](https://coveralls.io/repos/github/sirLisko/sirlisko.com/badge.svg?branch=master)](https://coveralls.io/github/sirLisko/sirlisko.com?branch=master)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/fd6aac84-e915-4db6-aaf1-eb996620da79/deploy-status)](https://app.netlify.com/sites/sirlisko/deploys)
 
 > [https://sirlisko.com](https://sirlisko.com) - personal (and experimental) website.
@@ -9,7 +8,7 @@ I tried to keep this website as a proof of concept of the technologies I am curr
 
 ---
 
-The Website is built using [Next.js](https://nextjs.org/).
+The Website is built using [Astro](https://astro.build/).
 
 In order to have the Website up and running NodeJs is mandatory, it can be installed using [nvm](https://github.com/nvm-sh/nvm), a handy NodeJs binary manager, or using the official installer present in the NodeJs website ([https://nodejs.org/download/](https://nodejs.org/download/)).
 
@@ -46,22 +45,6 @@ pnpm start
 ```
 
 In addition to the build, this command is also **watching the file system** looking for files change. Once one of the resources changes the relative assets are immediately recompiled.
-
-## Running the tests
-
-In order to running the tests and linters the **dev dependencies** need to be installed.
-
-```bash
-pnpm install
-```
-
-Once the dependencies are installed:
-
-```bash
-pnpm test
-```
-
-The test command is running the unit test relative to the javascript and the linting of the JS code.
 
 ## Generate the resume in pdf format
 

@@ -1,12 +1,9 @@
-import React, { useState, useEffect } from "react";
-import Image from "next/image";
-
-import { Me } from "../types";
+import { useState, useEffect } from "react";
 
 import styles from "./Greeting.module.scss";
 
 interface GreetingProps {
-  descriptions: Me["descriptions"];
+  descriptions: string[];
 }
 
 const Greeting = ({ descriptions }: GreetingProps) => {
@@ -25,18 +22,15 @@ const Greeting = ({ descriptions }: GreetingProps) => {
 
   return (
     <div className={styles.container}>
-      <Image
+      <img
         className={styles.face}
         src="./images/sirlisko.svg"
         alt="sirlisko face"
-        height={714}
-        width={496}
-        priority
       />
       <div className={styles.intro}>
         <p>Ciao!</p>
-        <p>I’m sirLisko,</p>
-        <p>another f@$#&amp;n’</p>
+        <p>I&#39;m sirLisko,</p>
+        <p>another f@$#&amp;n&#39;</p>
         <p className={styles.desc}>
           {descriptions.map((d) => (
             <span

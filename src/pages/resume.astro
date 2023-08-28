@@ -1,0 +1,50 @@
+---
+import "../styles/resume.scss";
+
+import resume from "../../data/resume";
+
+import Me from "../components/resume/Me.astro";
+import Skills from "../components/resume/Skills.astro";
+import Education from "../components/resume/Education.astro";
+import Extras from "../components/resume/Extras.astro";
+import Contacts from "../components/resume/Contacts.astro";
+import Projects from "../components/resume/Projects.astro";
+import Experiences from "../components/resume/Experiences.astro";
+import Interests from "../components/resume/Interests.astro";
+import Layout from "../layouts/Layout.astro";
+
+const isAltVersion =
+  typeof window !== `undefined` && window.location.search.indexOf("alt") !== -1;
+---
+
+<Layout
+  title="Resume"
+  description="Resume (or CV) of Luca Lischetti also know as sirLisko. Experiences, skills and interests."
+  keywords={[
+    "Luca Lischetti",
+    "sirlisko",
+    "web developer",
+    "software engineer",
+    "resume",
+    "cv",
+  ]}
+>
+  <div class={`resume${isAltVersion ? " alt" : ""}`}>
+    <Me />
+    <div class="wrapper">
+      <Skills skills={resume.skills} />
+      <Experiences experiences={resume.experiences} />
+      <article class="section ouat">
+        <h1>Once upon a time...</h1>
+        I had the pleasure to work also with Java, Scala, PHP, MySQL, C++, Ruby on
+        Rails. I don&#39;t consider myself an expert on those languages but I like,
+        especially in my free time, playing with other technologies :)
+      </article>
+      <Projects projects={resume.projects} />
+      <Education />
+      <Extras />
+      <Interests />
+      <Contacts isAltVersion={isAltVersion} />
+    </div>
+  </div>
+</Layout>
