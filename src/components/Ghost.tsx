@@ -43,7 +43,7 @@ const Ghost = () => {
         ref={ghost}
         className={classNames(
           styles.ghost,
-          isGhostFlipped && styles.ghostFlipped
+          isGhostFlipped && styles.ghostFlipped,
         )}
         style={{ left: `${x - GHOST_WIDTH}px`, top: `${y - GHOST_WIDTH}px` }}
         onMouseOver={life > 0 ? handleMouseOver : undefined}
