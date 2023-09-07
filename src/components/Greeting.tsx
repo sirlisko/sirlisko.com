@@ -8,7 +8,7 @@ interface GreetingProps {
 
 const Greeting = ({ descriptions }: GreetingProps) => {
   const [selectedDescription, setSelectedDescription] = useState(
-    descriptions[0]
+    descriptions[0],
   );
 
   useEffect(() => {
