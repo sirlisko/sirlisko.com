@@ -4,7 +4,7 @@ publish = "dist"
 
 [[redirects]]
 from = "/blog/*"
-to = "https://blog.sirlisko.com/blog/:splat"
+to = "https://sirlisko-blog.netlify.app/:splat"
 status = 200
 
 [[redirects]]
