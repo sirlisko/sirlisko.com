@@ -1,6 +1,6 @@
 ---
 import "../styles/projects.scss";
-import projects from "../../data/projects";
+import { projects, pastProjects } from "../../data/projects";
 
 import ProjectCard from "../components/ProjectCard.astro";
 import Layout from "../layouts/Layout.astro";
@@ -41,5 +41,26 @@ import Layout from "../layouts/Layout.astro";
         }
       </ul>
     </section>
+    <section class="past-projects">
+      <h2>My Past Projects</h2>
+      <ul>
+        {
+          pastProjects.map((project) => (
+            <li class="project">
+              <ProjectCard {...project} />
+            </li>
+          ))
+        }
+      </ul>
+    </section>
   </div>
 </Layout>
+
+<style>
+  .past-projects {
+    margin-top: 5rem;
+  }
+  .past-projects h2 {
+    text-align: center;
+  }
+</style>

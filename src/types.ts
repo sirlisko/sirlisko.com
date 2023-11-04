@@ -1,12 +1,23 @@
-export interface Project {
+import type { FC } from "react";
+
+interface BaseProject {
   title: string;
   description: string[];
-  logo: string;
   links: {
     [type: string]: string;
   };
   tech: string[];
+  isDeprecated?: boolean;
 }
+
+interface ProjectWithLogo extends BaseProject {
+  logo: string;
+}
+interface ProjectWithIcon extends BaseProject {
+  icon: FC;
+}
+
+export type Project = ProjectWithLogo | ProjectWithIcon;
 
 interface Link {
   name: string;
