@@ -1,14 +1,23 @@
 ---
 import type { Project as Props } from "../types";
 
-const { title, description, logo, links, tech } = Astro.props;
+const props = Astro.props;
+const { title, description, links, tech, isDeprecated } = props;
 ---
 
 <div class="project__main">
-  <h3>{title}</h3>
+  <h3>{title}{isDeprecated && "- deprecated"}</h3>
   {description.map((desc) => <p>{desc}</p>)}
 </div>
-<img src={logo} alt={`${title} logo`} height={144} width={100} />
+{
+  "logo" in props ? (
+    <img src={props.logo} alt={`${title} logo`} height={144} width={100} />
+  ) : (
+    <span class="project__icon">
+      <props.icon />
+    </span>
+  )
+}
 <div class="project__details">
   <p class="project__details__links">
     {Object.keys(links).map((link) => <a href={links[link]}>{link}</a>)}

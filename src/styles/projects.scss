@@ -58,7 +58,8 @@
   }
 }
 
-.project img {
+.project img,
+.project__icon {
   display: block;
   height: 100px;
   margin: 0 auto;
@@ -66,6 +67,10 @@
   @media (min-width: 650px) {
     margin: auto 30px;
   }
+}
+.project__icon svg{
+  height: 100%;
+  width: 100%;
 }
 
 .project__details__tech {

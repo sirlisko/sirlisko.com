@@ -1,6 +1,95 @@
 import type { Project } from "../src/types";
 
-const projects: Project[] = [
+import Calendar from "../src/components/Icons/Calendar";
+import Flight from "../src/components/Icons/Flight";
+import PinMap from "../src/components/Icons/PinMap";
+import Redux from "../src/components/Icons/Redux";
+import WorldMap from "../src/components/Icons/WorldMap";
+
+export const projects: Project[] = [
+  {
+    title: "GigPlayList",
+    description: [
+      "Create a playlist with the most probable songs that are going to be played to a given artist gig.",
+      "Next.js app that proxies external APIs (Setlist.fm, Spotify and Songkick), mashes them up and creates a Spotify playlist for you.",
+    ],
+    logo: "/images/projects/ticket.png",
+    links: {
+      Website: "https://gigplaylist.sirlisko.com",
+      Github: "https://github.com/sirLisko/gigplaylist",
+    },
+    tech: [
+      "Next.js",
+      "3rd party APIs",
+      "Spotify Auth",
+      "Github Actions",
+      "Vercel CI/CD",
+    ],
+  },
+  {
+    title: "ZoomMEME",
+    description: [
+      "Super simple zoom-in meme generator. Drag and drop an image and then create your meme.",
+      "PWA (Progressive Web App) powered by pure and sweet Vanilla Javascript.",
+    ],
+    logo: "/images/projects/zoommeme.png",
+    links: {
+      Website: "https://zoomme.me",
+      Github: "https://github.com/sirlisko/zoommeme",
+    },
+    tech: ["PWA", "Vanilla JS", "Webpack", "Jest"],
+  },
+  {
+    title: "Been",
+    description: [
+      "Web companion to keep track of where you have BEEN, listing your visited countries.",
+      "React application powered by Firebase Auth and Firestore.",
+    ],
+    icon: Flight,
+    links: {
+      Website: "https://been.netlify.app/",
+      Github: "https://github.com/sirLisko/been",
+    },
+    tech: ["React", "Firebase", "Firestore", "3rd parties Auth", "Netlify"],
+  },
+  {
+    title: "World Map Country Shapes",
+    description: [
+      "BYO World map country SVG shapes.",
+      "NPM module that provides a JSON with all the countries shapes.",
+    ],
+    icon: WorldMap,
+    links: {
+      "NPM Module": "https://npmjs.com/package/world-map-country-shapes",
+      Github: "https://github.com/sirLisko/world-map-country-shapes",
+    },
+    tech: ["NPM Module", "SVG"],
+  },
+  {
+    title: "Redux Persist Transform Expire-in",
+    description: [
+      "redux-persist transformer that resets the persisted redux data after a specific period of time.",
+      "NPM module that extendes the functionality of the redux plugin.",
+    ],
+    icon: Redux,
+    links: {
+      "NPM Module":
+        "https://npmjs.com/package/redux-persist-transform-expire-in",
+      Github: "https://github.com/sirLisko/redux-persist-transform-expire-in",
+      Demo: "https://codesandbox.io/s/redux-persist-transform-expire-in-lmj74q",
+    },
+    tech: ["NPM Module", "Redux", "React"],
+  },
+  {
+    title: "UK Postcode Validator",
+    description: ["Micro NPM module to validate UK postcodes."],
+    icon: PinMap,
+    links: {
+      "NPM Module": "https://npmjs.com/package/uk-postcode-validator",
+      Github: "https://github.com/sirLisko/uk-postcode-validator",
+    },
+    tech: ["NPM Module", "Regex"],
+  },
   {
     title: "Martellone Alexa Skill",
     description: [
@@ -17,19 +106,6 @@ const projects: Project[] = [
     tech: ["Alexa skill", "AWS", "Lambda", "Serverless"],
   },
   {
-    title: "ZoomMEME",
-    description: [
-      "Super simple zoom-in meme generator. Drag and drop an image and then create your meme.",
-      "PWA (Progressive Web App) powered by pure and sweet Vanilla Javascript.",
-    ],
-    logo: "/images/projects/zoommeme.png",
-    links: {
-      Website: "https://zoomme.me",
-      Github: "https://github.com/sirlisko/zoommeme",
-    },
-    tech: ["PWA", "Vanilla JS", "Webpack", "Jest"],
-  },
-  {
     title: "Audible RSS",
     description: [
       "Get an RSS feed of the latest audiobook relases on Audible.",
@@ -41,61 +117,6 @@ const projects: Project[] = [
       Github: "https://github.com/sirlisko/audible-rss",
     },
     tech: ["Node", "Express", "React", "Web Scraping"],
-  },
-  {
-    title: "GigPlayList",
-    description: [
-      "Create a playlist with the most probable songs that are going to be played to a given artist gig.",
-      "Next.js app that proxies external APIs (Setlist.fm, Spotify and Songkick), mashes them up and creates a Spotify playlist for you.",
-    ],
-    logo: "/images/projects/ticket.png",
-    links: {
-      Website: "https://gigplaylist.sirlisko.com",
-      Github: "https://github.com/sirLisko/gigplaylist",
-    },
-    tech: ["Next.js", "3rd party APIs", "Spotify Auth", "Vercel CI/CD"],
-  },
-  {
-    title: "Shazamify (a.k.a. Zamify) - deprecated",
-    description: [
-      "Shazamify allows you to play your Shazams in Spotify, directly from the browser, by adding a small Spotify icon to every Shazam track page.",
-      "Chrome Extension powered by Spotify OAuth and Web API.",
-      "Unfortunately, it has been deprecated as google keep suspending it for copyright infrangement -.-",
-    ],
-    logo: "https://sirlisko.com/blog/content/images/2015/04/icon.png",
-    links: {
-      Chrome_extension:
-        "https://chrome.google.com/webstore/detail/zamify/foilfgbdcipbajipeodmjjnkflkfocin",
-      Blog: "https://sirlisko.com/blog/shazamify",
-      Github: "https://github.com/sirLisko/shazamify",
-    },
-    tech: ["Chrome Extension", "Spotify OAuth", "Spotify API"],
-  },
-  {
-    title: "Deliverance Improved",
-    description: [
-      "Little Node/Angular webapp that scraps the original website menu of deliverance.co.uk and it shows it in a more functional way.It adds the possibility to filter, order and search in the menu.",
-    ],
-    logo: "/images/projects/dlogo.jpg",
-    links: {
-      Website: "http://deliverance.herokuapp.com",
-      Github: "https://github.com/sirLisko/deliverance",
-    },
-    tech: ["Node", "Angular JS", "Web Scraping", "Bootstrap", "Heroku"],
-  },
-  {
-    title: "Gulp Blacklist Marker",
-    description: [
-      "Chrome Extension that marks blacklisted gulp modules when browsing NPM and GitHub.",
-    ],
-    logo: "https://sirlisko.com/blog/content/images/2015/03/icon128-1.png",
-    links: {
-      Chrome_extension:
-        "https://chrome.google.com/webstore/detail/gulp-blacklist-marker/kifhpjdagaiganbdabkpepncopmbfbal",
-      Blog: "https://sirlisko.com/blog/gulp-blacklist-marker/",
-      Github: "https://github.com/sirLisko/gulp-blacklist-marker",
-    },
-    tech: ["Chrome Extension", "Gulp", "NPM"],
   },
   {
     title: "Pizza Club",
@@ -110,19 +131,71 @@ const projects: Project[] = [
     tech: ["Gatsby", "React", "GitHub Pages"],
   },
   {
-    title: "Sproxify - deprecated",
+    title: "GifDay",
+    description: [
+      "Your year in gifs.",
+      "GifDay is a webapp that allows you to create a gif for every day of the year, using the Giphy API.",
+    ],
+    icon: Calendar,
+    links: {
+      Website: "https://gifday.netlify.com/",
+      Github: "https://github.com/sirLisko/gifday",
+    },
+    tech: [
+      "React",
+      "Giphy Apis",
+      "Styled Components",
+      "Netlify",
+      "Cypress E2E Testing",
+    ],
+  },
+];
+
+export const pastProjects: Project[] = [
+  {
+    title: "Shazamify (a.k.a. Zamify)",
+    description: [
+      "Shazamify allows you to play your Shazams in Spotify, directly from the browser, by adding a small Spotify icon to every Shazam track page.",
+      "Chrome Extension powered by Spotify OAuth and Web API.",
+      "Unfortunately, it has been deprecated as google keep suspending it for copyright infrangement -.-",
+    ],
+    logo: "/images/projects/shazamify.png",
+    links: {
+      Blog: "https://sirlisko.com/blog/shazamify",
+      Github: "https://github.com/sirLisko/shazamify",
+    },
+    tech: ["Chrome Extension", "Spotify OAuth", "Spotify API"],
+    isDeprecated: true,
+  },
+  {
+    title: "Gulp Blacklist Marker",
+    description: [
+      "Chrome Extension that marks blacklisted gulp modules when browsing NPM and GitHub.",
+    ],
+    logo: "/images/projects/gulp.png",
+    links: {
+      Chrome_extension:
+        "https://chrome.google.com/webstore/detail/gulp-blacklist-marker/kifhpjdagaiganbdabkpepncopmbfbal",
+      Blog: "https://sirlisko.com/blog/gulp-blacklist-marker/",
+      Github: "https://github.com/sirLisko/gulp-blacklist-marker",
+    },
+    tech: ["Chrome Extension", "Gulp", "NPM"],
+  },
+  {
+    title: "Sproxify",
     description: [
       "Sproxify intercepts Spotify links and let you choose where to play them. Through a fancy-looking button, Sproxify redirects you in the desiderated environment where you can finally play your music.Just where you want!",
     ],
-    logo: "https://sirlisko.com/blog/content/images/2015/03/icon128.png",
+    logo: "/images/projects/sproxify.png",
     links: {
       Blog: "https://sirlisko.com/blog/sproxify/",
       Github: "https://github.com/sirLisko/sproxify",
     },
     tech: ["Chrome Extension", "User Script"],
+    isDeprecated: true,
   },
   {
-    title: "POMOfy - deprecated",
+    title: "POMOfy",
     description: [
       "POMOfy introduces the productivity of the Pomodoro Technique in Spotify. Basically a Spotify app that allows you to use songs as timer for the Pomodoro.",
     ],
@@ -132,6 +205,19 @@ const projects: Project[] = [
       Github: "https://github.com/sirLisko/apps-pomofy",
     },
     tech: ["Spotify App"],
+    isDeprecated: true,
+  },
+  {
+    title: "Deliverance Improved",
+    description: [
+      "Little Node/Angular webapp that scraps the original website menu of deliverance.co.uk and it shows it in a more functional way.It adds the possibility to filter, order and search in the menu.",
+    ],
+    logo: "/images/projects/dlogo.jpg",
+    links: {
+      Github: "https://github.com/sirLisko/deliverance",
+    },
+    tech: ["Node", "Angular JS", "Web Scraping", "Bootstrap", "Heroku"],
+    isDeprecated: true,
   },
 ];
 
