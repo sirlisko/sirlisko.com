@@ -9,6 +9,10 @@ const data = {
   siteUrl: `https://sirlisko.com`,
 };
 
+const canonicalURL = new URL(Astro.url.pathname, Astro.site)
+  .toString()
+  .replace(/\/+$/, "");
+
 const { title, description, image, keywords } = Astro.props;
 
 const metaDescription = description || data.description;
@@ -20,6 +24,7 @@ const formattedTitle = `${title} | ${data.title}`;
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/images/heart.png" />
+    <link rel="canonical" href={canonicalURL} />
     <title>{formattedTitle}</title>
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content={metaDescription} />
