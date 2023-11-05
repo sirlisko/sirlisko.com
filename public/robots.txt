@@ -1,2 +1,4 @@
-User-agent: * Allow: /
-sitemap: https://sirlisko.com/sitemap.xml
+User-agent: *
+Allow: /
+Sitemap: https://sirlisko.com/sitemap.xml
+Sitemap: https://sirlisko.com/blog/sitemap-index.xml
