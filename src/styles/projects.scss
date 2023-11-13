@@ -3,6 +3,7 @@
 .projects-page {
   background-color: #c0deed;
   background-image: radial-gradient(circle, #6bd3e4, #2eaed5);
+  height: 100%;
   overflow: auto;
   line-height: 1.15;
   & sup a {
@@ -23,7 +24,7 @@
 .logo {
   margin: 10px auto;
   height: auto;
-  width: 50px;
+  width: 100px;
   & img {
     width: 100%;
   }
