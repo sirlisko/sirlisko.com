@@ -6,4 +6,5 @@ import react from "@astrojs/react";
 export default defineConfig({
   site: "https://sirlisko.com",
   integrations: [react()],
+  trailingSlash: "never",
 });
