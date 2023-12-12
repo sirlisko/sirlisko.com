@@ -10,14 +10,6 @@
 }
 
 .resume {
-  background-color: #0300ae;
-  background-image: radial-gradient(circle, #0300ae, #000024);
-  color: #fff;
-  overflow: auto;
-  &.alt {
-    background: #fff;
-    color: #000;
-  }
   & h1 {
     font-size: 2em;
     margin: 0.67em 0;
@@ -34,9 +26,6 @@
   & a {
     color: #fff;
   }
-  &.alt a {
-    color: currentColor;
-  }
 
   & article {
     line-height: 1.5;
@@ -46,9 +35,6 @@
 
   & h1 {
     color: #c200c0;
-  }
-  &.alt h1 {
-    color: red;
   }
   & h2 {
     text-transform: capitalize;
@@ -72,12 +58,6 @@
       @media (min-width: 650px) {
         font-size: 0.5rem;
       }
-    }
-  }
-  &.alt h2 {
-    color: blue;
-    & span {
-      color: #000;
     }
   }
 
@@ -122,6 +102,20 @@
       display: inline-block;
       vertical-align: top;
     }
+  }
+}
+
+.alt h1 {
+  color: red;
+}
+.alt a {
+  color: currentColor;
+}
+.alt h2 {
+  color: blue;
+
+  & span {
+    color: #000;
   }
 }
 
