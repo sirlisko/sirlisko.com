@@ -12,14 +12,17 @@ import Projects from "../components/resume/Projects.astro";
 import Experiences from "../components/resume/Experiences.astro";
 import Interests from "../components/resume/Interests.astro";
 import Layout from "../layouts/Layout.astro";
-
-const isAltVersion =
-  typeof window !== `undefined` && window.location.search.indexOf("alt") !== -1;
 ---
 
+<script>
+  const urlSearchParams = new URLSearchParams(window.location.search);
+  if (urlSearchParams.get("alt")) {
+    document.body.classList.add("alt");
+  }
+</script>
 <Layout
   title="Resume"
-  description="Luca Lischetti's resume, part of sirLisko's world. Discover the skills and experience of a creative mind with web expertise. Explore qualifications, technical expertise, and a passion for blending art and tech. A journey showcasing a fusion of creativity and software engineering expertise."
+  description="Luca Lischetti's resume, part of sirLisko's world. Discover the skills and experience of a creative mind with web expertise. Explore qualifications, technical skills, and a passion for blending art and tech. A journey showcasing a fusion of creativity and software engineering."
   keywords={[
     "Luca Lischetti",
     "sirlisko",
@@ -29,22 +32,38 @@ const isAltVersion =
     "cv",
   ]}
 >
-  <div class={`resume${isAltVersion ? " alt" : ""}`}>
+  <div class="resume">
     <Me />
     <div class="wrapper">
       <Skills skills={resume.skills} />
       <Experiences experiences={resume.experiences} />
       <article class="section ouat">
         <h1>Once upon a time...</h1>
-         I had the pleasure to work also with Java, Scala, PHP, MySQL, C++, Ruby
-        on Rails. I don&#39;t consider myself an expert on those languages but I
-        like, especially in my free time, playing with other technologies :)
+         I had the pleasure to work also with Python, Java, Scala, PHP, MySQL,
+        C++, Ruby on Rails. While not an expert in these languages, I enjoy
+        exploring various technologies in my free time :)
       </article>
       <Projects projects={resume.projects} />
       <Education />
       <Extras />
       <Interests />
-      <Contacts isAltVersion={isAltVersion} />
+      <Contacts />
     </div>
   </div>
 </Layout>
+
+<style>
+  body {
+    background-color: #0300ae;
+    background-image: radial-gradient(circle, #0300ae, #000024);
+    color: #fff;
+  }
+  body.alt {
+    background-color: #fff;
+    background-image: radial-gradient(circle, #fff, #fff);
+    color: #000;
+  }
+  .wrapper {
+    padding-bottom: 100px;
+  }
+</style>

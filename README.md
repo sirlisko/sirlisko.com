@@ -30,15 +30,15 @@ pnpm install --production
 
 This will install all the software needed in order to build and run the Website.
 
-## Build the Front-End
+## Build the Website
 
 ```bash
 pnpm run build
 ```
 
-## Work with the Front-End (Develop)
+## Work with the Website (Develop)
 
-The easier way to build the Front-End in Develop mode is with:
+The easier way to build the Website in Develop mode is with:
 
 ```bash
 pnpm start
@@ -50,5 +50,5 @@ In addition to the build, this command is also **watching the file system** look
 
 ```bash
 pnpm start
-pnpx electron-pdf http://127.0.0.1:8000/resume/ resume.pdf
+pnpx electron-pdf http://localhost:4321/resume resume.pdf
 ```
