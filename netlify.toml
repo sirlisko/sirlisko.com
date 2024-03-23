@@ -9,10 +9,10 @@ status = 200
 
 [[redirects]]
 from = "/js/script.js"
-to = "https://plausible.io/js/script.js"
+to = "https://stats.sirlisko.com/js/script.js"
 status = 200
 
 [[redirects]]
 from = "/api/event"
-to = "https://plausible.io/api/event"
+to = "https://stats.sirlisko.com/api/event"
 status = 200
