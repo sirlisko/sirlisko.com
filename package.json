@@ -29,33 +29,33 @@
     "type-check": "tsc"
   },
   "dependencies": {
-    "@astrojs/react": "^3.0.1",
-    "@fontsource/press-start-2p": "^5.0.11",
-    "@types/react": "^18.2.21",
-    "@types/react-dom": "^18.2.7",
-    "astro": "^3.0.10",
-    "classnames": "^2.3.2",
+    "@astrojs/react": "^3.6.2",
+    "@fontsource/press-start-2p": "^5.1.0",
+    "@types/react": "^18.3.10",
+    "@types/react-dom": "^18.3.0",
+    "astro": "^3.6.5",
+    "classnames": "^2.5.1",
     "lodash.debounce": "^4.0.8",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-icons": "^4.11.0",
-    "sass": "^1.66.1"
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-icons": "^4.12.0",
+    "sass": "^1.79.4"
   },
   "devDependencies": {
-    "@types/lodash.debounce": "^4.0.7",
-    "@types/react": "^18.2.21",
-    "@typescript-eslint/eslint-plugin": "^6.6.0",
-    "@typescript-eslint/parser": "^6.6.0",
-    "eslint": "^8.48.0",
-    "eslint-config-prettier": "^9.0.0",
-    "eslint-plugin-astro": "^0.29.0",
-    "eslint-plugin-jsx-a11y": "^6.7.1",
-    "eslint-plugin-prettier": "^5.0.0",
-    "eslint-plugin-react": "^7.33.2",
-    "prettier": "^3.0.3",
-    "typescript": "^5.2.2"
+    "@types/lodash.debounce": "^4.0.9",
+    "@types/react": "^18.3.10",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "@typescript-eslint/parser": "^6.21.0",
+    "eslint": "^8.57.1",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-astro": "^0.29.1",
+    "eslint-plugin-jsx-a11y": "^6.10.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "eslint-plugin-react": "^7.37.1",
+    "prettier": "^3.3.3",
+    "typescript": "^5.6.2"
   },
   "engines": {
-    "node": ">=18"
+    "node": ">=20"
   }
 }
