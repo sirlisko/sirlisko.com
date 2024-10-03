@@ -7,62 +7,138 @@ import Ghost from "../components/Ghost";
 import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout title="Home" keywords={me.keywords}>
-  <div class="home">
-    <Ghost client:only="react" />
-    <header>
+<Layout keywords={me.keywords}>
+  <Ghost client:only="react" />
+  <div class="page-container">
+    <nav class="nav">
       <Links links={me.links} />
-    </header>
-    <article>
-      <Greeting descriptions={me.descriptions} client:only="react" />
-    </article>
-    <footer>
-      <a class="my__projects" href="/projects">Projects</a>
-      <a class="my__resume" href="/resume">Resume</a>
+    </nav>
+    <main class="main-content">
+      <div class="container grid">
+        <div class="face">
+          <img src="./images/sirlisko.svg" alt="sirlisko face" />
+        </div>
+        <div class="intro">
+          <h1>
+            Ciao!
+            <br />
+            I&#39;m sirlisko,
+
+            <p>another f@$#&amp;n&#39;</p>
+            <p class="desc">
+              <span>
+                <Greeting descriptions={me.descriptions} client:load />
+              </span>
+            </p>
+          </h1>
+        </div>
+      </div>
+    </main>
+    <footer class="footer">
+      <a href="/projects">Projects</a>
+      <a href="/resume">Resume</a>
     </footer>
   </div>
 </Layout>
+
 <style>
   html,
-  body,
-  body > div {
+  body {
     height: 100%;
-    background-color: #c0deed;
+    background-color: #2eaed5;
+    background-image: radial-gradient(circle, #6bd3e4, #2eaed5);
   }
 
-  .home {
-    background-color: #c0deed;
-    background-image: radial-gradient(circle, #6bd3e4, #2eaed5);
-    height: 100%;
+  .nav,
+  .footer {
+    position: fixed;
+    left: 0;
+    right: 0;
+    text-align: center;
+    padding: 1rem;
+    z-index: 10;
+  }
+
+  .nav {
+    top: 0;
+    text-align: right;
+  }
+
+  .footer {
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .main-content {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 1rem;
+    min-height: 100vh;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10vw;
+  }
+
+  @media (max-width: 650px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .intro {
+    line-height: 1.5;
+    display: flex;
+    align-items: center;
+    text-align: left;
+  }
+  .intro p,
+  .intro h1 {
+    font-size: min(2.5vw, 55px);
+    margin: 0;
+  }
+
+  .face {
+    text-align: center;
+  }
+  .face img {
+    height: min(70vw, 70vh);
+  }
+  @media screen and (max-width: 650px) {
+    .face {
+      max-height: 50vh;
+    }
+    .intro p,
+    .intro h1 {
+      font-size: min(5vw, 5vh);
+    }
+  }
+
+  .desc span {
+    display: inline-block;
     position: relative;
+    white-space: nowrap;
+  }
 
-    & a {
-      text-decoration: none;
-    }
+  .desc span::after {
+    content: " ";
+    display: inline-block;
+    width: 5px;
+    height: 100%;
+    background-color: #000;
+    position: absolute;
+    right: -10px;
+    animation: blink 1s step-end infinite;
+  }
 
-    & header,
-    & footer {
-      display: flex;
-      height: 10%;
-      padding: 1rem;
-      text-transform: uppercase;
-    }
-
-    & header {
-      justify-content: center;
-      @media (min-width: 650px) {
-        justify-content: flex-end;
-      }
-    }
-
-    & footer {
-      justify-content: space-between;
-      align-items: flex-end;
-    }
-
-    & article {
-      height: 80%;
-      width: 100%;
+  @keyframes blink {
+    50% {
+      background-color: transparent;
     }
   }
 </style>
