@@ -16,7 +16,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site)
 const { title, description, image, keywords } = Astro.props;
 
 const metaDescription = description || data.description;
-const formattedTitle = `${title} | ${data.title}`;
+const formattedTitle = title ? `${title} | ${data.title}` : data.title;
 ---
 
 <!doctype html>

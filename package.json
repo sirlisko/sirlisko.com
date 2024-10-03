@@ -33,7 +33,7 @@
     "@fontsource/press-start-2p": "^5.1.0",
     "@types/react": "^18.3.10",
     "@types/react-dom": "^18.3.0",
-    "astro": "^3.6.5",
+    "astro": "^4.15.10",
     "classnames": "^2.5.1",
     "lodash.debounce": "^4.0.8",
     "lucide-react": "^0.447.0",

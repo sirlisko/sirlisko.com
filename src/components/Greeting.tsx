@@ -1,14 +1,12 @@
 import { useState, useEffect } from "react";
 
-import styles from "./Greeting.module.scss";
-
 interface GreetingProps {
   descriptions: string[];
 }
 
 const Greeting = ({ descriptions }: GreetingProps) => {
   const [selectedDescription, setSelectedDescription] = useState("");
-  const [currentDescription, setCurrentDescription] = useState("");
+  const [currentDescription, setCurrentDescription] = useState("developer");
   const [isDeleting, setIsDeleting] = useState(false);
   const typingSpeed = 200;
   const deletingSpeed = 10;
@@ -47,30 +45,7 @@ const Greeting = ({ descriptions }: GreetingProps) => {
     setSelectedDescription(descriptions[0]!);
   }, [descriptions]);
 
-  return (
-    <div className={styles.container}>
-      <div>
-        <img
-          className={styles.face}
-          src="./images/sirlisko.svg"
-          alt="sirlisko face"
-        />
-      </div>
-      <div className={styles.intro}>
-        <div>
-          <h1>
-            Ciao!
-            <br />
-            I&#39;m sirlisko,
-          </h1>
-          <p>another f@$#&amp;n&#39;</p>
-          <p className={styles.desc}>
-            <span>{currentDescription}</span>
-          </p>
-        </div>
-      </div>
-    </div>
-  );
+  return currentDescription;
 };
 
 export default Greeting;
