@@ -8,15 +8,15 @@ interface Props {
 const { experiences } = Astro.props;
 ---
 
-<article class="section experiences">
-  <h1>Experiences</h1>
+<section class="section experiences">
+  <h2>Experiences</h2>
   {
     experiences.map((exp) => (
       <div>
         {exp.where && (
-          <h2>
+          <h3>
             {exp.where} {exp.when && <span>{exp.when}</span>}
-          </h2>
+          </h3>
         )}
         {exp.blurp.map((blr) => (
           <p>{blr}</p>
@@ -24,4 +24,4 @@ const { experiences } = Astro.props;
       </div>
     ))
   }
-</article>
+</section>

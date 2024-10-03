@@ -10,11 +10,9 @@ const me: Me = {
     "super hero",
   ],
   descriptions: [
-    "web developer",
+    "developer",
     "super hero",
     "dreamer",
-    "giagguaro",
-    "bored guy",
     "8-bit lover",
     "sleeper",
     "bug creator",
@@ -22,7 +20,6 @@ const me: Me = {
     "rubber duck",
     "zombie coder",
     "pizza eater",
-    "londoner",
   ],
   links: [
     {

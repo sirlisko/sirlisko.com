@@ -8,12 +8,12 @@ interface Props {
 const { skills } = Astro.props;
 ---
 
-<article class="skills">
-  <h1>Skills</h1>
+<section class="skills">
+  <h2>Skills</h2>
   {
     Object.keys(skills).map((type) => (
       <div>
-        <h2>{type}</h2>
+        <h3>{type}</h3>
         <ul>
           {skills[type as keyof Resume["skills"]].map((skill) => (
             <li>{skill}</li>
@@ -22,4 +22,4 @@ const { skills } = Astro.props;
       </div>
     ))
   }
-</article>
+</section>

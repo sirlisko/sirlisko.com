@@ -10,7 +10,7 @@
 }
 
 .resume {
-  & h1 {
+  & h2 {
     font-size: 2em;
     margin: 0.67em 0;
   }
@@ -27,16 +27,17 @@
     color: #fff;
   }
 
-  & article {
+  & section {
     line-height: 1.5;
     margin: 1rem;
     overflow: hidden;
   }
 
-  & h1 {
+  & h2 {
     color: #c200c0;
   }
-  & h2 {
+  & h3 {
+    font-size: 1.5em;
     text-transform: capitalize;
     margin: 1rem auto 0.5rem;
     @media print, (min-width: 650px) {
@@ -105,13 +106,13 @@
   }
 }
 
-.alt h1 {
+.alt h2 {
   color: red;
 }
 .alt a {
   color: currentColor;
 }
-.alt h2 {
+.alt h3 {
   color: blue;
 
   & span {
@@ -147,7 +148,7 @@
   .resume {
     padding: 0 35px 12px;
 
-    & h2 a {
+    & h3 a {
       text-decoration: none;
     }
 

@@ -7,14 +7,14 @@ interface Props {
 const { projects } = Astro.props;
 ---
 
-<article class="section projects">
-  <h1>Side Projects</h1>
+<section class="section projects">
+  <h2>Side Projects</h2>
   {
     projects.map((prj) => (
       <div>
-        <h2>
+        <h3>
           <a href={prj.url}>{prj.name}</a>
-        </h2>
+        </h3>
         {prj.blurp.map((blr) => (
           <p>{blr}</p>
         ))}
@@ -25,4 +25,4 @@ const { projects } = Astro.props;
     To see a full list of my side projects go to{" "}
     <a href="/projects">https://sirlisko.com/projects</a>.
   </div>
-</article>
+</section>
