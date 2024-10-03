@@ -42,7 +42,7 @@ const resume: Resume = {
     },
     {
       where: "Hackney Council",
-      when: "Multiple Tenures (11.19 ~ 05.21)",
+      when: "Multiple gigs (11.19 ~ 05.21)",
       blurp: [
         "Developed new services utilizing React/NextJS, lambda functions deployed on AWS.",
         "Contributed to internal Component Libraries, mentored junior developers, and shared knowledge.",
