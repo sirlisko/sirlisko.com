@@ -28,6 +28,16 @@ const me: Me = {
       label: "blog",
     },
     {
+      name: "projects",
+      url: "https://sirlisko.com/projects",
+      label: "projects",
+    },
+    {
+      name: "resume",
+      url: "https://sirlisko.com/resume",
+      label: "resume",
+    },
+    {
       name: "github",
       url: "https://github.com/sirLisko",
       label: "github",

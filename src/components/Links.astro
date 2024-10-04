@@ -24,7 +24,7 @@ const { links } = Astro.props;
   .links {
     margin: 0;
     padding: 0;
-    position: relative;
+
     & li {
       display: inline-block;
       margin-right: 0.5rem;
@@ -57,11 +57,18 @@ const { links } = Astro.props;
     top: 50px;
     transform: translateX(-50%);
     width: 100%;
+    top: 4rem;
     text-align: center;
   }
 
   .blog a {
     background-image: url(/images/links/blog.png);
+  }
+  .resume a {
+    background-image: url(/images/links/resume.png);
+  }
+  .projects a {
+    background-image: url(/images/links/rocket.png);
   }
   .github a {
     background-image: url(/images/links/github.png);
