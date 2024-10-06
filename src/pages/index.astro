@@ -14,7 +14,11 @@ import Layout from "../layouts/Layout.astro";
     <main class="main-content">
       <div class="container grid">
         <div class="face">
-          <img src="./images/sirlisko.svg" alt="sirlisko face" />
+          <img
+            src="./images/sirlisko.svg"
+            alt="sirlisko face"
+            transition:name="face"
+          />
         </div>
         <div class="intro">
           <h1>
@@ -78,6 +82,7 @@ import Layout from "../layouts/Layout.astro";
 
   .face {
     text-align: center;
+    position: relative;
   }
   .face img {
     height: min(70vw, 70vh);

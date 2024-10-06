@@ -46,6 +46,7 @@ const me: Me = {
       name: "linkedIn",
       url: "https://linkedin.com/in/lucalischetti",
       label: "linkedIn",
+      external: true,
     },
     {
       name: "mail",

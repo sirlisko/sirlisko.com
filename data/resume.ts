@@ -99,7 +99,7 @@ const resume: Resume = {
   projects: [
     {
       name: "Been",
-      url: "https://been.netlify.com/",
+      url: "https://been.netlify.app/",
       blurp: [
         "Web companion to track visited countries, a React app powered by Firebase with Styled-Components and a handcrafted World Map SVG.",
         "The project is still Work in Progress :)",

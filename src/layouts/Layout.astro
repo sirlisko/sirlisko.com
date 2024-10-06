@@ -1,5 +1,6 @@
 ---
 import "@fontsource/press-start-2p";
+import { ViewTransitions } from "astro:transitions";
 
 const data = {
   title: `sirLisko... Luca Lischetti`,
@@ -46,6 +47,7 @@ const formattedTitle = title ? `${title} | ${data.title}` : data.title;
       rel="author"
       href="https://sirlisko.com/humans.txt"
     />
+    <ViewTransitions />
   </head>
   <body>
     <slot />
