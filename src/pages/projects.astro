@@ -4,6 +4,7 @@ import { projects, pastProjects } from "../../data/projects";
 
 import ProjectCard from "../components/ProjectCard.astro";
 import Layout from "../layouts/Layout.astro";
+import Links from "../components/Links.astro";
 ---
 
 <Layout
@@ -18,6 +19,7 @@ import Layout from "../layouts/Layout.astro";
     "ideas",
   ]}
 >
+  <Links page="projects" />
   <div class="projects-page">
     <div class="logo">
       <a href="/">

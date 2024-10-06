@@ -29,12 +29,12 @@ const me: Me = {
     },
     {
       name: "projects",
-      url: "https://sirlisko.com/projects",
+      url: "/projects",
       label: "projects",
     },
     {
       name: "resume",
-      url: "https://sirlisko.com/resume",
+      url: "/resume",
       label: "resume",
     },
     {

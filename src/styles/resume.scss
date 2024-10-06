@@ -145,6 +145,9 @@
 /* Fixed print pagination */
 
 @media print {
+  .nav {
+    display: none;
+  }
   .resume {
     padding: 0 35px 12px;
 

@@ -10,9 +10,7 @@ import Layout from "../layouts/Layout.astro";
 <Layout keywords={me.keywords}>
   <Ghost client:only="react" />
   <div class="page-container">
-    <nav class="nav">
-      <Links links={me.links} />
-    </nav>
+    <Links />
     <main class="main-content">
       <div class="container grid">
         <div class="face">
@@ -43,20 +41,6 @@ import Layout from "../layouts/Layout.astro";
     height: 100%;
     background-color: #2eaed5;
     background-image: radial-gradient(circle, #6bd3e4, #2eaed5);
-  }
-
-  .nav {
-    position: fixed;
-    right: 0;
-    top: 0;
-    left: 0;
-    text-align: center;
-    padding: 1rem;
-    z-index: 10;
-    @media (min-width: 651px) {
-      left: auto;
-      text-align: right;
-    }
   }
 
   .main-content {
