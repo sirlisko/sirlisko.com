@@ -23,6 +23,7 @@ interface Link {
   name: string;
   url: string;
   label: string;
+  external?: boolean;
 }
 
 export interface Me {

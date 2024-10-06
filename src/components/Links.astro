@@ -22,7 +22,10 @@ const { inverted } = Astro.props;
     {
       links.map((link) => (
         <li class={link.name}>
-          <a href={link.url}>
+          <a
+            href={link.url}
+            {...(link.external ? { target: "_blank", rel: "noopener" } : {})}
+          >
             <span class="caption">{link.label}</span>
           </a>
         </li>
@@ -31,6 +34,11 @@ const { inverted } = Astro.props;
   </ul>
 </nav>
 
+<style is:global>
+  .no-scroll {
+    overflow: hidden;
+  }
+</style>
 <style>
   .nav {
     position: fixed;
@@ -146,6 +154,7 @@ const { inverted } = Astro.props;
     .nav {
       left: auto;
       text-align: right;
+      position: absolute;
     }
 
     .hamburger {
@@ -188,12 +197,10 @@ const { inverted } = Astro.props;
   }
 </style>
 
-<script>
-  const hamburger = document.getElementById("hamburger");
-  const navLinks = document.getElementById("nav-links");
-
-  hamburger?.addEventListener("click", () => {
-    navLinks?.classList.toggle("active");
-    hamburger.classList.toggle("active");
+<script data-astro-rerun>
+  document.getElementById("hamburger").addEventListener("click", () => {
+    document.getElementById("nav-links").classList.toggle("active");
+    document.getElementById("hamburger").classList.toggle("active");
+    document.body.classList.toggle("no-scroll");
   });
 </script>
