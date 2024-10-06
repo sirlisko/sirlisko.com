@@ -1,82 +1,199 @@
 ---
-import type { Me } from "../types";
+import me from "../../data/me";
 
 interface Props {
-  links: Me["links"];
+  inverted?: boolean;
+  page?: "projects" | "resume";
 }
 
-const { links } = Astro.props;
+const links = Astro.props.page
+  ? [
+      { name: "home", url: "/", label: "home" },
+      ...me.links.filter(({ name }) => name !== Astro.props.page),
+    ]
+  : me.links;
+
+const { inverted } = Astro.props;
 ---
 
-<ul class="links">
-  {
-    links.map((link) => (
-      <li class={link.name}>
-        <a href={link.url} title={link.name}>
-          <span class="caption">{link.label}</span>
-        </a>
-      </li>
-    ))
-  }
-</ul>
+<nav class={inverted ? "nav inverted" : "nav"}>
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu"></button>
+  <ul class="links" id="nav-links">
+    {
+      links.map((link) => (
+        <li class={link.name}>
+          <a href={link.url}>
+            <span class="caption">{link.label}</span>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>
 
 <style>
+  .nav {
+    position: fixed;
+    right: 0;
+    top: 0;
+    left: 0;
+    text-align: center;
+    padding: 1rem;
+    z-index: 10;
+  }
+  .hamburger {
+    display: block;
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 20;
+    background: none;
+    border: none;
+    cursor: pointer;
+    background-image: url(/images/links/menu.png);
+    height: 3rem;
+    width: 3rem;
+    background-size: cover;
+  }
+  .inverted .hamburger {
+    filter: invert(1);
+  }
+  .hamburger.active {
+    background-image: url(/images/links/x.png);
+  }
+
   .links {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
     margin: 0;
     padding: 0;
+    list-style: none;
+    background-color: #2eaed5;
+    background-image: radial-gradient(circle, #6bd3e4, #2eaed5);
+  }
 
-    & li {
-      display: inline-block;
-      margin-right: 0.5rem;
-      margin-bottom: 0.5rem;
-      @media (min-width: 650px) {
-        margin-right: 1rem;
-      }
-      &:hover .caption {
-        @media (min-width: 650px) {
-          display: block;
-        }
-      }
-      &:last-child {
-        margin-right: 0;
-      }
-    }
-    & a {
-      display: block;
-      height: 32px;
-      width: 32px;
-      background-size: contain;
-    }
+  .links.active {
+    transform: translateX(0);
+  }
+  .inverted .links {
+    background-color: #000024;
+    background-image: radial-gradient(circle, #0300ae, #000024);
+  }
+
+  .links li {
+    margin: 1rem 0;
+  }
+
+  .links a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #000;
+  }
+  .inverted .links a {
+    color: #fff;
+  }
+
+  .links a::before {
+    content: "";
+    display: block;
+    height: 32px;
+    width: 32px;
+    background-size: contain;
+    margin-bottom: 0.5rem;
+  }
+  .inverted .links a::before {
+    filter: invert(1);
   }
 
   .caption {
-    color: #000;
-    display: none;
-    left: 50%;
-    position: absolute;
-    top: 50px;
-    transform: translateX(-50%);
-    width: 100%;
-    top: 4rem;
-    text-align: center;
+    display: block;
   }
 
-  .blog a {
+  .home a::before {
+    background-image: url(/images/links/house.png);
+  }
+  .blog a::before {
     background-image: url(/images/links/blog.png);
   }
-  .resume a {
+  .resume a::before {
     background-image: url(/images/links/resume.png);
   }
-  .projects a {
+  .projects a::before {
     background-image: url(/images/links/rocket.png);
   }
-  .github a {
+  .github a::before {
     background-image: url(/images/links/github.png);
   }
-  .linkedIn a {
+  .linkedIn a::before {
     background-image: url(/images/links/linkedin.png);
   }
-  .mail a {
+  .mail a::before {
     background-image: url(/images/links/mail.png);
   }
+
+  @media (min-width: 651px) {
+    .nav {
+      left: auto;
+      text-align: right;
+    }
+
+    .hamburger {
+      display: none;
+    }
+
+    .inverted .links,
+    .links {
+      position: static;
+      transform: none;
+      background-color: transparent;
+      flex-direction: row;
+      background: none;
+      background-image: none;
+    }
+
+    .links li {
+      display: inline-block;
+      margin: 0;
+      margin-right: 0.75rem;
+      padding: 0;
+    }
+
+    .links li:last-child {
+      margin-right: 0;
+    }
+
+    .caption {
+      display: none;
+    }
+
+    .links li:hover .caption {
+      display: block;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 4rem;
+      text-align: center;
+    }
+  }
 </style>
+
+<script>
+  const hamburger = document.getElementById("hamburger");
+  const navLinks = document.getElementById("nav-links");
+
+  hamburger?.addEventListener("click", () => {
+    navLinks?.classList.toggle("active");
+    hamburger.classList.toggle("active");
+  });
+</script>
