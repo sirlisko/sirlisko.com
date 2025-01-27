@@ -33,7 +33,7 @@ const resume: Resume = {
   experiences: [
     {
       where: "YLD",
-      when: "05.21 - now",
+      when: "05.21 - 10.24",
       blurp: [
         "Developing a NextJS application, orchestrating and maintaining a RESTful service for seamless data integration from various sources.",
         "Standardised and modernised codebase, enhancing accessibility, and fortified the test stack.",
@@ -98,18 +98,10 @@ const resume: Resume = {
   ],
   projects: [
     {
-      name: "Been",
-      url: "https://been.netlify.app/",
-      blurp: [
-        "Web companion to track visited countries, a React app powered by Firebase with Styled-Components and a handcrafted World Map SVG.",
-        "The project is still Work in Progress :)",
-      ],
-    },
-    {
       name: "GigPlaylist",
       url: "https://gigplaylist.sirlisko.com/",
       blurp: [
-        "Webapp displaying an artist's most played songs in recent gigs. Next.js app with Setlist.fm, Spotify, and Songkick APIs, creating Spotify playlists.",
+        "Next.js app that proxies several APIs (Spotify, MusicBrainz, Songkick, etc.), combines their data to predict the most probable songs for a given artist's gig, and creates a Spotify playlist for you using Spotify Auth.",
       ],
     },
   ],
