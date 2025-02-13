@@ -24,6 +24,8 @@ jobs:
         env:
           CI: true
       - name: Run Lint
-        run: pnpm run lint
+        run: pnpm lint
       - name: Run Typecheck
-        run: pnpm run type-check
+        run: pnpm type-check
+      - name: Run Unit Tests
+        run: pnpm test
