@@ -8,7 +8,9 @@ import styles from "./Ghost.module.scss";
 const GHOST_WIDTH = 64;
 
 const getLives = (life: number) =>
-  [...Array(life)].map((_, i) => <span className={styles.heart} key={i} />);
+  [...Array(life)].map((_, i) => (
+    <span className={styles.heart} key={i} data-testid="heart" />
+  ));
 
 const Ghost = () => {
   const [life, setLife] = useState(3);

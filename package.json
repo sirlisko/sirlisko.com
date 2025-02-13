@@ -26,6 +26,7 @@
     "astro": "astro",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,scss,css,md}\"",
     "lint": "eslint src --ext=ts,tsx",
+    "test": "vitest",
     "type-check": "tsc"
   },
   "dependencies": {
@@ -43,18 +44,23 @@
     "sass": "^1.79.4"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.2.0",
     "@types/lodash.debounce": "^4.0.9",
     "@types/react": "^18.3.10",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.21.0",
+    "@vitejs/plugin-react": "^4.3.4",
     "eslint": "^8.57.1",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-astro": "^0.29.1",
     "eslint-plugin-jsx-a11y": "^6.10.0",
     "eslint-plugin-prettier": "^5.2.1",
     "eslint-plugin-react": "^7.37.1",
-    "prettier": "^3.3.3",
-    "typescript": "^5.6.2"
+    "jsdom": "^26.0.0",
+    "prettier": "^3.5.1",
+    "typescript": "^5.7.3",
+    "vitest": "^3.0.5"
   },
   "engines": {
     "node": ">=20"
