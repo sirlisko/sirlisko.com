@@ -35,14 +35,14 @@ const Greeting = ({ descriptions }: GreetingProps) => {
     } else if (isDeleting && currentDescription.length === 0) {
       setIsDeleting(false);
       const nextIndex = Math.floor(Math.random() * descriptions.length);
-      setSelectedDescription(descriptions[nextIndex]!);
+      setSelectedDescription(descriptions[nextIndex] as string);
     }
 
     return () => clearTimeout(typingInterval);
   }, [currentDescription, isDeleting, selectedDescription, descriptions]);
 
   useEffect(() => {
-    setSelectedDescription(descriptions[0]!);
+    setSelectedDescription(descriptions[0] as string);
   }, [descriptions]);
 
   return currentDescription;

@@ -3,9 +3,7 @@ import type { FC } from "react";
 interface BaseProject {
   title: string;
   description: string[];
-  links: {
-    [type: string]: string;
-  };
+  links: Record<string, string>;
   tech: string[];
   isDeprecated?: boolean;
 }
