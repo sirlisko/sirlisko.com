@@ -19,14 +19,14 @@ export const projects: Project[] = [
     logo: "/images/projects/ticket.png",
     links: {
       Website: "https://gigplaylist.sirlisko.com",
-      Github: "https://github.com/sirLisko/gigplaylist",
+      Github: "https://github.com/sirlisko/gigplaylist",
     },
     tech: [
       "Next.js",
       "3rd party APIs",
       "Spotify Auth",
       "Github Actions",
-      "Tailwing",
+      "Tailwind",
       "Vercel CI/CD",
     ],
   },
@@ -52,7 +52,7 @@ export const projects: Project[] = [
     icon: Plane,
     links: {
       Website: "https://been.netlify.app/",
-      Github: "https://github.com/sirLisko/been",
+      Github: "https://github.com/sirlisko/been",
     },
     tech: ["React", "Firebase", "Firestore", "3rd parties Auth", "Netlify"],
   },
@@ -65,7 +65,7 @@ export const projects: Project[] = [
     icon: Earth,
     links: {
       "NPM Module": "https://npmjs.com/package/world-map-country-shapes",
-      Github: "https://github.com/sirLisko/world-map-country-shapes",
+      Github: "https://github.com/sirlisko/world-map-country-shapes",
     },
     tech: ["NPM Module", "SVG"],
   },
@@ -79,7 +79,7 @@ export const projects: Project[] = [
     links: {
       "NPM Module":
         "https://npmjs.com/package/redux-persist-transform-expire-in",
-      Github: "https://github.com/sirLisko/redux-persist-transform-expire-in",
+      Github: "https://github.com/sirlisko/redux-persist-transform-expire-in",
       Demo: "https://codesandbox.io/s/redux-persist-transform-expire-in-lmj74q",
     },
     tech: ["NPM Module", "Redux", "React"],
@@ -90,7 +90,7 @@ export const projects: Project[] = [
     icon: MapPinHouse,
     links: {
       "NPM Module": "https://npmjs.com/package/uk-postcode-validator",
-      Github: "https://github.com/sirLisko/uk-postcode-validator",
+      Github: "https://github.com/sirlisko/uk-postcode-validator",
     },
     tech: ["NPM Module", "Regex"],
   },
@@ -102,10 +102,10 @@ export const projects: Project[] = [
     logo: "/images/projects/martellone.png",
     links: {
       "Amazon UK store":
-        "https://www.amazon.co.uk/sirLisko-Martellone-Boris/dp/B08C7SHW3T/",
+        "https://www.amazon.co.uk/sirlisko-Martellone-Boris/dp/B08C7SHW3T/",
       "Amazon IT store":
-        "https://www.amazon.it/sirLisko-Martellone-Boris/dp/B08C7SHW3T/",
-      Github: "https://github.com/sirLisko/martellone-alexa-skill",
+        "https://www.amazon.it/sirlisko-Martellone-Boris/dp/B08C7SHW3T/",
+      Github: "https://github.com/sirlisko/martellone-alexa-skill",
     },
     tech: ["Alexa skill", "AWS", "Lambda", "Serverless"],
   },
@@ -117,7 +117,7 @@ export const projects: Project[] = [
     logo: "/images/projects/pizza.png",
     links: {
       Website: "https://pizzaclub.sirlisko.com/",
-      Github: "https://github.com/sirLisko/pizzaclub",
+      Github: "https://github.com/sirlisko/pizzaclub",
     },
     tech: ["Gatsby", "React", "GitHub Pages"],
   },
@@ -130,7 +130,7 @@ export const projects: Project[] = [
     icon: CalendarHeart,
     links: {
       Website: "https://gifday.netlify.com/",
-      Github: "https://github.com/sirLisko/gifday",
+      Github: "https://github.com/sirlisko/gifday",
     },
     tech: [
       "React",
@@ -148,7 +148,7 @@ export const projects: Project[] = [
     icon: ClockAlert,
     links: {
       Website: "https://countdown.sirlisko.com/",
-      Github: "https://github.com/sirLisko/countdown",
+      Github: "https://github.com/sirlisko/countdown",
     },
     tech: ["React", "Tailwind", "Typescript", "Netlify", "Vite"],
   },
@@ -165,7 +165,7 @@ export const pastProjects: Project[] = [
     logo: "/images/projects/shazamify.png",
     links: {
       Blog: "https://sirlisko.com/blog/shazamify",
-      Github: "https://github.com/sirLisko/shazamify",
+      Github: "https://github.com/sirlisko/shazamify",
     },
     tech: ["Chrome Extension", "Spotify OAuth", "Spotify API"],
     isDeprecated: true,
@@ -193,7 +193,7 @@ export const pastProjects: Project[] = [
       Chrome_extension:
         "https://chrome.google.com/webstore/detail/gulp-blacklist-marker/kifhpjdagaiganbdabkpepncopmbfbal",
       Blog: "https://sirlisko.com/blog/gulp-blacklist-marker/",
-      Github: "https://github.com/sirLisko/gulp-blacklist-marker",
+      Github: "https://github.com/sirlisko/gulp-blacklist-marker",
     },
     tech: ["Chrome Extension", "Gulp", "NPM"],
   },
@@ -205,7 +205,7 @@ export const pastProjects: Project[] = [
     logo: "/images/projects/sproxify.png",
     links: {
       Blog: "https://sirlisko.com/blog/sproxify/",
-      Github: "https://github.com/sirLisko/sproxify",
+      Github: "https://github.com/sirlisko/sproxify",
     },
     tech: ["Chrome Extension", "User Script"],
     isDeprecated: true,
@@ -215,10 +215,10 @@ export const pastProjects: Project[] = [
     description: [
       "POMOfy introduces the productivity of the Pomodoro Technique in Spotify. Basically a Spotify app that allows you to use songs as timer for the Pomodoro.",
     ],
-    logo: "https://raw.githubusercontent.com/sirLisko/apps-pomofy/master/img/pomodoro.png",
+    logo: "https://raw.githubusercontent.com/sirlisko/apps-pomofy/master/img/pomodoro.png",
     links: {
       Screenshot: "/images/projects/pomofy.png",
-      Github: "https://github.com/sirLisko/apps-pomofy",
+      Github: "https://github.com/sirlisko/apps-pomofy",
     },
     tech: ["Spotify App"],
     isDeprecated: true,
@@ -230,7 +230,7 @@ export const pastProjects: Project[] = [
     ],
     logo: "/images/projects/dlogo.jpg",
     links: {
-      Github: "https://github.com/sirLisko/deliverance",
+      Github: "https://github.com/sirlisko/deliverance",
     },
     tech: ["Node", "Angular JS", "Web Scraping", "Bootstrap", "Heroku"],
     isDeprecated: true,
