@@ -4,9 +4,9 @@ import { ClientRouter } from "astro:transitions";
 
 const data = {
   title: `sirlisko... Luca Lischetti`,
-  description: `Explore Luca Lischetti's personal website, also known as sirlisko. Join a full-time dreamer and part-time sleeper as he combines creativity and web expertise. Dive into 8-bit nostalgia, design, and everyday adventures. Discover a space where art, tech, and imagination collide.`,
+  description: `Ciao! I am Luca, another fellow <developer />, sleep-deprived enthusiast, passionate about 8-bit nostalgia and occasional Sunday superhero. Trying hard to tansform ideas into interactive experiences, one pixel at a time.`,
   author: `Luca Lischetti`,
-  image: `https://sirlisko.com/images/lisko.png`,
+  image: `https://sirlisko.com/images/me_banner.jpg`,
   siteUrl: `https://sirlisko.com`,
 };
 
@@ -37,6 +37,7 @@ const formattedTitle = title ? `${title} | ${data.title}` : data.title;
     <meta name="twitter:creator" content={data.author} />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={metaDescription} />
+    <meta name="twitter:image" content={image || data.image} />
     {
       keywords && keywords.length > 0 ? (
         <meta name="keywords" content={keywords.join(`, `)} />
