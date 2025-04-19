@@ -27,7 +27,7 @@
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,scss,css,md}\"",
     "lint": "eslint src",
     "test": "vitest",
-    "type-check": "tsc"
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@astrojs/react": "^4.2.4",
