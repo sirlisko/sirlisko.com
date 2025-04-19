@@ -39,7 +39,7 @@ const me: Me = {
     },
     {
       name: "github",
-      url: "https://github.com/sirLisko",
+      url: "https://github.com/sirlisko",
       label: "github",
     },
     {
