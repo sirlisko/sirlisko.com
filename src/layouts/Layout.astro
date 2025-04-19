@@ -1,6 +1,6 @@
 ---
 import "@fontsource/press-start-2p";
-import { ViewTransitions } from "astro:transitions";
+import { ClientRouter } from "astro:transitions";
 
 const data = {
   title: `sirlisko... Luca Lischetti`,
@@ -31,7 +31,7 @@ const formattedTitle = title ? `${title} | ${data.title}` : data.title;
     <meta name="description" content={metaDescription} />
     <meta property="og:title" content={title} />
     <meta property="og:image" content={image || data.image} />
-    <meta property="og:description" content="metaDescription" />
+    <meta property="og:description" content={metaDescription} />
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:creator" content={data.author} />
@@ -47,7 +47,7 @@ const formattedTitle = title ? `${title} | ${data.title}` : data.title;
       rel="author"
       href="https://sirlisko.com/humans.txt"
     />
-    <ViewTransitions />
+    <ClientRouter />
   </head>
   <body>
     <slot />
