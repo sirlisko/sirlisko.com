@@ -3,16 +3,16 @@ import "@fontsource/press-start-2p";
 import { ClientRouter } from "astro:transitions";
 
 const data = {
-  title: `sirlisko... Luca Lischetti`,
-  description: `Ciao! I am Luca, another fellow <developer />, sleep-deprived enthusiast, passionate about 8-bit nostalgia and occasional Sunday superhero. Trying hard to tansform ideas into interactive experiences, one pixel at a time.`,
-  author: `Luca Lischetti`,
-  image: `https://sirlisko.com/images/me_banner.jpg`,
-  siteUrl: `https://sirlisko.com`,
+	title: `sirlisko... Luca Lischetti`,
+	description: `Ciao! I am Luca, another fellow <developer />, sleep-deprived enthusiast, passionate about 8-bit nostalgia and occasional Sunday superhero. Trying hard to tansform ideas into interactive experiences, one pixel at a time.`,
+	author: `Luca Lischetti`,
+	image: `https://sirlisko.com/images/me_banner.jpg`,
+	siteUrl: `https://sirlisko.com`,
 };
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site)
-  .toString()
-  .replace(/\/+$/, "");
+	.toString()
+	.replace(/\/+$/, "");
 
 const { title, description, image, keywords } = Astro.props;
 

@@ -4,7 +4,7 @@ import react from "@astrojs/react";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://sirlisko.com",
-  integrations: [react()],
-  trailingSlash: "never",
+	site: "https://sirlisko.com",
+	integrations: [react()],
+	trailingSlash: "never",
 });

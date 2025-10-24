@@ -1,21 +1,20 @@
 {
-    "name": "sirlisko - Luca Lischetti's personal website",
-    "short_name": "sirlisko's",
-    "start_url": "/",
-    "display": "browser",
-    "theme_color": "#2eaed5",
-    "background_color": "#FFFFFF",
-    "icons": [
-        {
-            "src": "images/icons/icon-144x144.png",
-            "sizes": "144x144",
-            "type": "image/png"
-        },
-        {
-            "src": "images/icons/icon-192x192.png",
-            "sizes": "192x192",
-            "type": "image/png"
-        }
-
-    ]
+	"name": "sirlisko - Luca Lischetti's personal website",
+	"short_name": "sirlisko's",
+	"start_url": "/",
+	"display": "browser",
+	"theme_color": "#2eaed5",
+	"background_color": "#FFFFFF",
+	"icons": [
+		{
+			"src": "images/icons/icon-144x144.png",
+			"sizes": "144x144",
+			"type": "image/png"
+		},
+		{
+			"src": "images/icons/icon-192x192.png",
+			"sizes": "192x192",
+			"type": "image/png"
+		}
+	]
 }
