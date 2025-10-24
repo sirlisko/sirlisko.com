@@ -36,7 +36,7 @@ const resume: Resume = {
 			where: "Red Badger",
 			when: "02.25 - Now",
 			blurp: [
-				"Developed a complete React Native application using Expo.",
+				"Developed a complete React Native app using Expo.",
 				"Focused on enhancing accessibility (WCAG 2.1 AA), improved the dev experience and fortified the test stack.",
 				"Integrated the app with various systems using GraphQL and Auth0.",
 			],
