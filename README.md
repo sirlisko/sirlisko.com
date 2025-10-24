@@ -48,10 +48,10 @@ In addition to the build, this command is also **watching the file system** look
 
 ## Linting, Formatting, Typechecking and Testing
 
-This project uses **ESLint**, **Prettier**, and **Vitest** to ensure code quality, consistency, and correctness. The following commands are available:
+This project uses **Biome** and **Vitest** to ensure code quality, consistency, and correctness. The following commands are available:
 
-- `pnpm lint`: Run ESLint to check for issues.
-- `pnpm format`: Format all files using Prettier.
+- `pnpm lint`: Run Biome to check for issues.
+- `pnpm format`: Format all files using Biome.
 - `pnpm type-check`: Run Typescript type check.
 - `pnpm test`: Run unit tests using Vitest.
 
@@ -59,8 +59,8 @@ This project uses **ESLint**, **Prettier**, and **Vitest** to ensure code qualit
 
 A GitHub Actions workflow runs on every push and pull request to ensure that:
 
-- The code passes ESLint checks.
-- The code is formatted according to Prettier rules.
+- The code passes Biome checks.
+- The code is formatted according to Biome rules.
 - The code passes types checks.
 - The code passes the unit tests.
 
@@ -69,8 +69,8 @@ A GitHub Actions workflow runs on every push and pull request to ensure that:
 - **Runtime**: Node.js (v. 20) for running the simulation and CLI.
 - **Language**: TypeScript for type safety and better developer experience.
 - **Framework**: Astro.js for building the pages
-- **Linting and Formatting**: ESLint and Prettier for consistent code quality and style.
-- **Testing**: Unit tests with Vitest and integration tests for the CLI.
+- **Linting and Formatting**: Biome for consistent code quality and style.
+- **Testing**: Unit tests with Vitest.
 - **UI Library**: some of the UI iteractions are powered by React.
 - **CI/CD**: GitHub Actions for automating linting, formatting, and testing.
 

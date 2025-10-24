@@ -2,16 +2,16 @@
 import me from "../../data/me";
 
 interface Props {
-  inverted?: boolean;
-  page?: "projects" | "resume";
+	inverted?: boolean;
+	page?: "projects" | "resume";
 }
 
 const links = Astro.props.page
-  ? [
-      { name: "home", url: "/", label: "home" },
-      ...me.links.filter(({ name }) => name !== Astro.props.page),
-    ]
-  : me.links;
+	? [
+			{ name: "home", url: "/", label: "home" },
+			...me.links.filter(({ name }) => name !== Astro.props.page),
+		]
+	: me.links;
 
 const { inverted } = Astro.props;
 ---
