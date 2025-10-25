@@ -66,7 +66,7 @@ A GitHub Actions workflow runs on every push and pull request to ensure that:
 
 ## The stack
 
-- **Runtime**: Node.js (v. 20) for running the simulation and CLI.
+- **Runtime**: Node.js (v. 22) for building the website.
 - **Language**: TypeScript for type safety and better developer experience.
 - **Framework**: Astro.js for building the pages
 - **Linting and Formatting**: Biome for consistent code quality and style.
