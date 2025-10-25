@@ -6,7 +6,9 @@ const resume: Resume = {
 			"Javascript",
 			"Typescript",
 			"React",
+			"React Native",
 			"Node",
+			"Expo",
 			"NextJS",
 			"Markup/CSS",
 			"Full Stack Architecture",
@@ -21,7 +23,6 @@ const resume: Resume = {
 			"GraphQL",
 			"Styled-Components",
 			"Webpack",
-			"Gatsby",
 			"Astro",
 			"JAM stack",
 			"Chrome Extensions",
@@ -32,12 +33,21 @@ const resume: Resume = {
 	},
 	experiences: [
 		{
+			where: "Red Badger",
+			when: "02.25 - Now",
+			blurp: [
+				"Developed a complete React Native app using Expo.",
+				"Focused on enhancing accessibility (WCAG 2.1 AA), improved the dev experience and fortified the test stack.",
+				"Integrated the app with various systems using GraphQL and Auth0.",
+			],
+		},
+		{
 			where: "YLD",
 			when: "05.21 - 10.24",
 			blurp: [
-				"Developing a NextJS application, orchestrating and maintaining a RESTful service for seamless data integration from various sources.",
-				"Standardised and modernised codebase, enhancing accessibility, and fortified the test stack.",
-				"Building pipelines with GitHub Actions and deploying to Azure for seamless CI/CD.",
+				"Developed a NextJS application, orchestrated and maintained a RESTful service for seamless data integration from various sources.",
+				"Standardised and modernised codebase, enhanced accessibility, and fortified the test stack.",
+				"Built pipelines with GitHub Actions and deployed to Azure for seamless CI/CD.",
 			],
 		},
 		{
@@ -80,19 +90,9 @@ const resume: Resume = {
 			],
 		},
 		{
-			role: "Senior Frontend Engineer",
-			where: "Verve",
-			when: "05.17 - 07.18",
-			blurp: [
-				"Enhanced check-out experience with React/Redux, Relay, GraphQL, and integrated 3rd party payment methods (Stripe and Braintree).",
-				"Contributed to the internal component library and improved testing strategies.",
-				"Worked with the design team to improve the UI/UX.",
-			],
-		},
-		{
 			where: "Previous experiences:",
 			blurp: [
-				"Shazam (~5 years), YOOX Net-a-Porter (>1 year), Pobble (>1 year). Full details on LinkedIn.",
+				"Shazam (~5 years), YOOX Net-a-Porter (1+ years), Pobble (1+ years), Verve (1+ years). Full details on LinkedIn.",
 			],
 		},
 	],
