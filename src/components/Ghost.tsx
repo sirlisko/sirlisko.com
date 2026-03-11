@@ -17,16 +17,16 @@ const Ghost = () => {
 	const [mousePosition, setMousePosition] = useState({ x: -100, y: -100 });
 	const ghost = useRef<HTMLElement | null>(null);
 
-	const handleMouseOver = () => setLife(life - 1);
+	const handleMouseOver = () => setLife((l) => l - 1);
 	useEffect(() => {
 		if (window.ontouchstart) {
 			return;
 		}
 		const ghostMove = (e: MouseEvent) => setMousePosition({ x: e.x, y: e.y });
 
-		const handleMouseMove = () => debounce(ghostMove, 100);
-		document.addEventListener("mousemove", handleMouseMove());
-		return () => document.removeEventListener("mousemove", handleMouseMove());
+		const handleMouseMove = debounce(ghostMove, 100);
+		document.addEventListener("mousemove", handleMouseMove);
+		return () => document.removeEventListener("mousemove", handleMouseMove);
 	}, []);
 
 	const { x, y } = mousePosition;
@@ -37,12 +37,13 @@ const Ghost = () => {
 	return (
 		<>
 			{!(life === 0) ? (
-				<section className={styles.life}>{getLives(life)}</section>
+				<section className={styles.life} aria-hidden="true">{getLives(life)}</section>
 			) : (
-				<p className={styles.lifeLabel}>-Game Over-</p>
+				<p className={styles.lifeLabel} aria-hidden="true">-Game Over-</p>
 			)}
 			<figure
 				ref={ghost}
+				aria-hidden="true"
 				className={classNames(
 					styles.ghost,
 					isGhostFlipped && styles.ghostFlipped,

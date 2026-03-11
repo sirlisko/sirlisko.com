@@ -1,5 +1,6 @@
 .ghost {
-  background: transparent url(/images/ghost.png);
+  background: transparent url(/images/ghost.webp);
+  background-size: contain;
   top: -125px;
   height: 125px;
   left: -125px;
@@ -40,7 +41,8 @@
   white-space: nowrap;
 }
 .heart {
-  background: url(/images/heart.png);
+  background: url(/images/heart.webp);
+  background-size: contain;
   display: inline-block;
   height: 45px;
   margin-right: 0.5rem;
