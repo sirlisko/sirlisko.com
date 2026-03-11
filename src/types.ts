@@ -32,9 +32,8 @@ export interface Me {
 
 interface Experience {
 	where: string;
-	blurp: string[];
+	blurb: string[];
 	when?: string;
-	role?: string;
 }
 
 interface Skills {
@@ -45,7 +44,7 @@ interface Skills {
 interface ProjectShort {
 	name: string;
 	url: string;
-	blurp: string[];
+	blurb: string[];
 }
 
 export interface Resume {
