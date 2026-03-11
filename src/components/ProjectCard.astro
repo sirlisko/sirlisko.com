@@ -20,7 +20,7 @@ const { title, description, links, tech, isDeprecated } = props;
 }
 <div class="project__details">
   <p class="project__details__links">
-    {Object.keys(links).map((link) => <a href={links[link]}>{link}</a>)}
+    {Object.keys(links).map((link) => <a href={links[link]} target="_blank" rel="noopener noreferrer">{link}</a>)}
   </p>
   <ul class="project__details__tech">
     {tech.map((t) => <li>{t}</li>)}

@@ -18,7 +18,7 @@ describe("Ghost Component", () => {
 		const hearts = screen.getAllByTestId("heart");
 		expect(hearts).toHaveLength(3);
 
-		const ghost = screen.getByRole("figure");
+		const ghost = screen.getByRole("figure", { hidden: true });
 		expect(ghost).toHaveStyle({
 			left: "-164px",
 			top: "-164px",
@@ -28,7 +28,7 @@ describe("Ghost Component", () => {
 	test("reduces life on mouseover", () => {
 		render(<Ghost />);
 
-		const ghost = screen.getByRole("figure");
+		const ghost = screen.getByRole("figure", { hidden: true });
 		fireEvent.mouseOver(ghost);
 
 		const hearts = screen.getAllByTestId("heart");
@@ -38,7 +38,7 @@ describe("Ghost Component", () => {
 	test("displays game over when life reaches 0", () => {
 		render(<Ghost />);
 
-		const ghost = screen.getByRole("figure");
+		const ghost = screen.getByRole("figure", { hidden: true });
 		fireEvent.mouseOver(ghost);
 		fireEvent.mouseOver(ghost);
 		fireEvent.mouseOver(ghost);
@@ -54,7 +54,7 @@ describe("Ghost Component", () => {
 			vi.advanceTimersByTime(100);
 		});
 
-		const ghost = screen.getByRole("figure");
+		const ghost = screen.getByRole("figure", { hidden: true });
 		expect(ghost).toHaveStyle({
 			left: "36px", // 100 - 64 (GHOST_WIDTH)
 			top: "136px", // 200 - 64 (GHOST_WIDTH)
@@ -69,7 +69,7 @@ describe("Ghost Component", () => {
 			vi.advanceTimersByTime(100);
 		});
 
-		const ghost = screen.getByRole("figure");
+		const ghost = screen.getByRole("figure", { hidden: true });
 		expect(ghost).toHaveClass(styles.ghostFlipped as string);
 
 		act(() => {
@@ -93,7 +93,7 @@ describe("Ghost Component", () => {
 			vi.advanceTimersByTime(100);
 		});
 
-		const ghost = screen.getByRole("figure");
+		const ghost = screen.getByRole("figure", { hidden: true });
 		expect(ghost).toHaveStyle({
 			left: "-164px",
 			top: "-164px",

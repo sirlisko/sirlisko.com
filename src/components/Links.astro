@@ -17,14 +17,14 @@ const { inverted } = Astro.props;
 ---
 
 <nav class={inverted ? "nav inverted" : "nav"}>
-  <button class="hamburger" id="hamburger" aria-label="Toggle menu"></button>
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false"></button>
   <ul class="links" id="nav-links">
     {
       links.map((link) => (
         <li class={link.name}>
           <a
             href={link.url}
-            {...(link.external ? { target: "_blank", rel: "noopener" } : {})}
+            {...(link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
           >
             <span class="caption">{link.label}</span>
           </a>
@@ -198,9 +198,22 @@ const { inverted } = Astro.props;
 </style>
 
 <script data-astro-rerun>
-  document.getElementById("hamburger").addEventListener("click", () => {
-    document.getElementById("nav-links").classList.toggle("active");
-    document.getElementById("hamburger").classList.toggle("active");
+  const hamburger = document.getElementById("hamburger");
+  const navLinks = document.getElementById("nav-links");
+
+  hamburger.addEventListener("click", () => {
+    const isOpen = navLinks.classList.toggle("active");
+    hamburger.classList.toggle("active");
+    hamburger.setAttribute("aria-expanded", isOpen.toString());
     document.body.classList.toggle("no-scroll");
+  });
+
+  navLinks.querySelectorAll("a").forEach((a) => {
+    a.addEventListener("click", () => {
+      navLinks.classList.remove("active");
+      hamburger.classList.remove("active");
+      hamburger.setAttribute("aria-expanded", "false");
+      document.body.classList.remove("no-scroll");
+    });
   });
 </script>
