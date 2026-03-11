@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css?family=Press+Start+2P");
-
 :root {
   --side: 18em;
 }
@@ -7,13 +5,6 @@
 @page {
   margin: 0;
   padding: 0;
-}
-
-.resume {
-  & h2 {
-    font-size: 2em;
-    margin: 0.67em 0;
-  }
 }
 
 .resume {
@@ -34,6 +25,8 @@
   }
 
   & h2 {
+    font-size: 2em;
+    margin: 0.67em 0;
     color: #c200c0;
   }
   & h3 {
@@ -56,9 +49,6 @@
         display: block;
         margin-top: 0.25rem;
       }
-      @media (min-width: 650px) {
-        font-size: 0.5rem;
-      }
     }
   }
 
@@ -78,7 +68,7 @@
   }
   & .me__face {
     margin: 0 2em;
-    width: calc(var(--side));
+    width: var(--side);
     & img {
       display: block;
       margin: 0 auto;
@@ -127,7 +117,7 @@
   }
 
   .resume .experiences {
-    margin-left: calc(var(--side) + 5);
+    margin-left: calc(var(--side) + 5em);
   }
 }
 @media screen and (min-width: 650px) {
