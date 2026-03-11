@@ -2,6 +2,9 @@
 command = "astro build"
 publish = "dist"
 
+[build.environment]
+  NODE_VERSION = "24"
+
 [[redirects]]
 from = "/blog/*"
 to = "https://sirlisko-blog.netlify.app/:splat"

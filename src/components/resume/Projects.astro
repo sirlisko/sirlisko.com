@@ -15,7 +15,7 @@ const { projects } = Astro.props;
         <h3>
           <a href={prj.url}>{prj.name}</a>
         </h3>
-        {prj.blurp.map((blr) => (
+        {prj.blurb.map((blr) => (
           <p>{blr}</p>
         ))}
       </div>
@@ -23,6 +23,6 @@ const { projects } = Astro.props;
   }
   <div>
     To see a full list of my side projects go to{" "}
-    <a href="/projects">https://sirlisko.com/projects</a>.
+    <a href="/projects">sirlisko.com/projects</a>.
   </div>
 </section>

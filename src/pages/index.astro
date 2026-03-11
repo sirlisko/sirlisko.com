@@ -26,12 +26,12 @@ import Layout from "../layouts/Layout.astro";
             <br />
             I&#39;m sirlisko,
 
-            <p>another f@$#&amp;n&#39;</p>
-            <p class="desc">
+            <span>another f@$#&amp;n&#39;</span>
+            <span class="desc">
               <span>
                 <Greeting descriptions={me.descriptions} client:load />
               </span>
-            </p>
+            </span>
           </h1>
         </div>
       </div>
@@ -74,10 +74,11 @@ import Layout from "../layouts/Layout.astro";
     align-items: center;
     text-align: left;
   }
-  .intro p,
+  .intro span,
   .intro h1 {
     font-size: min(2.5vw, 55px);
     margin: 0;
+    display: block;
   }
 
   .face {
