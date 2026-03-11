@@ -6,7 +6,7 @@ interface GreetingProps {
 
 const Greeting = ({ descriptions }: GreetingProps) => {
 	const [selectedDescription, setSelectedDescription] = useState("");
-	const [currentDescription, setCurrentDescription] = useState("developer");
+	const [currentDescription, setCurrentDescription] = useState(descriptions[0] ?? "");
 	const [isDeleting, setIsDeleting] = useState(false);
 	const typingSpeed = 200;
 	const deletingSpeed = 10;

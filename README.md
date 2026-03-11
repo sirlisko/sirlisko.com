@@ -25,7 +25,7 @@ npm install -g pnpm
 Then all you need to do is run in the main directory of the project the following command.
 
 ```bash
-pnpm install --production
+pnpm install
 ```
 
 This will install all the software needed in order to build and run the Website.
@@ -52,7 +52,7 @@ This project uses **Biome** and **Vitest** to ensure code quality, consistency, 
 
 - `pnpm lint`: Run Biome to check for issues.
 - `pnpm format`: Format all files using Biome.
-- `pnpm type-check`: Run Typescript type check.
+- `pnpm typecheck`: Run Typescript type check.
 - `pnpm test`: Run unit tests using Vitest.
 
 ### GitHub Actions
@@ -71,7 +71,7 @@ A GitHub Actions workflow runs on every push and pull request to ensure that:
 - **Framework**: Astro.js for building the pages
 - **Linting and Formatting**: Biome for consistent code quality and style.
 - **Testing**: Unit tests with Vitest.
-- **UI Library**: some of the UI iteractions are powered by React.
+- **UI Library**: some of the UI interactions are powered by React.
 - **CI/CD**: GitHub Actions for automating linting, formatting, and testing.
 
 ## Generate the resume in pdf format

@@ -6,7 +6,7 @@ const { title, description, links, tech, isDeprecated } = props;
 ---
 
 <div class="project__main">
-  <h3>{title}{isDeprecated && "- deprecated"}</h3>
+  <h3>{title}{isDeprecated && " - deprecated"}</h3>
   {description.map((desc) => <p>{desc}</p>)}
 </div>
 {
