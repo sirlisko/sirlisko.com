@@ -30,7 +30,7 @@ const resume: Resume = {
 	experiences: [
 		{
 			where: "Red Badger",
-			when: "02.25 - Now",
+			when: "02/25 - Now",
 			blurb: [
 				"Developed a complete React Native app using Expo.",
 				"Focused on enhancing accessibility (WCAG 2.1 AA), improved the developer experience and expanded the test stack.",
@@ -39,7 +39,7 @@ const resume: Resume = {
 		},
 		{
 			where: "YLD",
-			when: "05.21 - 10.24",
+			when: "05/21 - 10/24",
 			blurb: [
 				"Developed a Next.js application, orchestrated and maintained a RESTful service for seamless data integration from various sources.",
 				"Standardised and modernised codebase, enhanced accessibility, and strengthened test coverage.",
@@ -48,7 +48,7 @@ const resume: Resume = {
 		},
 		{
 			where: "Hackney Council",
-			when: "Multiple gigs (11.19 ~ 05.21)",
+			when: "Multiple gigs (11/19 ~ 05/21)",
 			blurb: [
 				"Developed new services utilizing React/Next.js, lambda functions deployed on AWS.",
 				"Contributed to internal Component Libraries, mentored junior developers, and shared knowledge.",
@@ -57,7 +57,7 @@ const resume: Resume = {
 		},
 		{
 			where: "uSwitch / RVU",
-			when: "01.20 - 03.20",
+			when: "01/20 - 03/20",
 			blurb: [
 				"Enhanced internal tools using React/Redux-Saga to manage complex async data flows and API integrations.",
 				"Contributed to the internal UI/component library, improving consistency across products.",
@@ -65,21 +65,21 @@ const resume: Resume = {
 		},
 		{
 			where: "Architecture Consultant",
-			when: "09.19 - 11.19",
+			when: "09/19 - 11/19",
 			blurb: [
 				"Initiated a Next.js (TypeScript) project with Apollo (FE/BE) and GraphQL Gateway, integrating REST APIs (internal and third-party) alongside WordPress data.",
 			],
 		},
 		{
 			where: "Kalo",
-			when: "04.19 - 06.19",
+			when: "04/19 - 06/19",
 			blurb: [
 				"Architected a monorepo and shared UI library, driving performance improvements and developer experience.",
 			],
 		},
 		{
 			where: "Reason",
-			when: "09.18 - 12.18",
+			when: "09/18 - 12/18",
 			blurb: [
 				"Built a new service from scratch for a client utilizing React/Redux and Node.js for API proxy.",
 			],

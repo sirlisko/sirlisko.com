@@ -20,7 +20,17 @@ export const projects: Project[] = [
 			Website: "https://gigplaylist.sirlisko.com",
 			Github: "https://github.com/sirlisko/gigplaylist",
 		},
-		tech: ["Next.js", "Spotify API", "Setlist.fm", "Tailwind", "Vercel"],
+		tech: [
+			"Next.js",
+			"TypeScript",
+			"Spotify API",
+			"Setlist.fm API",
+			"Musicbrainz API",
+			"Songkick API",
+			"OAuth",
+			"Tailwind",
+			"Vercel",
+		],
 	},
 	{
 		title: "ZoomMEME",
