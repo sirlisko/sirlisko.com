@@ -81,6 +81,15 @@ A GitHub Actions workflow runs on every push and pull request to ensure that:
 ## Generate the resume in pdf format
 
 ```bash
-pnpm start
-pnpx electron-pdf http://localhost:4321/resume resume.pdf
+pnpm generate:cv
+```
+
+This builds the site, spins up a preview server, and exports both resume variants to `public/cv/`:
+- `luca-lischetti-resume.pdf` — dark theme
+- `alt.pdf` — light/print-friendly theme
+
+PDFs are automatically compressed using Ghostscript if available. To install it:
+
+```bash
+brew install ghostscript
 ```
