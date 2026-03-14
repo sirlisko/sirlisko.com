@@ -2,17 +2,16 @@
 import "../styles/resume.scss";
 
 import resume from "../../data/resume";
-
-import Me from "../components/resume/Me.astro";
-import Skills from "../components/resume/Skills.astro";
-import Education from "../components/resume/Education.astro";
-import Extras from "../components/resume/Extras.astro";
-import Contacts from "../components/resume/Contacts.astro";
-import Projects from "../components/resume/Projects.astro";
-import Experiences from "../components/resume/Experiences.astro";
-import Interests from "../components/resume/Interests.astro";
-import Layout from "../layouts/Layout.astro";
 import Links from "../components/Links.astro";
+import Contacts from "../components/resume/Contacts.astro";
+import Education from "../components/resume/Education.astro";
+import Experiences from "../components/resume/Experiences.astro";
+import Extras from "../components/resume/Extras.astro";
+import Interests from "../components/resume/Interests.astro";
+import Me from "../components/resume/Me.astro";
+import Projects from "../components/resume/Projects.astro";
+import Skills from "../components/resume/Skills.astro";
+import Layout from "../layouts/Layout.astro";
 ---
 
 <script>
@@ -32,6 +31,7 @@ import Links from "../components/Links.astro";
     "resume",
     "cv",
   ]}
+  ogType="profile"
 >
   <Links inverted page="resume" />
   <div class="resume">
