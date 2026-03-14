@@ -37,9 +37,13 @@ const Ghost = () => {
 	return (
 		<>
 			{!(life === 0) ? (
-				<section className={styles.life} aria-hidden="true">{getLives(life)}</section>
+				<section className={styles.life} aria-hidden="true">
+					{getLives(life)}
+				</section>
 			) : (
-				<p className={styles.lifeLabel} aria-hidden="true">-Game Over-</p>
+				<p className={styles.lifeLabel} aria-hidden="true">
+					-Game Over-
+				</p>
 			)}
 			<figure
 				ref={ghost}
