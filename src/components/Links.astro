@@ -201,6 +201,8 @@ const { inverted } = Astro.props;
   const hamburger = document.getElementById("hamburger");
   const navLinks = document.getElementById("nav-links");
 
+  if (!hamburger || !navLinks) return;
+
   hamburger.addEventListener("click", () => {
     const isOpen = navLinks.classList.toggle("active");
     hamburger.classList.toggle("active");
