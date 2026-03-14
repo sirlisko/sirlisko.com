@@ -14,7 +14,7 @@ In order to have the Website up and running NodeJs is mandatory, it can be insta
 
 ## Install the dependencies
 
-> this project is using [`pnpm`](https://pnpm.io/) as package manager but it should work with `npm` as well
+> this project uses [`pnpm`](https://pnpm.io/) as package manager
 
 Once NodeJs is installed, its package manager NPM will be available, and you will be able to [install `pnpm`](https://pnpm.io/installation).
 
@@ -33,18 +33,22 @@ This will install all the software needed in order to build and run the Website.
 ## Build the Website
 
 ```bash
-pnpm run build
+pnpm build
 ```
 
 ## Work with the Website (Develop)
 
-The easier way to build the Website in Develop mode is with:
+Start the local dev server with hot module replacement at `http://localhost:4321`:
 
 ```bash
 pnpm start
 ```
 
-In addition to the build, this command is also **watching the file system** looking for files change. Once one of the resources changes the relative assets are immediately recompiled.
+To preview the production build locally:
+
+```bash
+pnpm preview
+```
 
 ## Linting, Formatting, Typechecking and Testing
 
