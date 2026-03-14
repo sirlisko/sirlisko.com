@@ -3,8 +3,7 @@
 }
 
 @page {
-  margin: 0;
-  padding: 0;
+  padding: 1cm 0;
 }
 
 .resume {
@@ -141,12 +140,29 @@
   .resume {
     padding: 0 35px 12px;
 
+    & section {
+      margin: 0.4rem 1rem;
+      break-inside: avoid;
+    }
+
+    & .experiences > div {
+      break-inside: avoid;
+    }
+
+    & h2 {
+      margin: 0.3em 0;
+    }
+
+    & .me {
+      margin-top: 8px;
+    }
+
     & h3 a {
       text-decoration: none;
     }
 
     & .ouat {
-      padding-top: 34px;
+      padding-top: 12px;
     }
   }
 }

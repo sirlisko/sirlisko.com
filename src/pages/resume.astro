@@ -16,7 +16,7 @@ import Layout from "../layouts/Layout.astro";
 
 <script>
   const urlSearchParams = new URLSearchParams(window.location.search);
-  if (urlSearchParams.get("alt")) {
+  if (urlSearchParams.has("alt")) {
     document.body.classList.add("alt");
   }
 </script>
@@ -75,5 +75,10 @@ import Layout from "../layouts/Layout.astro";
   }
   .wrapper {
     padding-bottom: 100px;
+  }
+  @media print {
+    .wrapper {
+      padding-bottom: 0;
+    }
   }
 </style>
