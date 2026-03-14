@@ -16,17 +16,18 @@ import Layout from "../layouts/Layout.astro";
 
 <script>
   const urlSearchParams = new URLSearchParams(window.location.search);
-  if (urlSearchParams.get("alt")) {
+  if (urlSearchParams.has("alt")) {
     document.body.classList.add("alt");
   }
 </script>
 <Layout
   title="Resume"
-  description="Luca Lischetti's resume, part of sirlisko's world. Discover the skills and experience of a creative mind with web expertise. Explore qualifications, technical skills, and a passion for blending art and tech. A journey showcasing a fusion of creativity and software engineering."
+  description="Luca Lischetti's resume. Senior Full Stack Engineer with expertise across the entire stack — from React and React Native on the client to Node.js, GraphQL, and cloud infrastructure on the server."
   keywords={[
     "Luca Lischetti",
     "sirlisko",
-    "web developer",
+    "full stack engineer",
+    "full stack developer",
     "software engineer",
     "resume",
     "cv",
@@ -41,16 +42,16 @@ import Layout from "../layouts/Layout.astro";
       <Experiences experiences={resume.experiences} />
       <section class="section ouat">
         <h2>Once upon a time...</h2>
-        I had the pleasure to work also with Python, Java, Scala, PHP, MySQL, C++,
-        Ruby on Rails. While not an expert in these languages, I enjoy exploring
-        various technologies in my free time :)
+        I've also worked with Python, Java, Scala, PHP, MySQL, C++, and Ruby on Rails —
+        years of curiosity and exploring different parts of the stack.
       </section>
       <section class="section">
         <h2>Freelancing</h2>
-        I manage and deliver commercial websites, including e-commerce platforms,
-        using modern technologies like Gatsby and Astro. My work includes integrating
-        payments providers (like Stripe), implementing CMS (as Sanity.io), and developing
-        custom features with Netlify Functions.
+        <ul>
+          <li>Delivered commercial websites and bespoke solutions using WordPress, Gatsby, and Astro.</li>
+          <li>Integrated headless CMS platforms including Sanity.io and others for content management.</li>
+          <li>Built custom serverless features using Netlify Functions and AWS Lambda.</li>
+        </ul>
       </section>
       <Projects projects={resume.projects} />
       <Education />
@@ -74,5 +75,10 @@ import Layout from "../layouts/Layout.astro";
   }
   .wrapper {
     padding-bottom: 100px;
+  }
+  @media print {
+    .wrapper {
+      padding-bottom: 0;
+    }
   }
 </style>
