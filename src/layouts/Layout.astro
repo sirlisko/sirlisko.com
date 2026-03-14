@@ -3,18 +3,29 @@ import "@fontsource/press-start-2p";
 import { ClientRouter } from "astro:transitions";
 
 const data = {
-	title: `sirlisko... Luca Lischetti`,
-	description: `Ciao! I am Luca, another fellow <developer />, sleep-deprived enthusiast, passionate about 8-bit nostalgia and occasional Sunday superhero. Trying hard to tansform ideas into interactive experiences, one pixel at a time.`,
-	author: `Luca Lischetti`,
+	title: `sirlisko | Luca Lischetti`,
+	description: `Ciao! I am Luca, another fellow <developer />, sleep-deprived enthusiast, passionate about 8-bit nostalgia and occasional Sunday superhero. Trying hard to transform ideas into interactive experiences, one pixel at a time.`,
 	image: `https://sirlisko.com/images/me_banner.jpg`,
-	siteUrl: `https://sirlisko.com`,
+};
+
+const jsonLd = {
+	"@context": "https://schema.org",
+	"@type": "Person",
+	name: "Luca Lischetti",
+	alternateName: "sirlisko",
+	url: "https://sirlisko.com",
+	image: "https://sirlisko.com/images/me_banner.jpg",
+	sameAs: [
+		"https://github.com/sirlisko",
+		"https://linkedin.com/in/lucalischetti",
+	],
 };
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site)
 	.toString()
 	.replace(/\/+$/, "");
 
-const { title, description, image, keywords } = Astro.props;
+const { title, description, image, keywords, ogType, noindex } = Astro.props;
 
 const metaDescription = description || data.description;
 const formattedTitle = title ? `${title} | ${data.title}` : data.title;
@@ -24,18 +35,33 @@ const formattedTitle = title ? `${title} | ${data.title}` : data.title;
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/images/heart.png" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="apple-touch-icon" href="/images/icons/icon-192x192.png" />
     <link rel="canonical" href={canonicalURL} />
     <title>{formattedTitle}</title>
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {noindex && <meta name="robots" content="noindex" />}
     <meta name="description" content={metaDescription} />
-    <meta property="og:title" content={title} />
+    <meta property="og:title" content={formattedTitle} />
+    <meta property="og:url" content={canonicalURL} />
     <meta property="og:image" content={image || data.image} />
+    <meta property="og:image:width" content="2048" />
+    <meta property="og:image:height" content="1024" />
     <meta property="og:description" content={metaDescription} />
-    <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:creator" content={data.author} />
-    <meta name="twitter:title" content={title} />
+    <meta property="og:site_name" content={data.title} />
+    <meta property="og:type" content={ogType || "website"} />
+    {ogType === "profile" && (
+      <>
+        <meta property="profile:first_name" content="Luca" />
+        <meta property="profile:last_name" content="Lischetti" />
+        <meta property="profile:username" content="sirlisko" />
+      </>
+    )}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={formattedTitle} />
     <meta name="twitter:description" content={metaDescription} />
     <meta name="twitter:image" content={image || data.image} />
     {
@@ -48,6 +74,7 @@ const formattedTitle = title ? `${title} | ${data.title}` : data.title;
       rel="author"
       href="https://sirlisko.com/humans.txt"
     />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     <ClientRouter />
   </head>
   <body>

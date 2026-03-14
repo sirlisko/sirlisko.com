@@ -1,5 +1,3 @@
-import type { Project } from "../src/types";
-
 import {
 	Atom,
 	CalendarHeart,
@@ -8,6 +6,7 @@ import {
 	MapPinHouse,
 	Plane,
 } from "lucide-react";
+import type { Project } from "../src/types";
 
 export const projects: Project[] = [
 	{
@@ -236,4 +235,3 @@ export const pastProjects: Project[] = [
 		isDeprecated: true,
 	},
 ];
-
