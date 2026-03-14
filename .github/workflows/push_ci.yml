@@ -6,6 +6,10 @@ on:
   pull_request:
     branches: [main]
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -24,10 +28,10 @@ jobs:
         env:
           CI: true
       - name: Run Lint
-        run: pnpm lint
+        run: pnpm exec biome check .
       - name: Run Typecheck
         run: pnpm typecheck
       - name: Run Unit Tests
-        run: pnpm test
+        run: pnpm test -- --run
       - name: Build
         run: pnpm build
