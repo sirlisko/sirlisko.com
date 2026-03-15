@@ -27,7 +27,7 @@ jobs:
         run: pnpm install
         env:
           CI: true
-      - name: Run Lint
+      - name: Run Check
         run: pnpm exec biome check .
       - name: Run Typecheck
         run: pnpm typecheck
