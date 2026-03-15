@@ -10,6 +10,7 @@ interface BaseProject {
 
 interface ProjectWithLogo extends BaseProject {
 	logo: string;
+	invertIcon?: boolean;
 }
 interface ProjectWithIcon extends BaseProject {
 	icon: FC;

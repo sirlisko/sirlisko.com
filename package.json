@@ -24,8 +24,7 @@
 		"build": "astro build",
 		"preview": "astro preview",
 		"astro": "astro",
-		"format": "biome format --write .",
-		"lint": "biome lint --write .",
+		"check": "biome check --write .",
 		"test": "vitest",
 		"typecheck": "tsc --noEmit",
 		"generate:cv": "node scripts/generate-cv.mjs"

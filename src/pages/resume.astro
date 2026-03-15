@@ -18,6 +18,7 @@ import Layout from "../layouts/Layout.astro";
   const urlSearchParams = new URLSearchParams(window.location.search);
   if (urlSearchParams.has("alt")) {
     document.body.classList.add("alt");
+    document.documentElement.classList.add("alt");
   }
 </script>
 <Layout
@@ -63,10 +64,17 @@ import Layout from "../layouts/Layout.astro";
 </Layout>
 
 <style>
+  html {
+    background-color: #000024;
+  }
+  html.alt {
+    background-color: #fff;
+  }
   body {
     background-color: #000024;
     background-image: radial-gradient(circle, #0300ae, #000024);
     color: #fff;
+    min-height: 100vh;
   }
   body.alt {
     background-color: #fff;
@@ -77,6 +85,9 @@ import Layout from "../layouts/Layout.astro";
     padding-bottom: 100px;
   }
   @media print {
+    html {
+      background-color: unset;
+    }
     .wrapper {
       padding-bottom: 0;
     }

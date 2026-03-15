@@ -5,6 +5,7 @@ import puppeteer from "puppeteer";
 
 const PORT = 4321;
 const BASE_URL = `http://localhost:${PORT}`;
+const SITE_URL = "https://sirlisko.com";
 const OUTPUT_DIR = "public/cv";
 
 if (!existsSync(OUTPUT_DIR)) {
@@ -45,18 +46,47 @@ try {
 		const tmp = `${filePath}.tmp.pdf`;
 		try {
 			execSync(
-				`gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -sOutputFile="${tmp}" "${filePath}"`,
+				`gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.7 -dPDFSETTINGS=/ebook -dNOPAUSE -dQUIET -dBATCH -sOutputFile="${tmp}" "${filePath}"`,
 			);
 			execSync(`mv "${tmp}" "${filePath}"`);
 		} catch {
-			console.warn("  ⚠ Ghostscript not found, skipping compression");
+			console.warn(
+				"  ⚠ Ghostscript not found, skipping compression (install with: brew install ghostscript)",
+			);
 			if (existsSync(tmp)) execSync(`rm "${tmp}"`);
 		}
 	};
 
 	const generatePdf = async (path, outputFile) => {
 		const page = await browser.newPage();
+		await page.setRequestInterception(true);
+		page.on("request", async (request) => {
+			const url = request.url();
+			if (url.startsWith(BASE_URL) && url.endsWith(".webp")) {
+				try {
+					const res = await fetch(url.replace(".webp", ".png"));
+					if (res.ok) {
+						request.respond({
+							status: 200,
+							contentType: "image/png",
+							body: Buffer.from(await res.arrayBuffer()),
+						});
+						return;
+					}
+				} catch {}
+			}
+			request.continue();
+		});
 		await page.goto(`${BASE_URL}${path}`, { waitUntil: "networkidle0" });
+		await page.evaluate(
+			(baseUrl, siteUrl) => {
+				for (const el of document.querySelectorAll("a[href]")) {
+					el.href = el.href.replace(baseUrl, siteUrl);
+				}
+			},
+			BASE_URL,
+			SITE_URL,
+		);
 		const outPath = join(OUTPUT_DIR, outputFile);
 		await page.pdf({ path: outPath, format: "A4", printBackground: true });
 		await page.close();
