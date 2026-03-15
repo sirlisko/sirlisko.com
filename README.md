@@ -54,8 +54,7 @@ pnpm preview
 
 This project uses **Biome** and **Vitest** to ensure code quality, consistency, and correctness. The following commands are available:
 
-- `pnpm lint`: Run Biome to check for issues.
-- `pnpm format`: Format all files using Biome.
+- `pnpm check`: Run Biome to lint and format all files.
 - `pnpm typecheck`: Run Typescript type check.
 - `pnpm test`: Run unit tests using Vitest.
 

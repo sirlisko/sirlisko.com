@@ -134,6 +134,9 @@
 /* Fixed print pagination */
 
 @media print {
+  @page {
+    margin: 0;
+  }
   .nav {
     display: none;
   }

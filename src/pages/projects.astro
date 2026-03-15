@@ -1,71 +1,186 @@
 ---
 import "../styles/projects.scss";
+import {
+	ArrowBigRight,
+	Chrome,
+	Github,
+	Rss,
+	SquareArrowOutUpRight,
+} from "lucide-react";
 import { pastProjects, projects } from "../../data/projects";
 import Links from "../components/Links.astro";
-import ProjectCard from "../components/ProjectCard.astro";
 import Layout from "../layouts/Layout.astro";
+
+const isNpmModule = (p: (typeof projects)[0]) => p.tech.includes("NPM Module");
+const activeProjects = projects.filter(
+	(p) => !p.isDeprecated && !isNpmModule(p),
+);
+const npmModules = projects.filter(isNpmModule);
+
+function primaryLink(links: Record<string, string>) {
+	const entry = Object.entries(links).find(
+		([k]) => k !== "Github" && k !== "Screenshot",
+	);
+	return entry ? entry[1] : null;
+}
 ---
 
 <Layout
-  title="Projects"
-  description="Discover a diverse range of projects by Luca Lischetti, aka sirlisko. Explore creations like GigPlayList, ZoomMEME, Shazamify, and more, showcasing a fusion of creativity and technical expertise in web apps, npm modules, Chrome extensions, and Alexa skills."
-  keywords={[
-    "Luca Lischetti",
-    "sirlisko",
-    "web developer",
-    "software engineer",
-    "projects",
-    "ideas",
-  ]}
+	title="Projects"
+	description="Discover a diverse range of projects by Luca Lischetti, aka sirlisko. Explore creations like GigPlayList, ZoomMEME, Shazamify, and more, showcasing a fusion of creativity and technical expertise in web apps, npm modules, Chrome extensions, and Alexa skills."
+	keywords={[
+		"Luca Lischetti",
+		"sirlisko",
+		"web developer",
+		"software engineer",
+		"projects",
+		"ideas",
+	]}
 >
-  <Links page="projects" />
-  <div class="projects-page">
-    <div class="logo">
-      <a href="/">
-        <img
-          src="/images/me.webp"
-          alt="sirlisko face"
-          height={144}
-          width={100}
-          transition:name="face"
-        />
-      </a>
-    </div>
-    <section>
-      <h1>My Side Projects</h1>
-      <ul>
-        {
-          projects.map((project) => (
-            <li class="project">
-              <ProjectCard {...project} />
-            </li>
-          ))
-        }
-      </ul>
-    </section>
-    <section class="past-projects">
-      <h2>My Past Projects</h2>
-      <ul>
-        {
-          pastProjects.map((project) => (
-            <li class="project">
-              <ProjectCard {...project} />
-            </li>
-          ))
-        }
-      </ul>
-    </section>
-  </div>
-</Layout>
+	<Links page="projects" inverted />
+	<main class="page">
 
-<style>
-  body {
-    background-color: #2eaed5;
-  }
-  .past-projects {
-    margin-top: 5rem;
-  }
-  .past-projects h2 {
-    text-align: center;
-  }
-</style>
+		<a href="/" class="face-link">
+			<img
+				src="/images/me.webp"
+				alt="sirlisko face"
+				width={60}
+				height={86}
+				transition:name="face"
+			/>
+		</a>
+
+		<header>
+			<p class="eyebrow">// things i've built</p>
+			<h1>Projects<span class="cursor"></span></h1>
+			<p class="subtitle">Side projects, tools, experiments.</p>
+			<p class="subtitle">Some still alive, some honourably retired.</p>
+		</header>
+
+		<div class="s-active">
+			<p class="bp-title">Active</p>
+
+			<div class="bp-list">
+				{activeProjects.map((p) => {
+					const live = primaryLink(p.links);
+					return (
+						<div class="bp-card">
+							<div class="bp-card-body">
+								<div class="bp-card-header">
+									<div class="bp-card-name-wrap">
+										{"logo" in p ? (
+											<img class={`bp-icon${p.invertIcon ? " inverted" : ""}`} src={p.logo} alt={`${p.title} logo`} width={20} height={20} />
+										) : (
+											<span class="bp-icon bp-icon--svg">
+												<p.icon size={20} />
+											</span>
+										)}
+										<p class="entry-name">{p.title}</p>
+									</div>
+									<div class="bp-card-links">
+										{live && (
+											<a href={live} target="_blank" rel="noopener noreferrer" aria-label="Live demo">
+												<SquareArrowOutUpRight size={20} />
+											</a>
+										)}
+										{p.links["Github"] && (
+											<a href={p.links["Github"]} target="_blank" rel="noopener noreferrer" aria-label="GitHub"><Github size={20} /></a>
+										)}
+									</div>
+								</div>
+								<p class="entry-desc">{p.description[0]}</p>
+							<div class="tags">
+								{p.tech.map((t) => <span class="tag">{t}</span>)}
+							</div>
+						</div>
+					</div>
+					);
+				})}
+			</div>
+
+			<p class="bp-divider">NPM Packages</p>
+
+			<div class="npm-list">
+				{npmModules.map((p) => (
+					<div class="npm-row">
+						<div class="npm-body">
+							<div class="npm-header">
+								<div class="npm-name-wrap">
+									{"logo" in p ? (
+										<img class="npm-icon" src={p.logo} alt="" width={20} height={20} />
+									) : (
+										<span class="npm-icon npm-icon--svg">
+											<p.icon size={20} />
+										</span>
+									)}
+									<p class="entry-name">{p.title}</p>
+								</div>
+								<div class="npm-links">
+									{p.links["NPM Module"] && (
+										<a href={p.links["NPM Module"]} target="_blank" rel="noopener noreferrer"><SquareArrowOutUpRight size={20} /></a>
+									)}
+									{p.links["Github"] && (
+										<a href={p.links["Github"]} target="_blank" rel="noopener noreferrer" aria-label="GitHub"><Github size={20} /></a>
+									)}
+								</div>
+							</div>
+							<p class="entry-desc">{p.description[0]}</p>
+							<div class="tags">
+								{p.tech.filter((t) => t !== "NPM Module").map((t) => <span class="tag">{t}</span>)}
+							</div>
+						</div>
+					</div>
+				))}
+			</div>
+		</div>
+
+		<div class="s-deprecated">
+			<div class="term-bar">
+				<span class="dot r"></span>
+				<span class="dot y"></span>
+				<span class="dot g"></span>
+				<span class="term-bar-title">luca@sirlisko — git log --retired</span>
+			</div>
+			<div class="term-body">
+				<p class="dep-intro"># these served their time</p>
+				{pastProjects.map((p) => (
+					<div class="dep-entry">
+						<div class="dep-head">
+							<span class="dep-prompt">❯</span>
+							<div class="dep-name-wrap">
+								{"logo" in p ? (
+									<img class={`dep-icon${p.invertIcon ? " inverted" : ""}`} src={p.logo} alt="" width={20} height={20} />
+								) : (
+									<span class="dep-icon dep-icon--svg">
+										<p.icon size={20} />
+									</span>
+								)}
+								<span class="entry-name">{p.title}</span>
+								<span class="dep-badge">deprecated</span>
+							</div>
+							<div class="dep-links">
+								{Object.entries(p.links)
+									.filter(([k]) => k !== "Screenshot")
+									.map(([label, url]) => (
+										<a href={url} target="_blank" rel="noopener noreferrer" aria-label={label}>
+											{label === "Github" ? <Github size={20} /> : label === "Blog" ? <Rss size={20} /> : label === 'Chrome extension' ? <Chrome size={20} /> : label.toLowerCase()}
+										</a>
+									))}
+							</div>
+						</div>
+						<p class="entry-desc">{p.description[0]}</p>
+						<div class="tags">
+							{p.tech.map((t) => <span class="tag">{t}</span>)}
+						</div>
+					</div>
+				))}
+			</div>
+		</div>
+
+		<footer>
+			<span>More on <a href="https://github.com/sirlisko" target="_blank" rel="noopener noreferrer">github</a></span>
+			<span><a href="/resume">resume</a> <ArrowBigRight size={14} /></span>
+		</footer>
+
+	</main>
+</Layout>
