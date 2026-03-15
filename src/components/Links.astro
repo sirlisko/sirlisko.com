@@ -197,25 +197,25 @@ const { inverted } = Astro.props;
   }
 </style>
 
-<script data-astro-rerun>
-  const hamburger = document.getElementById("hamburger");
-  const navLinks = document.getElementById("nav-links");
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const hamburger = document.getElementById("hamburger");
+    const navLinks = document.getElementById("nav-links");
 
-  if (!hamburger || !navLinks) return;
+    hamburger?.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("active");
+      hamburger.classList.toggle("active");
+      hamburger.setAttribute("aria-expanded", isOpen.toString());
+      document.body.classList.toggle("no-scroll");
+    });
 
-  hamburger.addEventListener("click", () => {
-    const isOpen = navLinks.classList.toggle("active");
-    hamburger.classList.toggle("active");
-    hamburger.setAttribute("aria-expanded", isOpen.toString());
-    document.body.classList.toggle("no-scroll");
-  });
-
-  navLinks.querySelectorAll("a").forEach((a) => {
-    a.addEventListener("click", () => {
-      navLinks.classList.remove("active");
-      hamburger.classList.remove("active");
-      hamburger.setAttribute("aria-expanded", "false");
-      document.body.classList.remove("no-scroll");
+    navLinks?.querySelectorAll("a").forEach((a) => {
+      a.addEventListener("click", () => {
+        navLinks.classList.remove("active");
+        hamburger.classList.remove("active");
+        hamburger.setAttribute("aria-expanded", "false");
+        document.body.classList.remove("no-scroll");
+      });
     });
   });
 </script>
