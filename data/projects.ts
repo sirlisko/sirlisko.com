@@ -53,7 +53,7 @@ export const projects: Project[] = [
 		],
 		icon: Plane,
 		links: {
-			Website: "https://been.netlify.app/",
+			Website: "https://been.sirlisko.com/",
 			Github: "https://github.com/sirlisko/been",
 		},
 		tech: ["React", "Firebase", "OAuth", "Netlify"],
@@ -133,10 +133,19 @@ export const projects: Project[] = [
 		],
 		icon: CalendarHeart,
 		links: {
-			Website: "https://gifday.netlify.com/",
+			Website: "https://gifday.sirlisko.com/",
 			Github: "https://github.com/sirlisko/gifday",
 		},
-		tech: ["React", "Giphy API", "Styled Components", "Cypress", "Netlify"],
+		tech: [
+			"React",
+			"Giphy API",
+			"Styled Components",
+			"Cypress",
+			"Netlify",
+			"Supabase",
+			"PostgreSQL",
+			"Edge Functions",
+		],
 	},
 	{
 		title: "Countdown",
