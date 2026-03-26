@@ -1,0 +1,78 @@
+---
+import "@fontsource/ibm-plex-mono/400.css";
+import "@fontsource/ibm-plex-mono/400-italic.css";
+import "@fontsource/ibm-plex-mono/600.css";
+import "../styles/now.scss";
+import { NOW_LAST_UPDATED, sections } from "../../data/now";
+import Links from "../components/Links.astro";
+import Layout from "../layouts/Layout.astro";
+
+const COLORS = ["#ff4444", "#6eb5ff", "#44cc77", "#ff6eb4"];
+---
+
+<Layout
+	title="Now"
+	description={`What Luca Lischetti (sirlisko) is up to right now — ${NOW_LAST_UPDATED}.`}
+	keywords={["sirlisko", "now", "Luca Lischetti", "what I'm doing"]}
+>
+	<Links inverted page="now" />
+	<main class="page">
+		<header>
+			<div class="header-badge">
+				<span class="badge-dot"></span>
+				<span>player status</span>
+				<span class="badge-dot"></span>
+			</div>
+			<h1>
+				/now<span class="pacman" aria-hidden="true"></span>
+			</h1>
+			<div class="header-stats">
+				<div class="stat">
+					<span class="stat-key">loc</span>
+					<span class="stat-val">London, UK</span>
+				</div>
+				<div class="stat">
+					<span class="stat-key">date</span>
+					<span class="stat-val">{NOW_LAST_UPDATED}</span>
+				</div>
+			</div>
+			<a class="header-link" href="https://nownownow.com/about" target="_blank" rel="noopener">what's a /now page? ▶</a>
+		</header>
+
+		{
+			sections.map((s, i) => {
+				const color = COLORS[i % COLORS.length];
+				return (
+					<div class="section" style={`--accent: ${color}; --delay: ${i * 0.07}s`}>
+						<span class="ghost" aria-hidden="true">
+							<svg viewBox="0 0 20 24" xmlns="http://www.w3.org/2000/svg">
+								<path d="M10 0 Q20 0 20 10 L20 24 L15 18 L10 24 L5 18 L0 24 L0 10 Q0 0 10 0Z" fill="var(--accent)" />
+								<circle cx="6.5" cy="9" r="2.5" fill="#111" />
+								<circle cx="13.5" cy="9" r="2.5" fill="#111" />
+							</svg>
+						</span>
+						<p class="section-label">{s.label}</p>
+						<p class="section-title" set:html={s.title} />
+						{s.content.map((p) => (
+							<p set:html={p} />
+						))}
+						{s.tags && s.tags.length > 0 && (
+							<div class="tags">
+								{s.tags.map((tag) => (
+									<span class="tag">{tag}</span>
+								))}
+							</div>
+						)}
+					</div>
+				);
+			})
+		}
+
+		<footer>
+			<p>
+				This is a <a href="https://nownownow.com" target="_blank" rel="noopener">/now page</a> —
+				a snapshot of what I'm focused on at this point in time.</p>
+			<p>Last updated: <strong>{NOW_LAST_UPDATED}</strong>.</p>
+		</footer>
+	</main>
+</Layout>

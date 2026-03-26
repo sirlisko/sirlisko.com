@@ -32,6 +32,7 @@
 	"dependencies": {
 		"@astrojs/react": "^5.0.0",
 		"@astrojs/sitemap": "^3.7.1",
+		"@fontsource/ibm-plex-mono": "^5.2.7",
 		"@fontsource/press-start-2p": "^5.2.7",
 		"@types/react": "^19.2.14",
 		"@types/react-dom": "^19.2.3",
