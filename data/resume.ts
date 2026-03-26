@@ -1,6 +1,27 @@
-import type { Resume } from "../src/types";
+interface Experience {
+	where: string;
+	blurb: string[];
+	when?: string;
+}
 
-const resume: Resume = {
+interface Skills {
+	main: string[];
+	"misc.": string[];
+}
+
+interface ProjectShort {
+	name: string;
+	url: string;
+	blurb: string[];
+}
+
+export interface Resume {
+	skills: Skills;
+	experiences: Experience[];
+	projects: ProjectShort[];
+}
+
+const resume = {
 	skills: {
 		main: [
 			"JavaScript",
@@ -100,6 +121,6 @@ const resume: Resume = {
 			],
 		},
 	],
-};
+} satisfies Resume;
 
 export default resume;

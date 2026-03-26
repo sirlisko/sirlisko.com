@@ -1,6 +1,17 @@
-import type { Me } from "../src/types";
+interface Link {
+	name: string;
+	url: string;
+	label: string;
+	external?: boolean;
+}
 
-const me: Me = {
+export interface Me {
+	keywords: string[];
+	descriptions: string[];
+	links: Link[];
+}
+
+const me = {
 	keywords: [
 		"Luca Lischetti",
 		"sirlisko",
@@ -38,6 +49,11 @@ const me: Me = {
 			label: "resume",
 		},
 		{
+			name: "now",
+			url: "/now",
+			label: "now",
+		},
+		{
 			name: "github",
 			url: "https://github.com/sirlisko",
 			label: "github",
@@ -54,6 +70,6 @@ const me: Me = {
 			label: "mail me!",
 		},
 	],
-};
+} satisfies Me;
 
 export default me;
