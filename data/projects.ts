@@ -6,9 +6,27 @@ import {
 	MapPinHouse,
 	Plane,
 } from "lucide-react";
-import type { Project } from "../src/types";
+import type { FC } from "react";
 
-export const projects: Project[] = [
+interface BaseProject {
+	title: string;
+	description: string[];
+	links: Record<string, string>;
+	tech: string[];
+	isDeprecated?: boolean;
+}
+
+interface ProjectWithLogo extends BaseProject {
+	logo: string;
+	invertIcon?: boolean;
+}
+interface ProjectWithIcon extends BaseProject {
+	icon: FC;
+}
+
+export type Project = ProjectWithLogo | ProjectWithIcon;
+
+export const projects = [
 	{
 		title: "GigPlayList",
 		description: [
@@ -159,9 +177,9 @@ export const projects: Project[] = [
 		},
 		tech: ["React", "TypeScript", "Tailwind", "Vite", "Netlify"],
 	},
-];
+] satisfies Project[];
 
-export const pastProjects: Project[] = [
+export const pastProjects = [
 	{
 		title: "Shazamify (a.k.a. Zamify)",
 		description: [
@@ -241,4 +259,4 @@ export const pastProjects: Project[] = [
 		tech: ["Node", "AngularJS", "Web Scraping", "Bootstrap", "Heroku"],
 		isDeprecated: true,
 	},
-];
+] satisfies Project[];
