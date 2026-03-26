@@ -3,7 +3,7 @@ import me from "../../data/me";
 
 interface Props {
 	inverted?: boolean;
-	page?: "projects" | "resume";
+	page?: "projects" | "resume" | "now";
 }
 
 const links = Astro.props.page
@@ -128,6 +128,9 @@ const { inverted } = Astro.props;
     display: block;
   }
 
+  .now a::before {
+    background-image: url(/images/links/lightbulb.png);
+  }
   .home a::before {
     background-image: url(/images/links/house.png);
   }

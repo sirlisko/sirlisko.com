@@ -49,6 +49,11 @@ const me = {
 			label: "resume",
 		},
 		{
+			name: "now",
+			url: "/now",
+			label: "now",
+		},
+		{
 			name: "github",
 			url: "https://github.com/sirlisko",
 			label: "github",
