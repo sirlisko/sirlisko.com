@@ -21,9 +21,10 @@ export const sections = [
 		label: "keeper of forbidden knowledge",
 		title: "Tabletop games, all of them",
 		content: [
-			"Keeper for a <strong>Call of Cthulhu</strong> campaign, currently running a homebrew scenario set in the New Mexico desert, digging into the origins of my investigator Agatha Fletcher. Also running published scenarios set in Egypt, 1924, where the investigators almost certainly should not have taken this job.",
-			"Also playing <strong>Curse of Strahd</strong> as Tariq Cornelius, a halfling Divination Wizard with strong opinions about fate and a questionable track record predicting it.",
+			"Keeper for a <strong>Call of Cthulhu</strong> campaign, currently running a homebrew scenario set in the New Mexico desert, digging into the origins of my investigator Agatha Fletcher.",
+			"Playing <strong>Curse of Strahd</strong> as Tariq Cornelius, a halfling Divination Wizard with strong opinions about fate and a questionable track record predicting it.",
 			"Recently joined <strong>D17</strong>, a local TTRPG community in Walthamstow. Good people, good dice.",
+			'Also started something new: <a href="https://ogreballerino.com" target="_blank" rel="noopener noreferrer" style="display: inline-block">Ogre Ballerino</a>, a community for Italian-speaking tabletop players in London. Just shipped a fresh rebrand of the site. Early days, but let\'s see where it goes.',
 		],
 	},
 	{
