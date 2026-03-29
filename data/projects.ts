@@ -50,18 +50,28 @@ export const projects = [
 			"Vercel",
 		],
 	},
+
 	{
-		title: "ZoomMEME",
+		title: "GifDay",
 		description: [
-			"Drag-and-drop zoom-in meme generator. Does exactly what it says.",
-			"PWA (Progressive Web App) powered by pure and sweet Vanilla JavaScript.",
+			"Assign a GIF to every day of the year. Your year, in GIFs.",
+			"GifDay is a webapp that allows you to create a gif for every day of the year, using the Giphy API.",
 		],
-		logo: "/images/projects/zoommeme.png",
+		icon: CalendarHeart,
 		links: {
-			Website: "https://zoomme.me",
-			Github: "https://github.com/sirlisko/zoommeme",
+			Website: "https://gifday.sirlisko.com/",
+			Github: "https://github.com/sirlisko/gifday",
 		},
-		tech: ["Vanilla JS", "PWA", "Webpack", "Jest"],
+		tech: [
+			"React",
+			"Giphy API",
+			"Styled Components",
+			"Cypress",
+			"Netlify",
+			"Supabase",
+			"PostgreSQL",
+			"Edge Functions",
+		],
 	},
 	{
 		title: "Been",
@@ -75,6 +85,19 @@ export const projects = [
 			Github: "https://github.com/sirlisko/been",
 		},
 		tech: ["React", "Firebase", "OAuth", "Netlify"],
+	},
+	{
+		title: "ZoomMEME",
+		description: [
+			"Drag-and-drop zoom-in meme generator. Does exactly what it says.",
+			"PWA (Progressive Web App) powered by pure and sweet Vanilla JavaScript.",
+		],
+		logo: "/images/projects/zoommeme.png",
+		links: {
+			Website: "https://zoomme.me",
+			Github: "https://github.com/sirlisko/zoommeme",
+		},
+		tech: ["Vanilla JS", "PWA", "Webpack", "Jest"],
 	},
 	{
 		title: "World Map Country Shapes",
@@ -142,28 +165,6 @@ export const projects = [
 			Github: "https://github.com/sirlisko/pizzaclub",
 		},
 		tech: ["Gatsby", "React", "GitHub Pages"],
-	},
-	{
-		title: "GifDay",
-		description: [
-			"Assign a GIF to every day of the year. Your year, in GIFs.",
-			"GifDay is a webapp that allows you to create a gif for every day of the year, using the Giphy API.",
-		],
-		icon: CalendarHeart,
-		links: {
-			Website: "https://gifday.sirlisko.com/",
-			Github: "https://github.com/sirlisko/gifday",
-		},
-		tech: [
-			"React",
-			"Giphy API",
-			"Styled Components",
-			"Cypress",
-			"Netlify",
-			"Supabase",
-			"PostgreSQL",
-			"Edge Functions",
-		],
 	},
 	{
 		title: "Countdown",
