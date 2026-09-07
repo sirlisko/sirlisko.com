@@ -8,17 +8,12 @@
   perspective: 800px;
   position: absolute;
   transform-style: preserve-3d;
-  transition:
-    left 7s,
-    top 7s,
-    transform 1s;
+  transition:left 7s,top 7s,transform 1s;
   width: 125px;
   margin: 0;
-  &:hover {
-    opacity: 1;
+  &:hover {opacity: 1;
   }
-  @media screen and (max-width: 650px) {
-    display: none;
+  @media screen and (max-width: 650px) {display: none;
   }
 }
 .ghostFlipped {
@@ -30,8 +25,7 @@
   left: 1rem;
   top: 1rem;
   text-transform: uppercase;
-  @media screen and (max-width: 650px) {
-    display: none;
+  @media screen and (max-width: 650px) {display: none;
   }
 }
 .lifeLabel {

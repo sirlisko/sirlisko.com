@@ -10,16 +10,6 @@ const { skills } = Astro.props;
 
 <section class="skills">
   <h2>Skills</h2>
-  {
-    Object.keys(skills).map((type) => (
-      <div>
-        <h3>{type}</h3>
-        <ul>
-          {skills[type as keyof Resume["skills"]].map((skill) => (
-            <li>{skill}</li>
-          ))}
-        </ul>
-      </div>
-    ))
+  {Object.keys(skills).map((type) => (  <div>    <h3>{type}</h3>    <ul>      {skills[type as keyof Resume["skills"]].map((skill) => (        <li>{skill}</li>      ))}    </ul>  </div>))
   }
 </section>

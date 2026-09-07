@@ -1,37 +1,13 @@
 name: Node.js CI
 
 on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
+  push:branches: [main]
+  pull_request:branches: [main]
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
-        with:
-          version: 10
-      - uses: actions/setup-node@v4
-        with:
-          node-version-file: ".nvmrc"
-          cache: "pnpm"
-      - name: Install dependencies
-        run: pnpm install
-        env:
-          CI: true
-      - name: Run Check
-        run: pnpm exec biome check .
-      - name: Run Typecheck
-        run: pnpm typecheck
-      - name: Run Unit Tests
-        run: pnpm test -- --run
-      - name: Build
-        run: pnpm build
+  build:runs-on: ubuntu-latest
+steps:  - uses: actions/checkout@v4  - uses: pnpm/action-setup@v4    with:      version: 10  - uses: actions/setup-node@v4    with:      node-version-file: ".nvmrc"      cache: "pnpm"  - name: Install dependencies    run: pnpm install    env:      CI: true  - name: Run Check    run: pnpm exec biome check .  - name: Run Typecheck    run: pnpm typecheck  - name: Run Unit Tests    run: pnpm test -- --run  - name: Build    run: pnpm build

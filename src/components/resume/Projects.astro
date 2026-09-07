@@ -9,20 +9,8 @@ const { projects } = Astro.props;
 
 <section class="section projects">
   <h2>Side Projects</h2>
-  {
-    projects.map((prj) => (
-      <div>
-        <h3>
-          <a href={prj.url}>{prj.name}</a>
-        </h3>
-        {prj.blurb.map((blr) => (
-          <p>{blr}</p>
-        ))}
-      </div>
-    ))
+  {projects.map((prj) => (  <div>    <h3>      <a href={prj.url}>{prj.name}</a>    </h3>    {prj.blurb.map((blr) => (      <p>{blr}</p>    ))}  </div>))
   }
-  <div>
-    To see a full list of my side projects go to{" "}
-    <a href="/projects">sirlisko.com/projects</a>.
+  <div>To see a full list of my side projects go to{" "}<a href="/projects">sirlisko.com/projects</a>.
   </div>
 </section>
