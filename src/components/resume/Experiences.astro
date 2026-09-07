@@ -10,18 +10,6 @@ const { experiences } = Astro.props;
 
 <section class="section experiences">
   <h2>Experiences</h2>
-  {
-    experiences.map((exp) => (
-      <div>
-        {exp.where && (
-          <h3>
-            {exp.where} {exp.when && <span>{exp.when}</span>}
-          </h3>
-        )}
-        {exp.blurb.map((blr) => (
-          <p>{blr}</p>
-        ))}
-      </div>
-    ))
+  {experiences.map((exp) => (  <div>    {exp.where && (      <h3>        {exp.where} {exp.when && <span>{exp.when}</span>}      </h3>    )}    {exp.blurb.map((blr) => (      <p>{blr}</p>    ))}  </div>))
   }
 </section>

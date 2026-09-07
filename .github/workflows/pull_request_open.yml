@@ -1,15 +1,6 @@
 name: Pull Request Checks
 on:
-  pull_request:
-    types: [opened, edited, synchronize]
+  pull_request:types: [opened, edited, synchronize]
 
 jobs:
-  pr-checks:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: amannn/action-semantic-pull-request@v5
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - uses: TimonVS/pr-labeler-action@v5
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  pr-checks:runs-on: ubuntu-lateststeps:  - uses: amannn/action-semantic-pull-request@v5    env:      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  - uses: TimonVS/pr-labeler-action@v5    env:      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

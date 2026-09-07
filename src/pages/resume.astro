@@ -16,80 +16,32 @@ import Layout from "../layouts/Layout.astro";
 
 <script>
   const urlSearchParams = new URLSearchParams(window.location.search);
-  if (urlSearchParams.has("alt")) {
-    document.body.classList.add("alt");
-    document.documentElement.classList.add("alt");
+  if (urlSearchParams.has("alt")) {document.body.classList.add("alt");document.documentElement.classList.add("alt");
   }
 </script>
 <Layout
   title="Resume"
   description="Luca Lischetti's resume. Senior Full Stack Engineer with expertise across the entire stack — from React and React Native on the client to Node.js, GraphQL, and cloud infrastructure on the server."
-  keywords={[
-    "Luca Lischetti",
-    "sirlisko",
-    "full stack engineer",
-    "full stack developer",
-    "software engineer",
-    "resume",
-    "cv",
+  keywords={["Luca Lischetti","sirlisko","full stack engineer","full stack developer","software engineer","resume","cv",
   ]}
   ogType="profile"
 >
   <Links inverted page="resume" />
-  <div class="resume">
-    <Me />
-    <div class="wrapper">
-      <Skills skills={resume.skills} />
-      <Experiences experiences={resume.experiences} />
-      <section class="section ouat">
-        <h2>Once upon a time...</h2>
-        I've also worked with Python, Java, Scala, PHP, MySQL, C++, and Ruby on Rails —
-        years of curiosity and exploring different parts of the stack.
-      </section>
-      <section class="section">
-        <h2>Freelancing</h2>
-        <ul>
-          <li>Delivered commercial websites and bespoke solutions using WordPress, Gatsby, and Astro.</li>
-          <li>Integrated headless CMS platforms including Sanity.io and others for content management.</li>
-          <li>Built custom serverless features using Netlify Functions and AWS Lambda.</li>
-        </ul>
-      </section>
-      <Projects projects={resume.projects} />
-      <Education />
-      <Extras />
-      <Interests />
-      <Contacts />
-    </div>
+  <div class="resume"><Me /><div class="wrapper">  <Skills skills={resume.skills} />  <Experiences experiences={resume.experiences} />  <section class="section ouat">    <h2>Once upon a time...</h2>    I've also worked with Python, Java, Scala, PHP, MySQL, C++, and Ruby on Rails —    years of curiosity and exploring different parts of the stack.  </section>  <section class="section">    <h2>Freelancing</h2>    <ul>      <li>Delivered commercial websites and bespoke solutions using WordPress, Gatsby, and Astro.</li>      <li>Integrated headless CMS platforms including Sanity.io and others for content management.</li>      <li>Built custom serverless features using Netlify Functions and AWS Lambda.</li>    </ul>  </section>  <Projects projects={resume.projects} />  <Education />  <Extras />  <Interests />  <Contacts /></div>
   </div>
 </Layout>
 
 <style>
-  html {
-    background-color: #000024;
+  html {background-color: #000024;
   }
-  html.alt {
-    background-color: #fff;
+  html.alt {background-color: #fff;
   }
-  body {
-    background-color: #000024;
-    background-image: radial-gradient(circle, #0300ae, #000024);
-    color: #fff;
-    min-height: 100vh;
+  body {background-color: #000024;background-image: radial-gradient(circle, #0300ae, #000024);color: #fff;min-height: 100vh;
   }
-  body.alt {
-    background-color: #fff;
-    background-image: radial-gradient(circle, #fff, #fff);
-    color: #000;
+  body.alt {background-color: #fff;background-image: radial-gradient(circle, #fff, #fff);color: #000;
   }
-  .wrapper {
-    padding-bottom: 100px;
+  .wrapper {padding-bottom: 100px;
   }
-  @media print {
-    html {
-      background-color: unset;
-    }
-    .wrapper {
-      padding-bottom: 0;
-    }
+  @media print {html {  background-color: unset;}.wrapper {  padding-bottom: 0;}
   }
 </style>

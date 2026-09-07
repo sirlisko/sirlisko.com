@@ -8,115 +8,44 @@ import Layout from "../layouts/Layout.astro";
 
 <Layout keywords={me.keywords}>
   <Ghost client:only="react" />
-  <div class="page-container">
-    <Links />
-    <main class="main-content">
-      <div class="container grid">
-        <div class="face">
-          <img
-            src="/images/me.webp"
-            alt="sirlisko face"
-            transition:name="face"
-          />
-        </div>
-        <div class="intro">
-          <h1>
-            Ciao!
-            <br />
-            I&#39;m sirlisko,
-
-            <span>another f@$#&amp;n&#39;</span>
-            <span class="desc">
-              <span>
-                <Greeting descriptions={me.descriptions} client:load />
-              </span>
-            </span>
-          </h1>
-        </div>
-      </div>
-    </main>
+  <div class="page-container"><Links /><main class="main-content">  <div class="container grid">    <div class="face">      <img        src="/images/me.webp"        alt="sirlisko face"        transition:name="face"      />    </div>    <div class="intro">      <h1>        Ciao!        <br />        I&#39;m sirlisko,
+        <span>another f@$#&amp;n&#39;</span>        <span class="desc">          <span>            <Greeting descriptions={me.descriptions} client:load />          </span>        </span>      </h1>    </div>  </div></main>
   </div>
 </Layout>
 
 <style>
   html,
-  body {
-    height: 100%;
-    background-color: #2eaed5;
-    background-image: radial-gradient(circle, #6bd3e4, #2eaed5);
+  body {height: 100%;background-color: #2eaed5;background-image: radial-gradient(circle, #6bd3e4, #2eaed5);
   }
 
-  .main-content {
-    flex-grow: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 1rem;
-    min-height: 100vh;
+  .main-content {flex-grow: 1;display: flex;align-items: center;justify-content: center;padding: 0 1rem;min-height: 100vh;
   }
 
-  .grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10vw;
+  .grid {display: grid;grid-template-columns: 1fr 1fr;gap: 10vw;
   }
 
-  @media (max-width: 650px) {
-    .grid {
-      grid-template-columns: 1fr;
-    }
+  @media (max-width: 650px) {.grid {  grid-template-columns: 1fr;}
   }
 
-  .intro {
-    line-height: 1.5;
-    display: flex;
-    align-items: center;
-    text-align: left;
+  .intro {line-height: 1.5;display: flex;align-items: center;text-align: left;
   }
   .intro span,
-  .intro h1 {
-    font-size: min(2.5vw, 55px);
-    margin: 0;
-    display: block;
+  .intro h1 {font-size: min(2.5vw, 55px);margin: 0;display: block;
   }
 
-  .face {
-    text-align: center;
-    position: relative;
+  .face {text-align: center;position: relative;
   }
-  .face img {
-    height: min(70vw, 70vh);
+  .face img {height: min(70vw, 70vh);
   }
-  @media screen and (max-width: 650px) {
-    .face {
-      max-height: 50vh;
-    }
-    .intro span,
-    .intro h1 {
-      font-size: min(5vw, 5vh);
-    }
+  @media screen and (max-width: 650px) {.face {  max-height: 50vh;}.intro span,.intro h1 {  font-size: min(5vw, 5vh);}
   }
 
-  .desc span {
-    display: inline-block;
-    position: relative;
-    white-space: nowrap;
+  .desc span {display: inline-block;position: relative;white-space: nowrap;
   }
 
-  .desc span::after {
-    content: " ";
-    display: inline-block;
-    width: 5px;
-    height: 100%;
-    background-color: #000;
-    position: absolute;
-    right: -10px;
-    animation: blink 1s step-end infinite;
+  .desc span::after {content: " ";display: inline-block;width: 5px;height: 100%;background-color: #000;position: absolute;right: -10px;animation: blink 1s step-end infinite;
   }
 
-  @keyframes blink {
-    50% {
-      background-color: transparent;
-    }
+  @keyframes blink {50% {  background-color: transparent;}
   }
 </style>
