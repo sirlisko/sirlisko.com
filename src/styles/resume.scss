@@ -7,91 +7,38 @@
 }
 
 .resume {
-  @media (max-width: 1150px) {
-    font-size: 1.2vw;
+  @media (max-width: 1150px) {font-size: 1.2vw;
   }
-  @media print, (max-width: 650px) {
-    font-size: 9px;
+  @media print, (max-width: 650px) {font-size: 9px;
   }
-  & a {
-    color: #fff;
+  & a {color: #fff;
   }
 
-  & section {
-    line-height: 1.5;
-    margin: 1rem;
-    overflow: hidden;
+  & section {line-height: 1.5;margin: 1rem;overflow: hidden;
   }
 
-  & h2 {
-    font-size: 2em;
-    margin: 0.67em 0;
-    color: #c200c0;
+  & h2 {font-size: 2em;margin: 0.67em 0;color: #c200c0;
   }
-  & h3 {
-    font-size: 1.5em;
-    text-transform: capitalize;
-    margin: 1rem auto 0.5rem;
-    @media print, (min-width: 650px) {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    &,
-    & a {
-      color: #00bcbc;
-    }
-    & span {
-      color: #fff;
-      font-size: 0.5rem;
-      @media (max-width: 650px) {
-        display: block;
-        margin-top: 0.25rem;
-      }
-    }
+  & h3 {font-size: 1.5em;text-transform: capitalize;margin: 1rem auto 0.5rem;@media print, (min-width: 650px) {  display: flex;  align-items: center;  justify-content: space-between;}&,& a {  color: #00bcbc;}& span {  color: #fff;  font-size: 0.5rem;  @media (max-width: 650px) {    display: block;    margin-top: 0.25rem;  }}
   }
 
-  & h4 {
-    margin-top: 0.5rem;
+  & h4 {margin-top: 0.5rem;
   }
 
-  & .wrapper {
-    overflow: hidden;
-    margin: 0 auto;
-    max-width: 1200px;
+  & .wrapper {overflow: hidden;margin: 0 auto;max-width: 1200px;
   }
 
-  & .me {
-    margin: 20px auto 0;
-    max-width: 1200px;
+  & .me {margin: 20px auto 0;max-width: 1200px;
   }
-  & .me__face {
-    margin: 0 2em;
-    width: var(--side);
-    & img {
-      display: block;
-      margin: 0 auto;
-      width: 8em;
-    }
+  & .me__face {margin: 0 2em;width: var(--side);& img {  display: block;  margin: 0 auto;  width: 8em;}
   }
   & .me__face,
-  & .me__intro {
-    display: inline-block;
-    vertical-align: middle;
+  & .me__intro {display: inline-block;vertical-align: middle;
   }
-  & .me__intro {
-    font-size: 2em;
-    line-height: 1.5;
-    & span {
-      display: block;
-    }
+  & .me__intro {font-size: 2em;line-height: 1.5;& span {  display: block;}
   }
 
-  & .skills > div {
-    @media print, (max-width: 650px) {
-      display: inline-block;
-      vertical-align: top;
-    }
+  & .skills > div {@media print, (max-width: 650px) {  display: inline-block;  vertical-align: top;}
   }
 }
 
@@ -104,68 +51,39 @@
 .alt h3 {
   color: blue;
 
-  & span {
-    color: #000;
+  & span {color: #000;
   }
 }
 
 @media print, screen and (min-width: 650px) {
-  .resume .skills {
-    float: left;
-    width: var(--side);
+  .resume .skills {float: left;width: var(--side);
   }
 
-  .resume .experiences {
-    margin-left: calc(var(--side) + 5em);
+  .resume .experiences {margin-left: calc(var(--side) + 5em);
   }
 }
 @media screen and (min-width: 650px) {
-  .resume .section {
-    margin-left: calc(var(--side) + 5em);
+  .resume .section {margin-left: calc(var(--side) + 5em);
   }
 }
 @media screen and (max-width: 649px) {
-  .resume .me {
-    text-align: center;
-    width: 95%;
+  .resume .me {text-align: center;width: 95%;
   }
 }
 
 /* Fixed print pagination */
 
 @media print {
-  @page {
-    margin: 0;
+  @page {margin: 0;
   }
-  .nav {
-    display: none;
+  .nav {display: none;
   }
-  .resume {
-    padding: 0 35px 12px;
-
-    & section {
-      margin: 0.4rem 1rem;
-      break-inside: avoid;
-    }
-
-    & .experiences > div {
-      break-inside: avoid;
-    }
-
-    & h2 {
-      margin: 0.3em 0;
-    }
-
-    & .me {
-      margin-top: 8px;
-    }
-
-    & h3 a {
-      text-decoration: none;
-    }
-
-    & .ouat {
-      padding-top: 12px;
-    }
+  .resume {padding: 0 35px 12px;
+& section {  margin: 0.4rem 1rem;  break-inside: avoid;}
+& .experiences > div {  break-inside: avoid;}
+& h2 {  margin: 0.3em 0;}
+& .me {  margin-top: 8px;}
+& h3 a {  text-decoration: none;}
+& .ouat {  padding-top: 12px;}
   }
 }

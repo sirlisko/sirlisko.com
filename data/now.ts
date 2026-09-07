@@ -5,7 +5,7 @@ export interface Section {
 	tags?: string[];
 }
 
-export const NOW_LAST_UPDATED = "August 2026";
+export const NOW_LAST_UPDATED = "September 2026";
 
 export const sections = [
 	{
@@ -13,8 +13,8 @@ export const sections = [
 		title: "Building apps, breaking things, shipping side projects",
 		content: [
 			"Full-stack and mobile developer by trade, currently working on client apps and a handful of side projects. I like picking up new tools and seeing how far I can push them before they (or I) give up.",
-			'Also running <a href="https://barbooto.com" target="_blank" rel="noopener noreferrer">Barbooto</a>, a small software consultancy. Got a project in mind? If you need someone who\'s been fighting with the web since the Netscape/IE5 days, we might be a good fit.',
-			'Drop a line at <a href="mailto:ciao@barbooto.com">ciao@barbooto.com</a>.',
+			// 'Also running <a href="https://barbooto.com" target="_blank" rel="noopener noreferrer">Barbooto</a>, a small software consultancy. Got a project in mind? If you need someone who\'s been fighting with the web since the Netscape/IE5 days, we might be a good fit.',
+			// 'Drop a line at <a href="mailto:ciao@barbooto.com">ciao@barbooto.com</a>.',
 		],
 	},
 	{
@@ -32,7 +32,7 @@ export const sections = [
 		title: "Walking, local communities & getting outside",
 		content: [
 			"Just back from a long trip in South East Asia (Thailand, Malaysia, Indonesia, and Laos).",
-			'Still training for long distances. Knocked out the <a href="https://sirlisko.com/blog/brighton-to-hastings" target="_blank" rel="noopener noreferrer">Brighton to Hastings coastal walk over Easter</a>, and recently did a <a href="https://sirlisko.com/blog/100km" target="_blank" rel="noopener noreferrer">100km walk in one day</a> just to see if I could. Now eyeing an Ultra Challenge event, London to Brighton is the front-runner.',
+			'Still training for long distances. Completed the <a href="https://sirlisko.com/blog/brighton-to-hastings" target="_blank" rel="noopener noreferrer">Brighton to Hastings coastal walk over Easter</a>, and recently did a <a href="https://sirlisko.com/blog/100km" target="_blank" rel="noopener noreferrer">100km walk in one day</a> just because why not. Now aiming for an Ultra Challenge event, London to Brighton is on the list.',
 			'Volunteering with <a href="https://sirlisko.com/blog/one-year-at-foodcycle" target="_blank" rel="noopener noreferrer">FoodCycle</a>, cooking community meals from surplus food and helping lead the project locally. Good people, good food, zero waste. Lately became project leader of a new venue (Finsbury Park).',
 		],
 	},
@@ -40,7 +40,7 @@ export const sections = [
 		label: "reading, watching & playing",
 		title: "Dark worlds, on and off the page",
 		content: [
-			"Working through <strong>Between Two Fires</strong> (no spoilers, please) and <strong>Delicious in Dungeon</strong>. <strong>Berserk</strong> remains the north star.",
+			"Working through <strong>Between Two Fires</strong> (no spoilers, please) and <strong>Delicious in Dungeon</strong>.",
 			'On the PlayStation, just wrapped up <a href="https://sirlisko.com/blog/death-stranding" target="_blank" rel="noopener noreferrer">Death Stranding</a> and started Persona 5 Royal, a very different kind of grind.',
 			"Trying to watch more films and get to the cinema at least once a month. Recent top picks: <strong>Obsession</strong> and <strong>Project Hail Mary</strong>",
 		],
