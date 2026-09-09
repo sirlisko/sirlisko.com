@@ -13,8 +13,8 @@ export const sections = [
 		title: "Building apps, breaking things, shipping side projects",
 		content: [
 			"Full-stack and mobile developer by trade, currently working on client apps and a handful of side projects. I like picking up new tools and seeing how far I can push them before they (or I) give up.",
-			// 'Also running <a href="https://barbooto.com" target="_blank" rel="noopener noreferrer">Barbooto</a>, a small software consultancy. Got a project in mind? If you need someone who\'s been fighting with the web since the Netscape/IE5 days, we might be a good fit.',
-			// 'Drop a line at <a href="mailto:ciao@barbooto.com">ciao@barbooto.com</a>.',
+			'Also running <a href="https://barbooto.com" target="_blank" rel="noopener noreferrer">Barbooto</a>, a small software consultancy. Got a project in mind? If you need someone who\'s been fighting with the web since the Netscape/IE5 days, we might be a good fit.',
+			'Drop a line at <a href="mailto:ciao@barbooto.com">ciao@barbooto.com</a>.',
 		],
 	},
 	{
