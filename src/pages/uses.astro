@@ -1,0 +1,48 @@
+---
+import "../styles/uses.scss";
+import { USES_SOURCE, USES_SOURCE_LABEL, uses } from "../../data/uses";
+import Links from "../components/Links.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+title="Uses"
+description="The apps and tools Luca Lischetti (sirlisko) actually uses day to day — browser, editor, notes, passwords, and everything else running the show."
+keywords={["sirlisko", "uses", "Luca Lischetti", "apps", "tools", "setup"]}
+>
+  <Links inverted page="uses" />
+  <main class="page">
+
+    <header>
+      <h1>Uses<span class="cursor"></span></h1>
+      <p class="subtitle">The hardware and software I use daily.</p>
+    </header>
+
+    <ul class="uses-list">
+      {
+        uses.map((u) => (
+          <li class="uses-item">
+            <span class="emoji" aria-hidden="true">{u.emoji}</span>
+            <div class="uses-body">
+              <p class="category">{u.category}</p>
+              <p class="apps">
+                {u.apps.map((app, i) => (
+                  <>
+                    {i > 0 && <span class="sep"> / </span>}
+                    <a href={app.url} target="_blank" rel="noopener noreferrer">{app.name}</a>
+                  </>
+                ))}
+              </p>
+              {u.note && <p class="note">{u.note}</p>}
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+
+    <footer>
+      <p>Based on <a href={USES_SOURCE} target="_blank" rel="noopener">{USES_SOURCE_LABEL}</a>, updated whenever something changes.</p>
+    </footer>
+
+  </main>
+</Layout>
