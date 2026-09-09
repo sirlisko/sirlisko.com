@@ -54,6 +54,11 @@ const me = {
 			label: "now",
 		},
 		{
+			name: "uses",
+			url: "/uses",
+			label: "uses",
+		},
+		{
 			name: "github",
 			url: "https://github.com/sirlisko",
 			label: "github",

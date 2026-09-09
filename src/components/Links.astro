@@ -3,7 +3,7 @@ import me from "../../data/me";
 
 interface Props {
 	inverted?: boolean;
-	page?: "projects" | "resume" | "now";
+	page?: "projects" | "resume" | "now" | "uses";
 }
 
 const links = Astro.props.page
@@ -62,6 +62,8 @@ const { inverted } = Astro.props;
 
   .now a::before {background-image: url(/images/links/lightbulb.png);
   }
+  .uses a::before {background-image: url(/images/links/wrench.png);
+  }
   .home a::before {background-image: url(/images/links/house.png);
   }
   .blog a::before {background-image: url(/images/links/blog.png);
@@ -88,8 +90,10 @@ const { inverted } = Astro.props;
 </style>
 
 <script>
-  document.addEventListener("astro:page-load", () => {const hamburger = document.getElementById("hamburger");const navLinks = document.getElementById("nav-links");
-hamburger?.addEventListener("click", () => {  const isOpen = navLinks.classList.toggle("active");  hamburger.classList.toggle("active");  hamburger.setAttribute("aria-expanded", isOpen.toString());  document.body.classList.toggle("no-scroll");});
-navLinks?.querySelectorAll("a").forEach((a) => {  a.addEventListener("click", () => {    navLinks.classList.remove("active");    hamburger.classList.remove("active");    hamburger.setAttribute("aria-expanded", "false");    document.body.classList.remove("no-scroll");  });});
+  document.addEventListener("astro:page-load", () => {const hamburger = document.getElementById("hamburger");const navLinks = document.getElementById("nav-links");const mobileQuery = window.matchMedia("(max-width: 650px)");
+const syncInert = () => {  const isOpen = navLinks.classList.contains("active");  navLinks.toggleAttribute("inert", mobileQuery.matches && !isOpen);};
+syncInert();mobileQuery.addEventListener("change", syncInert);
+hamburger?.addEventListener("click", () => {  const isOpen = navLinks.classList.toggle("active");  hamburger.classList.toggle("active");  hamburger.setAttribute("aria-expanded", isOpen.toString());  document.body.classList.toggle("no-scroll");  syncInert();});
+navLinks?.querySelectorAll("a").forEach((a) => {  a.addEventListener("click", () => {    navLinks.classList.remove("active");    hamburger.classList.remove("active");    hamburger.setAttribute("aria-expanded", "false");    document.body.classList.remove("no-scroll");    syncInert();  });});
   });
 </script>
