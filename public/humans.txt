@@ -7,6 +7,6 @@
 
 
 /* SITE */
-  Last update: 2024/10/02
+  Last update: 2026/09/10
   Language: English / Italian
   Doctype: HTML5
