@@ -120,6 +120,13 @@ const resume = {
 				"Next.js app that proxies several APIs (Spotify, MusicBrainz, Songkick, etc.), combines their data to predict the most probable songs for a given artist's gig, and creates a Spotify playlist for you using Spotify Auth.",
 			],
 		},
+		{
+			name: "GifDay",
+			url: "https://gifday.sirlisko.com/",
+			blurb: [
+				"Webapp that assigns a GIF to every day of the year using the Giphy API, built with React, Supabase, and Edge Functions.",
+			],
+		},
 	],
 } satisfies Resume;
 
