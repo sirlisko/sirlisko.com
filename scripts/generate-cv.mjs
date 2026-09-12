@@ -1,39 +1,64 @@
 import { execSync, spawn } from "node:child_process";
-import { existsSync, mkdirSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import puppeteer from "puppeteer";
 
-const PORT = 4321;
-const BASE_URL = `http://localhost:${PORT}`;
 const SITE_URL = "https://sirlisko.com";
 const OUTPUT_DIR = "public/cv";
+const PRIVATE_ENV_FILE = ".env.private";
 
 if (!existsSync(OUTPUT_DIR)) {
 	mkdirSync(OUTPUT_DIR, { recursive: true });
 }
 
+if (!existsSync(PRIVATE_ENV_FILE)) {
+	throw new Error(
+		`${PRIVATE_ENV_FILE} not found — create it with PHONE_NUMBER=...`,
+	);
+}
+
+const buildEnv = { ...process.env };
+for (const line of readFileSync(PRIVATE_ENV_FILE, "utf8").split("\n")) {
+	const match = line.match(/^([^#=]+)=(.*)$/);
+	if (match) buildEnv[match[1].trim()] = match[2].trim();
+}
+
 console.log("Building...");
-execSync("pnpm build", { stdio: "inherit" });
+execSync("pnpm build", { stdio: "inherit", env: buildEnv });
 
 console.log("Starting preview server...");
-const server = spawn("pnpm", ["preview"], { stdio: "ignore" });
+const server = spawn("pnpm", ["preview"], {
+	stdio: ["ignore", "pipe", "ignore"],
+	detached: true,
+});
 
-const waitForServer = async (url, timeout = 15000) => {
-	const start = Date.now();
-	while (Date.now() - start < timeout) {
-		try {
-			await fetch(url);
-			return;
-		} catch {
-			await new Promise((r) => setTimeout(r, 300));
-		}
-	}
-	throw new Error(`Server at ${url} did not start within ${timeout}ms`);
-};
+const detectBaseUrl = (proc, timeout = 15000) =>
+	new Promise((resolve, reject) => {
+		let output = "";
+		const timer = setTimeout(() => {
+			proc.stdout.off("data", onData);
+			reject(
+				new Error(
+					`Preview server did not report a port within ${timeout}ms:\n${output}`,
+				),
+			);
+		}, timeout);
+		const onData = (chunk) => {
+			output += chunk.toString();
+			const match = output.match(/localhost:(\d+)/);
+			if (match) {
+				clearTimeout(timer);
+				proc.stdout.off("data", onData);
+				resolve(`http://localhost:${match[1]}`);
+			}
+		};
+		proc.stdout.on("data", onData);
+	});
 
 try {
 	console.log("Waiting for server...");
-	await waitForServer(BASE_URL);
+	const BASE_URL = await detectBaseUrl(server);
+	console.log(`  Preview server at ${BASE_URL}`);
 
 	console.log("Launching browser...");
 	const systemChrome =
@@ -77,7 +102,14 @@ try {
 			}
 			request.continue();
 		});
-		await page.goto(`${BASE_URL}${path}`, { waitUntil: "networkidle0" });
+		const response = await page.goto(`${BASE_URL}${path}`, {
+			waitUntil: "networkidle0",
+		});
+		if (!response.ok()) {
+			throw new Error(
+				`${BASE_URL}${path} returned ${response.status()}, expected a successful response`,
+			);
+		}
 		await page.evaluate(
 			(baseUrl, siteUrl) => {
 				for (const el of document.querySelectorAll("a[href]")) {
@@ -97,9 +129,15 @@ try {
 	console.log("Generating PDFs...");
 	await generatePdf("/resume", "luca-lischetti-resume.pdf");
 	await generatePdf("/resume?alt=true", "alt.pdf");
+	await generatePdf("/resume?private=true", "private.pdf");
+	await generatePdf("/resume?alt=true&private=true", "private-alt.pdf");
 
 	await browser.close();
 	console.log("Done!");
 } finally {
-	server.kill();
+	if (server.pid) {
+		try {
+			process.kill(-server.pid, "SIGTERM");
+		} catch {}
+	}
 }
