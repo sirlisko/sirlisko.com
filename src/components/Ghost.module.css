@@ -1,0 +1,51 @@
+.ghost {
+	background: transparent url(/images/ghost.webp);
+	background-size: contain;
+	top: -125px;
+	height: 125px;
+	left: -125px;
+	opacity: 0.5;
+	perspective: 800px;
+	position: absolute;
+	transform-style: preserve-3d;
+	transition:
+		left 7s,
+		top 7s,
+		transform 1s;
+	width: 125px;
+	margin: 0;
+	&:hover {
+		opacity: 1;
+	}
+	@media screen and (max-width: 650px) {
+		display: none;
+	}
+}
+.ghostFlipped {
+	transform: rotateY(180deg);
+}
+
+.life {
+	position: absolute;
+	left: 1rem;
+	top: 1rem;
+	text-transform: uppercase;
+	@media screen and (max-width: 650px) {
+		display: none;
+	}
+}
+.lifeLabel {
+	position: absolute;
+	top: 0;
+	transition: opacity 2s ease;
+	white-space: nowrap;
+}
+.heart {
+	background: url(/images/heart.webp);
+	background-size: contain;
+	display: inline-block;
+	height: 45px;
+	margin-right: 0.5rem;
+	transition: opacity 0.5s ease;
+	width: 50px;
+}

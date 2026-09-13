@@ -21,7 +21,10 @@
 	"linter": {
 		"enabled": true,
 		"rules": {
-			"preset": "recommended"
+			"preset": "recommended",
+			"style": {
+				"noDescendingSpecificity": "off"
+			}
 		}
 	},
 	"javascript": {
@@ -36,24 +39,5 @@
 				"organizeImports": "on"
 			}
 		}
-	},
-	"overrides": [
-		{
-			"includes": ["**/*.svelte", "**/*.astro", "**/*.vue"],
-			"linter": {
-				"rules": {
-					"style": {
-						"useConst": "off",
-						"useImportType": "off",
-						"noDescendingSpecificity": "off"
-					},
-					"correctness": {
-						"noUnusedVariables": "off",
-						"noUnusedImports": "off",
-						"noUnknownTypeSelector": "off"
-					}
-				}
-			}
-		}
-	]
+	}
 }

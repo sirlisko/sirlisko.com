@@ -2,7 +2,7 @@ import classNames from "classnames";
 import debounce from "lodash.debounce";
 import { useEffect, useRef, useState } from "react";
 
-import styles from "./Ghost.module.scss";
+import styles from "./Ghost.module.css";
 
 const GHOST_WIDTH = 64;
 

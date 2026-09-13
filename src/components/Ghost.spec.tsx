@@ -1,7 +1,7 @@
 import { act, fireEvent, render, screen } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 import Ghost from "./Ghost";
-import styles from "./Ghost.module.scss";
+import styles from "./Ghost.module.css";
 
 describe("Ghost Component", () => {
 	beforeEach(() => {
