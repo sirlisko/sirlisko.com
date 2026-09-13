@@ -1,6 +1,4 @@
 ---
-import "../styles/404.css";
-
 import Links from "../components/Links.astro";
 import Layout from "../layouts/Layout.astro";
 
@@ -42,3 +40,91 @@ const path = Astro.url.pathname;
 	window.umami?.track("404", { url: window.location.pathname });
 	</script>
 </Layout>
+
+<style>
+body {
+	background: var(--bg);
+	color: var(--text);
+}
+
+.page {
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 6rem 1.5rem 4rem;
+	gap: 2.5rem;
+}
+
+.face-link {
+	opacity: 0.85;
+}
+
+.terminal {
+	width: 100%;
+	max-width: 560px;
+	background: #04090f;
+	border: 1px solid var(--border);
+	overflow: hidden;
+	animation: fadeUp 0.4s ease both;
+}
+
+.term-bar {
+	background: #16161d;
+	border-bottom: 1px solid var(--border);
+}
+
+.term-bar-title {
+	font-size: 9px;
+	color: var(--muted);
+	margin-left: 0.5rem;
+}
+
+.term-body {
+	padding: 1.75rem 1.5rem 2rem;
+	font-size: 13px;
+	line-height: 1.8;
+}
+
+.line {
+	margin: 0 0 0.5rem;
+	word-break: break-all;
+}
+.line.muted {
+	color: var(--muted);
+	font-style: italic;
+}
+
+.prompt {
+	color: var(--blue);
+	margin-right: 0.5rem;
+}
+
+.error {
+	font-family: var(--font-display);
+	font-size: clamp(16px, 4vw, 22px);
+	color: #ff5f57;
+	text-shadow: 0 0 12px rgba(255, 95, 87, 0.45);
+	letter-spacing: 0.05em;
+	margin: 1.25rem 0;
+}
+
+.term-body a {
+	color: var(--blue);
+	text-decoration: none;
+}
+.term-body a:hover {
+	text-decoration: underline;
+}
+
+.cursor {
+	display: inline-block;
+	width: 8px;
+	height: 1em;
+	background: var(--blue);
+	vertical-align: middle;
+	margin-left: 4px;
+	animation: blink 1s step-end infinite;
+}
+</style>

@@ -1,0 +1,20 @@
+:root {
+	--bg: #0f0f13;
+	--surface: #1a1a22;
+	--border: #2e2e3e;
+	--text: #d4d4d8;
+	--muted: #6b6b80;
+	--yellow: #f0c040;
+	--blue: #6eb5ff;
+	--blue-rgb: 110, 181, 255;
+	--green: #4ade80;
+	--white: #fff;
+
+	--font-display: "Press Start 2P", monospace;
+	--font-mono: "IBM Plex Mono", monospace;
+
+	--gradient-home-color: #2eaed5;
+	--gradient-home: radial-gradient(circle, #6bd3e4, #2eaed5);
+	--gradient-resume-color: #000024;
+	--gradient-resume: radial-gradient(circle, #0300ae, #000024);
+}

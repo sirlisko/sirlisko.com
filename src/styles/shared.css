@@ -1,0 +1,55 @@
+@keyframes fadeUp {
+	from {
+		opacity: 0;
+		transform: translateY(12px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes blink {
+	0%,
+	100% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0;
+	}
+}
+
+.face-link {
+	display: block;
+	width: fit-content;
+	opacity: 0.9;
+	transition: opacity 0.2s;
+}
+.face-link:hover {
+	opacity: 1;
+}
+.face-link img {
+	display: block;
+}
+
+.term-bar {
+	padding: 0.55rem 1rem;
+	display: flex;
+	align-items: center;
+	gap: 0.45rem;
+}
+
+.dot {
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+}
+.dot.r {
+	background: #ff5f57;
+}
+.dot.y {
+	background: #febc2e;
+}
+.dot.g {
+	background: #28c840;
+}

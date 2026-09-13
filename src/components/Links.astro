@@ -13,7 +13,8 @@ const links = Astro.props.page
 		]
 	: me.links;
 
-const { inverted } = Astro.props;
+const { inverted, page } = Astro.props;
+const bg = page === "resume" ? "bg-resume" : inverted ? "bg-flat" : "bg-home";
 ---
 
 <nav class={inverted ? "nav inverted" : "nav"}>
@@ -24,7 +25,7 @@ const { inverted } = Astro.props;
 		aria-label="Toggle menu"
 		aria-expanded="false"
 	></button>
-	<ul class="links" id="nav-links">
+	<ul class={`links ${bg}`} id="nav-links">
 		{links.map((link) => (
 			<li class={link.name}>
 				<a
@@ -89,16 +90,21 @@ const { inverted } = Astro.props;
 	margin: 0;
 	padding: 0;
 	list-style: none;
-	background-color: #2eaed5;
-	background-image: radial-gradient(circle, #6bd3e4, #2eaed5);
 }
 
 .links.active {
 	transform: translateX(0);
 }
-.inverted .links {
-	background-color: #000024;
-	background-image: radial-gradient(circle, #0300ae, #000024);
+.links.bg-home {
+	background-color: var(--gradient-home-color);
+	background-image: var(--gradient-home);
+}
+.links.bg-resume {
+	background-color: var(--gradient-resume-color);
+	background-image: var(--gradient-resume);
+}
+.links.bg-flat {
+	background-color: var(--bg);
 }
 
 .links li {
@@ -113,7 +119,7 @@ const { inverted } = Astro.props;
 	color: #000;
 }
 .inverted .links a {
-	color: #fff;
+	color: var(--white);
 }
 
 .links a::before {

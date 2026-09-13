@@ -1,5 +1,4 @@
 ---
-import "../styles/uses.css";
 import {
 	hardware,
 	USES_LAST_UPDATED,
@@ -97,3 +96,162 @@ import Layout from "../layouts/Layout.astro";
 		</footer>
 	</main>
 </Layout>
+
+<style>
+body {
+	background: var(--bg);
+	color: var(--text);
+	min-height: 100vh;
+	padding: 3rem 1.5rem 6rem;
+}
+
+.page {
+	max-width: 600px;
+	margin: 0 auto;
+	padding-top: 5rem;
+}
+
+.face-link {
+	margin-bottom: 2rem;
+}
+
+header {
+	margin-bottom: 3rem;
+	animation: fadeUp 0.4s ease both;
+}
+
+h1 {
+	font-family: var(--font-display);
+	font-size: clamp(22px, 5vw, 34px);
+	color: var(--white);
+	line-height: 1.4;
+	margin-bottom: 0.85rem;
+}
+
+.eyebrow {
+	font-family: var(--font-display);
+	font-size: 9px;
+	color: var(--yellow);
+	letter-spacing: 0.15em;
+	text-transform: uppercase;
+	margin-bottom: 1rem;
+}
+
+.cursor {
+	display: inline-block;
+	width: 10px;
+	height: 1em;
+	background: var(--yellow);
+	vertical-align: middle;
+	animation: blink 1s step-end infinite;
+	margin-left: 4px;
+}
+
+.subtitle {
+	color: var(--muted);
+	font-size: 14px;
+	line-height: 1.7;
+	max-width: 48ch;
+}
+
+.section-title {
+	font-family: var(--font-display);
+	font-size: 12px;
+	letter-spacing: 0.08em;
+	color: var(--yellow);
+	margin: 0 0 1.4rem;
+	animation: fadeUp 0.4s ease both;
+}
+
+.uses-list {
+	list-style: none;
+	margin: 0 0 3rem;
+	padding: 0;
+	animation: fadeUp 0.4s ease 0.06s both;
+
+	&:last-of-type {
+		margin-bottom: 0;
+	}
+}
+
+.uses-item {
+	display: flex;
+	align-items: flex-start;
+	gap: 1rem;
+	margin-bottom: 1.7rem;
+}
+
+.emoji {
+	font-size: 1.4rem;
+	line-height: 1.5;
+	width: 1.6rem;
+	flex-shrink: 0;
+	text-align: center;
+}
+
+.uses-body {
+	min-width: 0;
+}
+
+.category {
+	margin: 0 0 0.2rem;
+	font-size: 10.5px;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color: var(--muted);
+}
+
+.apps {
+	margin: 0;
+	font-size: 16px;
+	line-height: 1.6;
+
+	a {
+		color: var(--white);
+		font-weight: 600;
+		text-decoration: none;
+		background-image: linear-gradient(var(--yellow), var(--yellow));
+		background-repeat: no-repeat;
+		background-position: 0 100%;
+		background-size: 0% 1px;
+		transition:
+			background-size 0.15s ease,
+			color 0.15s ease;
+
+		&:hover {
+			color: var(--yellow);
+			background-size: 100% 1px;
+		}
+	}
+}
+
+.sep {
+	color: var(--muted);
+	font-weight: 400;
+	margin: 0 0.15rem;
+}
+
+.note {
+	margin: 0.35rem 0 0;
+	font-size: 13px;
+	color: #9a9aac;
+	line-height: 1.65;
+}
+
+footer {
+	margin-top: 3rem;
+	padding-top: 1.5rem;
+	border-top: 1px solid #24242f;
+	font-size: 13px;
+	color: var(--muted);
+
+	a {
+		color: var(--yellow);
+		text-decoration: none;
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+}
+</style>
