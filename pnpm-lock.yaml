@@ -44,9 +44,6 @@ importers:
       react-dom:
         specifier: ^19.3.0
         version: 19.3.0(react@19.3.0)
-      sass:
-        specifier: ^1.104.1
-        version: 1.104.1
     devDependencies:
       '@biomejs/biome':
         specifier: 2.5.13
@@ -4001,7 +3998,8 @@ snapshots:
 
   http-cache-semantics@4.2.0: {}
 
-  immutable@5.1.9: {}
+  immutable@5.1.9:
+    optional: true
 
   indent-string@4.0.0: {}
 
@@ -4387,6 +4385,7 @@ snapshots:
       source-map-js: 1.2.1
     optionalDependencies:
       '@parcel/watcher': 2.5.1
+    optional: true
 
   satteri@0.10.5:
     dependencies:

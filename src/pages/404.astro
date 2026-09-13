@@ -1,24 +1,169 @@
 ---
 import Links from "../components/Links.astro";
 import Layout from "../layouts/Layout.astro";
+
+const path = Astro.url.pathname;
 ---
 
 <Layout title="404: Not found" description="This page does not exist." noindex>
-	<Links />
-	<div class="not-found">
-		<h1>NOT FOUND</h1>
-		<p>You just hit a route that doesn&#39;t exist... the sadness.</p>
-		<a href="/">Go home</a>
-	</div>
+	<Links inverted />
+	<main class="page">
+		<a href="/" class="face-link">
+			<img
+				src="/images/me.webp"
+				alt="sirlisko face"
+				width={60}
+				height={86}
+				transition:name="face"
+			>
+		</a>
+
+		<div class="terminal">
+			<div class="term-bar">
+				<span class="dot r"></span>
+				<span class="dot y"></span>
+				<span class="dot g"></span>
+				<span class="term-bar-title">luca@sirlisko — 404</span>
+			</div>
+			<div class="term-body">
+				<p class="line"><span class="prompt">&#10095;</span> cd {path}</p>
+				<p class="error">404: NOT FOUND</p>
+				<p class="line muted">this route wandered off into the void.</p>
+				<p class="line">
+					<span class="prompt">&#10095;</span>
+					<a href="/">cd ~</a><span class="cursor"></span>
+				</p>
+			</div>
+		</div>
+	</main>
 </Layout>
 
 <style>
-.not-found {
+.page {
+	min-height: 100vh;
+	background-color: #0f0f13;
+	color: #d4d4d8;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	min-height: 100vh;
-	gap: 2rem;
+	padding: 6rem 1.5rem 4rem;
+	gap: 2.5rem;
+}
+
+.face-link {
+	display: block;
+	width: fit-content;
+	opacity: 0.85;
+	transition: opacity 0.2s;
+}
+.face-link:hover {
+	opacity: 1;
+}
+.face-link img {
+	display: block;
+}
+
+@keyframes fadeUp {
+	from {
+		opacity: 0;
+		transform: translateY(12px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes blink {
+	50% {
+		opacity: 0;
+	}
+}
+
+.terminal {
+	width: 100%;
+	max-width: 560px;
+	background: #04090f;
+	border: 1px solid #2e2e3e;
+	overflow: hidden;
+	animation: fadeUp 0.4s ease both;
+}
+
+.term-bar {
+	background: #16161d;
+	padding: 0.55rem 1rem;
+	display: flex;
+	align-items: center;
+	gap: 0.45rem;
+	border-bottom: 1px solid #2e2e3e;
+}
+
+.dot {
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+}
+.dot.r {
+	background: #ff5f57;
+}
+.dot.y {
+	background: #febc2e;
+}
+.dot.g {
+	background: #28c840;
+}
+
+.term-bar-title {
+	font-size: 9px;
+	color: #6b6b80;
+	margin-left: 0.5rem;
+}
+
+.term-body {
+	padding: 1.75rem 1.5rem 2rem;
+	font-size: 13px;
+	line-height: 1.8;
+}
+
+.line {
+	margin: 0 0 0.5rem;
+	word-break: break-all;
+}
+.line.muted {
+	color: #6b6b80;
+	font-style: italic;
+}
+
+.prompt {
+	color: #6eb5ff;
+	margin-right: 0.5rem;
+}
+
+.error {
+	font-family: "Press Start 2P", monospace;
+	font-size: clamp(16px, 4vw, 22px);
+	color: #ff5f57;
+	text-shadow: 0 0 12px rgba(255, 95, 87, 0.45);
+	letter-spacing: 0.05em;
+	margin: 1.25rem 0;
+}
+
+.term-body a {
+	color: #6eb5ff;
+	text-decoration: none;
+}
+.term-body a:hover {
+	text-decoration: underline;
+}
+
+.cursor {
+	display: inline-block;
+	width: 8px;
+	height: 1em;
+	background: #6eb5ff;
+	vertical-align: middle;
+	margin-left: 4px;
+	animation: blink 1s step-end infinite;
 }
 </style>
