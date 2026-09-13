@@ -1,6 +1,7 @@
 :root {
 --bg: #0f0f13;
 --text: #d4d4d8;
+--yellow: #f0c040;
 --muted: #6b6b80;
 }
 
@@ -27,6 +28,22 @@ to   { opacity: 1; transform: translateY(0); }
 50% { opacity: 0; }
 }
 
+.face-link {
+display: block;
+width: fit-content;
+margin-bottom: 2rem;
+opacity: 0.9;
+transition: opacity 0.2s;
+
+&:hover {
+opacity: 1;
+}
+
+img {
+display: block;
+}
+}
+
 header {
 margin-bottom: 3rem;
 animation: fadeUp 0.4s ease both;
@@ -38,6 +55,15 @@ font-size: clamp(22px, 5vw, 34px);
 color: #fff;
 line-height: 1.4;
 margin-bottom: 0.85rem;
+}
+
+.eyebrow {
+font-family: "Press Start 2P", monospace;
+font-size: 9px;
+color: var(--yellow);
+letter-spacing: 0.15em;
+text-transform: uppercase;
+margin-bottom: 1rem;
 }
 
 .cursor {
