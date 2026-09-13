@@ -1,30 +1,28 @@
 import { execSync, spawn } from "node:child_process";
-import { existsSync, mkdirSync, readFileSync } from "node:fs";
+import { existsSync, mkdirSync } from "node:fs";
+import { readFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
+import { PDFDocument } from "pdf-lib";
 import puppeteer from "puppeteer";
 
 const SITE_URL = "https://sirlisko.com";
 const OUTPUT_DIR = "public/cv";
-const PRIVATE_ENV_FILE = ".env.private";
+const ENV_FILE = ".env";
+const QR_CODE_PATH = join("scripts", "assets", "qr-code.png");
+const QR_CODE_ALT_PATH = join("scripts", "assets", "qr-code-alt.png");
+const QR_CODE_SIZE = 70;
+const QR_CODE_MARGIN = 24;
 
 if (!existsSync(OUTPUT_DIR)) {
 	mkdirSync(OUTPUT_DIR, { recursive: true });
 }
 
-if (!existsSync(PRIVATE_ENV_FILE)) {
-	throw new Error(
-		`${PRIVATE_ENV_FILE} not found — create it with PHONE_NUMBER=...`,
-	);
-}
-
-const buildEnv = { ...process.env };
-for (const line of readFileSync(PRIVATE_ENV_FILE, "utf8").split("\n")) {
-	const match = line.match(/^([^#=]+)=(.*)$/);
-	if (match) buildEnv[match[1].trim()] = match[2].trim();
+if (!existsSync(ENV_FILE)) {
+	throw new Error(`${ENV_FILE} not found — create it with PHONE_NUMBER=...`);
 }
 
 console.log("Building...");
-execSync("pnpm build", { stdio: "inherit", env: buildEnv });
+execSync("pnpm build", { stdio: "inherit" });
 
 console.log("Starting preview server...");
 const server = spawn("pnpm", ["preview"], {
@@ -66,6 +64,23 @@ try {
 	const browser = await puppeteer.launch({
 		executablePath: existsSync(systemChrome) ? systemChrome : undefined,
 	});
+
+	const addQrCode = async (filePath, isAlt = false) => {
+		const [pdfBytes, qrCodeBytes] = await Promise.all([
+			readFile(filePath),
+			readFile(isAlt ? QR_CODE_ALT_PATH : QR_CODE_PATH),
+		]);
+		const pdfDoc = await PDFDocument.load(pdfBytes);
+		const qrCodeImage = await pdfDoc.embedPng(qrCodeBytes);
+		const [firstPage] = pdfDoc.getPages();
+		firstPage.drawImage(qrCodeImage, {
+			x: QR_CODE_MARGIN,
+			y: QR_CODE_MARGIN,
+			width: QR_CODE_SIZE,
+			height: QR_CODE_SIZE,
+		});
+		await writeFile(filePath, await pdfDoc.save());
+	};
 
 	const compress = (filePath) => {
 		const tmp = `${filePath}.tmp.pdf`;
@@ -122,6 +137,7 @@ try {
 		const outPath = join(OUTPUT_DIR, outputFile);
 		await page.pdf({ path: outPath, format: "A4", printBackground: true });
 		await page.close();
+		await addQrCode(outPath, path.indexOf("alt=true") !== -1);
 		compress(outPath);
 		console.log(`  ✓ ${outPath}`);
 	};
