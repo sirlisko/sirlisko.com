@@ -2,7 +2,6 @@
 import "@fontsource/ibm-plex-mono/400.css";
 import "@fontsource/ibm-plex-mono/400-italic.css";
 import "@fontsource/ibm-plex-mono/600.css";
-import "../styles/now.css";
 import { NOW_LAST_UPDATED, sections } from "../../data/now";
 import Links from "../components/Links.astro";
 import Layout from "../layouts/Layout.astro";
@@ -12,7 +11,7 @@ const COLORS = ["#ff4444", "#6eb5ff", "#44cc77", "#ff6eb4"];
 
 <Layout
 	title="Now"
-	description={'What Luca Lischetti (sirlisko) is up to right now'}
+	description="What Luca Lischetti (sirlisko) is up to right now"
 	keywords={[
     "sirlisko",
     "now",
@@ -30,13 +29,15 @@ const COLORS = ["#ff4444", "#6eb5ff", "#44cc77", "#ff6eb4"];
 			</div>
 			<h1>
 				/now<span class="pacman" aria-hidden="true"></span>
-				<img
-					src="/images/me.webp"
-					alt="sirlisko face"
-					width={25}
-					height={36}
-					transition:name="face"
-				>
+				<a href="/">
+					<img
+						src="/images/me.webp"
+						alt="sirlisko face"
+						width={25}
+						height={36}
+						transition:name="face"
+					>
+				</a>
 			</h1>
 			<div class="header-stats">
 				<div class="stat">
@@ -94,3 +95,306 @@ const COLORS = ["#ff4444", "#6eb5ff", "#44cc77", "#ff6eb4"];
 		</footer>
 	</main>
 </Layout>
+
+<style>
+body {
+	background: var(--bg);
+	color: var(--text);
+	font-family: var(--font-mono);
+	font-size: 15px;
+	line-height: 1.75;
+	min-height: 100vh;
+	padding: 3rem 1.5rem 6rem;
+}
+
+.page {
+	max-width: 640px;
+	margin: 0 auto;
+	padding-top: 5rem;
+}
+
+header {
+	margin-bottom: 3rem;
+	padding: 2.5rem 1.5rem;
+	text-align: center;
+	position: relative;
+	background: #0d0d11;
+
+	border: 3px solid var(--yellow);
+	box-shadow:
+		0 0 0 2px #0d0d11,
+		0 0 0 5px var(--yellow),
+		0 0 35px rgba(240, 192, 64, 0.18);
+}
+
+.header-badge {
+	font-family: var(--font-mono);
+	font-size: 11px;
+	letter-spacing: 0.2em;
+	text-transform: uppercase;
+	color: #8b8ba0;
+	margin-bottom: 1.5rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.75rem;
+}
+
+.badge-dot {
+	display: inline-block;
+	width: 6px;
+	height: 6px;
+	background: var(--yellow);
+	flex-shrink: 0;
+	animation: pulse 2s ease-in-out infinite;
+
+	&:last-child {
+		animation-delay: 1s;
+	}
+}
+
+h1 {
+	font-family: var(--font-display);
+	font-size: clamp(22px, 5vw, 34px);
+	color: var(--white);
+	line-height: 1.4;
+	margin-bottom: 1.5rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.4em;
+}
+
+.pacman {
+	display: inline-block;
+	position: relative;
+	flex-shrink: 0;
+	width: 0.75em;
+	height: 0.75em;
+	overflow: hidden;
+	border-radius: 50%;
+
+	&::before,
+	&::after {
+		content: "";
+		position: absolute;
+		left: 0;
+		width: 100%;
+		height: 50%;
+		background: var(--yellow);
+	}
+
+	&::before {
+		top: 0;
+		transform-origin: center bottom;
+		animation: jaw-top 0.35s ease-in-out alternate infinite;
+	}
+
+	&::after {
+		bottom: 0;
+		transform-origin: center top;
+		animation: jaw-bottom 0.35s ease-in-out alternate infinite;
+	}
+}
+
+@keyframes jaw-top {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(-30deg);
+	}
+}
+
+@keyframes jaw-bottom {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(30deg);
+	}
+}
+
+.header-stats {
+	display: flex;
+	justify-content: center;
+	gap: 2rem;
+	flex-wrap: wrap;
+	margin-bottom: 1.25rem;
+}
+
+.stat {
+	display: flex;
+	align-items: baseline;
+	gap: 0.5rem;
+}
+
+.stat-key {
+	font-family: var(--font-display);
+	font-size: 9px;
+	color: var(--yellow);
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+}
+
+.stat-val {
+	font-family: var(--font-mono);
+	font-size: 13px;
+	color: #c4c4cc;
+}
+
+.header-link {
+	font-family: var(--font-mono);
+	font-size: 12px;
+	color: #8b8ba0;
+	text-decoration: none;
+	letter-spacing: 0.05em;
+	transition: color 0.15s ease;
+
+	&:hover {
+		color: var(--yellow);
+	}
+}
+
+.section {
+	position: relative;
+	margin-bottom: 2rem;
+	padding: 1.5rem;
+	background: #111;
+	border: 3px dotted var(--accent);
+	box-shadow: 5px 5px 0 0 var(--accent);
+	transition:
+		transform 0.15s ease,
+		box-shadow 0.15s ease;
+	animation: fadeUp 0.4s ease both;
+	animation-delay: var(--delay, 0s);
+
+	&:hover {
+		transform: translate(-2px, -2px);
+		box-shadow: 7px 7px 0 0 var(--accent);
+	}
+}
+
+.ghost {
+	position: absolute;
+	top: 10px;
+	right: 12px;
+	width: 20px;
+	height: 24px;
+	animation: ghost-float 3s ease-in-out infinite;
+	display: block;
+
+	svg {
+		width: 100%;
+		height: 100%;
+	}
+}
+
+@keyframes ghost-float {
+	0%,
+	100% {
+		transform: translateY(0px);
+	}
+	50% {
+		transform: translateY(-4px);
+	}
+}
+
+@keyframes pulse {
+	0%,
+	100% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0.3;
+	}
+}
+
+.section-label {
+	font-family: var(--font-mono);
+	font-size: 11px;
+	letter-spacing: 0.15em;
+	text-transform: uppercase;
+	color: #8b8ba0;
+	margin-bottom: 0.5rem;
+	padding-right: 2rem;
+}
+
+.section-title {
+	font-family: var(--font-display);
+	font-size: 13px;
+	color: var(--white);
+	margin-bottom: 0.75rem;
+	line-height: 1.6;
+}
+
+p {
+	color: var(--text);
+	font-size: 14px;
+	line-height: 1.8;
+
+	& + p {
+		margin-top: 0.75rem;
+	}
+	& + a {
+		color: var(--text);
+	}
+
+	a {
+		color: var(--white);
+		text-decoration: underline;
+
+		&:hover {
+			color: var(--yellow);
+		}
+	}
+	strong {
+		color: var(--white);
+	}
+}
+
+.tags {
+	margin-top: 1rem;
+}
+
+.tag {
+	display: inline-block;
+	font-family: var(--font-mono);
+	font-size: 11px;
+	padding: 3px 8px;
+	background: var(--bg);
+	border: 2px dotted #3a3a4e;
+	color: #8b8ba0;
+	margin: 4px 3px 0 0;
+	letter-spacing: 0.05em;
+	transition:
+		border-color 0.15s ease,
+		color 0.15s ease;
+
+	&:hover {
+		border-color: var(--accent, var(--yellow));
+		color: var(--accent, var(--yellow));
+	}
+}
+
+footer {
+	margin-top: 4rem;
+	padding-top: 1.5rem;
+	border-top: 3px dotted var(--border);
+	font-size: 13px;
+	color: #8b8ba0;
+
+	a {
+		color: var(--yellow);
+		text-decoration: none;
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+
+	strong {
+		color: #c4c4cc;
+	}
+}
+</style>
