@@ -2,7 +2,7 @@
 import "@fontsource/ibm-plex-mono/400.css";
 import "@fontsource/ibm-plex-mono/400-italic.css";
 import "@fontsource/ibm-plex-mono/600.css";
-import "../styles/now.scss";
+import "../styles/now.css";
 import { NOW_LAST_UPDATED, sections } from "../../data/now";
 import Links from "../components/Links.astro";
 import Layout from "../layouts/Layout.astro";
@@ -13,7 +13,12 @@ const COLORS = ["#ff4444", "#6eb5ff", "#44cc77", "#ff6eb4"];
 <Layout
 	title="Now"
 	description={'What Luca Lischetti (sirlisko) is up to right now'}
-	keywords={["sirlisko", "now", "Luca Lischetti", "what I'm doing"]}
+	keywords={[
+    "sirlisko",
+    "now",
+    "Luca Lischetti",
+    "what I'm doing",
+  ]}
 >
 	<Links inverted page="now" />
 	<main class="page">
