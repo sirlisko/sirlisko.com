@@ -13,6 +13,8 @@ export interface UsesItem {
 export const USES_SOURCE = "https://sirlisko.com/blog/my-default-apps-2024";
 export const USES_SOURCE_LABEL = "the original post";
 export const USES_LAST_UPDATED = "September 2026";
+export const DOTFILES_SOURCE = "https://github.com/sirlisko/dotfiles";
+export const DOTFILES_SOURCE_LABEL = "dotfiles repo";
 
 export const hardware = [
 	{
@@ -22,6 +24,16 @@ export const hardware = [
 			{
 				name: "MacBook Pro M1 Pro (32GB RAM)",
 				url: "https://www.apple.com/macbook-pro/",
+			},
+		],
+	},
+	{
+		emoji: "🖥️",
+		category: "monitor",
+		apps: [
+			{
+				name: 'LG 23.7" UltraFine™ 4K Monitor',
+				url: "https://www.lg.com/us/business/computer-monitors/lg-24md4klb-b",
 			},
 		],
 	},
@@ -72,6 +84,16 @@ export const hardware = [
 		emoji: "📱",
 		category: "tablet",
 		apps: [{ name: "iPad (A16)", url: "https://www.apple.com/ipad/" }],
+	},
+	{
+		emoji: "🪑",
+		category: "chair",
+		apps: [
+			{
+				name: "Varier Variable™ Kneeling Chair",
+				url: "https://varierchairs.com/kneeling-chairs/variable-balans/",
+			},
+		],
 	},
 ] satisfies UsesItem[];
 
@@ -237,5 +259,63 @@ export const uses = [
 			{ name: "Netlify", url: "https://www.netlify.com" },
 		],
 		note: "Self-hosted on a private VPS, static sites on Netlify.",
+	},
+] satisfies UsesItem[];
+
+export const cli = [
+	{
+		emoji: "🐚",
+		category: "shell",
+		apps: [{ name: "oh-my-zsh", url: "https://ohmyz.sh" }],
+		note: "ZSH and a bunch of plugins, out of the box.",
+	},
+	{
+		emoji: "✨",
+		category: "shell prompt",
+		apps: [{ name: "Starship", url: "https://starship.rs" }],
+		note: "I feel lost without my custom prompt.",
+	},
+	{
+		emoji: "🧭",
+		category: "navigation",
+		apps: [
+			{ name: "zoxide", url: "https://github.com/ajeetdsouza/zoxide" },
+			{ name: "fzf", url: "https://github.com/junegunn/fzf" },
+		],
+		note: "cd and Ctrl+R, but smarter.",
+	},
+	{
+		emoji: "🦾",
+		category: "modern unix",
+		apps: [
+			{ name: "ripgrep", url: "https://github.com/BurntSushi/ripgrep" },
+			{ name: "fd", url: "https://github.com/sharkdp/fd" },
+			{ name: "bat", url: "https://github.com/sharkdp/bat" },
+			{ name: "eza", url: "https://github.com/eza-community/eza" },
+		],
+		note: "grep, find, cat, and ls — faster and friendlier.",
+	},
+	{
+		emoji: "🔀",
+		category: "diff pager",
+		apps: [{ name: "git-delta", url: "https://github.com/dandavison/delta" }],
+		note: "Syntax-highlighted git diffs.",
+	},
+	{
+		emoji: "🐙",
+		category: "GitHub CLI",
+		apps: [{ name: "gh", url: "https://cli.github.com" }],
+		note: "PRs and issues without leaving the terminal.",
+	},
+	{
+		emoji: "🔤",
+		category: "font",
+		apps: [
+			{
+				name: "FiraCode Nerd Font Mono",
+				url: "https://www.nerdfonts.com/font-downloads",
+			},
+		],
+		note: "Ligatures and icons, everywhere in the terminal.",
 	},
 ] satisfies UsesItem[];

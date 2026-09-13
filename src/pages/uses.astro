@@ -1,5 +1,8 @@
 ---
 import {
+	cli,
+	DOTFILES_SOURCE,
+	DOTFILES_SOURCE_LABEL,
 	hardware,
 	USES_LAST_UPDATED,
 	USES_SOURCE,
@@ -85,6 +88,31 @@ import Layout from "../layouts/Layout.astro";
         ))}
 		</ul>
 
+		<h2 class="section-title">CLI</h2>
+		<ul class="uses-list">
+			{cli.map((u) => (
+          <li class="uses-item">
+            <span class="emoji" aria-hidden="true">{u.emoji}</span>
+            <div class="uses-body">
+              <p class="category">{u.category}</p>
+              <p class="apps">
+                {u.apps.map((app, i) => (
+                  <>
+                    {i > 0 && <span class="sep"> / </span>}
+                    {app.url ? (
+                      <a href={app.url} target="_blank" rel="noopener noreferrer">{app.name}</a>
+                    ) : (
+                      <span>{app.name}</span>
+                    )}
+                  </>
+                ))}
+              </p>
+              {u.note && <p class="note">{u.note}</p>}
+            </div>
+          </li>
+        ))}
+		</ul>
+
 		<footer>
 			<p>
 				Based on{' '}
@@ -93,6 +121,12 @@ import Layout from "../layouts/Layout.astro";
 				>, updated whenever something changes.
 			</p>
 			<p>Last updated: <strong>{USES_LAST_UPDATED}</strong>.</p>
+			<p>
+				The full setup lives in my{' '}
+				<a href={DOTFILES_SOURCE} target="_blank" rel="noopener noreferrer"
+					>{DOTFILES_SOURCE_LABEL}</a
+				>.
+			</p>
 		</footer>
 	</main>
 </Layout>
@@ -106,9 +140,9 @@ body {
 }
 
 .page {
-	max-width: 600px;
+	max-width: 720px;
 	margin: 0 auto;
-	padding-top: 5rem;
+	padding-top: 3rem;
 }
 
 .face-link {
