@@ -4,6 +4,7 @@ import {
 	ClockAlert,
 	Earth,
 	MapPinHouse,
+	Moon,
 	Plane,
 } from "lucide-react";
 import type { FC } from "react";
@@ -27,6 +28,16 @@ interface ProjectWithIcon extends BaseProject {
 export type Project = ProjectWithLogo | ProjectWithIcon;
 
 export const projects = [
+	{
+		title: "Moon",
+		description: ["A 3D render of the moon, built with three.js."],
+		icon: Moon,
+		links: {
+			Website: "https://moon.sirlisko.com",
+			Github: "https://github.com/sirlisko/moon",
+		},
+		tech: ["Three.js", "JavaScript", "WebGL"],
+	},
 	{
 		title: "GigPlayList",
 		description: [
