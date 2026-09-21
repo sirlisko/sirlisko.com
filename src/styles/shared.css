@@ -67,3 +67,9 @@
 .dot.g {
 	background: #28c840;
 }
+
+/* The reserved box would otherwise paint the alt text until the image arrives;
+   transparent hides it from sight while assistive tech still reads it. */
+.face-img {
+	color: transparent;
+}
