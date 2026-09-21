@@ -1,0 +1,49 @@
+---
+interface Props {
+	descriptions: string[];
+}
+
+const { descriptions } = Astro.props;
+---
+
+<span
+	class="greeting"
+	data-greeting
+	data-descriptions={JSON.stringify(descriptions)}
+	>{descriptions[0]}</span
+>
+
+<script>
+import { initGreeting } from "../lib/greeting";
+
+let cleanup: (() => void) | undefined;
+
+document.addEventListener("astro:page-load", () => {
+	cleanup?.();
+	const el = document.querySelector<HTMLElement>("[data-greeting]");
+	const descriptions: unknown = JSON.parse(el?.dataset.descriptions ?? "[]");
+	cleanup =
+		el && Array.isArray(descriptions)
+			? initGreeting(el, descriptions)
+			: undefined;
+});
+</script>
+
+<style>
+.greeting {
+	display: inline-block;
+	position: relative;
+	white-space: nowrap;
+}
+
+.greeting::after {
+	content: " ";
+	display: inline-block;
+	width: 5px;
+	height: 100%;
+	background-color: #000;
+	position: absolute;
+	right: -10px;
+	animation: blink 1s step-end infinite;
+}
+</style>

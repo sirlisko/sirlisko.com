@@ -55,7 +55,7 @@ pnpm preview
 This project uses **Biome** and **Vitest** to ensure code quality, consistency, and correctness. The following commands are available:
 
 - `pnpm check`: Run Biome to lint and format all files.
-- `pnpm typecheck`: Run Typescript type check.
+- `pnpm typecheck`: Run the TypeScript type check (`tsc --noEmit`).
 - `pnpm test`: Run unit tests using Vitest.
 
 ### GitHub Actions
@@ -74,7 +74,7 @@ A GitHub Actions workflow runs on every push and pull request to ensure that:
 - **Framework**: Astro.js for building the pages
 - **Linting and Formatting**: Biome for consistent code quality and style.
 - **Testing**: Unit tests with Vitest.
-- **UI Library**: some of the UI interactions are powered by React.
+- **UI**: no framework — the interactive bits are plain TypeScript modules in `src/lib/`, driven by `<script>` blocks in Astro components.
 - **CI/CD**: GitHub Actions for automating linting, formatting, and testing.
 
 ## Generate the resume in pdf format
@@ -83,7 +83,8 @@ A GitHub Actions workflow runs on every push and pull request to ensure that:
 pnpm generate:cv
 ```
 
-This builds the site, spins up a preview server, and exports both resume variants to `public/cv/`:
+This builds the site, spins up a preview server, and exports every resume variant to `public/cv/`:
+
 - `luca-lischetti-resume.pdf` — dark theme
 - `alt.pdf` — light/print-friendly theme
 

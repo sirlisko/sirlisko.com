@@ -7,7 +7,7 @@ export interface Section {
 
 export const NOW_LAST_UPDATED = "September 2026";
 
-export const sections = [
+export const sections: Section[] = [
 	{
 		label: "day job",
 		title: "Building apps, breaking things, shipping side projects",
@@ -52,4 +52,4 @@ export const sections = [
 			"I've had a blog for years but never taken it seriously. That's changing. I want to write about everything: code, tabletop, food, community, whatever I'm thinking about.",
 		],
 	},
-] satisfies Section[];
+];
