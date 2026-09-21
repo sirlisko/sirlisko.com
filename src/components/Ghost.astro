@@ -1,3 +1,25 @@
+---
+const LIVES = 3;
+---
+
+<section class="life" aria-hidden="true">
+	{Array.from({ length: LIVES }, () => <span class="heart" data-ghost-heart />)}
+	<p class="life-label" data-ghost-gameover hidden>-Game Over-</p>
+</section>
+<figure class="ghost" aria-hidden="true" data-ghost-sprite></figure>
+
+<script>
+import { initGhost } from "../lib/ghost";
+
+let cleanup: (() => void) | undefined;
+
+document.addEventListener("astro:page-load", () => {
+	cleanup?.();
+	cleanup = initGhost(document);
+});
+</script>
+
+<style>
 .ghost {
 	background: transparent url(/images/ghost.webp);
 	background-size: contain;
@@ -21,7 +43,7 @@
 		display: none;
 	}
 }
-.ghostFlipped {
+.ghost.flipped {
 	transform: rotateY(180deg);
 }
 
@@ -34,11 +56,12 @@
 		display: none;
 	}
 }
-.lifeLabel {
+.life-label {
 	position: absolute;
 	top: 0;
 	transition: opacity 2s ease;
 	white-space: nowrap;
+	margin: 0;
 }
 .heart {
 	background: url(/images/heart.webp);
@@ -49,3 +72,16 @@
 	transition: opacity 0.5s ease;
 	width: 50px;
 }
+.heart[hidden],
+.life-label[hidden] {
+	display: none;
+}
+
+/* The ghost only exists to chase the cursor, so there is nothing left to show. */
+@media (prefers-reduced-motion: reduce) {
+	.ghost,
+	.life {
+		display: none;
+	}
+}
+</style>

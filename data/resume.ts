@@ -1,15 +1,15 @@
-interface Experience {
+export interface Experience {
 	where: string;
 	blurb: string[];
 	when?: string;
 }
 
-interface Skills {
+export interface Skills {
 	main: string[];
 	"misc.": string[];
 }
 
-interface ProjectShort {
+export interface ProjectShort {
 	name: string;
 	url: string;
 	blurb: string[];

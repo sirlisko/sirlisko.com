@@ -1,19 +1,30 @@
 ---
+import { Image } from "astro:assets";
 import me from "../../data/me";
-import Ghost from "../components/Ghost";
-import Greeting from "../components/Greeting";
+import Ghost from "../components/Ghost.astro";
+import Greeting from "../components/Greeting.astro";
 import Links from "../components/Links.astro";
+import me_face from "../images/me.webp";
 import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout keywords={me.keywords}>
-	<Ghost client:only="react" />
+	<Ghost />
 	<div class="page-container">
 		<Links />
 		<main class="main-content">
 			<div class="container grid">
 				<div class="face">
-					<img src="/images/me.webp" alt="sirlisko face" transition:name="face">
+					<Image
+						src={me_face}
+						alt="sirlisko face"
+						class="face-img"
+						widths={[400, 700, 1000, 1244]}
+						sizes="(max-width: 650px) 90vw, 50vw"
+						loading="eager"
+						fetchpriority="high"
+						transition:name="face"
+					/>
 				</div>
 				<div class="intro">
 					<h1>
@@ -21,9 +32,7 @@ import Layout from "../layouts/Layout.astro";
 						I&#39;m sirlisko,
 						<span>another f@$#&amp;n&#39;</span>
 						<span class="desc">
-							<span>
-								<Greeting descriptions={me.descriptions} client:load />
-							</span>
+							<Greeting descriptions={me.descriptions} />
 						</span>
 					</h1>
 				</div>
@@ -81,6 +90,9 @@ body {
 }
 .face img {
 	height: min(70vw, 70vh);
+	/* the intrinsic width/height attributes are presentational hints, so the
+	   width has to be released explicitly for the aspect ratio to win */
+	width: auto;
 }
 @media screen and (max-width: 650px) {
 	.face {
@@ -89,29 +101,6 @@ body {
 	.intro span,
 	.intro h1 {
 		font-size: min(5vw, 5vh);
-	}
-}
-
-.desc span {
-	display: inline-block;
-	position: relative;
-	white-space: nowrap;
-}
-
-.desc span::after {
-	content: " ";
-	display: inline-block;
-	width: 5px;
-	height: 100%;
-	background-color: #000;
-	position: absolute;
-	right: -10px;
-	animation: blink 1s step-end infinite;
-}
-
-@keyframes blink {
-	50% {
-		background-color: transparent;
 	}
 }
 </style>

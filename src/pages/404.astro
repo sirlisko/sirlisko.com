@@ -1,5 +1,7 @@
 ---
+import { Image } from "astro:assets";
 import Links from "../components/Links.astro";
+import me_face from "../images/me.webp";
 import Layout from "../layouts/Layout.astro";
 
 const path = Astro.url.pathname;
@@ -9,13 +11,15 @@ const path = Astro.url.pathname;
 	<Links inverted />
 	<main class="page">
 		<a href="/" class="face-link">
-			<img
-				src="/images/me.webp"
+			<Image
+				src={me_face}
 				alt="sirlisko face"
+				class="face-img"
 				width={60}
 				height={86}
+				densities={[1, 2]}
 				transition:name="face"
-			>
+			/>
 		</a>
 
 		<div class="terminal">
@@ -37,7 +41,9 @@ const path = Astro.url.pathname;
 		</div>
 	</main>
 	<script>
-	window.umami?.track("404", { url: window.location.pathname });
+	document.addEventListener("astro:page-load", () => {
+		window.umami?.track("404", { url: window.location.pathname });
+	});
 	</script>
 </Layout>
 
@@ -55,10 +61,6 @@ body {
 	justify-content: center;
 	padding: 6rem 1.5rem 4rem;
 	gap: 2.5rem;
-}
-
-.face-link {
-	opacity: 0.85;
 }
 
 .terminal {

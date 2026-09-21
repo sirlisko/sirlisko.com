@@ -1,3 +1,17 @@
+/* !important is what makes this win over every per-page animation below. */
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		/* biome-ignore-start lint/complexity/noImportantStyles: the reduced-motion reset has to beat page styles */
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
+		/* biome-ignore-end lint/complexity/noImportantStyles: the reduced-motion reset has to beat page styles */
+	}
+}
+
 @keyframes fadeUp {
 	from {
 		opacity: 0;
@@ -52,4 +66,10 @@
 }
 .dot.g {
 	background: #28c840;
+}
+
+/* The reserved box would otherwise paint the alt text until the image arrives;
+   transparent hides it from sight while assistive tech still reads it. */
+.face-img {
+	color: transparent;
 }

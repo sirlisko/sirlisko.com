@@ -1,13 +1,11 @@
-import {
-	Atom,
-	CalendarHeart,
-	ClockAlert,
-	Earth,
-	MapPinHouse,
-	Moon,
-	Plane,
-} from "lucide-react";
-import type { FC } from "react";
+export type IconName =
+	| "atom"
+	| "calendar-heart"
+	| "clock-alert"
+	| "earth"
+	| "map-pin-house"
+	| "moon"
+	| "plane";
 
 interface BaseProject {
 	title: string;
@@ -22,7 +20,7 @@ interface ProjectWithLogo extends BaseProject {
 	invertIcon?: boolean;
 }
 interface ProjectWithIcon extends BaseProject {
-	icon: FC;
+	icon: IconName;
 }
 
 export type Project = ProjectWithLogo | ProjectWithIcon;
@@ -31,7 +29,7 @@ export const projects = [
 	{
 		title: "Moon",
 		description: ["A 3D render of the moon, built with three.js."],
-		icon: Moon,
+		icon: "moon",
 		links: {
 			Website: "https://moon.sirlisko.com",
 			Github: "https://github.com/sirlisko/moon",
@@ -68,7 +66,7 @@ export const projects = [
 			"Assign a GIF to every day of the year. Your year, in GIFs.",
 			"GifDay is a webapp that allows you to create a gif for every day of the year, using the Giphy API.",
 		],
-		icon: CalendarHeart,
+		icon: "calendar-heart",
 		links: {
 			Website: "https://gifday.sirlisko.com/",
 			Github: "https://github.com/sirlisko/gifday",
@@ -90,7 +88,7 @@ export const projects = [
 			"Track the countries you've visited on an interactive world map.",
 			"React application powered by Firebase Auth and Firestore.",
 		],
-		icon: Plane,
+		icon: "plane",
 		links: {
 			Website: "https://been.sirlisko.com/",
 			Github: "https://github.com/sirlisko/been",
@@ -116,7 +114,7 @@ export const projects = [
 			"JSON of SVG shapes for every country in the world. BYO map.",
 			"NPM module that provides a JSON file with all country shapes.",
 		],
-		icon: Earth,
+		icon: "earth",
 		links: {
 			"NPM Module": "https://npmjs.com/package/world-map-country-shapes",
 			Github: "https://github.com/sirlisko/world-map-country-shapes",
@@ -129,7 +127,7 @@ export const projects = [
 			"Resets persisted Redux state after a configurable TTL.",
 			"NPM module that extends the functionality of the redux plugin.",
 		],
-		icon: Atom,
+		icon: "atom",
 		links: {
 			"NPM Module":
 				"https://npmjs.com/package/redux-persist-transform-expire-in",
@@ -141,7 +139,7 @@ export const projects = [
 	{
 		title: "UK Postcode Validator",
 		description: ["Micro NPM module to validate UK postcodes."],
-		icon: MapPinHouse,
+		icon: "map-pin-house",
 		links: {
 			"NPM Module": "https://npmjs.com/package/uk-postcode-validator",
 			Github: "https://github.com/sirlisko/uk-postcode-validator",
@@ -182,7 +180,7 @@ export const projects = [
 		description: [
 			"Customisable countdowns for future and past events. Small and sharp.",
 		],
-		icon: ClockAlert,
+		icon: "clock-alert",
 		links: {
 			Website: "https://countdown.sirlisko.com/",
 			Github: "https://github.com/sirlisko/countdown",
@@ -191,7 +189,7 @@ export const projects = [
 	},
 ] satisfies Project[];
 
-export const pastProjects = [
+export const pastProjects: Project[] = [
 	{
 		title: "Shazamify (a.k.a. Zamify)",
 		description: [
