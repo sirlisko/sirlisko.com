@@ -1,5 +1,9 @@
 ---
-const phoneNumber = import.meta.env.PHONE_NUMBER;
+// The phone number must never reach the public build: only `pnpm generate:cv`
+// sets CV_BUILD, so a stray PHONE_NUMBER in a deploy environment stays unused.
+const phoneNumber = import.meta.env.CV_BUILD
+	? import.meta.env.PHONE_NUMBER
+	: undefined;
 ---
 
 <section class="section contacts">

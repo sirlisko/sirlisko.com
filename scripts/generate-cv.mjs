@@ -22,7 +22,10 @@ if (!existsSync(ENV_FILE)) {
 }
 
 console.log("Building...");
-execSync("pnpm build", { stdio: "inherit" });
+execSync("pnpm build", {
+	stdio: "inherit",
+	env: { ...process.env, CV_BUILD: "1" },
+});
 
 console.log("Starting preview server...");
 const server = spawn("pnpm", ["preview"], {
