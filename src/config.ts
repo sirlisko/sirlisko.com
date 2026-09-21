@@ -5,6 +5,9 @@ export const SITE = {
 	title: `sirlisko`,
 	description: `Ciao! I'm Luca, another fellow &lt;developer /&gt;, cook, hiker, dungeon crawler, and maker of things. Web stuff, games, dinner, bad decisions, and sometimes all at once.`,
 	image: `${SITE_URL}/images/me_banner.jpg`,
+	imageAlt: `Luca Lischetti, aka sirlisko`,
+	imageWidth: 2048,
+	imageHeight: 1024,
 };
 
 export const AUTHOR = {

@@ -1,5 +1,4 @@
 ---
-import { Image } from "astro:assets";
 import {
 	cli,
 	DOTFILES_SOURCE,
@@ -10,8 +9,9 @@ import {
 	USES_SOURCE_LABEL,
 	uses,
 } from "../../data/uses";
+import FaceLink from "../components/FaceLink.astro";
 import Links from "../components/Links.astro";
-import me_face from "../images/me.webp";
+import UsesList from "../components/UsesList.astro";
 import Layout from "../layouts/Layout.astro";
 ---
 
@@ -26,20 +26,11 @@ import Layout from "../layouts/Layout.astro";
     "tools",
     "setup",
   ]}
+	theme="doc"
 >
 	<Links inverted page="uses" />
 	<main class="page">
-		<a href="/" class="face-link">
-			<Image
-				src={me_face}
-				alt="sirlisko face"
-				class="face-img"
-				width={60}
-				height={86}
-				densities={[1, 2]}
-				transition:name="face"
-			/>
-		</a>
+		<FaceLink />
 		<header>
 			<p class="eyebrow">// things I use</p>
 			<h1>Uses<span class="cursor"></span></h1>
@@ -47,75 +38,13 @@ import Layout from "../layouts/Layout.astro";
 		</header>
 
 		<h2 class="section-title">Hardware</h2>
-		<ul class="uses-list">
-			{hardware.map((u) => (
-          <li class="uses-item">
-            <span class="emoji" aria-hidden="true">{u.emoji}</span>
-            <div class="uses-body">
-              <p class="category">{u.category}</p>
-              <p class="apps">
-                {u.apps.map((app, i) => (
-                  <>
-                    {i > 0 && <span class="sep"> / </span>}
-                    <a href={app.url} target="_blank" rel="noopener noreferrer">{app.name}</a>
-                  </>
-                ))}
-              </p>
-              {u.note && <p class="note">{u.note}</p>}
-            </div>
-          </li>
-        ))}
-		</ul>
+		<UsesList items={hardware} />
 
 		<h2 class="section-title">Software</h2>
-		<ul class="uses-list">
-			{uses.map((u) => (
-          <li class="uses-item">
-            <span class="emoji" aria-hidden="true">{u.emoji}</span>
-            <div class="uses-body">
-              <p class="category">{u.category}</p>
-              <p class="apps">
-                {u.apps.map((app, i) => (
-                  <>
-                    {i > 0 && <span class="sep"> / </span>}
-                    {app.url ? (
-                      <a href={app.url} target="_blank" rel="noopener noreferrer">{app.name}</a>
-                    ) : (
-                      <span>{app.name}</span>
-                    )}
-                  </>
-                ))}
-              </p>
-              {u.note && <p class="note">{u.note}</p>}
-            </div>
-          </li>
-        ))}
-		</ul>
+		<UsesList items={uses} />
 
 		<h2 class="section-title">CLI</h2>
-		<ul class="uses-list">
-			{cli.map((u) => (
-          <li class="uses-item">
-            <span class="emoji" aria-hidden="true">{u.emoji}</span>
-            <div class="uses-body">
-              <p class="category">{u.category}</p>
-              <p class="apps">
-                {u.apps.map((app, i) => (
-                  <>
-                    {i > 0 && <span class="sep"> / </span>}
-                    {app.url ? (
-                      <a href={app.url} target="_blank" rel="noopener noreferrer">{app.name}</a>
-                    ) : (
-                      <span>{app.name}</span>
-                    )}
-                  </>
-                ))}
-              </p>
-              {u.note && <p class="note">{u.note}</p>}
-            </div>
-          </li>
-        ))}
-		</ul>
+		<UsesList items={cli} />
 
 		<footer>
 			<p>
@@ -136,55 +65,6 @@ import Layout from "../layouts/Layout.astro";
 </Layout>
 
 <style>
-body {
-	background: var(--bg);
-	color: var(--text);
-	min-height: 100vh;
-	padding: 3rem 1.5rem 6rem;
-}
-
-.page {
-	max-width: 720px;
-	margin: 0 auto;
-	padding-top: 3rem;
-}
-
-.face-link {
-	margin-bottom: 2rem;
-}
-
-header {
-	margin-bottom: 3rem;
-	animation: fadeUp 0.4s ease both;
-}
-
-h1 {
-	font-family: var(--font-display);
-	font-size: clamp(22px, 5vw, 34px);
-	color: var(--white);
-	line-height: 1.4;
-	margin-bottom: 0.85rem;
-}
-
-.eyebrow {
-	font-family: var(--font-display);
-	font-size: 9px;
-	color: var(--yellow);
-	letter-spacing: 0.15em;
-	text-transform: uppercase;
-	margin-bottom: 1rem;
-}
-
-.cursor {
-	display: inline-block;
-	width: 10px;
-	height: 1em;
-	background: var(--yellow);
-	vertical-align: middle;
-	animation: blink 1s step-end infinite;
-	margin-left: 4px;
-}
-
 .subtitle {
 	color: var(--muted);
 	font-size: 14px;
@@ -199,81 +79,6 @@ h1 {
 	color: var(--yellow);
 	margin: 0 0 1.4rem;
 	animation: fadeUp 0.4s ease both;
-}
-
-.uses-list {
-	list-style: none;
-	margin: 0 0 3rem;
-	padding: 0;
-	animation: fadeUp 0.4s ease 0.06s both;
-
-	&:last-of-type {
-		margin-bottom: 0;
-	}
-}
-
-.uses-item {
-	display: flex;
-	align-items: flex-start;
-	gap: 1rem;
-	margin-bottom: 1.7rem;
-}
-
-.emoji {
-	font-size: 1.4rem;
-	line-height: 1.5;
-	width: 1.6rem;
-	flex-shrink: 0;
-	text-align: center;
-}
-
-.uses-body {
-	min-width: 0;
-}
-
-.category {
-	margin: 0 0 0.2rem;
-	font-size: 10.5px;
-	letter-spacing: 0.12em;
-	text-transform: uppercase;
-	color: var(--muted);
-}
-
-.apps {
-	margin: 0;
-	font-size: 16px;
-	line-height: 1.6;
-
-	a {
-		color: var(--white);
-		font-weight: 600;
-		text-decoration: none;
-		background-image: linear-gradient(var(--yellow), var(--yellow));
-		background-repeat: no-repeat;
-		background-position: 0 100%;
-		background-size: 0% 1px;
-		transition:
-			background-size 0.15s ease,
-			color 0.15s ease;
-
-		&:hover {
-			color: var(--yellow);
-			background-size: 100% 1px;
-		}
-	}
-}
-
-.sep {
-	color: var(--muted);
-	font-weight: 400;
-	margin: 0 0.15rem;
-}
-
-.note {
-	margin: 0.35rem 0 0;
-	font-size: 13px;
-	color: #9a9aac;
-	line-height: 1.65;
 }
 
 footer {

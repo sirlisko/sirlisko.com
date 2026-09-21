@@ -2,6 +2,7 @@
 import "@fontsource/press-start-2p/latin-400.css";
 import "../styles/tokens.css";
 import "../styles/shared.css";
+import "../styles/doc.css";
 import { ClientRouter } from "astro:transitions";
 import { ANALYTICS, AUTHOR, SITE, SITE_URL } from "../config";
 
@@ -19,16 +20,30 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site)
 	.toString()
 	.replace(/\/+$/, "");
 
+const analyticsOrigin = new URL(ANALYTICS.src).origin;
+
 interface Props {
 	title?: string;
 	description?: string;
 	image?: string;
 	keywords?: string[];
+	imageAlt?: string;
 	ogType?: "website" | "profile";
 	noindex?: boolean;
+	/** "doc" is the dark article shell shared by /uses and /projects. */
+	theme?: "dark" | "doc";
 }
 
-const { title, description, image, keywords, ogType, noindex } = Astro.props;
+const {
+	title,
+	description,
+	image,
+	imageAlt,
+	keywords,
+	ogType,
+	noindex,
+	theme,
+} = Astro.props;
 
 const metaDescription = description || SITE.description;
 const formattedTitle = title ? `${title} | ${SITE.title}` : SITE.title;
@@ -42,6 +57,7 @@ const formattedTitle = title ? `${title} | ${SITE.title}` : SITE.title;
 		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 		<meta name="theme-color" content="#2eaed5">
+		<meta name="color-scheme" content={theme ? "dark" : "light"}>
 		<link rel="manifest" href="/manifest.json">
 		<link rel="apple-touch-icon" href="/images/icons/icon-192x192.png">
 		<link rel="canonical" href={canonicalURL}>
@@ -52,8 +68,8 @@ const formattedTitle = title ? `${title} | ${SITE.title}` : SITE.title;
 		<meta property="og:title" content={formattedTitle}>
 		<meta property="og:url" content={canonicalURL}>
 		<meta property="og:image" content={image || SITE.image}>
-		<meta property="og:image:width" content="2048">
-		<meta property="og:image:height" content="1024">
+		{!image && (  <>    <meta property="og:image:width" content={String(SITE.imageWidth)} />    <meta property="og:image:height" content={String(SITE.imageHeight)} />  </>)}
+		<meta property="og:image:alt" content={imageAlt || SITE.imageAlt}>
 		<meta property="og:description" content={metaDescription}>
 		<meta property="og:site_name" content={SITE.title}>
 		<meta property="og:type" content={ogType || "website"}>
@@ -62,9 +78,11 @@ const formattedTitle = title ? `${title} | ${SITE.title}` : SITE.title;
 		<meta name="twitter:title" content={formattedTitle}>
 		<meta name="twitter:description" content={metaDescription}>
 		<meta name="twitter:image" content={image || SITE.image}>
+		<meta name="twitter:image:alt" content={imageAlt || SITE.imageAlt}>
 		{keywords && keywords.length > 0 ? (    <meta name="keywords" content={keywords.join(`, `)} />  ) : null}
 		<link type="text/plain" rel="author" href={`${SITE_URL}/humans.txt`}>
 		<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+		<link rel="preconnect" href={analyticsOrigin}>
 		<ClientRouter />
 		<script
 			is:inline
@@ -87,7 +105,7 @@ const formattedTitle = title ? `${title} | ${SITE.title}` : SITE.title;
 		});
 		</script>
 	</head>
-	<body>
+	<body class:list={[theme]}>
 		<slot />
 	</body>
 </html>
