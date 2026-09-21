@@ -41,7 +41,9 @@ const path = Astro.url.pathname;
 		</div>
 	</main>
 	<script>
-	window.umami?.track("404", { url: window.location.pathname });
+	document.addEventListener("astro:page-load", () => {
+		window.umami?.track("404", { url: window.location.pathname });
+	});
 	</script>
 </Layout>
 
