@@ -212,28 +212,30 @@ const bg = page === "resume" ? "bg-resume" : inverted ? "bg-flat" : "bg-home";
 document.addEventListener("astro:page-load", () => {
 	const hamburger = document.getElementById("hamburger");
 	const navLinks = document.getElementById("nav-links");
+	if (!hamburger || !navLinks) {
+		return;
+	}
+
 	const mobileQuery = window.matchMedia("(max-width: 650px)");
 	const syncInert = () => {
 		const isOpen = navLinks.classList.contains("active");
 		navLinks.toggleAttribute("inert", mobileQuery.matches && !isOpen);
 	};
+	const setOpen = (isOpen: boolean) => {
+		navLinks.classList.toggle("active", isOpen);
+		hamburger.classList.toggle("active", isOpen);
+		hamburger.setAttribute("aria-expanded", isOpen.toString());
+		document.body.classList.toggle("no-scroll", isOpen);
+		syncInert();
+	};
+
 	syncInert();
 	mobileQuery.addEventListener("change", syncInert);
-	hamburger?.addEventListener("click", () => {
-		const isOpen = navLinks.classList.toggle("active");
-		hamburger.classList.toggle("active");
-		hamburger.setAttribute("aria-expanded", isOpen.toString());
-		document.body.classList.toggle("no-scroll");
-		syncInert();
-	});
-	navLinks?.querySelectorAll("a").forEach((a) => {
-		a.addEventListener("click", () => {
-			navLinks.classList.remove("active");
-			hamburger.classList.remove("active");
-			hamburger.setAttribute("aria-expanded", "false");
-			document.body.classList.remove("no-scroll");
-			syncInert();
-		});
-	});
+	hamburger.addEventListener("click", () =>
+		setOpen(!navLinks.classList.contains("active")),
+	);
+	for (const link of navLinks.querySelectorAll("a")) {
+		link.addEventListener("click", () => setOpen(false));
+	}
 });
 </script>

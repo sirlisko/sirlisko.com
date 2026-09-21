@@ -1,10 +1,22 @@
 ---
+import { Image } from "astro:assets";
+import me_face from "../../images/me.webp";
 ---
 
 <section class="me">
 	<div class="me__face">
 		<a href="/">
-			<img src="/images/me.webp" alt="sirlisko face" transition:name="face"></a
+			<Image
+				src={me_face}
+				alt="sirlisko face"
+				class="face-img"
+				width={200}
+				height={287}
+				densities={[1, 2]}
+				loading="eager"
+				fetchpriority="high"
+				transition:name="face"
+			/></a
 		>
 	</div>
 	<h1 class="me__intro">
