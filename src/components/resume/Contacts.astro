@@ -1,10 +1,14 @@
 ---
-const phoneNumber = import.meta.env.PHONE_NUMBER;
+// The phone number must never reach the public build: only `pnpm generate:cv`
+// sets CV_BUILD, so a stray PHONE_NUMBER in a deploy environment stays unused.
+const phoneNumber = import.meta.env.CV_BUILD
+	? import.meta.env.PHONE_NUMBER
+	: undefined;
 ---
 
 <section class="section contacts">
 	<h2>Contacts</h2>
-	{phoneNumber && (<p class="private-visible">Phone:{" "}<a href={`tel:${phoneNumber}`}>{phoneNumber}</a></p>)}
+	{phoneNumber && (<p>Phone:{" "}<a href={`tel:${phoneNumber}`}>{phoneNumber}</a></p>)}
 	<p>Email:{" "}<a href="mailto:luca@sirlisko.com">luca@sirlisko.com</a>.</p>
 	<p>
 		Personal website:{" "}<a href="https://sirlisko.com"
@@ -30,37 +34,26 @@ const phoneNumber = import.meta.env.PHONE_NUMBER;
 	</p>
 	<p class="alt-hidden">
 		A print-friendly version of this:{" "}
-		<span class="private-hidden"
-			><a
-				href="https://sirlisko.com/cv/alt.pdf"
-				target="_blank"
-				rel="noreferrer"
-				style={{display: 'inline-block'}}
-				>https://sirlisko.com/cv/alt.pdf</a
-			></span
-		>
-		<span class="private-visible"
-			><a
+		{phoneNumber?
+			<a
 				href="https://sirlisko.com/cv/private-alt.pdf"
 				target="_blank"
 				rel="noreferrer"
 				style={{display: 'inline-block'}}
 				>https://sirlisko.com/cv/private-alt.pdf</a
-			></span
-		>
+			>
+      :
+    <a
+				href="https://sirlisko.com/cv/alt.pdf"
+				target="_blank"
+				rel="noreferrer"
+				style={{display: 'inline-block'}}
+				>https://sirlisko.com/cv/alt.pdf</a
+			>}
 	</p>
 	<p class="alt-visible">
 		A live version of this resume:{" "}
-		<span class="private-hidden"
-			><a href="https://sirlisko.com/resume"
-				>https://sirlisko.com/resume</a
-			></span
-		>
-		<span class="private-visible"
-			><a href="https://sirlisko.com/resume?private"
-				>https://sirlisko.com/resume?private</a
-			></span
-		>
+		<a href="https://sirlisko.com/resume">https://sirlisko.com/resume</a>
 	</p>
 </section>
 <style is:global>
@@ -71,15 +64,6 @@ const phoneNumber = import.meta.env.PHONE_NUMBER;
 	display: block;
 }
 .alt .alt-hidden {
-	display: none;
-}
-.private-visible {
-	display: none;
-}
-.private .private-visible {
-	display: block;
-}
-.private .private-hidden {
 	display: none;
 }
 </style>
