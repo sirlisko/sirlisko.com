@@ -1,8 +1,10 @@
-interface Link {
+export interface Link {
 	name: string;
 	url: string;
 	label: string;
 	external?: boolean;
+	/** The blog is same-origin but a separate site, so the router must not swap it in. */
+	reload?: boolean;
 }
 
 export interface Me {
@@ -35,8 +37,9 @@ const me = {
 	links: [
 		{
 			name: "blog",
-			url: "https://sirlisko.com/blog",
+			url: "/blog",
 			label: "blog",
+			reload: true,
 		},
 		{
 			name: "projects",
@@ -62,6 +65,7 @@ const me = {
 			name: "github",
 			url: "https://github.com/sirlisko",
 			label: "github",
+			external: true,
 		},
 		{
 			name: "linkedIn",

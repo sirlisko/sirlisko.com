@@ -1,5 +1,4 @@
 ---
-import { Image } from "astro:assets";
 import type { AstroComponent } from "@lucide/astro";
 import ArrowBigRight from "@lucide/astro/icons/arrow-big-right";
 import Atom from "@lucide/astro/icons/atom";
@@ -13,10 +12,10 @@ import Rss from "@lucide/astro/icons/rss";
 import SquareArrowOutUpRight from "@lucide/astro/icons/square-arrow-out-up-right";
 import type { IconName } from "../../data/projects";
 import { pastProjects, projects } from "../../data/projects";
+import FaceLink from "../components/FaceLink.astro";
 import ChromeIcon from "../components/icons/ChromeIcon.astro";
 import GithubIcon from "../components/icons/GithubIcon.astro";
 import Links from "../components/Links.astro";
-import me_face from "../images/me.webp";
 import Layout from "../layouts/Layout.astro";
 
 const ICONS: Record<IconName, AstroComponent> = {
@@ -54,20 +53,11 @@ function primaryLink(links: Record<string, string>) {
     "projects",
     "ideas",
   ]}
+	theme="doc"
 >
 	<Links page="projects" inverted />
 	<main class="page">
-		<a href="/" class="face-link">
-			<Image
-				src={me_face}
-				alt="sirlisko face"
-				class="face-img"
-				width={60}
-				height={86}
-				densities={[1, 2]}
-				transition:name="face"
-			/>
-		</a>
+		<FaceLink />
 
 		<header>
 			<p class="eyebrow">// things I've built</p>
@@ -253,55 +243,6 @@ function primaryLink(links: Record<string, string>) {
 </Layout>
 
 <style>
-body {
-	background: var(--bg);
-	color: var(--text);
-	min-height: 100vh;
-	padding: 3rem 1.5rem 6rem;
-}
-
-.page {
-	max-width: 720px;
-	margin: 0 auto;
-	padding-top: 3rem;
-}
-
-.face-link {
-	margin-bottom: 2rem;
-}
-
-header {
-	margin-bottom: 3rem;
-	animation: fadeUp 0.4s ease both;
-}
-
-.eyebrow {
-	font-family: var(--font-display);
-	font-size: 9px;
-	color: var(--yellow);
-	letter-spacing: 0.15em;
-	text-transform: uppercase;
-	margin-bottom: 1rem;
-}
-
-h1 {
-	font-family: var(--font-display);
-	font-size: clamp(22px, 5vw, 34px);
-	color: var(--white);
-	line-height: 1.4;
-	margin-bottom: 0.75rem;
-}
-
-.cursor {
-	display: inline-block;
-	width: 10px;
-	height: 1em;
-	background: var(--yellow);
-	vertical-align: middle;
-	animation: blink 1s step-end infinite;
-	margin-left: 4px;
-}
-
 .subtitle {
 	color: var(--muted);
 	font-size: 13px;

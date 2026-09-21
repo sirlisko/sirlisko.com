@@ -1,19 +1,21 @@
 ---
+import type { Link } from "../../data/me";
 import me from "../../data/me";
+import { navLinks, type PageName } from "../lib/links";
 
 interface Props {
 	inverted?: boolean;
-	page?: "projects" | "resume" | "now" | "uses";
+	page?: PageName;
 }
 
-const links = Astro.props.page
-	? [
-			{ name: "home", url: "/", label: "home" },
-			...me.links.filter(({ name }) => name !== Astro.props.page),
-		]
-	: me.links;
-
 const { inverted, page } = Astro.props;
+
+const links = navLinks(me.links, page);
+// One object, not two spreads: Astro emits a duplicate class attribute otherwise.
+const attrs = (link: Link) => ({
+	...(link.external ? { target: "_blank", rel: "noopener noreferrer" } : {}),
+	...(link.reload ? { "data-astro-reload": true } : {}),
+});
 const bg = page === "resume" ? "bg-resume" : inverted ? "bg-flat" : "bg-home";
 ---
 
@@ -28,10 +30,7 @@ const bg = page === "resume" ? "bg-resume" : inverted ? "bg-flat" : "bg-home";
 	<ul class={`links ${bg}`} id="nav-links">
 		{links.map((link) => (
 			<li class={link.name}>
-				<a
-					href={link.url}
-					{...(link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-				>
+				<a href={link.url} {...attrs(link)}>
 					<span class="caption">{link.label}</span>
 				</a>
 			</li>
@@ -209,33 +208,12 @@ const bg = page === "resume" ? "bg-resume" : inverted ? "bg-flat" : "bg-home";
 </style>
 
 <script>
+import { initNav } from "../lib/nav";
+
+let cleanup: (() => void) | undefined;
+
 document.addEventListener("astro:page-load", () => {
-	const hamburger = document.getElementById("hamburger");
-	const navLinks = document.getElementById("nav-links");
-	if (!hamburger || !navLinks) {
-		return;
-	}
-
-	const mobileQuery = window.matchMedia("(max-width: 650px)");
-	const syncInert = () => {
-		const isOpen = navLinks.classList.contains("active");
-		navLinks.toggleAttribute("inert", mobileQuery.matches && !isOpen);
-	};
-	const setOpen = (isOpen: boolean) => {
-		navLinks.classList.toggle("active", isOpen);
-		hamburger.classList.toggle("active", isOpen);
-		hamburger.setAttribute("aria-expanded", isOpen.toString());
-		document.body.classList.toggle("no-scroll", isOpen);
-		syncInert();
-	};
-
-	syncInert();
-	mobileQuery.addEventListener("change", syncInert);
-	hamburger.addEventListener("click", () =>
-		setOpen(!navLinks.classList.contains("active")),
-	);
-	for (const link of navLinks.querySelectorAll("a")) {
-		link.addEventListener("click", () => setOpen(false));
-	}
+	cleanup?.();
+	cleanup = initNav(document);
 });
 </script>
