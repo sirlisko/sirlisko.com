@@ -56,7 +56,7 @@ body {
 	align-items: center;
 	justify-content: center;
 	padding: 0 1rem;
-	min-height: 100vh;
+	min-height: 100dvh;
 }
 
 .grid {
@@ -89,18 +89,18 @@ body {
 	position: relative;
 }
 .face img {
-	height: min(70vw, 70vh);
+	height: min(70vw, 70dvh);
 	/* the intrinsic width/height attributes are presentational hints, so the
 	   width has to be released explicitly for the aspect ratio to win */
 	width: auto;
 }
 @media screen and (max-width: 650px) {
 	.face {
-		max-height: 50vh;
+		max-height: 50dvh;
 	}
 	.intro span,
 	.intro h1 {
-		font-size: min(5vw, 5vh);
+		font-size: min(5vw, 5dvh);
 	}
 }
 </style>

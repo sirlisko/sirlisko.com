@@ -1,26 +1,20 @@
 ---
-import { Image } from "astro:assets";
+import FaceLink from "../components/FaceLink.astro";
 import Links from "../components/Links.astro";
-import me_face from "../images/me.webp";
 import Layout from "../layouts/Layout.astro";
 
 const path = Astro.url.pathname;
 ---
 
-<Layout title="404: Not found" description="This page does not exist." noindex>
+<Layout
+	title="404: Not found"
+	description="This page does not exist."
+	noindex
+	theme="dark"
+>
 	<Links inverted />
 	<main class="page">
-		<a href="/" class="face-link">
-			<Image
-				src={me_face}
-				alt="sirlisko face"
-				class="face-img"
-				width={60}
-				height={86}
-				densities={[1, 2]}
-				transition:name="face"
-			/>
-		</a>
+		<FaceLink />
 
 		<div class="terminal">
 			<div class="term-bar">
@@ -48,13 +42,8 @@ const path = Astro.url.pathname;
 </Layout>
 
 <style>
-body {
-	background: var(--bg);
-	color: var(--text);
-}
-
 .page {
-	min-height: 100vh;
+	min-height: 100dvh;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
