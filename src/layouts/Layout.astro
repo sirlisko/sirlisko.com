@@ -1,5 +1,5 @@
 ---
-import "@fontsource/press-start-2p";
+import "@fontsource/press-start-2p/latin-400.css";
 import "../styles/tokens.css";
 import "../styles/shared.css";
 import { ClientRouter } from "astro:transitions";
@@ -27,6 +27,15 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site)
 	.toString()
 	.replace(/\/+$/, "");
 
+interface Props {
+	title?: string;
+	description?: string;
+	image?: string;
+	keywords?: string[];
+	ogType?: "website" | "profile";
+	noindex?: boolean;
+}
+
 const { title, description, image, keywords, ogType, noindex } = Astro.props;
 
 const metaDescription = description || data.description;
@@ -40,6 +49,7 @@ const formattedTitle = title ? `${title} | ${data.title}` : data.title;
 		<link rel="icon" type="image/x-icon" href="/favicon.ico">
 		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+		<meta name="theme-color" content="#2eaed5">
 		<link rel="manifest" href="/manifest.json">
 		<link rel="apple-touch-icon" href="/images/icons/icon-192x192.png">
 		<link rel="canonical" href={canonicalURL}>
