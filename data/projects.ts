@@ -1,8 +1,11 @@
 export type IconName =
 	| "atom"
 	| "calendar-heart"
+	| "castle"
 	| "clock-alert"
 	| "earth"
+	| "git-branch"
+	| "mail"
 	| "map-pin-house"
 	| "moon"
 	| "plane";
@@ -28,13 +31,68 @@ export type Project = ProjectWithLogo | ProjectWithIcon;
 export const projects = [
 	{
 		title: "Moon",
-		description: ["A 3D render of the moon, built with three.js."],
+		description: [
+			"A live 3D Moon showing its real phase and position from where you stand, plus a lunar calendar.",
+			"Three.js render built on NASA imagery, with astronomy-engine doing the maths.",
+		],
 		icon: "moon",
 		links: {
 			Website: "https://moon.sirlisko.com",
 			Github: "https://github.com/sirlisko/moon",
 		},
-		tech: ["Three.js", "JavaScript", "WebGL"],
+		tech: [
+			"Three.js",
+			"WebGL",
+			"TypeScript",
+			"astronomy-engine",
+			"Vite",
+			"Vitest",
+			"Playwright",
+			"Netlify",
+		],
+	},
+	{
+		title: "Countdown",
+		description: [
+			"Customisable countdowns for future and past events. Small and sharp.",
+			"Yearly rollovers, progress bars, obfuscated share links, calendar export, and Open Graph previews rendered on the edge.",
+		],
+		icon: "clock-alert",
+		links: {
+			Website: "https://countdown.sirlisko.com/",
+			Github: "https://github.com/sirlisko/countdown",
+		},
+		tech: [
+			"React",
+			"TypeScript",
+			"Tailwind",
+			"shadcn/ui",
+			"Vite",
+			"Vitest",
+			"Playwright",
+			"Netlify",
+			"Edge Functions",
+		],
+	},
+	{
+		title: "Curse of Strahd",
+		description: [
+			"Companion site for an Italian Curse of Strahd D&D campaign. Session recordings are transcribed on-device and turned into recaps by Claude.",
+			"Parakeet transcribes the audio on the Neural Engine, then Claude Code runs headless to write the session journal and update characters, NPCs and places.",
+		],
+		icon: "castle",
+		links: {
+			Website: "https://strahd.ogreballerino.com",
+			Github: "https://github.com/sirlisko/strahd",
+		},
+		tech: [
+			"Astro",
+			"Speech-to-Text",
+			"Parakeet",
+			"AI Recaps",
+			"Pagefind",
+			"Netlify",
+		],
 	},
 	{
 		title: "GigPlayList",
@@ -59,12 +117,11 @@ export const projects = [
 			"Vercel",
 		],
 	},
-
 	{
 		title: "GifDay",
 		description: [
 			"Assign a GIF to every day of the year. Your year, in GIFs.",
-			"GifDay is a webapp that allows you to create a gif for every day of the year, using the Giphy API.",
+			"Search GIPHY, pick a GIF for each day, and sync it across devices with a Supabase account.",
 		],
 		icon: "calendar-heart",
 		links: {
@@ -73,40 +130,79 @@ export const projects = [
 		},
 		tech: [
 			"React",
+			"TypeScript",
+			"Tailwind",
+			"Vite",
 			"Giphy API",
-			"Styled Components",
-			"Cypress",
-			"Netlify",
 			"Supabase",
 			"PostgreSQL",
-			"Edge Functions",
+			"Netlify Functions",
+			"Vitest",
+			"Playwright",
+			"Netlify",
 		],
 	},
 	{
 		title: "Been",
 		description: [
 			"Track the countries you've visited on an interactive world map.",
-			"React application powered by Firebase Auth and Firestore.",
+			"React application powered by Supabase auth and database.",
 		],
 		icon: "plane",
 		links: {
 			Website: "https://been.sirlisko.com/",
 			Github: "https://github.com/sirlisko/been",
 		},
-		tech: ["React", "Firebase", "OAuth", "Netlify"],
+		tech: [
+			"React",
+			"TypeScript",
+			"Tailwind",
+			"Vite",
+			"Supabase",
+			"Vitest",
+			"Netlify",
+		],
 	},
 	{
-		title: "ZoomMEME",
+		title: "Umami Digest",
 		description: [
-			"Drag-and-drop zoom-in meme generator. Does exactly what it says.",
-			"PWA (Progressive Web App) powered by pure and sweet Vanilla JavaScript.",
+			"Daily, weekly or monthly analytics email digests for Umami.",
+			"Scheduled Cloudflare Worker that pulls stats from the Umami API and sends them via Resend.",
 		],
-		logo: "/images/projects/zoommeme.png",
+		icon: "mail",
 		links: {
-			Website: "https://zoomme.me",
-			Github: "https://github.com/sirlisko/zoommeme",
+			Blog: "https://sirlisko.com/blog/umami-digest",
+			Github: "https://github.com/sirlisko/umami-digest",
 		},
-		tech: ["Vanilla JS", "PWA", "Webpack", "Jest"],
+		tech: ["Cloudflare Workers", "TypeScript", "Umami API", "Resend", "Vitest"],
+	},
+	{
+		title: "Pizza Club",
+		description: [
+			"A personal log of every pizza eaten around the world. Because someone has to.",
+			"Static Astro site fed by Sanity, with a map and stats for every pizzeria.",
+		],
+		logo: "/images/projects/pizza.png",
+		invertIcon: true,
+		links: {
+			Website: "https://pizzaclub.sirlisko.com/",
+			Github: "https://github.com/sirlisko/pizzaclub",
+		},
+		tech: ["Astro", "Sanity", "MapLibre", "Netlify"],
+	},
+	{
+		title: "Git Branch Switcher",
+		description: [
+			"Interactive CLI to switch, search and delete git branches.",
+			"NPM module that installs the `br` command, with branches sorted by most recent commit.",
+		],
+		icon: "git-branch",
+		links: {
+			"NPM Module": "https://npmjs.com/package/git-branch-switcher",
+			Blog: "https://sirlisko.com/blog/git-branch-switcher",
+			Github: "https://github.com/sirlisko/git-branch-switcher",
+		},
+		tech: ["NPM Module", "CLI", "TypeScript", "Node"],
 	},
 	{
 		title: "World Map Country Shapes",
@@ -147,6 +243,19 @@ export const projects = [
 		tech: ["NPM Module", "Regex"],
 	},
 	{
+		title: "ZoomMEME",
+		description: [
+			"Drag-and-drop zoom-in meme generator. Does exactly what it says.",
+			"PWA (Progressive Web App) powered by pure and sweet Vanilla JavaScript.",
+		],
+		logo: "/images/projects/zoommeme.png",
+		links: {
+			Website: "https://zoomme.me",
+			Github: "https://github.com/sirlisko/zoommeme",
+		},
+		tech: ["Vanilla JS", "PWA", "Webpack", "Jest"],
+	},
+	{
 		title: "Martellone Alexa Skill",
 		description: [
 			"Alexa skill dedicated to the legendary Nando Martellone from the Italian TV show Boris.",
@@ -161,31 +270,6 @@ export const projects = [
 			Github: "https://github.com/sirlisko/martellone-alexa-skill",
 		},
 		tech: ["Alexa Skill", "AWS Lambda", "Serverless"],
-	},
-	{
-		title: "Pizza Club",
-		description: [
-			"A personal log of every pizza eaten around the world. Because someone has to.",
-		],
-		logo: "/images/projects/pizza.png",
-		invertIcon: true,
-		links: {
-			Website: "https://pizzaclub.sirlisko.com/",
-			Github: "https://github.com/sirlisko/pizzaclub",
-		},
-		tech: ["Gatsby", "React", "GitHub Pages"],
-	},
-	{
-		title: "Countdown",
-		description: [
-			"Customisable countdowns for future and past events. Small and sharp.",
-		],
-		icon: "clock-alert",
-		links: {
-			Website: "https://countdown.sirlisko.com/",
-			Github: "https://github.com/sirlisko/countdown",
-		},
-		tech: ["React", "TypeScript", "Tailwind", "Vite", "Netlify"],
 	},
 ] satisfies Project[];
 

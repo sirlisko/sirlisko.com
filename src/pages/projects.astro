@@ -3,8 +3,11 @@ import type { AstroComponent } from "@lucide/astro";
 import ArrowBigRight from "@lucide/astro/icons/arrow-big-right";
 import Atom from "@lucide/astro/icons/atom";
 import CalendarHeart from "@lucide/astro/icons/calendar-heart";
+import Castle from "@lucide/astro/icons/castle";
 import ClockAlert from "@lucide/astro/icons/clock-alert";
 import Earth from "@lucide/astro/icons/earth";
+import GitBranch from "@lucide/astro/icons/git-branch";
+import Mail from "@lucide/astro/icons/mail";
 import MapPinHouse from "@lucide/astro/icons/map-pin-house";
 import Moon from "@lucide/astro/icons/moon";
 import Plane from "@lucide/astro/icons/plane";
@@ -21,8 +24,11 @@ import Layout from "../layouts/Layout.astro";
 const ICONS: Record<IconName, AstroComponent> = {
 	atom: Atom,
 	"calendar-heart": CalendarHeart,
+	castle: Castle,
 	"clock-alert": ClockAlert,
 	earth: Earth,
+	"git-branch": GitBranch,
+	mail: Mail,
 	"map-pin-house": MapPinHouse,
 	moon: Moon,
 	plane: Plane,
@@ -36,7 +42,7 @@ const npmModules = projects.filter(isNpmModule);
 
 function primaryLink(links: Record<string, string>) {
 	const entry = Object.entries(links).find(
-		([k]) => k !== "Github" && k !== "Screenshot",
+		([k]) => k !== "Github" && k !== "Screenshot" && k !== "Blog",
 	);
 	return entry ? entry[1] : null;
 }
@@ -72,6 +78,7 @@ function primaryLink(links: Record<string, string>) {
 			<div class="bp-list">
 				{activeProjects.map((p) => {
 					const live = primaryLink(p.links);
+					const titleHref = live ?? p.links.Blog;
 					return (
 						<div class="bp-card">
 							<div class="bp-card-body">
@@ -93,12 +100,21 @@ function primaryLink(links: Record<string, string>) {
 												})()}
 											</span>
 										)}
-										<p class="entry-name">{p.title}</p>
+										{titleHref ? (
+											<a class="entry-name" href={titleHref} target="_blank" rel="noopener noreferrer">{p.title}</a>
+										) : (
+											<p class="entry-name">{p.title}</p>
+										)}
 									</div>
 									<div class="bp-card-links">
 										{live && (
 											<a href={live} target="_blank" rel="noopener noreferrer" aria-label="Live demo">
 												<SquareArrowOutUpRight size={20} />
+											</a>
+										)}
+										{p.links.Blog && (
+											<a href={p.links.Blog} target="_blank" rel="noopener noreferrer" aria-label="Blog post">
+												<Rss size={20} />
 											</a>
 										)}
 										{p.links.Github && (
@@ -138,12 +154,17 @@ function primaryLink(links: Record<string, string>) {
 											})()}
 										</span>
 									)}
-									<p class="entry-name">{p.title}</p>
+									<a class="entry-name" href={p.links["NPM Module"]} target="_blank" rel="noopener noreferrer">{p.title}</a>
 								</div>
 								<div class="npm-links">
 									{p.links["NPM Module"] && (
 										<a href={p.links["NPM Module"]} target="_blank" rel="noopener noreferrer">
 											<SquareArrowOutUpRight size={20} />
+										</a>
+									)}
+									{p.links.Blog && (
+										<a href={p.links.Blog} target="_blank" rel="noopener noreferrer" aria-label="Blog post">
+											<Rss size={20} />
 										</a>
 									)}
 									{p.links.Github && (
@@ -401,6 +422,14 @@ function primaryLink(links: Record<string, string>) {
 .entry-name {
 	font-size: 13px;
 	letter-spacing: 0.05em;
+}
+
+a.entry-name {
+	text-decoration: none;
+
+	&:hover {
+		text-decoration: underline;
+	}
 }
 
 .entry-desc {
