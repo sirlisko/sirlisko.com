@@ -42,6 +42,12 @@ body.doc {
 	margin-bottom: 1rem;
 }
 
+.doc .subtitle {
+	color: var(--muted);
+	font-size: 13px;
+	line-height: 1.7;
+}
+
 .doc .cursor {
 	display: inline-block;
 	width: 10px;
