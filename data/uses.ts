@@ -14,7 +14,6 @@ export const USES_SOURCE = "https://sirlisko.com/blog/my-default-apps-2024";
 export const USES_SOURCE_LABEL = "the original post";
 export const USES_LAST_UPDATED = "September 2026";
 export const DOTFILES_SOURCE = "https://github.com/sirlisko/dotfiles";
-export const DOTFILES_SOURCE_LABEL = "dotfiles repo";
 
 export const hardware = [
 	{

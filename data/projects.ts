@@ -1,14 +1,9 @@
 export type IconName =
 	| "atom"
-	| "calendar-heart"
-	| "castle"
-	| "clock-alert"
 	| "earth"
 	| "git-branch"
 	| "mail"
-	| "map-pin-house"
-	| "moon"
-	| "plane";
+	| "map-pin-house";
 
 interface BaseProject {
 	title: string;
@@ -25,8 +20,11 @@ interface ProjectWithLogo extends BaseProject {
 interface ProjectWithIcon extends BaseProject {
 	icon: IconName;
 }
+interface ProjectWithScreenshot extends BaseProject {
+	screenshot: string;
+}
 
-export type Project = ProjectWithLogo | ProjectWithIcon;
+export type Project = ProjectWithLogo | ProjectWithIcon | ProjectWithScreenshot;
 
 export const projects = [
 	{
@@ -35,7 +33,7 @@ export const projects = [
 			"A live 3D Moon showing its real phase and position from where you stand, plus a lunar calendar.",
 			"Three.js render built on NASA imagery, with astronomy-engine doing the maths.",
 		],
-		icon: "moon",
+		screenshot: "/images/projects/screens/moon.webp",
 		links: {
 			Website: "https://moon.sirlisko.com",
 			Github: "https://github.com/sirlisko/moon",
@@ -52,45 +50,22 @@ export const projects = [
 		],
 	},
 	{
-		title: "Countdown",
+		title: "Is It Raining in London?",
 		description: [
-			"Customisable countdowns for future and past events. Small and sharp.",
-			"Yearly rollovers, progress bars, obfuscated share links, calendar export, and Open Graph previews rendered on the edge.",
+			"Is it raining in London right now? Probably not.",
+			'A live answer plus a year of real rainfall data comparing London with cities around the world, with a "near you" card from IP geolocation.',
 		],
-		icon: "clock-alert",
+		screenshot: "/images/projects/screens/rainylondon.webp",
 		links: {
-			Website: "https://countdown.sirlisko.com/",
-			Github: "https://github.com/sirlisko/countdown",
+			Website: "https://rainylondon.sirlisko.com",
+			Github: "https://github.com/sirlisko/rainyLondon",
 		},
 		tech: [
-			"React",
 			"TypeScript",
-			"Tailwind",
-			"shadcn/ui",
 			"Vite",
-			"Vitest",
-			"Playwright",
-			"Netlify",
+			"Open-Meteo API",
 			"Edge Functions",
-		],
-	},
-	{
-		title: "Curse of Strahd",
-		description: [
-			"Companion site for an Italian Curse of Strahd D&D campaign. Session recordings are transcribed on-device and turned into recaps by Claude.",
-			"Parakeet transcribes the audio on the Neural Engine, then Claude Code runs headless to write the session journal and update characters, NPCs and places.",
-		],
-		icon: "castle",
-		links: {
-			Website: "https://strahd.ogreballerino.com",
-			Github: "https://github.com/sirlisko/strahd",
-		},
-		tech: [
-			"Astro",
-			"Speech-to-Text",
-			"Parakeet",
-			"AI Recaps",
-			"Pagefind",
+			"Vitest",
 			"Netlify",
 		],
 	},
@@ -100,7 +75,7 @@ export const projects = [
 			"Predicts the setlist for an upcoming gig and builds you a Spotify playlist.",
 			"Next.js app that proxies external APIs (Setlist.fm, Spotify, Musicbrainz, and Songkick), mashes them up and creates a Spotify playlist for you.",
 		],
-		logo: "/images/projects/ticket.png",
+		screenshot: "/images/projects/screens/gigplaylist.webp",
 		links: {
 			Website: "https://gigplaylist.sirlisko.com",
 			Github: "https://github.com/sirlisko/gigplaylist",
@@ -118,12 +93,78 @@ export const projects = [
 		],
 	},
 	{
+		title: "Countdown",
+		description: [
+			"Customisable countdowns for future and past events. Small and sharp.",
+			"Yearly rollovers, progress bars, obfuscated share links, calendar export, and Open Graph previews rendered on the edge.",
+		],
+		screenshot: "/images/projects/screens/countdown.webp",
+		links: {
+			Website: "https://countdown.sirlisko.com/",
+			Github: "https://github.com/sirlisko/countdown",
+		},
+		tech: [
+			"React",
+			"TypeScript",
+			"Tailwind",
+			"shadcn/ui",
+			"Vite",
+			"Vitest",
+			"Playwright",
+			"Netlify",
+			"Edge Functions",
+		],
+	},
+	{
+		title: "Been",
+		description: [
+			"Track the countries you've visited on an interactive world map.",
+			"React application powered by Supabase auth and database.",
+		],
+		screenshot: "/images/projects/screens/been.webp",
+		links: {
+			Website: "https://been.sirlisko.com/@luca",
+			Github: "https://github.com/sirlisko/been",
+		},
+		tech: [
+			"React",
+			"TypeScript",
+			"Tailwind",
+			"Vite",
+			"Supabase",
+			"PostgreSQL",
+			"Edge Functions",
+			"Vitest",
+			"Netlify",
+		],
+	},
+	{
+		title: "Curse of Strahd",
+		description: [
+			"Companion site for an Italian Curse of Strahd D&D campaign. Session recordings are transcribed on-device and turned into recaps by Claude.",
+			"Parakeet transcribes the audio on the Neural Engine, then Claude Code runs headless to write the session journal and update characters, NPCs and places.",
+		],
+		screenshot: "/images/projects/screens/strahd.webp",
+		links: {
+			Website: "https://strahd.ogreballerino.com",
+			Github: "https://github.com/sirlisko/strahd",
+		},
+		tech: [
+			"Astro",
+			"Speech-to-Text",
+			"Parakeet",
+			"AI Recaps",
+			"Pagefind",
+			"Netlify",
+		],
+	},
+	{
 		title: "GifDay",
 		description: [
 			"Assign a GIF to every day of the year. Your year, in GIFs.",
 			"Search GIPHY, pick a GIF for each day, and sync it across devices with a Supabase account.",
 		],
-		icon: "calendar-heart",
+		screenshot: "/images/projects/screens/gifday.webp",
 		links: {
 			Website: "https://gifday.sirlisko.com/",
 			Github: "https://github.com/sirlisko/gifday",
@@ -143,26 +184,33 @@ export const projects = [
 		],
 	},
 	{
-		title: "Been",
+		title: "Pizza Club",
 		description: [
-			"Track the countries you've visited on an interactive world map.",
-			"React application powered by Supabase auth and database.",
+			"A personal log of every pizza eaten around the world. Because someone has to.",
+			"Static Astro site fed by Sanity, with a map and stats for every pizzeria.",
 		],
-		icon: "plane",
+		screenshot: "/images/projects/screens/pizzaclub.webp",
 		links: {
-			Website: "https://been.sirlisko.com/",
-			Github: "https://github.com/sirlisko/been",
+			Website: "https://pizzaclub.sirlisko.com/",
+			Github: "https://github.com/sirlisko/pizzaclub",
 		},
-		tech: [
-			"React",
-			"TypeScript",
-			"Tailwind",
-			"Vite",
-			"Supabase",
-			"Vitest",
-			"Netlify",
-		],
+		tech: ["Astro", "Sanity", "MapLibre", "Netlify"],
 	},
+	{
+		title: "Can I Have a Cappuccino?",
+		description: [
+			"Can I have a cappuccino right now? The Italian verdict, updated every minute.",
+			"A single static page with the rules of Italian coffee etiquette baked in, in English and Italian.",
+		],
+		screenshot: "/images/projects/screens/cappuccino.webp",
+		links: {
+			Website: "https://cappuccino.sirlisko.com",
+		},
+		tech: ["HTML", "CSS", "Vanilla JS"],
+	},
+] satisfies Project[];
+
+export const tinyProjects = [
 	{
 		title: "Umami Digest",
 		description: [
@@ -177,19 +225,37 @@ export const projects = [
 		tech: ["Cloudflare Workers", "TypeScript", "Umami API", "Resend", "Vitest"],
 	},
 	{
-		title: "Pizza Club",
+		title: "ZoomMEME",
 		description: [
-			"A personal log of every pizza eaten around the world. Because someone has to.",
-			"Static Astro site fed by Sanity, with a map and stats for every pizzeria.",
+			"Drag-and-drop zoom-in meme generator. Does exactly what it says.",
+			"PWA (Progressive Web App) powered by pure and sweet Vanilla JavaScript.",
 		],
-		logo: "/images/projects/pizza.png",
+		screenshot: "/images/projects/screens/zoommeme.webp",
+		links: {
+			Website: "https://zoomme.me",
+			Github: "https://github.com/sirlisko/zoommeme",
+		},
+		tech: ["Vanilla JS", "PWA", "Webpack", "Jest"],
+	},
+	{
+		title: "Martellone Alexa Skill",
+		description: [
+			"Alexa skill dedicated to the legendary Nando Martellone from the Italian TV show Boris.",
+		],
+		logo: "/images/projects/martellone.png",
 		invertIcon: true,
 		links: {
-			Website: "https://pizzaclub.sirlisko.com/",
-			Github: "https://github.com/sirlisko/pizzaclub",
+			"Amazon UK store":
+				"https://www.amazon.co.uk/sirlisko-Martellone-Boris/dp/B08C7SHW3T/",
+			"Amazon IT store":
+				"https://www.amazon.it/sirlisko-Martellone-Boris/dp/B08C7SHW3T/",
+			Github: "https://github.com/sirlisko/martellone-alexa-skill",
 		},
-		tech: ["Astro", "Sanity", "MapLibre", "Netlify"],
+		tech: ["Alexa Skill", "AWS Lambda", "Serverless"],
 	},
+] satisfies Project[];
+
+export const NPMPackages = [
 	{
 		title: "Git Branch Switcher",
 		description: [
@@ -242,38 +308,9 @@ export const projects = [
 		},
 		tech: ["NPM Module", "Regex"],
 	},
-	{
-		title: "ZoomMEME",
-		description: [
-			"Drag-and-drop zoom-in meme generator. Does exactly what it says.",
-			"PWA (Progressive Web App) powered by pure and sweet Vanilla JavaScript.",
-		],
-		logo: "/images/projects/zoommeme.png",
-		links: {
-			Website: "https://zoomme.me",
-			Github: "https://github.com/sirlisko/zoommeme",
-		},
-		tech: ["Vanilla JS", "PWA", "Webpack", "Jest"],
-	},
-	{
-		title: "Martellone Alexa Skill",
-		description: [
-			"Alexa skill dedicated to the legendary Nando Martellone from the Italian TV show Boris.",
-		],
-		logo: "/images/projects/martellone.png",
-		invertIcon: true,
-		links: {
-			"Amazon UK store":
-				"https://www.amazon.co.uk/sirlisko-Martellone-Boris/dp/B08C7SHW3T/",
-			"Amazon IT store":
-				"https://www.amazon.it/sirlisko-Martellone-Boris/dp/B08C7SHW3T/",
-			Github: "https://github.com/sirlisko/martellone-alexa-skill",
-		},
-		tech: ["Alexa Skill", "AWS Lambda", "Serverless"],
-	},
 ] satisfies Project[];
 
-export const pastProjects: Project[] = [
+export const pastProjects = [
 	{
 		title: "Shazamify (a.k.a. Zamify)",
 		description: [
@@ -335,7 +372,6 @@ export const pastProjects: Project[] = [
 		],
 		logo: "https://raw.githubusercontent.com/sirlisko/apps-pomofy/master/img/pomodoro.png",
 		links: {
-			Screenshot: "/images/projects/pomofy.png",
 			Github: "https://github.com/sirlisko/apps-pomofy",
 		},
 		tech: ["Spotify App"],
