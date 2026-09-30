@@ -1,6 +1,8 @@
+import { existsSync } from "node:fs";
 import { describe, expect, test } from "vitest";
 import me from "./me";
 import { NOW_LAST_UPDATED, sections } from "./now";
+import { projects, tinyProjects } from "./projects";
 import resume from "./resume";
 import { cli, hardware, USES_LAST_UPDATED, uses } from "./uses";
 
@@ -35,6 +37,17 @@ describe("site data", () => {
 			expect(experience.where.trim()).not.toBe("");
 			expect(experience.blurb.length).toBeGreaterThan(0);
 		}
+	});
+
+	test("every project screenshot exists", () => {
+		const missing = [...projects, ...tinyProjects]
+			.flatMap((p) =>
+				"screenshot" in p
+					? [p.screenshot, p.screenshot.replace(".webp", "@2x.webp")]
+					: [],
+			)
+			.filter((path) => !existsSync(`public${path}`));
+		expect(missing).toEqual([]);
 	});
 
 	test("every /now section has content", () => {

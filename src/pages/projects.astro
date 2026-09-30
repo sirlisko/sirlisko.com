@@ -2,19 +2,19 @@
 import type { AstroComponent } from "@lucide/astro";
 import ArrowBigRight from "@lucide/astro/icons/arrow-big-right";
 import Atom from "@lucide/astro/icons/atom";
-import CalendarHeart from "@lucide/astro/icons/calendar-heart";
-import Castle from "@lucide/astro/icons/castle";
-import ClockAlert from "@lucide/astro/icons/clock-alert";
 import Earth from "@lucide/astro/icons/earth";
 import GitBranch from "@lucide/astro/icons/git-branch";
 import Mail from "@lucide/astro/icons/mail";
 import MapPinHouse from "@lucide/astro/icons/map-pin-house";
-import Moon from "@lucide/astro/icons/moon";
-import Plane from "@lucide/astro/icons/plane";
 import Rss from "@lucide/astro/icons/rss";
 import SquareArrowOutUpRight from "@lucide/astro/icons/square-arrow-out-up-right";
 import type { IconName } from "../../data/projects";
-import { pastProjects, projects } from "../../data/projects";
+import {
+	NPMPackages,
+	pastProjects,
+	projects,
+	tinyProjects,
+} from "../../data/projects";
 import FaceLink from "../components/FaceLink.astro";
 import ChromeIcon from "../components/icons/ChromeIcon.astro";
 import GithubIcon from "../components/icons/GithubIcon.astro";
@@ -23,26 +23,21 @@ import Layout from "../layouts/Layout.astro";
 
 const ICONS: Record<IconName, AstroComponent> = {
 	atom: Atom,
-	"calendar-heart": CalendarHeart,
-	castle: Castle,
-	"clock-alert": ClockAlert,
 	earth: Earth,
 	"git-branch": GitBranch,
 	mail: Mail,
 	"map-pin-house": MapPinHouse,
-	moon: Moon,
-	plane: Plane,
 };
 
-const isNpmModule = (p: (typeof projects)[0]) => p.tech.includes("NPM Module");
-const activeProjects = projects.filter(
-	(p) => !p.isDeprecated && !isNpmModule(p),
-);
-const npmModules = projects.filter(isNpmModule);
+const activeProjects = projects.filter((p) => !p.isDeprecated);
+const sections = [
+	{ title: "Active", list: activeProjects, tiny: false },
+	{ title: "Tiny things", list: tinyProjects, tiny: true },
+];
 
 function primaryLink(links: Record<string, string>) {
 	const entry = Object.entries(links).find(
-		([k]) => k !== "Github" && k !== "Screenshot" && k !== "Blog",
+		([k]) => k !== "Github" && k !== "Blog",
 	);
 	return entry ? entry[1] : null;
 }
@@ -50,7 +45,7 @@ function primaryLink(links: Record<string, string>) {
 
 <Layout
 	title="Projects"
-	description="Discover a diverse range of projects by Luca Lischetti, aka sirlisko. Explore creations like GigPlayList, ZoomMEME, Shazamify, and more, showcasing a fusion of creativity and technical expertise in web apps, npm modules, Chrome extensions, and Alexa skills."
+	description="Side projects by Luca Lischetti (sirlisko): web apps, tiny single-purpose sites, npm packages, and retired Chrome extensions and experiments."
 	keywords={[
     "Luca Lischetti",
     "sirlisko",
@@ -72,74 +67,80 @@ function primaryLink(links: Record<string, string>) {
 			<p class="subtitle">Some still alive, some honourably retired.</p>
 		</header>
 
-		<div class="s-active">
-			<p class="bp-title">Active</p>
+		<section class="s-apps">
+			{sections.map(({ title, list, tiny }) => (
+				<>
+					<p class="apps-title">{title}</p>
 
-			<div class="bp-list">
-				{activeProjects.map((p) => {
-					const live = primaryLink(p.links);
-					const titleHref = live ?? p.links.Blog;
-					return (
-						<div class="bp-card">
-							<div class="bp-card-body">
-								<div class="bp-card-header">
-									<div class="bp-card-name-wrap">
-										{"logo" in p ? (
+					<div class="app-list">
+						{list.map((p, i) => {
+							const live = primaryLink(p.links);
+							const titleHref = live ?? p.links.Blog;
+							return (
+								<div class={`app${tiny ? " app--tiny" : ""}`}>
+									<a class="thumb" href={titleHref} target="_blank" rel="noopener noreferrer" tabindex="-1" aria-label={p.title}>
+										{"screenshot" in p ? (
 											<img
-												class={`bp-icon${p.invertIcon ? " inverted" : ""}`}
-												src={p.logo}
-												alt={`${p.title} logo`}
-												width={20}
-												height={20}
+												src={p.screenshot}
+												srcset={`${p.screenshot} 640w, ${p.screenshot.replace(".webp", "@2x.webp")} 1280w`}
+												sizes={tiny ? "96px" : "(max-width: 560px) 100vw, 168px"}
+												alt=""
+												width={640}
+												height={400}
+												loading={!tiny && i < 2 ? "eager" : "lazy"}
+												decoding="async"
 											/>
+										) : "logo" in p ? (
+											<img class={`app-icon${p.invertIcon ? " inverted" : ""}`} src={p.logo} alt="" width={32} height={32} />
 										) : (
-											<span class="bp-icon bp-icon--svg">
-												{(() => {
-													const Icon = ICONS[p.icon];
-													return <Icon size={20} />;
-												})()}
-											</span>
+											(() => {
+												const Icon = ICONS[p.icon];
+												return <Icon size={32} />;
+											})()
 										)}
-										{titleHref ? (
+									</a>
+									<div class="app-body">
+										<div class="app-header">
 											<a class="entry-name" href={titleHref} target="_blank" rel="noopener noreferrer">{p.title}</a>
-										) : (
-											<p class="entry-name">{p.title}</p>
-										)}
-									</div>
-									<div class="bp-card-links">
-										{live && (
-											<a href={live} target="_blank" rel="noopener noreferrer" aria-label="Live demo">
-												<SquareArrowOutUpRight size={20} />
-											</a>
-										)}
-										{p.links.Blog && (
-											<a href={p.links.Blog} target="_blank" rel="noopener noreferrer" aria-label="Blog post">
-												<Rss size={20} />
-											</a>
-										)}
-										{p.links.Github && (
-											<a href={p.links.Github} target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-												<GithubIcon size={20} />
-											</a>
+											<div class="app-links">
+												{live && (
+													<a href={live} target="_blank" rel="noopener noreferrer" aria-label="Live demo">
+														<SquareArrowOutUpRight size={20} />
+													</a>
+												)}
+												{p.links.Blog && (
+													<a href={p.links.Blog} target="_blank" rel="noopener noreferrer" aria-label="Blog post">
+														<Rss size={20} />
+													</a>
+												)}
+												{p.links.Github && (
+													<a href={p.links.Github} target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+														<GithubIcon size={20} />
+													</a>
+												)}
+											</div>
+										</div>
+										<p class="entry-desc">{p.description[0]}</p>
+										{!tiny && (
+											<div class="tags">
+												{p.tech.map((t) => (
+													<span class="tag">{t}</span>
+												))}
+											</div>
 										)}
 									</div>
 								</div>
-								<p class="entry-desc">{p.description[0]}</p>
-								<div class="tags">
-									{p.tech.map((t) => (
-										<span class="tag">{t}</span>
-									))}
-								</div>
-							</div>
-						</div>
-					);
-				})}
-			</div>
+							);
+						})}
+					</div>
+				</>
+			))}
+		</section>
 
-			<p class="bp-divider">NPM Packages</p>
-
+		<div class="s-npm">
+			<p class="bp-title">NPM Packages</p>
 			<div class="npm-list">
-				{npmModules.map((p) => (
+				{NPMPackages.map((p) => (
 					<div class="npm-row">
 						<div class="npm-body">
 							<div class="npm-header">
@@ -221,7 +222,6 @@ function primaryLink(links: Record<string, string>) {
 							</div>
 							<div class="dep-links">
 								{Object.entries(p.links)
-									.filter(([k]) => k !== "Screenshot")
 									.map(([label, url]) => (
 										<a href={url} target="_blank" rel="noopener noreferrer" aria-label={label}>
 											{label === "Github" ? (
@@ -264,13 +264,150 @@ function primaryLink(links: Record<string, string>) {
 </Layout>
 
 <style>
-.subtitle {
-	color: var(--muted);
-	font-size: 13px;
-	font-style: italic;
+.s-apps {
+	margin-bottom: 3.5rem;
+	animation: fadeUp 0.4s ease 0.06s both;
+
+	.entry-name {
+		color: var(--white);
+		font-weight: 600;
+	}
+
+	.entry-desc {
+		color: #9a9aac;
+	}
+
+	.tag {
+		border: 1px solid var(--border);
+		color: var(--muted);
+	}
 }
 
-.s-active {
+.apps-title {
+	font-family: var(--font-display);
+	font-size: 9px;
+	color: var(--yellow);
+	letter-spacing: 0.2em;
+	text-transform: uppercase;
+	margin-bottom: 1.5rem;
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+
+	&::after {
+		content: "";
+		flex: 1;
+		height: 1px;
+		background: var(--border);
+	}
+}
+
+.app-list {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 2.5rem;
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+}
+
+.app {
+	display: grid;
+	grid-template-columns: 168px minmax(0, 1fr);
+	gap: 1.2rem;
+	padding: 1.1rem 0;
+	border-bottom: 1px solid var(--border);
+
+	&:first-child {
+		border-top: 1px solid var(--border);
+	}
+}
+
+.app--tiny {
+	grid-template-columns: 96px minmax(0, 1fr);
+	align-items: center;
+	padding: 0.8rem 0;
+}
+
+.thumb {
+	display: grid;
+	place-items: center;
+	aspect-ratio: 16 / 10;
+	align-self: start;
+	overflow: hidden;
+	background: var(--surface);
+	border: 1px solid var(--border);
+	color: var(--muted);
+	transition: border-color 0.15s;
+
+	&:hover {
+		border-color: var(--yellow);
+	}
+
+	img:not(.app-icon) {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: top;
+		filter: brightness(0.8);
+		transition: filter 0.15s;
+	}
+
+	&:hover img:not(.app-icon),
+	.app:has(.entry-name:hover) & img:not(.app-icon) {
+		filter: none;
+	}
+}
+
+.thumb .app-icon {
+	width: 32px;
+	height: 32px;
+}
+
+.app-body {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	min-width: 0;
+}
+
+.app-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
+}
+
+.app-links {
+	display: flex;
+	gap: 0.75rem;
+	flex-shrink: 0;
+	align-items: center;
+
+	a {
+		color: var(--muted);
+		transition: color 0.15s;
+		display: flex;
+		align-items: center;
+
+		&:hover {
+			color: var(--yellow);
+		}
+	}
+}
+
+@media (max-width: 560px) {
+	.app {
+		grid-template-columns: 1fr;
+	}
+
+	.app--tiny {
+		grid-template-columns: 80px minmax(0, 1fr);
+	}
+}
+
+.s-npm {
 	margin-bottom: 3.5rem;
 	animation: fadeUp 0.4s ease 0.06s both;
 	background: #04090f;
@@ -350,44 +487,7 @@ function primaryLink(links: Record<string, string>) {
 	}
 }
 
-.bp-list {
-	display: flex;
-	flex-direction: column;
-	margin-bottom: 2rem;
-}
-
-.bp-card {
-	padding: 1.1rem 0;
-	border-bottom: 1px solid rgba(var(--blue-rgb), 0.07);
-
-	&:first-child {
-		border-top: 1px solid rgba(var(--blue-rgb), 0.07);
-	}
-}
-
-.bp-card-body {
-	display: flex;
-	flex-direction: column;
-	gap: 0.5rem;
-	min-width: 0;
-}
-
-.bp-card-header {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	gap: 1rem;
-	flex-wrap: wrap;
-	margin-bottom: 0.2rem;
-}
-
-.bp-card-name-wrap {
-	display: flex;
-	align-items: center;
-	gap: 0.5rem;
-}
-
-.bp-icon,
+.app-icon,
 .npm-icon,
 .dep-icon {
 	width: 20px;
@@ -407,16 +507,6 @@ function primaryLink(links: Record<string, string>) {
 }
 .dep-icon {
 	--icon-opacity: 0.4;
-}
-
-.bp-icon--svg {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	color: rgba(var(--blue-rgb), 0.7);
-	width: 16px;
-	height: 16px;
-	flex-shrink: 0;
 }
 
 .entry-name {
@@ -448,51 +538,6 @@ a.entry-name {
 	font-size: 9px;
 	padding: 3px 7px;
 	letter-spacing: 0.05em;
-}
-
-.bp-card-links {
-	display: flex;
-	gap: 0.75rem;
-	flex-shrink: 0;
-	align-items: center;
-
-	a {
-		font-size: 11px;
-		color: rgba(var(--blue-rgb), 0.65);
-		text-decoration: none;
-		transition: color 0.15s;
-		white-space: nowrap;
-		display: flex;
-		align-items: center;
-
-		&:hover {
-			color: var(--blue);
-		}
-	}
-}
-
-.bp-divider {
-	font-family: var(--font-display);
-	font-size: 9px;
-	color: rgba(var(--blue-rgb), 0.4);
-	letter-spacing: 0.15em;
-	text-transform: uppercase;
-	margin-bottom: 0.5rem;
-	display: flex;
-	align-items: center;
-	gap: 0.75rem;
-
-	&::before {
-		content: "//";
-		color: rgba(var(--blue-rgb), 0.2);
-	}
-
-	&::after {
-		content: "";
-		flex: 1;
-		height: 1px;
-		background: rgba(var(--blue-rgb), 0.07);
-	}
 }
 
 .npm-list {
