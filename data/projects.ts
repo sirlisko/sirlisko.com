@@ -28,6 +28,29 @@ export type Project = ProjectWithLogo | ProjectWithIcon | ProjectWithScreenshot;
 
 export const projects = [
 	{
+		title: "Talelock",
+		description: [
+			"Story-driven treasure hunts played on your phone. No app, no account, just a link.",
+			"A Studio to write hunts with riddles, QR codes, GPS and photo steps, and a Play side for walking them, with the answers checked server-side so they never reach the browser.",
+		],
+		screenshot: "/images/projects/screens/talelock.webp",
+		links: {
+			Website: "https://talelock.com",
+		},
+		tech: [
+			"React",
+			"TypeScript",
+			"Tailwind",
+			"Vite",
+			"Supabase",
+			"PostgreSQL",
+			"Edge Functions",
+			"Leaflet",
+			"Vitest",
+			"Netlify",
+		],
+	},
+	{
 		title: "Moon",
 		description: [
 			"A live 3D Moon showing its real phase and position from where you stand, plus a lunar calendar.",

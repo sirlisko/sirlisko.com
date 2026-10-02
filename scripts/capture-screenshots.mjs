@@ -14,6 +14,7 @@ const SIMPLE_CAPTURES = {
 	pizzaclub: "https://pizzaclub.sirlisko.com/",
 	rainylondon: "https://rainylondon.sirlisko.com",
 	strahd: "https://strahd.ogreballerino.com",
+	talelock: "https://talelock.com",
 };
 
 const ZOOMMEME_EXAMPLE =
