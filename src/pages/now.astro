@@ -7,7 +7,14 @@ import FaceLink from "../components/FaceLink.astro";
 import Links from "../components/Links.astro";
 import Layout from "../layouts/Layout.astro";
 
-const COLORS = ["#ff4444", "#6eb5ff", "#44cc77", "#ff6eb4"];
+// Blinky, Pinky, Inky, Clyde, then a frightened ghost.
+const GHOSTS = [
+	{ body: "#ff3b30", label: "#ff5a52", pupils: true },
+	{ body: "#ffb8ff", label: "#ffb8ff", pupils: true },
+	{ body: "#00e5ff", label: "#00e5ff", pupils: true },
+	{ body: "#ffb852", label: "#ffb852", pupils: true },
+	{ body: "#2121de", label: "#8c8cff", pupils: false },
+];
 ---
 
 <Layout
@@ -23,49 +30,46 @@ const COLORS = ["#ff4444", "#6eb5ff", "#44cc77", "#ff6eb4"];
 >
 	<Links inverted page="now" />
 	<main class="page">
+		<FaceLink width={48} />
+
 		<header>
-			<div class="header-badge">
-				<span class="badge-dot"></span>
-				<span>player status</span>
-				<span class="badge-dot"></span>
+			<div class="stats">
+				<p><span class="key">Loc</span> London, UK</p>
+				<p><span class="key">Date</span> {NOW_LAST_UPDATED}</p>
 			</div>
-			<h1>
-				/now<span class="pacman" aria-hidden="true"></span>
-				<FaceLink width={25} />
-			</h1>
-			<div class="header-stats">
-				<div class="stat">
-					<span class="stat-key">loc</span>
-					<span class="stat-val">London, UK</span>
-				</div>
-				<div class="stat">
-					<span class="stat-key">date</span>
-					<span class="stat-val">{NOW_LAST_UPDATED}</span>
-				</div>
+			<h1>/now</h1>
+			<p class="intro">
+				A snapshot of what I'm focused on at this point in time.{" "}
+				<a href="https://nownownow.com/about" target="_blank" rel="noopener"
+					>What's a now page?</a
+				>
+			</p>
+			<div class="trail" aria-hidden="true">
+				<span class="pacman"></span>
+				<span class="pellets"></span>
+				<span class="power"></span>
 			</div>
-			<a
-				class="header-link"
-				href="https://nownownow.com/about"
-				target="_blank"
-				rel="noopener"
-				>what's a /now page? ▶</a
-			>
 		</header>
 
 		{sections.map((s, i) => {
-      const color = COLORS[i % COLORS.length];
+      const ghost = GHOSTS[i % GHOSTS.length];
       return (
-        <div class="section" style={`--accent: ${color}; --delay: ${i * 0.07}s`}>
-          <span class="ghost" aria-hidden="true">
-            <svg viewBox="0 0 20 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <title>Section indicator</title>
-              <path d="M10 0 Q20 0 20 10 L20 24 L15 18 L10 24 L5 18 L0 24 L0 10 Q0 0 10 0Z" fill="var(--accent)" />
-              <circle cx="6.5" cy="9" r="2.5" fill="#111" />
-              <circle cx="13.5" cy="9" r="2.5" fill="#111" />
+        <section class="maze" style={`--label: ${ghost.label}`}>
+          <div class="section-head">
+            <svg class="ghost" viewBox="0 0 20 24" aria-hidden="true">
+              <path d="M10 0 Q20 0 20 10 L20 24 L15 18 L10 24 L5 18 L0 24 L0 10 Q0 0 10 0Z" fill={ghost.body} />
+              <circle cx="6.5" cy="9" r="2.5" fill="#fff" />
+              <circle cx="13.5" cy="9" r="2.5" fill="#fff" />
+              {ghost.pupils && (
+                <>
+                  <circle cx="7.5" cy="9.5" r="1.2" fill="#2121de" />
+                  <circle cx="14.5" cy="9.5" r="1.2" fill="#2121de" />
+                </>
+              )}
             </svg>
-          </span>
-          <p class="section-label">{s.label}</p>
-          <p class="section-title" set:html={s.title} />
+            <p class="label">{s.label}</p>
+          </div>
+          <h2>{s.title}</h2>
           {s.content.map((p) => (<p set:html={p} />))}
           {s.tags && s.tags.length > 0 && (
             <div class="tags">
@@ -74,95 +78,85 @@ const COLORS = ["#ff4444", "#6eb5ff", "#44cc77", "#ff6eb4"];
               ))}
             </div>
           )}
-        </div>
+        </section>
       );
     })}
-		<footer>
-			<p>
-				This is a{' '}
-				<a href="https://nownownow.com" target="_blank" rel="noopener"
-					>/now page</a
-				>{' '}
-				— a snapshot of what I'm focused on at this point in time.
-			</p>
-			<p>Last updated: <strong>{NOW_LAST_UPDATED}</strong>.</p>
-		</footer>
 	</main>
 </Layout>
 
 <style>
 /* Bound to the theme class so it outranks the display font Layout sets on body. */
 body.dark {
+	background: #000;
 	font-family: var(--font-mono);
-	font-size: 15px;
-	line-height: 1.75;
+	font-size: 16px;
+	line-height: 1.7;
 	padding: 3rem 1.5rem 6rem;
 }
 
 .page {
-	max-width: 640px;
+	max-width: 800px;
 	margin: 0 auto;
 	padding-top: 3rem;
+	display: flex;
+	flex-direction: column;
+	gap: 2.5rem;
 }
 
 header {
-	margin-bottom: 3rem;
-	padding: 2.5rem 1.5rem;
-	text-align: center;
-	position: relative;
-	background: #0d0d11;
-
-	border: 3px solid var(--yellow);
-	box-shadow:
-		0 0 0 2px #0d0d11,
-		0 0 0 5px var(--yellow),
-		0 0 35px rgba(240, 192, 64, 0.18);
-}
-
-.header-badge {
-	font-family: var(--font-mono);
-	font-size: 11px;
-	letter-spacing: 0.2em;
-	text-transform: uppercase;
-	color: #8b8ba0;
-	margin-bottom: 1.5rem;
 	display: flex;
-	align-items: center;
-	justify-content: center;
-	gap: 0.75rem;
+	flex-direction: column;
+	gap: 1.25rem;
 }
 
-.badge-dot {
-	display: inline-block;
-	width: 6px;
-	height: 6px;
-	background: var(--yellow);
-	flex-shrink: 0;
-	animation: pulse 2s ease-in-out infinite;
+.stats {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem 2.5rem;
 
-	&:last-child {
-		animation-delay: 1s;
+	p {
+		margin: 0;
 	}
+}
+
+.key {
+	font-family: var(--font-display);
+	color: #ffe14d;
+	margin-right: 0.5rem;
 }
 
 h1 {
 	font-family: var(--font-display);
-	font-size: clamp(22px, 5vw, 34px);
+	font-weight: 400;
+	font-size: 48px;
+	line-height: 1.2;
 	color: var(--white);
-	line-height: 1.4;
-	margin-bottom: 1.5rem;
+	margin: 0;
+
+	@media (max-width: 600px) {
+		font-size: 32px;
+	}
+}
+
+.intro {
+	margin: 0;
+	max-width: 60ch;
+	font-size: 18px;
+	line-height: 1.6;
+}
+
+.trail {
 	display: flex;
 	align-items: center;
-	justify-content: center;
-	gap: 0.4em;
+	gap: 12px;
+	padding-top: 0.5rem;
 }
 
 .pacman {
-	display: inline-block;
 	position: relative;
 	flex-shrink: 0;
-	width: 0.75em;
-	height: 0.75em;
+	width: 28px;
+	height: 28px;
 	overflow: hidden;
 	border-radius: 50%;
 
@@ -173,7 +167,7 @@ h1 {
 		left: 0;
 		width: 100%;
 		height: 50%;
-		background: var(--yellow);
+		background: #ffe14d;
 	}
 
 	&::before {
@@ -190,203 +184,110 @@ h1 {
 }
 
 @keyframes jaw-top {
-	from {
-		transform: rotate(0deg);
-	}
 	to {
 		transform: rotate(-30deg);
 	}
 }
 
 @keyframes jaw-bottom {
-	from {
-		transform: rotate(0deg);
-	}
 	to {
 		transform: rotate(30deg);
 	}
 }
 
-.header-stats {
+.pellets {
+	flex: 1;
+	height: 12px;
+	background-image: radial-gradient(circle, #ffb8ae 3px, transparent 3.5px);
+	background-size: 28px 12px;
+}
+
+.power {
+	flex-shrink: 0;
+	width: 16px;
+	height: 16px;
+	border-radius: 50%;
+	background: #ffb8ae;
+}
+
+.maze {
+	border: 6px double #2121de;
+	border-radius: 14px;
+	padding: 1.75rem 2rem 2rem;
 	display: flex;
-	justify-content: center;
-	gap: 2rem;
-	flex-wrap: wrap;
-	margin-bottom: 1.25rem;
-}
+	flex-direction: column;
+	gap: 1rem;
 
-.stat {
-	display: flex;
-	align-items: baseline;
-	gap: 0.5rem;
-}
-
-.stat-key {
-	font-family: var(--font-display);
-	font-size: 9px;
-	color: var(--yellow);
-	letter-spacing: 0.08em;
-	text-transform: uppercase;
-}
-
-.stat-val {
-	font-family: var(--font-mono);
-	font-size: 13px;
-	color: #c4c4cc;
-}
-
-.header-link {
-	font-family: var(--font-mono);
-	font-size: 12px;
-	color: #8b8ba0;
-	text-decoration: none;
-	letter-spacing: 0.05em;
-	transition: color 0.15s ease;
-
-	&:hover {
-		color: var(--yellow);
+	@media (max-width: 600px) {
+		padding: 1.5rem 1.25rem;
 	}
 }
 
-.section {
-	position: relative;
-	margin-bottom: 2rem;
-	padding: 1.5rem;
-	background: #111;
-	border: 3px dotted var(--accent);
-	box-shadow: 5px 5px 0 0 var(--accent);
-	transition:
-		transform 0.15s ease,
-		box-shadow 0.15s ease;
-	animation: fadeUp 0.4s ease both;
-	animation-delay: var(--delay, 0s);
-
-	&:hover {
-		transform: translate(-2px, -2px);
-		box-shadow: 7px 7px 0 0 var(--accent);
-	}
+.section-head {
+	display: flex;
+	align-items: center;
+	gap: 14px;
 }
 
 .ghost {
-	position: absolute;
-	top: 10px;
-	right: 12px;
-	width: 20px;
-	height: 24px;
-	animation: ghost-float 3s ease-in-out infinite;
-	display: block;
-
-	svg {
-		width: 100%;
-		height: 100%;
-	}
+	width: 24px;
+	height: 28px;
+	flex-shrink: 0;
 }
 
-@keyframes ghost-float {
-	0%,
-	100% {
-		transform: translateY(0px);
-	}
-	50% {
-		transform: translateY(-4px);
-	}
-}
-
-@keyframes pulse {
-	0%,
-	100% {
-		opacity: 1;
-	}
-	50% {
-		opacity: 0.3;
-	}
-}
-
-.section-label {
-	font-family: var(--font-mono);
-	font-size: 11px;
-	letter-spacing: 0.15em;
-	text-transform: uppercase;
-	color: #8b8ba0;
-	margin-bottom: 0.5rem;
-	padding-right: 2rem;
-}
-
-.section-title {
+.label {
 	font-family: var(--font-display);
-	font-size: 13px;
-	color: var(--white);
-	margin-bottom: 0.75rem;
+	font-size: 16px;
 	line-height: 1.6;
+	color: var(--label);
+
+	&::first-letter {
+		text-transform: uppercase;
+	}
+}
+
+h2 {
+	margin: 0;
+	font-size: 22px;
+	font-weight: 600;
+	line-height: 1.35;
+	color: var(--white);
 }
 
 p {
-	color: var(--text);
-	font-size: 14px;
-	line-height: 1.8;
+	margin: 0;
+	color: #e4e4e4;
 
-	& + p {
-		margin-top: 0.75rem;
-	}
-	& + a {
-		color: var(--text);
-	}
-
-	a {
+	/* Section copy arrives through set:html, which scoped styles can't reach. */
+	:global(strong) {
 		color: var(--white);
-		text-decoration: underline;
-
-		&:hover {
-			color: var(--yellow);
-		}
+		font-weight: 600;
 	}
-	strong {
+}
+
+p :global(a) {
+	color: #ffe14d;
+
+	&:hover {
 		color: var(--white);
+	}
+
+	&:focus-visible {
+		outline: 3px solid #ffe14d;
+		outline-offset: 3px;
 	}
 }
 
 .tags {
-	margin-top: 1rem;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px;
 }
 
 .tag {
-	display: inline-block;
-	font-family: var(--font-mono);
-	font-size: 11px;
-	padding: 3px 8px;
-	background: var(--bg);
-	border: 2px dotted #3a3a4e;
-	color: #8b8ba0;
-	margin: 4px 3px 0 0;
-	letter-spacing: 0.05em;
-	transition:
-		border-color 0.15s ease,
-		color 0.15s ease;
-
-	&:hover {
-		border-color: var(--accent, var(--yellow));
-		color: var(--accent, var(--yellow));
-	}
-}
-
-footer {
-	margin-top: 4rem;
-	padding-top: 1.5rem;
-	border-top: 3px dotted var(--border);
 	font-size: 13px;
-	color: #8b8ba0;
-
-	a {
-		color: var(--yellow);
-		text-decoration: none;
-
-		&:hover {
-			text-decoration: underline;
-		}
-	}
-
-	strong {
-		color: #c4c4cc;
-	}
+	padding: 2px 8px;
+	border: 2px solid #2121de;
+	color: #c4c4cc;
 }
 </style>
