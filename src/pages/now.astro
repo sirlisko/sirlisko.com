@@ -233,6 +233,13 @@ h1 {
 	width: 24px;
 	height: 28px;
 	flex-shrink: 0;
+	animation: ghost-float 3s ease-in-out infinite;
+}
+
+@keyframes ghost-float {
+	50% {
+		transform: translateY(-4px);
+	}
 }
 
 .label {
