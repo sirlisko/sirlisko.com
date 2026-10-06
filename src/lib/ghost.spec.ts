@@ -7,7 +7,10 @@ const GHOST_MARKUP = `
 		<span class="heart" data-ghost-heart></span>
 		<span class="heart" data-ghost-heart></span>
 		<span class="heart" data-ghost-heart></span>
-		<p data-ghost-gameover hidden>-Game Over-</p>
+		<div data-ghost-gameover hidden>
+			<p>-Game Over-</p>
+			<button data-ghost-continue>Continue?</button>
+		</div>
 		<p data-ghost-oneup>1UP</p>
 	</section>
 	<figure data-ghost-sprite></figure>
@@ -110,6 +113,22 @@ describe("ghost", () => {
 
 		sprite.dispatchEvent(new MouseEvent("mouseover"));
 		expect(visibleHearts()).toHaveLength(2);
+	});
+
+	test("continue starts a new game without the 1UP flash", () => {
+		const { sprite, gameOver, visibleHearts } = mount();
+		initGhost();
+		for (let i = 0; i < 3; i += 1) {
+			sprite.dispatchEvent(new MouseEvent("mouseover"));
+		}
+
+		(document.querySelector("[data-ghost-continue]") as HTMLElement).click();
+
+		expect(visibleHearts()).toHaveLength(3);
+		expect(gameOver.hasAttribute("hidden")).toBe(true);
+		expect(
+			document.querySelector("[data-ghost-oneup]")?.classList.contains("flash"),
+		).toBe(false);
 	});
 
 	test("flashes 1UP when the lives refill", () => {

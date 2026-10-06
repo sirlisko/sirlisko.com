@@ -11,6 +11,7 @@ interface GhostElements {
 	hearts: HTMLElement[];
 	gameOver: HTMLElement;
 	oneUp: HTMLElement | null;
+	continueButton: HTMLElement | null;
 }
 
 const query = (root: ParentNode): GhostElements | null => {
@@ -18,8 +19,11 @@ const query = (root: ParentNode): GhostElements | null => {
 	const gameOver = root.querySelector<HTMLElement>("[data-ghost-gameover]");
 	const hearts = [...root.querySelectorAll<HTMLElement>("[data-ghost-heart]")];
 	const oneUp = root.querySelector<HTMLElement>("[data-ghost-oneup]");
+	const continueButton = root.querySelector<HTMLElement>(
+		"[data-ghost-continue]",
+	);
 	return ghost && gameOver && hearts.length > 0
-		? { ghost, hearts, gameOver, oneUp }
+		? { ghost, hearts, gameOver, oneUp, continueButton }
 		: null;
 };
 
@@ -28,7 +32,7 @@ export const initGhost = (root: ParentNode = document) => {
 	if (!els) {
 		return () => {};
 	}
-	const { ghost, hearts, gameOver, oneUp } = els;
+	const { ghost, hearts, gameOver, oneUp, continueButton } = els;
 
 	let life = hearts.length;
 	const place = ({ x, y }: { x: number; y: number }) => {
@@ -53,23 +57,28 @@ export const initGhost = (root: ParentNode = document) => {
 	};
 	ghost.addEventListener("mouseover", loseLife);
 
-	const revive = () => {
+	const restart = () => {
 		life = hearts.length;
 		for (const heart of hearts) {
 			heart.toggleAttribute("hidden", false);
 		}
 		gameOver.toggleAttribute("hidden", true);
+	};
+	continueButton?.addEventListener("click", restart);
 
+	const cheat = () => {
+		restart();
 		// Reading layout between the class swaps restarts the animation on a repeat code.
 		oneUp?.classList.remove("flash");
 		oneUp?.getBoundingClientRect();
 		oneUp?.classList.add("flash");
 	};
-	document.addEventListener(KONAMI_EVENT, revive);
+	document.addEventListener(KONAMI_EVENT, cheat);
 
 	const detach = () => {
 		ghost.removeEventListener("mouseover", loseLife);
-		document.removeEventListener(KONAMI_EVENT, revive);
+		continueButton?.removeEventListener("click", restart);
+		document.removeEventListener(KONAMI_EVENT, cheat);
 	};
 
 	// `ontouchstart` is null on touch devices, so only `in` detects it.
