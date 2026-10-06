@@ -1,17 +1,12 @@
 import { execSync, spawn } from "node:child_process";
-import { existsSync, mkdirSync } from "node:fs";
-import { readFile, writeFile } from "node:fs/promises";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
-import { PDFDocument } from "pdf-lib";
+import { PDFDocument, PDFName } from "pdf-lib";
 import puppeteer from "puppeteer";
 
 const SITE_URL = "https://sirlisko.com";
 const OUTPUT_DIR = "public/cv";
 const ENV_FILE = ".env";
-const QR_CODE_PATH = join("scripts", "assets", "qr-code.png");
-const QR_CODE_ALT_PATH = join("scripts", "assets", "qr-code-alt.png");
-const QR_CODE_SIZE = 70;
-const QR_CODE_MARGIN = 24;
 
 if (!existsSync(OUTPUT_DIR)) {
 	mkdirSync(OUTPUT_DIR, { recursive: true });
@@ -44,23 +39,6 @@ const detectBaseUrl = (proc, timeout = 15000) =>
 		proc.stdout.on("data", onData);
 	});
 
-const addQrCode = async (filePath, isAlt) => {
-	const [pdfBytes, qrCodeBytes] = await Promise.all([
-		readFile(filePath),
-		readFile(isAlt ? QR_CODE_ALT_PATH : QR_CODE_PATH),
-	]);
-	const pdfDoc = await PDFDocument.load(pdfBytes);
-	const qrCodeImage = await pdfDoc.embedPng(qrCodeBytes);
-	const [firstPage] = pdfDoc.getPages();
-	firstPage.drawImage(qrCodeImage, {
-		x: QR_CODE_MARGIN,
-		y: QR_CODE_MARGIN,
-		width: QR_CODE_SIZE,
-		height: QR_CODE_SIZE,
-	});
-	await writeFile(filePath, await pdfDoc.save());
-};
-
 const compress = (filePath) => {
 	const tmp = `${filePath}.tmp.pdf`;
 	try {
@@ -74,6 +52,22 @@ const compress = (filePath) => {
 		);
 		if (existsSync(tmp)) execSync(`rm "${tmp}"`);
 	}
+};
+
+// Runs after Ghostscript, which keeps only the title and mangles its em dash.
+// Its XMP copy is dropped so readers fall back to these fields.
+const setMetadata = async (filePath, meta) => {
+	const pdf = await PDFDocument.load(readFileSync(filePath), {
+		updateMetadata: false,
+	});
+	pdf.setTitle(meta.title, { showInWindowTitleBar: true });
+	pdf.setAuthor(meta.author);
+	pdf.setSubject(meta.description);
+	pdf.setKeywords([meta.keywords]);
+	pdf.setCreator(SITE_URL);
+	pdf.setLanguage(meta.lang);
+	pdf.catalog.delete(PDFName.of("Metadata"));
+	writeFileSync(filePath, await pdf.save());
 };
 
 const generatePdf = async (browser, baseUrl, path, outputFile) => {
@@ -104,20 +98,43 @@ const generatePdf = async (browser, baseUrl, path, outputFile) => {
 			`${baseUrl}${path} returned ${response.status()}, expected a successful response`,
 		);
 	}
+	// UTMs only on our own sites, where Umami can see them; utm_content tells
+	// the public PDF from the private one sent out directly.
 	await page.evaluate(
-		(from, to) => {
+		(from, to, content) => {
 			for (const el of document.querySelectorAll("a[href]")) {
-				el.href = el.href.replace(from, to);
+				const url = new URL(el.href.replace(from, to));
+				if (/(^|\.)(sirlisko|talelock)\.com$/.test(url.hostname)) {
+					url.searchParams.set("utm_source", "cv");
+					url.searchParams.set("utm_medium", "pdf");
+					url.searchParams.set("utm_content", content);
+				}
+				el.href = url.href;
 			}
 		},
 		baseUrl,
 		SITE_URL,
+		outputFile.replace(".pdf", ""),
 	);
+	const meta = await page.evaluate(() => {
+		const content = (selector) =>
+			document.querySelector(selector)?.getAttribute("content") ?? "";
+		return {
+			title: document.title,
+			author: [
+				content('meta[property="profile:first_name"]'),
+				content('meta[property="profile:last_name"]'),
+			].join(" "),
+			description: content('meta[name="description"]'),
+			keywords: content('meta[name="keywords"]'),
+			lang: document.documentElement.lang,
+		};
+	});
 	const outPath = join(OUTPUT_DIR, outputFile);
 	await page.pdf({ path: outPath, format: "A4", printBackground: true });
 	await page.close();
-	await addQrCode(outPath, path.includes("alt=true"));
 	compress(outPath);
+	await setMetadata(outPath, meta);
 	console.log(`  ✓ ${outPath}`);
 };
 
@@ -159,13 +176,16 @@ try {
 	await withPreview({ CV_BUILD: "" }, async (baseUrl) => {
 		console.log("Generating public PDFs...");
 		await generatePdf(browser, baseUrl, "/resume", "luca-lischetti-resume.pdf");
-		await generatePdf(browser, baseUrl, "/resume?alt=true", "alt.pdf");
 	});
 
 	await withPreview({ CV_BUILD: "1" }, async (baseUrl) => {
 		console.log("Generating private PDFs...");
-		await generatePdf(browser, baseUrl, "/resume", "private.pdf");
-		await generatePdf(browser, baseUrl, "/resume?alt=true", "private-alt.pdf");
+		await generatePdf(
+			browser,
+			baseUrl,
+			"/resume",
+			"luca-lischetti-resume-full.pdf",
+		);
 	});
 	console.log("Done!");
 } finally {
