@@ -77,6 +77,14 @@ A GitHub Actions workflow runs on every push and pull request to ensure that:
 - **UI**: no framework — the interactive bits are plain TypeScript modules in `src/lib/`, driven by `<script>` blocks in Astro components.
 - **CI/CD**: GitHub Actions for automating linting, formatting, and testing.
 
+## Generate the share images
+
+```bash
+pnpm generate:og
+```
+
+Draws a 1200×630 card for `/now`, `/projects`, `/uses` and `/resume` into `public/images/og/`. Rerun it after changing a card in `scripts/generate-og.mjs`. The home page keeps `me_banner.jpg`.
+
 ## Generate the resume in pdf format
 
 ```bash
@@ -86,7 +94,7 @@ pnpm generate:cv
 This builds the site, spins up a preview server, and prints `/resume` to `public/cv/`:
 
 - `luca-lischetti-resume.pdf` — public
-- `private.pdf` — with the phone number from `.env`
+- `luca-lischetti-resume-full.pdf` — with the phone number from `.env`; gitignored, so it's never published. Send it on request.
 
 PDFs are automatically compressed using Ghostscript if available. To install it:
 

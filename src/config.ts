@@ -1,3 +1,5 @@
+import OG_CARDS from "../data/og.json";
+
 export const SITE_URL = "https://sirlisko.com";
 export const SITE_DOMAIN = "sirlisko.com";
 
@@ -8,6 +10,17 @@ export const SITE = {
 	imageAlt: `Luca Lischetti, aka sirlisko`,
 	imageWidth: 2048,
 	imageHeight: 1024,
+};
+
+// Drawn by scripts/generate-og.mjs; rerun it after changing a card.
+export const ogCard = (page: keyof typeof OG_CARDS) => {
+	const { title, tagline } = OG_CARDS[page];
+	return {
+		image: `${SITE_URL}/images/og/${page}.png`,
+		imageWidth: 1200,
+		imageHeight: 630,
+		imageAlt: `${title}: ${tagline}. Pixel-art portrait of Luca Lischetti, sirlisko.com`,
+	};
 };
 
 export const AUTHOR = {
