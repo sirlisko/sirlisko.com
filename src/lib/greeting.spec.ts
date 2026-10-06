@@ -44,11 +44,21 @@ describe("greeting", () => {
 		vi.advanceTimersByTime(2000 + 10 * "developer".length);
 		expect(el.textContent).toBe("");
 
-		vi.advanceTimersByTime(200);
+		vi.advanceTimersByTime(120);
 		expect(el.textContent).toBe("e");
 
-		vi.advanceTimersByTime(200);
+		vi.advanceTimersByTime(120);
 		expect(el.textContent).toBe("en");
+	});
+
+	test("never types the same description twice in a row", () => {
+		const el = mount();
+		initGreeting(el, descriptions, { random: () => 0 });
+
+		vi.advanceTimersByTime(
+			2000 + 10 * "developer".length + 120 * "designer".length,
+		);
+		expect(el.textContent).toBe("designer");
 	});
 
 	test("leaves the description alone when reduced motion is requested", () => {

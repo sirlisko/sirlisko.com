@@ -27,6 +27,11 @@ describe("site data", () => {
 		expect(me.descriptions.every((d) => d.trim().length > 0)).toBe(true);
 	});
 
+	// The greeting doesn't wrap, so anything longer pushes the heading off a 375px screen.
+	test("every description fits on one line on mobile", () => {
+		expect(me.descriptions.every((d) => d.length <= 13)).toBe(true);
+	});
+
 	test("every resume link points somewhere", () => {
 		const urls = [
 			...resume.experiences.flatMap(({ url }) => (url ? [url] : [])),
