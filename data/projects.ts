@@ -10,7 +10,6 @@ interface BaseProject {
 	description: string[];
 	links: Record<string, string>;
 	tech: string[];
-	isDeprecated?: boolean;
 }
 
 interface ProjectWithLogo extends BaseProject {
@@ -346,7 +345,6 @@ export const pastProjects = [
 			Github: "https://github.com/sirlisko/shazamify",
 		},
 		tech: ["Chrome Extension", "Spotify OAuth", "Spotify API"],
-		isDeprecated: true,
 	},
 	{
 		title: "Audible RSS",
@@ -359,7 +357,6 @@ export const pastProjects = [
 			Github: "https://github.com/sirlisko/audible-rss",
 		},
 		tech: ["Node", "Express", "React", "Web Scraping"],
-		isDeprecated: true,
 	},
 	{
 		title: "Gulp Blacklist Marker",
@@ -367,6 +364,7 @@ export const pastProjects = [
 			"Chrome Extension that marks blacklisted gulp modules when browsing NPM and GitHub.",
 		],
 		logo: "/images/projects/gulp.png",
+		invertIcon: true,
 		links: {
 			"Chrome extension":
 				"https://chrome.google.com/webstore/detail/gulp-blacklist-marker/kifhpjdagaiganbdabkpepncopmbfbal",
@@ -386,7 +384,6 @@ export const pastProjects = [
 			Github: "https://github.com/sirlisko/sproxify",
 		},
 		tech: ["Chrome Extension", "User Script"],
-		isDeprecated: true,
 	},
 	{
 		title: "POMOfy",
@@ -398,7 +395,6 @@ export const pastProjects = [
 			Github: "https://github.com/sirlisko/apps-pomofy",
 		},
 		tech: ["Spotify App"],
-		isDeprecated: true,
 	},
 	{
 		title: "Deliverance Improved",
@@ -410,6 +406,5 @@ export const pastProjects = [
 			Github: "https://github.com/sirlisko/deliverance",
 		},
 		tech: ["Node", "AngularJS", "Web Scraping", "Bootstrap", "Heroku"],
-		isDeprecated: true,
 	},
 ] satisfies Project[];
