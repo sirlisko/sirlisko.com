@@ -1,6 +1,6 @@
 import { prefersReducedMotion } from "./motion";
 
-const TYPING_SPEED = 200;
+const TYPING_SPEED = 120;
 const DELETING_SPEED = 10;
 const PAUSE = 2000;
 
@@ -46,7 +46,9 @@ export const initGreeting = (
 			schedule(remove, DELETING_SPEED);
 			return;
 		}
-		word = descriptions[Math.floor(random() * descriptions.length)] ?? "";
+		const others = descriptions.filter((d) => d !== word);
+		const pool = others.length > 0 ? others : descriptions;
+		word = pool[Math.floor(random() * pool.length)] ?? "";
 		schedule(type, TYPING_SPEED);
 	};
 
