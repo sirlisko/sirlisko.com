@@ -1,0 +1,6 @@
+{
+	"now": { "title": "/now", "tagline": "What I'm up to right now" },
+	"projects": { "title": "Projects", "tagline": "Side projects & experiments" },
+	"uses": { "title": "$ uses", "tagline": "Apps and tools I use daily" },
+	"resume": { "title": "Resume", "tagline": "Senior full stack engineer" }
+}

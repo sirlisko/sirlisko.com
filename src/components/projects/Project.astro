@@ -22,9 +22,11 @@ interface Props {
 	big?: boolean;
 	retired?: boolean;
 	eager?: boolean;
+	/** The first big screenshot is the page's largest paint. */
+	priority?: boolean;
 }
 
-const { project: p, big, retired, eager } = Astro.props;
+const { project: p, big, retired, eager, priority } = Astro.props;
 const { href, extra } = projectLinks(p.links);
 const Icon = "icon" in p ? ICONS[p.icon] : undefined;
 const tech = p.tech.filter((t) => t !== "NPM Module");
@@ -43,11 +45,14 @@ const tech = p.tech.filter((t) => t !== "NPM Module");
 			<img
 				src={p.screenshot}
 				srcset={`${p.screenshot} 640w, ${p.screenshot.replace(".webp", "@2x.webp")} 1280w`}
-				sizes={big ? "(max-width: 700px) 100vw, 340px" : "112px"}
+				sizes={big
+					? "(max-width: 670px) calc(100vw - 68px), (max-width: 1010px) calc(50vw - 60px), 320px"
+					: "112px"}
 				alt=""
 				width={640}
 				height={400}
 				loading={eager ? "eager" : "lazy"}
+				fetchpriority={priority ? "high" : undefined}
 				decoding="async"
 			/>
 		) : "logo" in p ? (

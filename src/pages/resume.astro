@@ -9,12 +9,14 @@ import Hero from "../components/resume/Hero.astro";
 import Proficiencies from "../components/resume/Proficiencies.astro";
 import QuestLog from "../components/resume/QuestLog.astro";
 import SideQuests from "../components/resume/SideQuests.astro";
+import { ogCard } from "../config";
 import Layout from "../layouts/Layout.astro";
 
 const rich = (text: Rich) => [text].flat();
 ---
 
 <Layout
+	{...ogCard("resume")}
 	title="Resume"
 	description="Luca Lischetti's resume. Senior software engineer working across the full stack, from TypeScript, React and React Native to Node.js and cloud infrastructure."
 	keywords={[

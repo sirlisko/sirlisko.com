@@ -26,6 +26,8 @@ interface Props {
 	title?: string;
 	description?: string;
 	image?: string;
+	imageWidth?: number;
+	imageHeight?: number;
 	keywords?: string[];
 	imageAlt?: string;
 	ogType?: "website" | "profile";
@@ -41,6 +43,8 @@ const {
 	title,
 	description,
 	image,
+	imageWidth = image ? undefined : SITE.imageWidth,
+	imageHeight = image ? undefined : SITE.imageHeight,
 	imageAlt,
 	keywords,
 	ogType,
@@ -87,7 +91,7 @@ const formattedTitle = title ? `${title} | ${SITE.title}` : SITE.title;
 		<meta property="og:title" content={formattedTitle}>
 		<meta property="og:url" content={canonicalURL}>
 		<meta property="og:image" content={image || SITE.image}>
-		{!image && (  <>    <meta property="og:image:width" content={String(SITE.imageWidth)} />    <meta property="og:image:height" content={String(SITE.imageHeight)} />  </>)}
+		{imageWidth && imageHeight && (  <>    <meta property="og:image:width" content={String(imageWidth)} />    <meta property="og:image:height" content={String(imageHeight)} />  </>)}
 		<meta property="og:image:alt" content={imageAlt || SITE.imageAlt}>
 		<meta property="og:description" content={metaDescription}>
 		<meta property="og:site_name" content={SITE.title}>
@@ -128,6 +132,21 @@ const formattedTitle = title ? `${title} | ${SITE.title}` : SITE.title;
 		<slot />
 	</body>
 </html>
+
+<script>
+import { applyCrt, toggleCrt } from "../lib/crt";
+import { initKonami, KONAMI_EVENT } from "../lib/konami";
+
+// The router swaps <html> attributes on every navigation, so put the effect back each time.
+document.addEventListener("astro:after-swap", () => applyCrt());
+applyCrt();
+
+initKonami();
+document.addEventListener(KONAMI_EVENT, () => {
+	const on = toggleCrt();
+	window.umami?.track("konami", { crt: on });
+});
+</script>
 
 <style is:global>
 * {
