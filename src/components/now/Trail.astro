@@ -1,0 +1,72 @@
+<div class="trail" aria-hidden="true">
+	<span class="pacman"></span>
+	<span class="pellets"></span>
+	<span class="power"></span>
+</div>
+
+<style>
+.trail {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	padding-top: 0.5rem;
+}
+
+.pacman {
+	position: relative;
+	flex-shrink: 0;
+	width: 28px;
+	height: 28px;
+	overflow: hidden;
+	border-radius: 50%;
+
+	&::before,
+	&::after {
+		content: "";
+		position: absolute;
+		left: 0;
+		width: 100%;
+		height: 50%;
+		background: #ffe14d;
+	}
+
+	&::before {
+		top: 0;
+		transform-origin: center bottom;
+		animation: jaw-top 0.35s ease-in-out alternate infinite;
+	}
+
+	&::after {
+		bottom: 0;
+		transform-origin: center top;
+		animation: jaw-bottom 0.35s ease-in-out alternate infinite;
+	}
+}
+
+@keyframes jaw-top {
+	to {
+		transform: rotate(-30deg);
+	}
+}
+
+@keyframes jaw-bottom {
+	to {
+		transform: rotate(30deg);
+	}
+}
+
+.pellets {
+	flex: 1;
+	height: 12px;
+	background-image: radial-gradient(circle, #ffb8ae 3px, transparent 3.5px);
+	background-size: 28px 12px;
+}
+
+.power {
+	flex-shrink: 0;
+	width: 16px;
+	height: 16px;
+	border-radius: 50%;
+	background: #ffb8ae;
+}
+</style>

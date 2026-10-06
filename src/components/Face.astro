@@ -1,0 +1,20 @@
+---
+import { Image } from "astro:assets";
+import type { ComponentProps } from "astro/types";
+import me_face from "../images/me.webp";
+
+type Props = Omit<ComponentProps<typeof Image>, "src" | "alt"> & {
+	alt?: string;
+};
+
+const { alt = "", class: className, ...rest } = Astro.props;
+---
+
+<!-- Every page's face shares this name, so it morphs from one page to the next. -->
+<Image
+	src={me_face}
+	alt={alt}
+	class:list={["face-img", className]}
+	transition:name="face"
+	{...rest}
+/>

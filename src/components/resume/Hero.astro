@@ -1,7 +1,6 @@
 ---
-import { Image } from "astro:assets";
 import type { Resume } from "../../../data/resume";
-import me_face from "../../images/me.webp";
+import Face from "../Face.astro";
 import Frame from "./Frame.astro";
 
 interface Props {
@@ -13,15 +12,13 @@ const { stats } = Astro.props;
 
 <header class="hero">
 	<a href="/" class="portrait">
-		<Image
-			src={me_face}
+		<Face
 			alt="sirlisko face"
 			width={200}
 			height={287}
 			densities={[1, 2]}
 			loading="eager"
 			fetchpriority="high"
-			transition:name="face"
 		/>
 	</a>
 	<div class="name">
