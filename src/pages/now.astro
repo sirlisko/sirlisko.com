@@ -8,10 +8,12 @@ import FaceLink from "../components/FaceLink.astro";
 import Links from "../components/Links.astro";
 import Maze from "../components/now/Maze.astro";
 import Trail from "../components/now/Trail.astro";
+import { ogCard } from "../config";
 import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout
+	{...ogCard("now")}
 	title="Now"
 	description="What Luca Lischetti (sirlisko) is up to right now."
 	keywords={[

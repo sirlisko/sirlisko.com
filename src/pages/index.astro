@@ -15,10 +15,11 @@ import Layout from "../layouts/Layout.astro";
 		<main class="main-content">
 			<div class="container grid">
 				<div class="face">
+					{/* The face is min(70vw, 70vh) tall at a 0.7 aspect ratio, so its width tops out at 49% of the smaller side. */}
 					<Face
 						alt="sirlisko face"
 						widths={[400, 700, 1000, 1244]}
-						sizes="(max-width: 650px) 90vw, 50vw"
+						sizes="(max-aspect-ratio: 1/1) 49vw, 49vh"
 						loading="eager"
 						fetchpriority="high"
 					/>
@@ -35,7 +36,9 @@ import Layout from "../layouts/Layout.astro";
 				</div>
 			</div>
 		</main>
-		<SayCiao />
+		<footer>
+			<SayCiao />
+		</footer>
 	</div>
 </Layout>
 

@@ -16,7 +16,13 @@ const { title, projects, big, retired } = Astro.props;
 	<h2>{title}</h2>
 	<ul class:list={["list", { big }]}>
 		{projects.map((project, i) => (
-			<Project project={project} big={big} retired={retired} eager={big && i < 3} />
+			<Project
+				project={project}
+				big={big}
+				retired={retired}
+				eager={big && i < 3}
+				priority={big && i === 0}
+			/>
 		))}
 	</ul>
 </section>

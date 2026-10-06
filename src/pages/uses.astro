@@ -16,6 +16,7 @@ import Links from "../components/Links.astro";
 import Listing from "../components/uses/Listing.astro";
 import Prompt from "../components/uses/Prompt.astro";
 import Terminal from "../components/uses/Terminal.astro";
+import { ogCard } from "../config";
 import Layout from "../layouts/Layout.astro";
 
 const EXITS = [
@@ -27,6 +28,7 @@ const EXITS = [
 ---
 
 <Layout
+	{...ogCard("uses")}
 	title="Uses"
 	description="The apps and tools Luca Lischetti (sirlisko) actually uses day to day — browser, editor, notes, passwords, and everything else running the show."
 	keywords={[

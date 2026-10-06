@@ -21,6 +21,7 @@ document.addEventListener("astro:page-load", () => {
 		trail.style.setProperty("--travel", `${travel}px`);
 		trail.style.setProperty("--duration", `${travel / SPEED}s`);
 		trail.dataset.state = "eating";
+		window.umami?.track("pacman");
 	});
 
 	trail.addEventListener("transitionend", (event) => {

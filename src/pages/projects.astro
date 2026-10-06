@@ -11,10 +11,12 @@ import {
 import FaceLink from "../components/FaceLink.astro";
 import Links from "../components/Links.astro";
 import Section from "../components/projects/Section.astro";
+import { ogCard } from "../config";
 import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout
+	{...ogCard("projects")}
 	title="Projects"
 	description="Side projects by Luca Lischetti (sirlisko): web apps, tiny single-purpose sites, npm packages, and retired Chrome extensions and experiments."
 	keywords={[
