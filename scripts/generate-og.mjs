@@ -6,33 +6,28 @@ import sharp from "sharp";
 const OUTPUT_DIR = "public/images/og";
 const SIZE = { width: 1200, height: 630 };
 
+// Titles and taglines live in data/og.json, which the pages' alt text reads too.
+const TEXT = JSON.parse(readFileSync("data/og.json", "utf8"));
+
 // Each card wears its page's game, so a shared link already hints at what's behind it.
-const CARDS = {
+const THEMES = {
 	now: {
-		title: "/now",
-		tagline: "What I'm up to right now",
 		bg: "#000",
 		fg: "#fff",
 		accent: "#ffe14d",
 		pellets: true,
 	},
 	projects: {
-		title: "Projects",
-		tagline: "Side projects & experiments",
 		bg: "#000",
 		fg: "#fcfcfc",
 		accent: "#f83800",
 	},
 	uses: {
-		title: "$ uses",
-		tagline: "Apps and tools I use daily",
 		bg: "#1b1c24",
 		fg: "#eff0eb",
 		accent: "#5af78e",
 	},
 	resume: {
-		title: "Resume",
-		tagline: "Senior full stack engineer",
 		bg: "#2f4a3a",
 		fg: "#fff",
 		accent: "#ffd166",
@@ -101,8 +96,10 @@ const browser = await puppeteer.launch();
 try {
 	const page = await browser.newPage();
 	await page.setViewport(SIZE);
-	for (const [name, card] of Object.entries(CARDS)) {
-		await page.setContent(html(card), { waitUntil: "load" });
+	for (const [name, theme] of Object.entries(THEMES)) {
+		await page.setContent(html({ ...TEXT[name], ...theme }), {
+			waitUntil: "load",
+		});
 		await page.evaluate(() => document.fonts.ready);
 		const path = join(OUTPUT_DIR, `${name}.png`);
 		await sharp(await page.screenshot())
