@@ -23,6 +23,8 @@ export const ogCard = (page: keyof typeof OG_CARDS) => {
 	};
 };
 
+export const BLOG_FEED = `${SITE_URL}/blog/rss.xml`;
+
 export const AUTHOR = {
 	name: "Luca Lischetti",
 	alternateName: "sirlisko",

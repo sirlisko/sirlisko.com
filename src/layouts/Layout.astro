@@ -4,7 +4,7 @@ import "@fontsource/press-start-2p/latin-400.css";
 import "../styles/tokens.css";
 import "../styles/shared.css";
 import { ClientRouter } from "astro:transitions";
-import { ANALYTICS, AUTHOR, SITE, SITE_URL } from "../config";
+import { ANALYTICS, AUTHOR, BLOG_FEED, SITE, SITE_URL } from "../config";
 
 const jsonLd = {
 	"@context": "https://schema.org",
@@ -104,6 +104,13 @@ const formattedTitle = title ? `${title} | ${SITE.title}` : SITE.title;
 		<meta name="twitter:image:alt" content={imageAlt || SITE.imageAlt}>
 		{keywords && keywords.length > 0 ? (    <meta name="keywords" content={keywords.join(`, `)} />  ) : null}
 		<link type="text/plain" rel="author" href={`${SITE_URL}/humans.txt`}>
+		<link
+			rel="alternate"
+			type="application/rss+xml"
+			title="sirlisko blog"
+			href={BLOG_FEED}
+		>
+		{AUTHOR.profiles.map((profile) => <link rel="me" href={profile} />)}
 		<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 		<link rel="preconnect" href={analyticsOrigin}>
 		<ClientRouter />

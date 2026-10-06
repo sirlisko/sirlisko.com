@@ -6,6 +6,7 @@ import Greeting from "../components/Greeting.astro";
 import Lamp from "../components/Lamp.astro";
 import Links from "../components/Links.astro";
 import SayCiao from "../components/SayCiao.astro";
+import { AUTHOR, SITE_URL } from "../config";
 import Layout from "../layouts/Layout.astro";
 ---
 
@@ -14,7 +15,11 @@ import Layout from "../layouts/Layout.astro";
 	themeColor={{ light: "#2eaed5", dark: "#051a22" }}
 >
 	<Ghost />
-	<div class="page-container">
+	<div class="page-container h-card">
+		<data class="p-name" value={AUTHOR.name}></data>
+		<data class="p-nickname" value={AUTHOR.username}></data>
+		<data class="u-url u-uid" value={SITE_URL}></data>
+		<data class="u-photo" value={`${SITE_URL}/images/avatar.png`}></data>
 		<Links />
 		<main class="main-content">
 			<div class="container grid">
