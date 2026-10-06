@@ -1,0 +1,225 @@
+---
+import "@fontsource/ibm-plex-mono/latin-400.css";
+import "@fontsource/ibm-plex-mono/latin-600.css";
+import { rolls, SOURCE } from "../../data/credits";
+import FaceLink from "../components/FaceLink.astro";
+import Links from "../components/Links.astro";
+import { ogCard } from "../config";
+import Layout from "../layouts/Layout.astro";
+
+const external = (url: string) =>
+	url.startsWith("/") ? {} : { target: "_blank", rel: "noopener noreferrer" };
+---
+
+<Layout
+	{...ogCard("credits")}
+	title="Credits"
+	description="The colophon of sirlisko.com: the games behind each page, the tools, the fonts and the people who inspired it, rolled as end credits."
+	keywords={[
+    "sirlisko",
+    "colophon",
+    "credits",
+    "Luca Lischetti",
+    "astro",
+  ]}
+	theme="dark"
+	themeColor="#000"
+>
+	<Links page="credits" />
+	<main class="roll" data-staff-roll>
+		<FaceLink width={48} />
+
+		<header>
+			<h1>sirlisko.com</h1>
+			<p>How this site is made.</p>
+		</header>
+
+		{rolls.map((roll) => (
+			<section>
+				<h2>{roll.title}</h2>
+				<dl>
+					{roll.credits.map((credit) => (
+						<div>
+							<dt>{credit.role}</dt>
+							<dd>
+								{credit.url ? (
+									<a href={credit.url} {...external(credit.url)}>
+										{credit.name}
+									</a>
+								) : (
+									credit.name
+								)}
+							</dd>
+						</div>
+					))}
+				</dl>
+			</section>
+		))}
+
+		<footer class="end">
+			<p class="thanks">Thank you for playing</p>
+			<a class="again" href="/">Press start</a>
+			<p>
+				The source is on{" "}
+				<a href={SOURCE} target="_blank" rel="noopener noreferrer">GitHub</a>.
+			</p>
+		</footer>
+	</main>
+</Layout>
+
+<script>
+import { initStaffRoll } from "../lib/staffRoll";
+
+let cleanup: (() => void) | undefined;
+
+document.addEventListener("astro:page-load", () => {
+	cleanup?.();
+	cleanup = initStaffRoll(document);
+});
+</script>
+
+<style>
+/* Outranks the shared dark ground, which the build loads after page styles. */
+html body.dark {
+	background: #000;
+}
+
+.roll {
+	max-width: 640px;
+	margin: 0 auto;
+	padding-top: 2rem;
+	text-align: center;
+	font-family: var(--font-mono);
+	font-size: 16px;
+	color: #fcfcfc;
+
+	/* Credits fade in from the bottom of the screen and out at the top. */
+	&::before,
+	&::after {
+		content: "";
+		position: fixed;
+		inset-inline: 0;
+		height: 5rem;
+		pointer-events: none;
+		z-index: 5;
+	}
+
+	&::before {
+		top: 0;
+		background: linear-gradient(#000, transparent);
+	}
+
+	&::after {
+		bottom: 0;
+		background: linear-gradient(transparent, #000);
+	}
+}
+
+.roll > :global(.face-link) {
+	display: inline-block;
+}
+
+header {
+	margin: 4rem 0 8rem;
+
+	h1 {
+		margin: 0 0 1.5rem;
+		font-family: var(--font-display);
+		font-weight: 400;
+		font-size: clamp(24px, 6vw, 40px);
+		line-height: 1.4;
+	}
+
+	p {
+		margin: 0;
+		color: #c8c8c8;
+	}
+}
+
+section {
+	margin-bottom: 8rem;
+}
+
+h2 {
+	margin: 0 0 2.5rem;
+	font-family: var(--font-display);
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 1.5;
+	color: #f8d878;
+}
+
+dl {
+	display: flex;
+	flex-direction: column;
+	gap: 1.75rem;
+	margin: 0;
+}
+
+dt {
+	margin-bottom: 0.4rem;
+	font-size: 15px;
+	color: #a0a0a0;
+}
+
+dd {
+	margin: 0;
+	font-size: 18px;
+	font-weight: 600;
+}
+
+a {
+	color: inherit;
+	text-underline-offset: 0.25em;
+
+	&:hover {
+		color: #f8d878;
+	}
+
+	&:focus-visible {
+		outline: 3px solid #f8d878;
+		outline-offset: 3px;
+	}
+}
+
+.end {
+	min-height: 100dvh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 2rem;
+
+	p {
+		margin: 0;
+		color: #c8c8c8;
+	}
+}
+
+.thanks {
+	font-family: var(--font-display);
+	font-size: clamp(16px, 4vw, 24px);
+	line-height: 1.5;
+
+	.end & {
+		color: #fcfcfc;
+	}
+}
+
+.again {
+	font-family: var(--font-display);
+	font-size: 16px;
+	text-decoration: none;
+	color: #f8d878;
+	animation: blink 1.2s step-end infinite;
+
+	&:hover,
+	&:focus-visible {
+		animation: none;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		animation: none;
+	}
+}
+</style>

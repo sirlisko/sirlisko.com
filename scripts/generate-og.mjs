@@ -32,6 +32,11 @@ const THEMES = {
 		fg: "#fff",
 		accent: "#ffd166",
 	},
+	credits: {
+		bg: "#000",
+		fg: "#fcfcfc",
+		accent: "#f8d878",
+	},
 };
 
 const dataUri = (path, type) =>
