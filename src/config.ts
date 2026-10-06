@@ -10,6 +10,13 @@ export const SITE = {
 	imageHeight: 1024,
 };
 
+// Drawn by scripts/generate-og.mjs; rerun it after changing a card.
+export const ogCard = (page: "now" | "projects" | "uses" | "resume") => ({
+	image: `${SITE_URL}/images/og/${page}.png`,
+	imageWidth: 1200,
+	imageHeight: 630,
+});
+
 export const AUTHOR = {
 	name: "Luca Lischetti",
 	alternateName: "sirlisko",

@@ -28,7 +28,8 @@
 		"test": "vitest",
 		"typecheck": "tsc --noEmit",
 		"generate:cv": "node scripts/generate-cv.mjs",
-		"capture:screenshots": "node scripts/capture-screenshots.mjs"
+		"capture:screenshots": "node scripts/capture-screenshots.mjs",
+		"generate:og": "node scripts/generate-og.mjs"
 	},
 	"dependencies": {
 		"@astrojs/sitemap": "^3.7.4",

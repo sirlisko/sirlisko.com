@@ -77,6 +77,14 @@ A GitHub Actions workflow runs on every push and pull request to ensure that:
 - **UI**: no framework — the interactive bits are plain TypeScript modules in `src/lib/`, driven by `<script>` blocks in Astro components.
 - **CI/CD**: GitHub Actions for automating linting, formatting, and testing.
 
+## Generate the share images
+
+```bash
+pnpm generate:og
+```
+
+Draws a 1200×630 card for `/now`, `/projects`, `/uses` and `/resume` into `public/images/og/`. Rerun it after changing a card in `scripts/generate-og.mjs`. The home page keeps `me_banner.jpg`.
+
 ## Generate the resume in pdf format
 
 ```bash
