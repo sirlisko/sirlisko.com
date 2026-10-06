@@ -17,6 +17,7 @@ const PAUSE_TITLES: Record<typeof game, string> = {
 	projects: "Select",
 	uses: "Where to?",
 	resume: "Short rest",
+	credits: "The end",
 };
 const attrs = (link: Link) =>
 	link.reload ? { "data-astro-reload": true } : {};
@@ -116,6 +117,11 @@ const attrs = (link: Link) =>
 	--pause-title: #8f1d1d;
 	--pause-accent: #8f1d1d;
 	--cursor: "✦";
+}
+
+.nav[data-game="credits"] {
+	--fg: #fcfcfc;
+	--accent: #f8d878;
 }
 
 .menu {
