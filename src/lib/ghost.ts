@@ -1,4 +1,5 @@
 import { debounce } from "./debounce";
+import { KONAMI_EVENT } from "./konami";
 import { prefersReducedMotion } from "./motion";
 
 const GHOST_WIDTH = 64;
@@ -50,9 +51,23 @@ export const initGhost = (root: ParentNode = document) => {
 	};
 	ghost.addEventListener("mouseover", loseLife);
 
+	const revive = () => {
+		life = hearts.length;
+		for (const heart of hearts) {
+			heart.toggleAttribute("hidden", false);
+		}
+		gameOver.toggleAttribute("hidden", true);
+	};
+	document.addEventListener(KONAMI_EVENT, revive);
+
+	const detach = () => {
+		ghost.removeEventListener("mouseover", loseLife);
+		document.removeEventListener(KONAMI_EVENT, revive);
+	};
+
 	// `ontouchstart` is null on touch devices, so only `in` detects it.
 	if ("ontouchstart" in window || prefersReducedMotion()) {
-		return () => ghost.removeEventListener("mouseover", loseLife);
+		return detach;
 	}
 
 	const onMouseMove = debounce(
@@ -64,6 +79,6 @@ export const initGhost = (root: ParentNode = document) => {
 	return () => {
 		onMouseMove.cancel();
 		document.removeEventListener("mousemove", onMouseMove);
-		ghost.removeEventListener("mouseover", loseLife);
+		detach();
 	};
 };

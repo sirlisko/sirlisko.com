@@ -129,6 +129,21 @@ const formattedTitle = title ? `${title} | ${SITE.title}` : SITE.title;
 	</body>
 </html>
 
+<script>
+import { applyCrt, toggleCrt } from "../lib/crt";
+import { initKonami, KONAMI_EVENT } from "../lib/konami";
+
+// The router swaps <html> attributes on every navigation, so put the effect back each time.
+document.addEventListener("astro:after-swap", () => applyCrt());
+applyCrt();
+
+initKonami();
+document.addEventListener(KONAMI_EVENT, () => {
+	const on = toggleCrt();
+	window.umami?.track("konami", { crt: on });
+});
+</script>
+
 <style is:global>
 * {
 	box-sizing: border-box;

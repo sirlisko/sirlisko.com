@@ -1,5 +1,6 @@
 import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 import { initGhost } from "./ghost";
+import { KONAMI_EVENT } from "./konami";
 
 const GHOST_MARKUP = `
 	<section class="life">
@@ -94,6 +95,22 @@ describe("ghost", () => {
 		expect(gameOver.hasAttribute("hidden")).toBe(false);
 	});
 
+	test("the konami code refills every life after game over", () => {
+		const { sprite, gameOver, visibleHearts } = mount();
+		initGhost();
+		for (let i = 0; i < 3; i += 1) {
+			sprite.dispatchEvent(new MouseEvent("mouseover"));
+		}
+
+		document.dispatchEvent(new CustomEvent(KONAMI_EVENT));
+
+		expect(visibleHearts()).toHaveLength(3);
+		expect(gameOver.hasAttribute("hidden")).toBe(true);
+
+		sprite.dispatchEvent(new MouseEvent("mouseover"));
+		expect(visibleHearts()).toHaveLength(2);
+	});
+
 	test("does not follow the mouse on touch devices", () => {
 		Object.defineProperty(window, "ontouchstart", {
 			value: null,
@@ -128,6 +145,8 @@ describe("ghost", () => {
 		cleanup();
 		moveMouse(100, 200);
 		sprite.dispatchEvent(new MouseEvent("mouseover"));
+		sprite.dispatchEvent(new MouseEvent("mouseover"));
+		document.dispatchEvent(new CustomEvent(KONAMI_EVENT));
 
 		expect(sprite.style.left).toBe("-164px");
 		expect(visibleHearts()).toHaveLength(3);

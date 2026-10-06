@@ -59,3 +59,29 @@ body.dark {
 	min-height: 100dvh;
 	padding: 3rem 1.5rem 6rem;
 }
+
+/* Konami code: scanlines and a curved-glass vignette over every page, for the rest of the visit.
+   Dark lines vanish on the black pages, so a faint glow and lit gaps carry the effect there. */
+html[data-crt] body {
+	text-shadow: 0 0 3px currentColor;
+}
+
+html[data-crt] body::after {
+	content: "";
+	position: fixed;
+	inset: 0;
+	z-index: 2147483647;
+	pointer-events: none;
+	background:
+		repeating-linear-gradient(
+			to bottom,
+			rgb(0 0 0 / 0.22) 0 1px,
+			rgb(255 255 255 / 0.04) 1px 2px,
+			transparent 2px 3px
+		),
+		radial-gradient(ellipse at center, transparent 55%, rgb(0 0 0 / 0.45));
+
+	@media print {
+		display: none;
+	}
+}
