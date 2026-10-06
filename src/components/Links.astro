@@ -4,205 +4,250 @@ import me from "../../data/me";
 import { navLinks, type PageName } from "../lib/links";
 
 interface Props {
-	inverted?: boolean;
 	page?: PageName;
 }
 
-const { inverted, page } = Astro.props;
+const { page } = Astro.props;
 
 const links = navLinks(me.links, page);
-// One object, not two spreads: Astro emits a duplicate class attribute otherwise.
-const attrs = (link: Link) => ({
-	...(link.external ? { target: "_blank", rel: "noopener noreferrer" } : {}),
-	...(link.reload ? { "data-astro-reload": true } : {}),
-});
-const bg = page === "resume" ? "bg-resume" : inverted ? "bg-flat" : "bg-home";
+const game = page ?? "home";
+const PAUSE_TITLES: Record<typeof game, string> = {
+	home: "Paused",
+	now: "Ready!",
+	projects: "Select",
+	uses: "Where to?",
+	resume: "Short rest",
+};
+const attrs = (link: Link) =>
+	link.reload ? { "data-astro-reload": true } : {};
 ---
 
-<nav class={inverted ? "nav inverted" : "nav"}>
-	<button
-		type="button"
-		class="hamburger"
-		id="hamburger"
-		aria-label="Toggle menu"
-		aria-expanded="false"
-	></button>
-	<ul class={`links ${bg}`} id="nav-links">
+<nav class="nav" data-game={game} aria-label="Main">
+	<ul class="menu">
 		{links.map((link) => (
-			<li class={link.name}>
-				<a href={link.url} {...attrs(link)}>
-					<span class="caption">{link.label}</span>
-				</a>
-			</li>
+			<li><a href={link.url} {...attrs(link)}>{link.label}</a></li>
 		))}
 	</ul>
+	<button type="button" class="start" id="nav-start" aria-haspopup="dialog">
+		Start
+	</button>
+	<dialog class="pause" id="nav-pause" aria-label="Menu">
+		<p class="pause-title" aria-hidden="true">{PAUSE_TITLES[game]}</p>
+		<ul class="menu">
+			{links.map((link) => (
+				<li><a href={link.url} {...attrs(link)}>{link.label}</a></li>
+			))}
+		</ul>
+		<form method="dialog">
+			<button type="submit" class="menu-close">Continue</button>
+		</form>
+	</dialog>
 </nav>
 
-<style is:global>
-.no-scroll {
-	overflow: hidden;
-}
-</style>
 <style>
+/* Each page is a different game, so the menu borrows its colours and cursor. */
 .nav {
-	position: fixed;
-	right: 0;
-	top: 0;
-	left: 0;
-	text-align: center;
-	padding: 1rem;
+	--fg: #000;
+	--accent: #000;
+	--pause-bg: #000;
+	--pause-fg: #fff;
+	--pause-title: #f8d878;
+	--pause-accent: #f8d878;
+	--cursor: "▶";
+	--font: var(--font-display);
+	--size: 16px;
+	position: absolute;
+	top: 1.5rem;
+	right: 1.5rem;
 	z-index: 10;
-}
-.hamburger {
-	display: block;
-	position: fixed;
-	top: 1rem;
-	right: 1rem;
-	z-index: 20;
-	background: none;
-	border: none;
-	cursor: pointer;
-	background-image: url(/images/links/menu.png);
-	height: 3rem;
-	width: 3rem;
-	background-size: cover;
-}
-.inverted .hamburger {
-	filter: invert(1);
-}
-.hamburger.active {
-	background-image: url(/images/links/x.png);
+	font-family: var(--font);
 }
 
-.links {
-	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
+.nav[data-game="now"] {
+	--fg: #dedeff;
+	--accent: #ffe737;
+	--pause-title: #ffe737;
+	--pause-accent: #ffe737;
+}
+
+.nav[data-game="projects"] {
+	--fg: #fcfcfc;
+	--accent: #f83800;
+	--pause-accent: #f83800;
+}
+
+.nav[data-game="uses"] {
+	--fg: #eff0eb;
+	--accent: #5af78e;
+	--pause-bg: #282a36;
+	--pause-fg: #eff0eb;
+	--pause-title: #f3f99d;
+	--pause-accent: #5af78e;
+	--cursor: ">";
+	--font: var(--font-mono);
+	--size: 17px;
+}
+
+.nav[data-game="resume"] {
+	--fg: #fff;
+	--accent: #ffd166;
+	--pause-bg: #fff;
+	--pause-fg: #111;
+	--pause-title: #8f1d1d;
+	--pause-accent: #8f1d1d;
+	--cursor: "✦";
+}
+
+.menu {
 	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	transform: translateX(100%);
-	transition: transform 0.3s ease-in-out;
+	gap: 2.25rem;
 	margin: 0;
 	padding: 0;
 	list-style: none;
 }
 
-.links.active {
-	transform: translateX(0);
-}
-.links.bg-home {
-	background-color: var(--gradient-home-color);
-	background-image: var(--gradient-home);
-}
-.links.bg-resume {
-	background-color: var(--gradient-resume-color);
-	background-image: var(--gradient-resume);
-}
-.links.bg-flat {
-	background-color: var(--bg);
-}
-
-.links li {
-	margin: 1rem 0;
-}
-
-.links a {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+.menu a {
+	position: relative;
+	color: var(--fg);
+	font-size: var(--size);
 	text-decoration: none;
-	color: #000;
-}
-.inverted .links a {
-	color: var(--white);
+
+	&::before {
+		content: var(--cursor);
+		position: absolute;
+		right: calc(100% + 0.5em);
+		color: var(--accent);
+		font-size: 0.75em;
+		line-height: inherit;
+		top: 50%;
+		translate: 0 -50%;
+		visibility: hidden;
+	}
+
+	&:hover::before,
+	&:focus-visible::before {
+		visibility: visible;
+
+		@media (prefers-reduced-motion: no-preference) {
+			animation: blink 0.8s steps(1) infinite;
+		}
+	}
+
+	&:focus-visible {
+		outline: none;
+		color: var(--accent);
+	}
 }
 
-.links a::before {
+/* Pac-Man chomps instead of pointing. */
+.nav[data-game="now"] .menu a::before {
 	content: "";
-	display: block;
-	height: 32px;
-	width: 32px;
-	background-size: contain;
-	margin-bottom: 0.5rem;
-}
-.inverted .links a::before {
-	filter: invert(1);
-}
-
-.caption {
-	display: block;
+	width: 0.75em;
+	height: 0.75em;
+	border-radius: 50%;
+	background: conic-gradient(
+		var(--accent) 0 60deg,
+		transparent 60deg 120deg,
+		var(--accent) 120deg
+	);
 }
 
-.now a::before {
-	background-image: url(/images/links/lightbulb.png);
-}
-.uses a::before {
-	background-image: url(/images/links/wrench.png);
-}
-.home a::before {
-	background-image: url(/images/links/house.png);
-}
-.blog a::before {
-	background-image: url(/images/links/blog.png);
-}
-.resume a::before {
-	background-image: url(/images/links/resume.png);
-}
-.projects a::before {
-	background-image: url(/images/links/rocket.png);
-}
-.github a::before {
-	background-image: url(/images/links/github.png);
-}
-.linkedIn a::before {
-	background-image: url(/images/links/linkedin.png);
-}
-.mail a::before {
-	background-image: url(/images/links/mail.png);
+.start,
+.pause {
+	display: none;
 }
 
-@media (min-width: 651px) {
-	.links.bg-home {
-		background: none;
+.start {
+	padding: 0.7rem 1.1rem;
+	font: inherit;
+	font-family: var(--font-display);
+	font-size: 12px;
+	color: var(--pause-fg);
+	background: var(--pause-bg);
+	border: 2px solid var(--fg);
+	border-radius: 999px;
+	cursor: pointer;
+
+	&:focus-visible {
+		outline: 3px solid var(--accent);
+		outline-offset: 2px;
 	}
+
+	&:active {
+		translate: 0 2px;
+	}
+}
+
+.pause[open] {
+	display: block;
+	width: min(420px, 100vw - 2rem);
+	padding: 2.5rem 2rem 2rem;
+	border: 4px solid var(--pause-fg);
+	outline: 4px solid var(--pause-bg);
+	background: var(--pause-bg);
+	color: var(--pause-fg);
+	text-align: center;
+
+	&::backdrop {
+		background: rgb(0 0 0 / 0.6);
+		backdrop-filter: grayscale(1);
+	}
+
+	.menu {
+		flex-direction: column;
+		align-items: center;
+		gap: 1.5rem;
+		margin-bottom: 2rem;
+	}
+
+	.menu a {
+		--fg: var(--pause-fg);
+		--accent: var(--pause-accent);
+	}
+}
+
+.pause-title {
+	margin: 0 0 2rem;
+	font-family: var(--font-display);
+	font-size: 16px;
+	color: var(--pause-title);
+}
+
+.menu-close {
+	font: inherit;
+	font-family: var(--font-display);
+	font-size: 12px;
+	color: inherit;
+	opacity: 0.6;
+	background: none;
+	border: 0;
+	cursor: pointer;
+
+	&:focus-visible {
+		opacity: 1;
+		outline: 2px solid var(--accent);
+		outline-offset: 4px;
+	}
+}
+
+@media (max-width: 760px) {
 	.nav {
-		left: auto;
-		text-align: right;
-		position: absolute;
+		top: 1rem;
+		right: 1rem;
 	}
-	.hamburger {
+
+	.nav > .menu {
 		display: none;
 	}
-	.inverted .links,
-	.links {
-		position: static;
-		transform: none;
-		flex-direction: row;
-		background: none;
-	}
-	.links li {
-		display: inline-block;
-		margin: 0;
-		margin-right: 0.75rem;
-		padding: 0;
-	}
-	.links li:last-child {
-		margin-right: 0;
-	}
-	.caption {
-		display: none;
-	}
-	.links li:hover .caption {
+
+	.start {
 		display: block;
-		position: absolute;
-		left: 50%;
-		transform: translateX(-50%);
-		top: 4rem;
-		text-align: center;
+	}
+}
+
+@keyframes blink {
+	50% {
+		opacity: 0;
 	}
 }
 </style>

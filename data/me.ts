@@ -2,7 +2,6 @@ export interface Link {
 	name: string;
 	url: string;
 	label: string;
-	external?: boolean;
 	/** The blog is same-origin but a separate site, so the router must not swap it in. */
 	reload?: boolean;
 }
@@ -60,23 +59,6 @@ const me = {
 			name: "uses",
 			url: "/uses",
 			label: "uses",
-		},
-		{
-			name: "github",
-			url: "https://github.com/sirlisko",
-			label: "github",
-			external: true,
-		},
-		{
-			name: "linkedIn",
-			url: "https://linkedin.com/in/lucalischetti",
-			label: "linkedIn",
-			external: true,
-		},
-		{
-			name: "mail",
-			url: "mailto:luca@sirlisko.com",
-			label: "mail me!",
 		},
 	],
 } satisfies Me;
