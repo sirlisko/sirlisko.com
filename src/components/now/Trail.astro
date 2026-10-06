@@ -1,24 +1,86 @@
-<div class="trail" aria-hidden="true">
-	<span class="pacman"></span>
-	<span class="pellets"></span>
-	<span class="power"></span>
+<div class="trail">
+	<button class="pacman" type="button" aria-label="Eat the dots"></button>
+	<span class="pellets" aria-hidden="true"></span>
+	<span class="power" aria-hidden="true"></span>
 </div>
 
+<script>
+const SPEED = 180;
+const PAUSE = 600;
+
+document.addEventListener("astro:page-load", () => {
+	const trail = document.querySelector<HTMLElement>(".trail");
+	const pacman = trail?.querySelector<HTMLButtonElement>(".pacman");
+	const power = trail?.querySelector<HTMLElement>(".power");
+	if (!trail || !pacman || !power) return;
+
+	pacman.addEventListener("click", () => {
+		if (trail.dataset.state) return;
+
+		const travel = trail.clientWidth - pacman.offsetWidth;
+		trail.style.setProperty("--travel", `${travel}px`);
+		trail.style.setProperty("--duration", `${travel / SPEED}s`);
+		trail.dataset.state = "eating";
+	});
+
+	trail.addEventListener("transitionend", (event) => {
+		if (event.target !== trail) return;
+		trail.dataset.state = "cleared";
+		setTimeout(() => {
+			trail.dataset.state = "respawn";
+		}, PAUSE);
+	});
+
+	power.addEventListener("animationend", () => {
+		delete trail.dataset.state;
+	});
+});
+</script>
+
 <style>
+/* Registered so the pacman and the pellet clip can share one animated length. */
+@property --eat {
+	syntax: "<length>";
+	inherits: true;
+	initial-value: 0px;
+}
+
 .trail {
+	position: relative;
 	display: flex;
 	align-items: center;
 	gap: 12px;
 	padding-top: 0.5rem;
+	--eat: 0px;
+
+	&[data-state="eating"] {
+		--eat: var(--travel);
+		transition: --eat var(--duration) linear;
+	}
+
+	&[data-state="cleared"] {
+		--eat: var(--travel);
+	}
 }
 
 .pacman {
 	position: relative;
+	z-index: 1;
 	flex-shrink: 0;
 	width: 28px;
 	height: 28px;
+	padding: 0;
+	border: 0;
+	background: none;
+	cursor: pointer;
 	overflow: hidden;
 	border-radius: 50%;
+	transform: translateX(var(--eat));
+
+	&:focus-visible {
+		outline: 3px solid #ffe14d;
+		outline-offset: 3px;
+	}
 
 	&::before,
 	&::after {
@@ -60,6 +122,8 @@
 	height: 12px;
 	background-image: radial-gradient(circle, #ffb8ae 3px, transparent 3.5px);
 	background-size: 28px 12px;
+	/* Offset by the gap between the pacman's centre and the first pellet's leading edge. */
+	clip-path: inset(0 0 0 max(0px, var(--eat) - 23px));
 }
 
 .power {
@@ -68,5 +132,40 @@
 	height: 16px;
 	border-radius: 50%;
 	background: #ffb8ae;
+
+	[data-state="cleared"] & {
+		visibility: hidden;
+	}
+}
+
+/* Like the arcade maze on a level clear, the board blinks before the next round. */
+:is(.pellets, .power) {
+	[data-state="respawn"] & {
+		animation: flash 0.3s step-end 3;
+	}
+}
+
+@keyframes flash {
+	from {
+		opacity: 0;
+	}
+
+	50% {
+		opacity: 1;
+	}
+}
+
+/* Shortened rather than removed, so the transitionend and animationend that drive the states still fire. */
+@media (prefers-reduced-motion: reduce) {
+	.trail[data-state="eating"] {
+		transition-duration: 0.01s;
+	}
+
+	:is(.pellets, .power) {
+		[data-state="respawn"] & {
+			animation-duration: 0.01s;
+			animation-iteration-count: 1;
+		}
+	}
 }
 </style>
