@@ -3,18 +3,23 @@ import me from "../../data/me";
 import Face from "../components/Face.astro";
 import Ghost from "../components/Ghost.astro";
 import Greeting from "../components/Greeting.astro";
+import Lamp from "../components/Lamp.astro";
 import Links from "../components/Links.astro";
 import SayCiao from "../components/SayCiao.astro";
 import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout keywords={me.keywords}>
+<Layout
+	keywords={me.keywords}
+	themeColor={{ light: "#2eaed5", dark: "#051a22" }}
+>
 	<Ghost />
 	<div class="page-container">
 		<Links />
 		<main class="main-content">
 			<div class="container grid">
 				<div class="face">
+					<Lamp />
 					{/* The face is min(70vw, 70vh) tall at a 0.7 aspect ratio, so its width tops out at 49% of the smaller side. */}
 					<Face
 						alt="sirlisko face"
@@ -96,6 +101,50 @@ body {
 	   width has to be released explicitly for the aspect ratio to win */
 	width: auto;
 }
+/* At night a lamp hangs over the head, and now and then the wiring gives. */
+@media (prefers-color-scheme: dark) {
+	html,
+	body {
+		background-color: var(--gradient-home-night-color);
+		background-image: var(--gradient-home-night);
+		color: #e6f6fb;
+	}
+
+	.main-content {
+		overflow: clip;
+	}
+
+	.face {
+		position: relative;
+	}
+
+	.face img {
+		filter: brightness(0.95) sepia(0.15);
+		animation: flicker-face 11s -7s infinite;
+	}
+
+	.face:has([data-lamp][aria-pressed="false"]) img {
+		filter: brightness(0.35) sepia(0.15);
+		animation: none;
+	}
+}
+
+@keyframes flicker-face {
+	0%,
+	90%,
+	91.5%,
+	93.5%,
+	100% {
+		filter: brightness(0.95) sepia(0.15);
+	}
+	90.5% {
+		filter: brightness(0.6) sepia(0.15);
+	}
+	92.5% {
+		filter: brightness(0.45) sepia(0.15);
+	}
+}
+
 @media screen and (max-width: 650px) {
 	.face {
 		max-height: 50dvh;

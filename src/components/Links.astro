@@ -76,6 +76,13 @@ const attrs = (link: Link) =>
 	font-family: var(--font);
 }
 
+@media (prefers-color-scheme: dark) {
+	.nav[data-game="home"] {
+		--fg: #e6f6fb;
+		--accent: rgb(var(--lamp));
+	}
+}
+
 .nav[data-game="now"] {
 	--fg: #dedeff;
 	--accent: #ffe737;
