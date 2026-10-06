@@ -1,6 +1,6 @@
 import type { Link } from "../../data/me";
 
-export type PageName = "projects" | "resume" | "now" | "uses";
+export type PageName = "projects" | "resume" | "now" | "uses" | "credits";
 
 const HOME: Link = { name: "home", url: "/", label: "home" };
 

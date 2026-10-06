@@ -21,6 +21,11 @@ from = "/cv/luca-lischetti-resume-full.pdf"
 to = "/cv/luca-lischetti-resume.pdf"
 force = true
 
+# Slash-page readers look for /colophon; the page is named after the game's ending.
+[[redirects]]
+from = "/colophon"
+to = "/credits"
+
 # Everything under /_astro is content-hashed, so a new build means a new name.
 [[headers]]
   for = "/_astro/*"
