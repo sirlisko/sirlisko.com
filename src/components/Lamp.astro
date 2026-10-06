@@ -1,0 +1,139 @@
+<div class="lamp">
+	<span class="beam"></span>
+	<button
+		type="button"
+		class="switch"
+		aria-label="Lamp"
+		aria-pressed="true"
+		data-lamp
+		data-track="lamp"
+	>
+		<svg
+			viewBox="0 0 16 9"
+			width="96"
+			height="54"
+			shape-rendering="crispEdges"
+			aria-hidden="true"
+		>
+			<path d="M5 0h6v1h1v2h1v2h1v2h1v1H1V7h1V5h1V3h1V1h1z" fill="#000" />
+			<path d="M6 1h4v2h1v2h1v2h1v1H3V7h1V5h1V3h1z" fill="#3d4a52" />
+			<path d="M6 1h1v2H6zM5 3h1v2H5zM4 5h1v2H4z" fill="#5f7280" />
+			<path class="bulb" d="M6 8h4v1H6z" />
+		</svg>
+	</button>
+</div>
+
+<style>
+/* Only lit at night; by day the sky does the job. */
+.lamp {
+	display: none;
+}
+
+@media (prefers-color-scheme: dark) {
+	.lamp {
+		display: block;
+		position: absolute;
+		left: 50%;
+		bottom: calc(100% + 5dvh);
+		translate: -50% 0;
+	}
+
+	/* The cord runs up out of the screen. */
+	.lamp::before {
+		content: "";
+		position: absolute;
+		left: 50%;
+		bottom: 100%;
+		width: 4px;
+		height: 100dvh;
+		translate: -50% 0;
+		background: #000;
+	}
+
+	.switch {
+		display: block;
+		padding: 0;
+		border: 0;
+		background: none;
+		cursor: pointer;
+
+		&:focus-visible {
+			outline: 3px solid rgb(var(--lamp));
+			outline-offset: 4px;
+		}
+
+		svg {
+			display: block;
+		}
+	}
+
+	.bulb {
+		fill: rgb(var(--lamp));
+	}
+
+	/* Leaves the whole rim of the shade and opens just wide enough to take in the head. */
+	.beam {
+		position: absolute;
+		top: calc(100% - 6px);
+		left: 50%;
+		width: min(70vw, 70dvh);
+		height: calc(5dvh + min(70vw, 70dvh));
+		translate: -50% 0;
+		background: linear-gradient(
+			rgb(var(--lamp) / 0.35),
+			rgb(var(--lamp) / 0.12) 70%,
+			transparent
+		);
+		clip-path: polygon(
+			calc(50% - 42px) 0,
+			calc(50% + 42px) 0,
+			100% 100%,
+			0 100%
+		);
+		pointer-events: none;
+	}
+
+	.beam,
+	.bulb {
+		animation: flicker 11s -7s infinite;
+	}
+
+	.lamp:has([aria-pressed="false"]) {
+		.beam {
+			display: none;
+		}
+
+		.bulb {
+			fill: #1c2328;
+			animation: none;
+		}
+	}
+}
+
+@keyframes flicker {
+	0%,
+	90%,
+	91.5%,
+	93.5%,
+	100% {
+		opacity: 1;
+	}
+	90.5% {
+		opacity: 0.2;
+	}
+	92.5% {
+		opacity: 0.05;
+	}
+}
+</style>
+
+<script>
+import { initLamp } from "../lib/lamp";
+
+let cleanup: (() => void) | undefined;
+
+document.addEventListener("astro:page-load", () => {
+	cleanup?.();
+	cleanup = initLamp(document);
+});
+</script>
