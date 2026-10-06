@@ -1,6 +1,8 @@
 ---
 interface Props {
 	title?: string;
+	/** The plain heading CV parsers look for, added to the title on paper. */
+	printTitle?: string;
 	id?: string;
 	as?: "section" | "dl";
 	class?: string;
@@ -8,6 +10,7 @@ interface Props {
 
 const {
 	title,
+	printTitle,
 	id,
 	as: Tag = "section",
 	class: className,
@@ -20,7 +23,12 @@ const {
 	aria-labelledby={title ? id : undefined}
 	{...rest}
 >
-	{title && <h2 id={id}>{title}</h2>}
+	{title && (
+		<h2 id={id}>
+			{title}
+			{printTitle && <span class="print"> · {printTitle}</span>}
+		</h2>
+	)}
 	<slot />
 </Tag>
 

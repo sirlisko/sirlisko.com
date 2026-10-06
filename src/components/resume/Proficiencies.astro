@@ -9,7 +9,7 @@ interface Props {
 const { skills } = Astro.props;
 ---
 
-<Frame title="Proficiencies" id="prof" class="prof">
+<Frame title="Proficiencies" printTitle="Skills" id="prof" class="prof">
 	<h3>Expertise</h3>
 	<ul>
 		{skills.main.map((s) => <li>{s}</li>)}

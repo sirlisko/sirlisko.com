@@ -41,6 +41,7 @@
 		"@biomejs/biome": "2.5.13",
 		"@testing-library/jest-dom": "^7.0.1",
 		"jsdom": "^30.0.1",
+		"pdf-lib": "^1.17.1",
 		"puppeteer": "^25.10.0",
 		"sharp": "^0.35.4",
 		"typescript": "^7.0.2",

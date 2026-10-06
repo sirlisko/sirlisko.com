@@ -1,6 +1,7 @@
 import { execSync, spawn } from "node:child_process";
-import { existsSync, mkdirSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
+import { PDFDocument, PDFName } from "pdf-lib";
 import puppeteer from "puppeteer";
 
 const SITE_URL = "https://sirlisko.com";
@@ -53,6 +54,22 @@ const compress = (filePath) => {
 	}
 };
 
+// Runs after Ghostscript, which keeps only the title and mangles its em dash.
+// Its XMP copy is dropped so readers fall back to these fields.
+const setMetadata = async (filePath, meta) => {
+	const pdf = await PDFDocument.load(readFileSync(filePath), {
+		updateMetadata: false,
+	});
+	pdf.setTitle(meta.title, { showInWindowTitleBar: true });
+	pdf.setAuthor(meta.author);
+	pdf.setSubject(meta.description);
+	pdf.setKeywords([meta.keywords]);
+	pdf.setCreator(SITE_URL);
+	pdf.setLanguage(meta.lang);
+	pdf.catalog.delete(PDFName.of("Metadata"));
+	writeFileSync(filePath, await pdf.save());
+};
+
 const generatePdf = async (browser, baseUrl, path, outputFile) => {
 	const page = await browser.newPage();
 	await page.setRequestInterception(true);
@@ -99,10 +116,25 @@ const generatePdf = async (browser, baseUrl, path, outputFile) => {
 		SITE_URL,
 		outputFile.replace(".pdf", ""),
 	);
+	const meta = await page.evaluate(() => {
+		const content = (selector) =>
+			document.querySelector(selector)?.getAttribute("content") ?? "";
+		return {
+			title: document.title,
+			author: [
+				content('meta[property="profile:first_name"]'),
+				content('meta[property="profile:last_name"]'),
+			].join(" "),
+			description: content('meta[name="description"]'),
+			keywords: content('meta[name="keywords"]'),
+			lang: document.documentElement.lang,
+		};
+	});
 	const outPath = join(OUTPUT_DIR, outputFile);
 	await page.pdf({ path: outPath, format: "A4", printBackground: true });
 	await page.close();
 	compress(outPath);
+	await setMetadata(outPath, meta);
 	console.log(`  ✓ ${outPath}`);
 };
 

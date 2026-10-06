@@ -42,7 +42,7 @@ const rich = (text: Rich) => [text].flat();
 			<div class="side">
 				<Proficiencies skills={resume.skills} />
 
-				<Frame title="Lore" id="lore">
+				<Frame title="Lore" printTitle="Education" id="lore">
 					<p>
 						{rich(resume.lore).map((s) =>
 							typeof s === "string" ? s : <a href={s.url}>{s.text}</a>,
@@ -50,7 +50,7 @@ const rich = (text: Rich) => [text].flat();
 					</p>
 				</Frame>
 
-				<Frame title="Feats" id="feats">
+				<Frame title="Feats" printTitle="Achievements" id="feats">
 					<ul>
 						{resume.feats.map((feat) => (
 							<li>

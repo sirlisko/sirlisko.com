@@ -10,7 +10,7 @@ interface Props {
 const { experiences, earlier } = Astro.props;
 ---
 
-<Frame title="Quest log" id="quests" class="quests">
+<Frame title="Quest log" printTitle="Experience" id="quests" class="quests">
 	{experiences.map((exp) => (
 		<article>
 			<h3>

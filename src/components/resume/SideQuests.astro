@@ -9,7 +9,7 @@ interface Props {
 const { quests } = Astro.props;
 ---
 
-<Frame title="Side quests" id="side">
+<Frame title="Side quests" printTitle="Projects" id="side">
 	<ul>
 		{quests.map(({ link, blurb }) => (
 			<li>

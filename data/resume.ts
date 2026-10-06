@@ -20,7 +20,7 @@ export interface SideQuest {
 }
 
 export interface Resume {
-	stats: [value: string, label: string][];
+	stats: [value: string, label: string, print?: string][];
 	experiences: Experience[];
 	earlier: string[];
 	sideQuests: SideQuest[];
@@ -37,7 +37,7 @@ const resume = {
 		["Senior software engineer", "Class"],
 		["London, UK", "Home base"],
 		["Computer Science graduate", "Background"],
-		["Since the Netscape/IE5 days", "Experience"],
+		["Since the Netscape/IE5 days", "Experience", "20+ years"],
 		["Chaotic good", "Alignment"],
 		["English, Italian, Spanish", "Languages"],
 	],
@@ -127,7 +127,7 @@ const resume = {
 		},
 		{
 			blurb:
-				"Freelance sites with WordPress, Gatsby and Astro, with headless CMS (Sanity.io and others), payment integrations (Stripe and others) and serverless features on Netlify Functions, AWS Lambda, and Clouflare Workers.",
+				"Freelance sites with WordPress, Gatsby and Astro, with headless CMS (Sanity.io and others), payment integrations (Stripe and others) and serverless features on Netlify Functions, AWS Lambda, and Cloudflare Workers.",
 		},
 	],
 	skills: {

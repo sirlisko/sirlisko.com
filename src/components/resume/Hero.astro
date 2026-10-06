@@ -29,8 +29,11 @@ const { stats } = Astro.props;
 		<p class="label">Character name, a.k.a. sirlisko</p>
 	</div>
 	<Frame as="dl" class="stats">
-		{stats.map(([value, label]) => (
-			<div><dd>{value}</dd><dt class="label">{label}</dt></div>
+		{stats.map(([value, label, print]) => (
+			<div>
+				<dd>{value}{print && <span class="print"> ({print})</span>}</dd>
+				<dt class="label">{label}</dt>
+			</div>
 		))}
 	</Frame>
 </header>
