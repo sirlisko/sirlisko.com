@@ -52,8 +52,9 @@
 	color: transparent;
 }
 
-/* Ground shared by every dark page; each page then paints its own game. */
-body.dark {
+/* Ground shared by every dark page; each page then paints its own game.
+   Zero specificity, since the build can load this after the pages' own styles. */
+:where(body.dark) {
 	background: var(--bg);
 	color: var(--text);
 	min-height: 100dvh;
