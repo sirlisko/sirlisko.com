@@ -3,7 +3,6 @@ import pressStart2p from "@fontsource/press-start-2p/files/press-start-2p-latin-
 import "@fontsource/press-start-2p/latin-400.css";
 import "../styles/tokens.css";
 import "../styles/shared.css";
-import "../styles/doc.css";
 import { ClientRouter } from "astro:transitions";
 import { ANALYTICS, AUTHOR, SITE, SITE_URL } from "../config";
 
@@ -31,8 +30,7 @@ interface Props {
 	imageAlt?: string;
 	ogType?: "website" | "profile";
 	noindex?: boolean;
-	/** "doc" is the dark article shell shared by /uses and /projects. */
-	theme?: "dark" | "doc";
+	theme?: "dark";
 	/** Only for pages that paint their own dark background without a theme. */
 	colorScheme?: "dark" | "light";
 }

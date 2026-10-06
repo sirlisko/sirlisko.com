@@ -46,30 +46,16 @@
 	display: block;
 }
 
-.term-bar {
-	padding: 0.55rem 1rem;
-	display: flex;
-	align-items: center;
-	gap: 0.45rem;
-}
-
-.dot {
-	width: 10px;
-	height: 10px;
-	border-radius: 50%;
-}
-.dot.r {
-	background: #ff5f57;
-}
-.dot.y {
-	background: #febc2e;
-}
-.dot.g {
-	background: #28c840;
-}
-
 /* The reserved box would otherwise paint the alt text until the image arrives;
    transparent hides it from sight while assistive tech still reads it. */
 .face-img {
 	color: transparent;
+}
+
+/* Ground shared by every dark page; each page then paints its own game. */
+body.dark {
+	background: var(--bg);
+	color: var(--text);
+	min-height: 100dvh;
+	padding: 3rem 1.5rem 6rem;
 }

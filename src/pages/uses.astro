@@ -1,27 +1,28 @@
 ---
 import "@fontsource/ibm-plex-mono/latin-400.css";
+import "@fontsource/ibm-plex-mono/latin-400-italic.css";
 import "@fontsource/ibm-plex-mono/latin-600.css";
-import type { UsesItem } from "../../data/uses";
 import {
 	cli,
 	DOTFILES_SOURCE,
 	hardware,
 	USES_LAST_UPDATED,
 	USES_SOURCE,
-	USES_SOURCE_LABEL,
 	uses,
 } from "../../data/uses";
 import FaceLink from "../components/FaceLink.astro";
 import Links from "../components/Links.astro";
+import Listing from "../components/uses/Listing.astro";
+import Prompt from "../components/uses/Prompt.astro";
+import Terminal from "../components/uses/Terminal.astro";
 import Layout from "../layouts/Layout.astro";
 
-const hardwareNotes = hardware.flatMap((item) =>
-	item.note ? [item.note] : [],
-);
-const searchText = (item: UsesItem) =>
-	[item.category, ...item.apps.map((app) => app.name), item.note ?? ""]
-		.join(" ")
-		.toLowerCase();
+const EXITS = [
+	{ name: "home", url: "/" },
+	{ name: "projects", url: "/projects" },
+	{ name: "now", url: "/now" },
+	{ name: "resume", url: "/resume" },
+];
 ---
 
 <Layout
@@ -35,515 +36,125 @@ const searchText = (item: UsesItem) =>
     "tools",
     "setup",
   ]}
-	theme="doc"
+	theme="dark"
 >
 	<Links inverted page="uses" />
-	<main class="page">
-		<FaceLink />
+	<main>
+		<FaceLink width={48} />
 		<header>
-			<p class="eyebrow">// things I use</p>
-			<h1>Uses<span class="cursor"></span></h1>
-			<p class="subtitle">The hardware and software I use daily.</p>
+			<h1>Uses</h1>
+			<p>The hardware and software I use daily, as a text adventure.</p>
 		</header>
 
-		<h2 class="section-title">Hardware</h2>
-		<div class="sheet">
-			<p class="sheet-top">
-				<span>sirlisko / hardware</span><span>rev. {USES_LAST_UPDATED}</span>
+		<Terminal title="luca@sirlisko: ~ (zork)" location="Desk, London" moves={4}>
+			<Prompt command="look" />
+			<p class="say room">Desk, London</p>
+			<p class="say">
+				You're at a desk in a flat in London. A monitor glows, a kneeling chair
+				waits, and cables lead off in every direction.
 			</p>
-			<ul class="specs">
-				{hardware.map((item) => (
-					<li>
-						<span class="spec-key">{item.category}</span>
-						<span class="spec-dots" aria-hidden="true"></span>
-						<span class="spec-value">
-							{item.apps.map((app, i) => (
-								<>
-									{i > 0 && ", "}
-									{app.url ? (
-										<a href={app.url} target="_blank" rel="noopener noreferrer">{app.name}</a>
-									) : (
-										app.name
-									)}
-								</>
-							))}
-							{item.note && (
-								<sup><a href={`#hw-note-${hardwareNotes.indexOf(item.note) + 1}`} aria-label="See note">{hardwareNotes.indexOf(item.note) + 1}</a></sup>
-							)}
-						</span>
-					</li>
-				))}
-			</ul>
-			{hardwareNotes.length > 0 && (
-				<ol class="sheet-notes">
-					{hardwareNotes.map((note, i) => (
-						<li id={`hw-note-${i + 1}`}>{note}</li>
-					))}
-				</ol>
-			)}
-		</div>
-
-		<h2 class="section-title">Software</h2>
-		<div class="palette" data-palette>
-			<label class="pal-search" data-palette-js hidden>
-				<span aria-hidden="true">⌕</span>
-				<input
-					type="search"
-					placeholder="What do I use for…"
-					autocomplete="off"
-					aria-label="Filter software"
-					aria-controls="pal-list"
-				>
-			</label>
-			<ul class="pal-list" id="pal-list">
-				{uses.map((item) => (
-					<li class="pal-row" data-search={searchText(item)}>
-						<span class="pal-icon" aria-hidden="true">{item.emoji}</span>
-						<div class="pal-body">
-							<p class="pal-title">
-								{item.apps.map((app, i) => (
-									<>
-										{i > 0 && <span class="pal-sep"> · </span>}
-										{app.url ? (
-											<a href={app.url} target="_blank" rel="noopener noreferrer">{app.name}</a>
-										) : (
-											<span>{app.name}</span>
-										)}
-									</>
-								))}
-								<small>{item.category}</small>
-							</p>
-							{item.note && <p class="pal-note">{item.note}</p>}
-						</div>
-						<span class="pal-enter kbd" aria-hidden="true">↵</span>
-					</li>
-				))}
-			</ul>
-			<p class="pal-empty" data-palette-empty hidden>
-				Nothing there. Probably still using the default.
-			</p>
-			<div class="pal-foot" data-palette-js hidden>
-				<span data-palette-count aria-live="polite"></span>
-				<span class="pal-keys"
-					><kbd>↑</kbd><kbd>↓</kbd>
-					move <kbd>↵</kbd> open</span
-				>
-			</div>
-		</div>
-
-		<h2 class="section-title">CLI</h2>
-		<article class="man" aria-label="CLI tools, as a man page">
-			<p class="man-rule">
-				<span>USES(1)</span><span>General Commands Manual</span
-				><span>USES(1)</span>
-			</p>
-			<h3>NAME</h3>
-			<p><b>uses</b> - the command-line tools I use every day</p>
-			<h3>SYNOPSIS</h3>
-			<p>
-				<b>uses</b>{" "}
-				{cli.map((item) => (
-					<>[<u>{item.category.toLowerCase().replaceAll(" ", "-")}</u>] </>
-				))}
-			</p>
-			<h3>DESCRIPTION</h3>
-			<p>Everything here is installed and configured from my dotfiles.</p>
-			<h3>TOOLS</h3>
-			<dl>
-				{cli.map((item) => (
+			<p class="say">
+				Obvious exits:{" "}
+				{EXITS.map((exit, i) => (
 					<>
-						<dt>
-							{item.apps.map((app, i) => (
-								<>
-									{i > 0 && ", "}
-									{app.url ? (
-										<a href={app.url} target="_blank" rel="noopener noreferrer">{app.name}</a>
-									) : (
-										<b>{app.name}</b>
-									)}
-								</>
-							))}
-							{" "}<span>({item.category})</span>
-						</dt>
-						<dd>{item.note}</dd>
+						{i > 0 && ", "}
+						<a href={exit.url}>{exit.name}</a>
 					</>
-				))}
-			</dl>
-			<h3>SEE ALSO</h3>
-			<p>
-				<a
-					class="see-also"
-					href={DOTFILES_SOURCE}
-					target="_blank"
-					rel="noopener noreferrer"
-					>dotfiles(5)</a
-				>, <b>brew</b>(1), <b>zsh</b>(1)
+				))}.
 			</p>
-			<p class="man-rule man-rule--foot">
-				<span>sirlisko</span><span>{USES_LAST_UPDATED}</span
-				><span>USES(1)</span>
+
+			<Prompt command="inventory" />
+			<p class="say">You are carrying:</p>
+			<Listing items={hardware} inventory />
+
+			<Prompt command="examine apps" />
+			<p class="say">Inside the toolbox you find:</p>
+			<Listing items={uses} />
+
+			<Prompt command="examine dotfiles" />
+			<p class="say">
+				The{" "}
+				<a href={DOTFILES_SOURCE} target="_blank" rel="noopener noreferrer"
+					>dotfiles</a
+				>{" "}
+				unfold into:
 			</p>
-		</article>
+			<Listing items={cli} />
+
+			<Prompt />
+		</Terminal>
 
 		<footer>
-			<p>
-				Based on{' '}
-				<a href={USES_SOURCE} target="_blank" rel="noopener"
-					>{USES_SOURCE_LABEL}</a
-				>, updated whenever something changes.
-			</p>
+			Started as{" "}
+			<a href={USES_SOURCE} target="_blank" rel="noopener">a blog post</a>, last
+			updated {USES_LAST_UPDATED}.
 		</footer>
 	</main>
 </Layout>
 
-<script>
-import { initPalette } from "../lib/palette";
-
-let cleanup: (() => void) | undefined;
-
-document.addEventListener("astro:page-load", () => {
-	cleanup?.();
-	cleanup = initPalette();
-});
-</script>
-
 <style>
-.sheet,
-.palette,
-.man {
+body.dark {
+	background: #1b1c24;
+}
+
+main {
+	max-width: 880px;
+	margin: 0 auto;
+	padding-top: 2rem;
 	font-family: var(--font-mono);
 }
 
-.section-title {
-	font-family: var(--font-display);
-	font-size: 12px;
-	letter-spacing: 0.08em;
-	color: var(--yellow);
-	margin: 3rem 0 1.4rem;
+header {
+	margin-bottom: 2.5rem;
 	animation: fadeUp 0.4s ease both;
 
-	&:first-of-type {
-		margin-top: 0;
+	h1 {
+		margin: 0 0 0.85rem;
+		font-family: var(--font-display);
+		font-weight: 400;
+		font-size: clamp(22px, 5vw, 34px);
+		line-height: 1.4;
+		color: var(--white);
 	}
+
+	p {
+		color: #a4a2ae;
+		font-size: 16px;
+	}
+}
+
+main > :global(.face-link) {
+	margin-bottom: 2rem;
+}
+
+.say {
+	margin: 0.6rem 0 0;
+
+	a {
+		color: var(--snazzy-yellow);
+	}
+}
+
+.room {
+	font-weight: 600;
 }
 
 a {
-	color: inherit;
-	text-decoration: none;
-}
-
-/* ── Hardware: spec sheet ── */
-
-.sheet {
-	border: 1px solid var(--border);
-	background: #121218;
-	padding: 1.3rem clamp(1rem, 3vw, 1.6rem) 1.4rem;
-	animation: fadeUp 0.4s ease 0.06s both;
-}
-
-.sheet-top {
-	display: flex;
-	justify-content: space-between;
-	flex-wrap: wrap;
-	gap: 0.4rem 1rem;
-	margin: 0 0 1.1rem;
-	padding-bottom: 0.9rem;
-	border-bottom: 3px double var(--border);
-	font-family: var(--font-display);
-	font-size: 8px;
-	letter-spacing: 0.12em;
-	text-transform: uppercase;
-	color: var(--muted);
-}
-
-.specs {
-	list-style: none;
-	margin: 0;
-	padding: 0;
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
-	column-gap: 2rem;
-
-	li {
-		display: flex;
-		align-items: baseline;
-		gap: 0.4rem;
-		padding: 0.25rem 0;
-		font-size: 13px;
-	}
-}
-
-.spec-key {
-	color: var(--muted);
-	white-space: nowrap;
-}
-
-.spec-dots {
-	flex: 1;
-	min-width: 1.5rem;
-	border-bottom: 1px dotted #3a3a4c;
-	transform: translateY(-4px);
-}
-
-.spec-value {
-	color: var(--white);
-	font-weight: 600;
-	text-align: right;
-
-	a:hover {
-		color: var(--yellow);
-	}
-
-	sup a {
-		color: var(--yellow);
-		font-size: 9px;
-		margin-left: 1px;
-	}
-}
-
-.sheet-notes {
-	margin: 0.9rem 0 0;
-	padding: 0.7rem 0 0 1.2rem;
-	border-top: 1px dashed var(--border);
-	font-size: 12px;
-	color: #9a9aac;
-
-	li::marker {
-		color: var(--yellow);
-	}
-}
-
-/* ── Software: command palette ── */
-
-.palette {
-	background: #1c1c24;
-	border: 1px solid #34343f;
-	border-radius: 12px;
-	overflow: hidden;
-	box-shadow: 0 24px 60px -24px #000;
-	animation: fadeUp 0.4s ease 0.06s both;
-}
-
-.pal-search {
-	display: flex;
-	align-items: center;
-	gap: 0.7rem;
-	padding: 0.95rem 1.1rem;
-	border-bottom: 1px solid #2c2c36;
-	color: var(--muted);
-	font-size: 18px;
-
-	&:focus-within {
-		color: var(--yellow);
-	}
-
-	input {
-		all: unset;
-		flex: 1;
-		min-width: 0;
-		font: 16px var(--font-mono);
-		color: var(--white);
-		caret-color: var(--yellow);
-
-		&::placeholder {
-			color: #5c5c70;
-		}
-	}
-}
-
-.pal-list {
-	list-style: none;
-	margin: 0;
-	padding: 0.45rem;
-}
-
-.pal-row {
-	display: grid;
-	grid-template-columns: 1.8rem minmax(0, 1fr) auto;
-	gap: 0.7rem;
-	align-items: center;
-	padding: 0.5rem 0.65rem;
-	border-radius: 8px;
-
-	&:hover,
-	&[data-selected] {
-		background: #2a2a36;
-	}
-
-	&[data-selected] .pal-enter {
-		visibility: visible;
-	}
-}
-
-.pal-icon {
-	font-size: 16px;
-	text-align: center;
-}
-
-.pal-body {
-	min-width: 0;
-}
-
-.pal-title {
-	margin: 0;
-	font-size: 14px;
-	font-weight: 600;
-	color: var(--white);
-
-	a:hover {
-		color: var(--yellow);
-	}
-
-	small {
-		margin-left: 0.5rem;
-		font-size: 12px;
-		font-weight: 400;
-		color: var(--muted);
-	}
-}
-
-.pal-sep {
-	color: var(--muted);
-	font-weight: 400;
-}
-
-.pal-note {
-	margin: 0.1rem 0 0;
-	font-size: 12px;
-	color: #9a9aac;
-	line-height: 1.5;
-}
-
-.pal-enter {
-	visibility: hidden;
-}
-
-.pal-empty {
-	margin: 0;
-	padding: 0.8rem 1.1rem 1.2rem;
-	color: var(--muted);
-	font-size: 13px;
-}
-
-.pal-foot {
-	display: flex;
-	justify-content: space-between;
-	gap: 1rem;
-	padding: 0.55rem 1.1rem;
-	border-top: 1px solid #2c2c36;
-	background: #18181f;
-	font-size: 11px;
-	color: var(--muted);
-}
-
-kbd,
-.kbd {
-	font: 10px var(--font-mono);
-	color: #9a9aac;
-	border: 1px solid #3a3a48;
-	border-bottom-width: 2px;
-	border-radius: 4px;
-	padding: 0 0.3rem;
-	margin-right: 0.15rem;
-}
-
-@media (hover: none) {
-	.pal-keys,
-	.pal-enter {
-		display: none;
-	}
-}
-
-/* ── CLI: man page ── */
-
-.man {
-	font-size: 13.5px;
-	line-height: 1.65;
-	animation: fadeUp 0.4s ease 0.06s both;
-
-	h3 {
-		margin: 1.2rem 0 0.3rem;
-		font-size: 13.5px;
-		font-weight: 600;
-		color: var(--white);
-	}
-
-	> p:not(.man-rule),
-	dl {
-		margin: 0 0 0 clamp(1rem, 5vw, 3.5rem);
-		max-width: 64ch;
-	}
-
-	b {
-		color: var(--white);
-	}
-
-	u {
-		text-decoration-color: var(--muted);
-		text-underline-offset: 3px;
-	}
-
-	dt {
-		margin-top: 0.6rem;
-
-		a {
-			color: var(--white);
-			font-weight: 600;
-
-			&:hover {
-				color: var(--yellow);
-			}
-		}
-
-		span {
-			color: var(--muted);
-		}
-	}
-
-	dd {
-		margin: 0 0 0 clamp(1rem, 4vw, 2.5rem);
-		color: #9a9aac;
-	}
-}
-
-.man-rule {
-	display: flex;
-	justify-content: space-between;
-	gap: 1rem;
-	margin: 0;
-	font-size: 12px;
-	color: var(--muted);
-}
-
-.man-rule--foot {
-	margin-top: 1.4rem;
-}
-
-.see-also {
 	color: var(--yellow);
 
 	&:hover {
-		text-decoration: underline;
+		text-decoration: none;
+	}
+
+	&:focus-visible {
+		outline: 2px solid var(--yellow);
+		outline-offset: 2px;
 	}
 }
 
 footer {
-	margin-top: 3rem;
-	padding-top: 1.5rem;
-	border-top: 1px solid #24242f;
-	font-size: 13px;
-	color: var(--muted);
-
-	a {
-		color: var(--yellow);
-
-		&:hover {
-			text-decoration: underline;
-		}
-	}
-}
-/* Last, so it beats the display rules above on the rows the palette filters out. */
-[hidden] {
-	display: none;
+	margin-top: 2rem;
+	font-size: 15px;
+	color: #a4a2ae;
 }
 </style>
