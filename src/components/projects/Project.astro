@@ -1,0 +1,217 @@
+---
+import type { AstroComponent } from "@lucide/astro";
+import Atom from "@lucide/astro/icons/atom";
+import Earth from "@lucide/astro/icons/earth";
+import GitBranch from "@lucide/astro/icons/git-branch";
+import Mail from "@lucide/astro/icons/mail";
+import MapPinHouse from "@lucide/astro/icons/map-pin-house";
+import type { IconName, Project } from "../../../data/projects";
+import { projectLinks } from "../../lib/projects";
+
+const ICONS: Record<IconName, AstroComponent> = {
+	atom: Atom,
+	earth: Earth,
+	"git-branch": GitBranch,
+	mail: Mail,
+	"map-pin-house": MapPinHouse,
+};
+
+interface Props {
+	project: Project;
+	/** A CRT-framed screenshot on top instead of a thumbnail on the side. */
+	big?: boolean;
+	retired?: boolean;
+	eager?: boolean;
+}
+
+const { project: p, big, retired, eager } = Astro.props;
+const { href, extra } = projectLinks(p.links);
+const Icon = "icon" in p ? ICONS[p.icon] : undefined;
+const tech = p.tech.filter((t) => t !== "NPM Module");
+---
+
+<li class:list={["project", { big, retired }]}>
+	<a
+		class="shot"
+		href={href}
+		target="_blank"
+		rel="noopener noreferrer"
+		tabindex="-1"
+		aria-label={p.title}
+	>
+		{"screenshot" in p ? (
+			<img
+				src={p.screenshot}
+				srcset={`${p.screenshot} 640w, ${p.screenshot.replace(".webp", "@2x.webp")} 1280w`}
+				sizes={big ? "(max-width: 700px) 100vw, 340px" : "112px"}
+				alt=""
+				width={640}
+				height={400}
+				loading={eager ? "eager" : "lazy"}
+				decoding="async"
+			/>
+		) : "logo" in p ? (
+			<img class:list={["logo", { inv: p.invertIcon }]} src={p.logo} alt="" width={36} height={36} loading="lazy" />
+		) : (
+			Icon && <Icon size={32} />
+		)}
+	</a>
+	<div>
+		<a class="name" href={href} target="_blank" rel="noopener noreferrer"
+			>{p.title}</a
+		>
+		<p class="desc">{p.description[0]}</p>
+		<ul class="tags" aria-label="Built with">
+			{tech.map((t) => <li>{t}</li>)}
+		</ul>
+		{extra.length > 0 && (
+			<p class="extra">
+				{extra.map((l) => (
+					<a href={l.href} target="_blank" rel="noopener noreferrer">{l.label}</a>
+				))}
+			</p>
+		)}
+	</div>
+</li>
+
+<style>
+.project {
+	display: grid;
+	grid-template-columns: 112px minmax(0, 1fr);
+	gap: 1.1rem;
+	align-items: start;
+}
+
+.big {
+	display: block;
+}
+
+a {
+	color: var(--nes-white);
+	text-decoration: none;
+
+	&:hover {
+		color: var(--nes-yellow);
+	}
+
+	&:focus-visible {
+		outline: 2px solid var(--nes-yellow);
+		outline-offset: 3px;
+	}
+}
+
+/* Logos and icons stand in where there's no screenshot. */
+.shot {
+	display: grid;
+	place-items: center;
+	aspect-ratio: 16 / 10;
+	overflow: hidden;
+	background: #161616;
+	border: 2px solid #333;
+	color: var(--nes-grey);
+
+	img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: top;
+	}
+
+	.logo {
+		width: 36px;
+		height: 36px;
+		object-fit: contain;
+	}
+
+	.inv {
+		filter: invert(1);
+	}
+}
+
+.big .shot {
+	position: relative;
+	margin-bottom: 1rem;
+	border: 10px solid #1c1c1c;
+	border-radius: 14px;
+	box-shadow: 0 0 0 2px #333;
+
+	/* Scanlines; they lift on hover so the real colours show. */
+	&::after {
+		content: "";
+		position: absolute;
+		inset: 0;
+		background: repeating-linear-gradient(
+			to bottom,
+			rgba(0, 0, 0, 0.35) 0 1px,
+			transparent 1px 3px
+		);
+		transition: opacity 0.2s;
+	}
+}
+
+.big:hover .shot::after {
+	opacity: 0;
+}
+
+.name {
+	font-weight: 600;
+	font-size: 17px;
+	line-height: 1.35;
+}
+
+.big .name {
+	font-size: 19px;
+}
+
+.desc {
+	margin: 0.35rem 0 0.75rem;
+	font-size: 15px;
+	line-height: 1.6;
+	color: var(--body);
+}
+
+.tags {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.4rem;
+
+	li {
+		padding: 1px 7px;
+		font-size: 13px;
+		line-height: 1.5;
+		color: var(--nes-blue);
+		border: 1px solid #1d4a63;
+	}
+}
+
+.extra {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.25rem 1.25rem;
+	margin: 0.75rem 0 0;
+	font-size: 14px;
+
+	a {
+		color: var(--nes-yellow);
+		text-decoration: underline;
+		text-underline-offset: 3px;
+
+		&:hover {
+			text-decoration: none;
+		}
+	}
+}
+
+.retired {
+	.name {
+		color: var(--nes-grey);
+	}
+
+	.shot {
+		filter: grayscale(1);
+	}
+}
+</style>

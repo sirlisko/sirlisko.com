@@ -1,163 +1,116 @@
 import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 import { initNav } from "./nav";
 
+let onBreakpoint: (() => void) | undefined;
+
 // jsdom ships no matchMedia; the nav only needs the mobile breakpoint from it.
 const stubMatchMedia = (matches: boolean) => {
+	const query = {
+		matches,
+		addEventListener: vi.fn((_: string, fn: () => void) => {
+			onBreakpoint = fn;
+		}),
+		removeEventListener: vi.fn(),
+	};
 	vi.stubGlobal(
 		"matchMedia",
-		vi.fn(() => ({
-			matches,
-			addEventListener: vi.fn(),
-			removeEventListener: vi.fn(),
-		})),
+		vi.fn(() => query),
 	);
+	return query;
 };
 
-const NAV = `
-	<nav>
-		<button type="button" id="hamburger" aria-expanded="false"></button>
-		<ul id="nav-links"><li><a href="/">home</a></li><li><a href="/now">now</a></li></ul>
-	</nav>
-`;
+// jsdom has no modal dialogs either; toggling `open` is all the nav relies on.
+const stubDialog = () => {
+	HTMLDialogElement.prototype.showModal = function () {
+		this.open = true;
+	};
+	HTMLDialogElement.prototype.close = function () {
+		this.open = false;
+	};
+};
 
-// `nested` mirrors the home page, where the nav shares a wrapper with the content.
-const mount = (nested = false) => {
-	document.body.innerHTML = nested
-		? `
-			<aside><a href="/ghost">ghost</a></aside>
-			<div class="page-container">
-				${NAV}
-				<main><a href="/uses">uses</a></main>
-			</div>
-		`
-		: `
-			${NAV}
-			<main><a href="/uses">uses</a></main>
-		`;
+const mount = () => {
+	document.body.innerHTML = `
+		<nav>
+			<button type="button" id="nav-start">Start</button>
+			<dialog id="nav-pause">
+				<ul><li><a href="#home">home</a></li></ul>
+			</dialog>
+		</nav>
+	`;
 	return {
-		hamburger: document.querySelector("#hamburger") as HTMLElement,
-		navLinks: document.querySelector("#nav-links") as HTMLElement,
-		page: document.querySelector("main") as HTMLElement,
+		start: document.querySelector("#nav-start") as HTMLButtonElement,
+		pause: document.querySelector("#nav-pause") as HTMLDialogElement,
 		cleanup: initNav(document),
 	};
 };
 
-const pressEscape = () =>
-	document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape" }));
-
 describe("nav", () => {
 	beforeEach(() => {
-		stubMatchMedia(true);
+		stubDialog();
 	});
 
 	afterEach(() => {
 		vi.unstubAllGlobals();
+		vi.restoreAllMocks();
+		onBreakpoint = undefined;
 		document.body.innerHTML = "";
-		document.body.className = "";
 	});
 
-	test("the hamburger opens and closes the menu", () => {
-		const { hamburger, navLinks, cleanup } = mount();
+	test("start opens the pause menu", () => {
+		stubMatchMedia(true);
+		const { start, pause, cleanup } = mount();
 
-		hamburger.click();
-		expect(navLinks).toHaveClass("active");
-		expect(hamburger).toHaveAttribute("aria-expanded", "true");
-		expect(document.body).toHaveClass("no-scroll");
-
-		hamburger.click();
-		expect(navLinks).not.toHaveClass("active");
-		expect(hamburger).toHaveAttribute("aria-expanded", "false");
+		start.click();
+		expect(pause.open).toBe(true);
 		cleanup();
 	});
 
-	test("opening moves focus into the menu", () => {
-		const { hamburger, navLinks, cleanup } = mount();
+	test("picking a page closes the menu", () => {
+		stubMatchMedia(true);
+		const { start, pause, cleanup } = mount();
 
-		hamburger.click();
-		expect(navLinks.querySelector("a")).toHaveFocus();
+		start.click();
+		pause.querySelector("a")?.click();
+		expect(pause.open).toBe(false);
 		cleanup();
 	});
 
-	test("escape closes the menu and hands focus back to the hamburger", () => {
-		const { hamburger, navLinks, cleanup } = mount();
+	test("clicking the backdrop closes the menu", () => {
+		stubMatchMedia(true);
+		const { start, pause, cleanup } = mount();
 
-		hamburger.click();
-		pressEscape();
-
-		expect(navLinks).not.toHaveClass("active");
-		expect(hamburger).toHaveFocus();
+		start.click();
+		pause.click();
+		expect(pause.open).toBe(false);
 		cleanup();
 	});
 
-	test("escape does nothing while the menu is closed", () => {
-		const { hamburger, cleanup } = mount();
+	test("growing past the breakpoint closes the menu", () => {
+		const query = stubMatchMedia(true);
+		const { start, pause, cleanup } = mount();
 
-		pressEscape();
-		expect(hamburger).not.toHaveFocus();
+		start.click();
+		query.matches = false;
+		onBreakpoint?.();
+		expect(pause.open).toBe(false);
 		cleanup();
 	});
 
-	test("following a link closes the menu", () => {
-		const { hamburger, navLinks, cleanup } = mount();
+	test("cleanup detaches every listener", () => {
+		const query = stubMatchMedia(true);
+		const { start, pause, cleanup } = mount();
 
-		hamburger.click();
-		navLinks.querySelector("a")?.click();
-
-		expect(navLinks).not.toHaveClass("active");
-		expect(document.body).not.toHaveClass("no-scroll");
 		cleanup();
+		start.click();
+		expect(pause.open).toBe(false);
+		expect(query.removeEventListener).toHaveBeenCalledOnce();
 	});
 
-	test("keeps the closed menu out of the tab order on mobile", () => {
-		const { hamburger, navLinks, cleanup } = mount();
+	test("does nothing without a nav", () => {
+		stubMatchMedia(true);
+		document.body.innerHTML = "<main></main>";
 
-		expect(navLinks).toHaveAttribute("inert");
-
-		hamburger.click();
-		expect(navLinks).not.toHaveAttribute("inert");
-		cleanup();
-	});
-
-	test("takes the page behind the open menu out of the tab order", () => {
-		const { hamburger, page, cleanup } = mount();
-
-		expect(page).not.toHaveAttribute("inert");
-
-		hamburger.click();
-		expect(page).toHaveAttribute("inert");
-
-		hamburger.click();
-		expect(page).not.toHaveAttribute("inert");
-		cleanup();
-	});
-
-	test("reaches past the nav's wrapper to inert the page", () => {
-		const { hamburger, page, cleanup } = mount(true);
-
-		hamburger.click();
-
-		expect(page).toHaveAttribute("inert");
-		expect(document.querySelector("aside")).toHaveAttribute("inert");
-		expect(document.querySelector("nav")).not.toHaveAttribute("inert");
-		cleanup();
-	});
-
-	test("leaves the menu reachable on desktop", () => {
-		stubMatchMedia(false);
-		const { navLinks, page, cleanup } = mount();
-
-		expect(navLinks).not.toHaveAttribute("inert");
-		expect(page).not.toHaveAttribute("inert");
-		cleanup();
-	});
-
-	test("cleanup detaches the document listener", () => {
-		const { hamburger, navLinks, cleanup } = mount();
-
-		hamburger.click();
-		cleanup();
-		pressEscape();
-
-		expect(navLinks).toHaveClass("active");
+		expect(() => initNav(document)()).not.toThrow();
 	});
 });

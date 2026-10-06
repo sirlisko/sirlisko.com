@@ -1,4 +1,5 @@
 ---
+import me from "../../../data/me";
 import Qr from "../../images/qr-code.svg";
 
 // The phone number must never reach the public build: only `pnpm generate:cv`
@@ -19,7 +20,12 @@ const contacts = [
 		<Qr class="qr print" aria-hidden="true" />
 		<p class="screen">
 			Prefer a regular CV?{" "}
-			<a href="/cv/luca-lischetti-resume.pdf">Download the PDF</a>
+			<a
+				href="/cv/luca-lischetti-resume.pdf"
+				target="_blank"
+				rel="noopener noreferrer"
+				>Download the PDF</a
+			>
 		</p>
 		<p class="print">
 			Live version:{" "}
@@ -28,7 +34,7 @@ const contacts = [
 	</div>
 	<p class="links">
 		{phoneNumber && <a href={`tel:${phoneNumber}`}>{phoneNumber}</a>}
-		<a href="mailto:luca@sirlisko.com">luca@sirlisko.com</a>
+		<a href={`mailto:${me.email}`}>{me.email}</a>
 		{contacts.map(([name, url]) => (
 			<a href={url}>
 				<span class="screen">{name}</span>
