@@ -83,10 +83,10 @@ A GitHub Actions workflow runs on every push and pull request to ensure that:
 pnpm generate:cv
 ```
 
-This builds the site, spins up a preview server, and exports every resume variant to `public/cv/`:
+This builds the site, spins up a preview server, and prints `/resume` to `public/cv/`:
 
-- `luca-lischetti-resume.pdf` — dark theme
-- `alt.pdf` — light/print-friendly theme
+- `luca-lischetti-resume.pdf` — public
+- `private.pdf` — with the phone number from `.env`
 
 PDFs are automatically compressed using Ghostscript if available. To install it:
 

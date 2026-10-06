@@ -27,9 +27,15 @@ describe("site data", () => {
 		expect(me.descriptions.every((d) => d.trim().length > 0)).toBe(true);
 	});
 
-	test("every resume project links out", () => {
-		const broken = resume.projects.filter(({ url }) => !isReachable(url));
-		expect(broken).toEqual([]);
+	test("every resume link points somewhere", () => {
+		const urls = [
+			...resume.experiences.flatMap(({ url }) => (url ? [url] : [])),
+			...resume.sideQuests.flatMap(({ link }) => (link ? [link.url] : [])),
+			...[resume.lore, ...resume.feats]
+				.flat()
+				.flatMap((s) => (typeof s === "string" ? [] : [s.url])),
+		];
+		expect(urls.filter((url) => !isReachable(url))).toEqual([]);
 	});
 
 	test("every resume experience has content", () => {
