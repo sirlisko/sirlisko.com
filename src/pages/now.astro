@@ -5,16 +5,9 @@ import "@fontsource/ibm-plex-mono/latin-600.css";
 import { NOW_LAST_UPDATED, sections } from "../../data/now";
 import FaceLink from "../components/FaceLink.astro";
 import Links from "../components/Links.astro";
+import Maze from "../components/now/Maze.astro";
+import Trail from "../components/now/Trail.astro";
 import Layout from "../layouts/Layout.astro";
-
-// Blinky, Pinky, Inky, Clyde, then a frightened ghost.
-const GHOSTS = [
-	{ body: "#ff3b30", label: "#ff5a52", pupils: true },
-	{ body: "#ffb8ff", label: "#ffb8ff", pupils: true },
-	{ body: "#00e5ff", label: "#00e5ff", pupils: true },
-	{ body: "#ffb852", label: "#ffb852", pupils: true },
-	{ body: "#2121de", label: "#8c8cff", pupils: false },
-];
 ---
 
 <Layout
@@ -44,43 +37,10 @@ const GHOSTS = [
 					>What's a now page?</a
 				>
 			</p>
-			<div class="trail" aria-hidden="true">
-				<span class="pacman"></span>
-				<span class="pellets"></span>
-				<span class="power"></span>
-			</div>
+			<Trail />
 		</header>
 
-		{sections.map((s, i) => {
-      const ghost = GHOSTS[i % GHOSTS.length];
-      return (
-        <section class="maze" style={`--label: ${ghost.label}`}>
-          <div class="section-head">
-            <svg class="ghost" viewBox="0 0 20 24" aria-hidden="true">
-              <path d="M10 0 Q20 0 20 10 L20 24 L15 18 L10 24 L5 18 L0 24 L0 10 Q0 0 10 0Z" fill={ghost.body} />
-              <circle cx="6.5" cy="9" r="2.5" fill="#fff" />
-              <circle cx="13.5" cy="9" r="2.5" fill="#fff" />
-              {ghost.pupils && (
-                <>
-                  <circle cx="7.5" cy="9.5" r="1.2" fill="#2121de" />
-                  <circle cx="14.5" cy="9.5" r="1.2" fill="#2121de" />
-                </>
-              )}
-            </svg>
-            <p class="label">{s.label}</p>
-          </div>
-          <h2>{s.title}</h2>
-          {s.content.map((p) => (<p set:html={p} />))}
-          {s.tags && s.tags.length > 0 && (
-            <div class="tags">
-              {s.tags.map((tag) => (
-                <span class="tag">{tag}</span>
-              ))}
-            </div>
-          )}
-        </section>
-      );
-    })}
+		{sections.map((section, i) => <Maze section={section} index={i} />)}
 	</main>
 </Layout>
 
@@ -91,7 +51,6 @@ body.dark {
 	font-family: var(--font-mono);
 	font-size: 16px;
 	line-height: 1.7;
-	padding: 3rem 1.5rem 6rem;
 }
 
 .page {
@@ -145,134 +104,11 @@ h1 {
 	line-height: 1.6;
 }
 
-.trail {
-	display: flex;
-	align-items: center;
-	gap: 12px;
-	padding-top: 0.5rem;
-}
-
-.pacman {
-	position: relative;
-	flex-shrink: 0;
-	width: 28px;
-	height: 28px;
-	overflow: hidden;
-	border-radius: 50%;
-
-	&::before,
-	&::after {
-		content: "";
-		position: absolute;
-		left: 0;
-		width: 100%;
-		height: 50%;
-		background: #ffe14d;
-	}
-
-	&::before {
-		top: 0;
-		transform-origin: center bottom;
-		animation: jaw-top 0.35s ease-in-out alternate infinite;
-	}
-
-	&::after {
-		bottom: 0;
-		transform-origin: center top;
-		animation: jaw-bottom 0.35s ease-in-out alternate infinite;
-	}
-}
-
-@keyframes jaw-top {
-	to {
-		transform: rotate(-30deg);
-	}
-}
-
-@keyframes jaw-bottom {
-	to {
-		transform: rotate(30deg);
-	}
-}
-
-.pellets {
-	flex: 1;
-	height: 12px;
-	background-image: radial-gradient(circle, #ffb8ae 3px, transparent 3.5px);
-	background-size: 28px 12px;
-}
-
-.power {
-	flex-shrink: 0;
-	width: 16px;
-	height: 16px;
-	border-radius: 50%;
-	background: #ffb8ae;
-}
-
-.maze {
-	border: 6px double #2121de;
-	border-radius: 14px;
-	padding: 1.75rem 2rem 2rem;
-	display: flex;
-	flex-direction: column;
-	gap: 1rem;
-
-	@media (max-width: 600px) {
-		padding: 1.5rem 1.25rem;
-	}
-}
-
-.section-head {
-	display: flex;
-	align-items: center;
-	gap: 14px;
-}
-
-.ghost {
-	width: 24px;
-	height: 28px;
-	flex-shrink: 0;
-	animation: ghost-float 3s ease-in-out infinite;
-}
-
-@keyframes ghost-float {
-	50% {
-		transform: translateY(-4px);
-	}
-}
-
-.label {
-	font-family: var(--font-display);
-	font-size: 16px;
-	line-height: 1.6;
-	color: var(--label);
-
-	&::first-letter {
-		text-transform: uppercase;
-	}
-}
-
-h2 {
-	margin: 0;
-	font-size: 22px;
-	font-weight: 600;
-	line-height: 1.35;
-	color: var(--white);
-}
-
-p {
-	margin: 0;
+header p {
 	color: #e4e4e4;
-
-	/* Section copy arrives through set:html, which scoped styles can't reach. */
-	:global(strong) {
-		color: var(--white);
-		font-weight: 600;
-	}
 }
 
-p :global(a) {
+.intro a {
 	color: #ffe14d;
 
 	&:hover {
@@ -283,18 +119,5 @@ p :global(a) {
 		outline: 3px solid #ffe14d;
 		outline-offset: 3px;
 	}
-}
-
-.tags {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 6px;
-}
-
-.tag {
-	font-size: 13px;
-	padding: 2px 8px;
-	border: 2px solid #2121de;
-	color: #c4c4cc;
 }
 </style>
