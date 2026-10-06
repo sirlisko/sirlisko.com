@@ -87,9 +87,10 @@ body {
 
 .face {
 	text-align: center;
-	position: relative;
 }
+/* Positioned so the ghost passes behind the photo, but not behind the rest of its column. */
 .face img {
+	position: relative;
 	height: min(70vw, 70dvh);
 	/* the intrinsic width/height attributes are presentational hints, so the
 	   width has to be released explicitly for the aspect ratio to win */
