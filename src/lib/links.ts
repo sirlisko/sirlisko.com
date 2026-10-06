@@ -4,6 +4,6 @@ export type PageName = "projects" | "resume" | "now" | "uses";
 
 const HOME: Link = { name: "home", url: "/", label: "home" };
 
-/** Subpages swap their own entry for a way back home. */
+/** Subpages lead with a way back home; every other link keeps its place. */
 export const navLinks = (links: Link[], page?: PageName): Link[] =>
-	page ? [HOME, ...links.filter(({ name }) => name !== page)] : links;
+	page ? [HOME, ...links] : links;

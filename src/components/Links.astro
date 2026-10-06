@@ -25,7 +25,13 @@ const attrs = (link: Link) =>
 <nav class="nav" data-game={game} aria-label="Main">
 	<ul class="menu">
 		{links.map((link) => (
-			<li><a href={link.url} {...attrs(link)}>{link.label}</a></li>
+			<li>
+				<a
+					href={link.url}
+					aria-current={link.name === page ? "page" : undefined}
+					{...attrs(link)}>{link.label}</a
+				>
+			</li>
 		))}
 	</ul>
 	<button type="button" class="start" id="nav-start" aria-haspopup="dialog">
@@ -35,7 +41,14 @@ const attrs = (link: Link) =>
 		<p class="pause-title" aria-hidden="true">{PAUSE_TITLES[game]}</p>
 		<ul class="menu">
 			{links.map((link) => (
-				<li><a href={link.url} {...attrs(link)}>{link.label}</a></li>
+				<li>
+				<a
+					href={link.url}
+					aria-current={link.name === page ? "page" : undefined}
+					autofocus={link.name === page}
+					{...attrs(link)}>{link.label}</a
+				>
+			</li>
 			))}
 		</ul>
 		<form method="dialog">
@@ -124,6 +137,10 @@ const attrs = (link: Link) =>
 		visibility: hidden;
 	}
 
+	&[aria-current]::before {
+		visibility: visible;
+	}
+
 	&:hover::before,
 	&:focus-visible::before {
 		visibility: visible;
@@ -137,6 +154,12 @@ const attrs = (link: Link) =>
 		outline: none;
 		color: var(--accent);
 	}
+}
+
+/* One cursor at a time: the parked one steps aside while another link is picked. */
+.menu:is(:hover, :has(:focus-visible))
+a[aria-current]:not(:hover, :focus-visible)::before {
+	visibility: hidden;
 }
 
 /* Pac-Man chomps instead of pointing. */
