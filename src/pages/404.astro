@@ -2,7 +2,6 @@
 import "@fontsource/ibm-plex-mono/latin-400.css";
 import Layout from "../layouts/Layout.astro";
 
-const path = Astro.url.pathname;
 const LIVES = 3;
 ---
 
@@ -21,8 +20,8 @@ const LIVES = 3;
 		<div class="message">
 			<h1>Game over</h1>
 			<p>
-				There's no page at <span class="path">{path}</span>. It may have moved,
-				or the link has a typo.
+				There's no page at <span class="path" data-path>this address</span>. It
+				may have moved, or the link has a typo.
 			</p>
 		</div>
 
@@ -37,6 +36,13 @@ const LIVES = 3;
 	</main>
 	<script>
 	document.addEventListener("astro:page-load", () => {
+		// Built once as /404.html, so the missing address is only known in the browser.
+		const path = document.querySelector("[data-path]");
+		// The listener outlives this page under the router, so only report on the 404 itself.
+		if (!path) {
+			return;
+		}
+		path.textContent = window.location.pathname;
 		window.umami?.track("404", { url: window.location.pathname });
 	});
 	</script>
