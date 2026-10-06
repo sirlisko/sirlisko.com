@@ -206,19 +206,6 @@ export const projects = [
 		],
 	},
 	{
-		title: "Pizza Club",
-		description: [
-			"A personal log of every pizza eaten around the world. Because someone has to.",
-			"Static Astro site fed by Sanity, with a map and stats for every pizzeria.",
-		],
-		screenshot: "/images/projects/screens/pizzaclub.webp",
-		links: {
-			Website: "https://pizzaclub.sirlisko.com/",
-			Github: "https://github.com/sirlisko/pizzaclub",
-		},
-		tech: ["Astro", "Sanity", "MapLibre", "Netlify"],
-	},
-	{
 		title: "Can I Have a Cappuccino?",
 		description: [
 			"Can I have a cappuccino right now? The Italian verdict, updated every minute.",
@@ -274,6 +261,19 @@ export const tinyProjects = [
 			Github: "https://github.com/sirlisko/martellone-alexa-skill",
 		},
 		tech: ["Alexa Skill", "AWS Lambda", "Serverless"],
+	},
+	{
+		title: "Pizza Club",
+		description: [
+			"A personal log of every pizza eaten around the world. Because someone has to.",
+			"Static Astro site fed by Sanity, with a map and stats for every pizzeria.",
+		],
+		screenshot: "/images/projects/screens/pizzaclub.webp",
+		links: {
+			Website: "https://pizzaclub.sirlisko.com/",
+			Github: "https://github.com/sirlisko/pizzaclub",
+		},
+		tech: ["Astro", "Sanity", "MapLibre", "Netlify"],
 	},
 ] satisfies Project[];
 
