@@ -24,6 +24,7 @@ const contacts = [
 				href="/cv/luca-lischetti-resume.pdf"
 				target="_blank"
 				rel="noopener noreferrer"
+				data-track="resume-pdf"
 				>Download the PDF</a
 			>
 		</p>
@@ -34,9 +35,11 @@ const contacts = [
 	</div>
 	<p class="links">
 		{phoneNumber && <a href={`tel:${phoneNumber}`}>{phoneNumber}</a>}
-		<a href={`mailto:${me.email}`}>{me.email}</a>
+		<a href={`mailto:${me.email}`} data-track="contact" data-track-via="email"
+			>{me.email}</a
+		>
 		{contacts.map(([name, url]) => (
-			<a href={url}>
+			<a href={url} data-track="contact" data-track-via={name.toLowerCase()}>
 				<span class="screen">{name}</span>
 				<span class="print">{url.replace(/^https:\/\/(www\.)?/, "").replace(/\/$/, "")}</span>
 			</a>
