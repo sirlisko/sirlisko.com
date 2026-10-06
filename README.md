@@ -94,7 +94,7 @@ pnpm generate:cv
 This builds the site, spins up a preview server, and prints `/resume` to `public/cv/`:
 
 - `luca-lischetti-resume.pdf` — public
-- `luca-lischetti-resume-full.pdf` — with the phone number from `.env`, served with `noindex`
+- `luca-lischetti-resume-full.pdf` — with the phone number from `.env`; gitignored, so it's never published. Send it on request.
 
 PDFs are automatically compressed using Ghostscript if available. To install it:
 

@@ -8,6 +8,7 @@ const GHOST_MARKUP = `
 		<span class="heart" data-ghost-heart></span>
 		<span class="heart" data-ghost-heart></span>
 		<p data-ghost-gameover hidden>-Game Over-</p>
+		<p data-ghost-oneup>1UP</p>
 	</section>
 	<figure data-ghost-sprite></figure>
 `;
@@ -109,6 +110,17 @@ describe("ghost", () => {
 
 		sprite.dispatchEvent(new MouseEvent("mouseover"));
 		expect(visibleHearts()).toHaveLength(2);
+	});
+
+	test("flashes 1UP when the lives refill", () => {
+		mount();
+		initGhost();
+		const oneUp = document.querySelector("[data-ghost-oneup]") as HTMLElement;
+		expect(oneUp.classList.contains("flash")).toBe(false);
+
+		document.dispatchEvent(new CustomEvent(KONAMI_EVENT));
+
+		expect(oneUp.classList.contains("flash")).toBe(true);
 	});
 
 	test("does not follow the mouse on touch devices", () => {

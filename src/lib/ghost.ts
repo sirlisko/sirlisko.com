@@ -10,14 +10,16 @@ interface GhostElements {
 	ghost: HTMLElement;
 	hearts: HTMLElement[];
 	gameOver: HTMLElement;
+	oneUp: HTMLElement | null;
 }
 
 const query = (root: ParentNode): GhostElements | null => {
 	const ghost = root.querySelector<HTMLElement>("[data-ghost-sprite]");
 	const gameOver = root.querySelector<HTMLElement>("[data-ghost-gameover]");
 	const hearts = [...root.querySelectorAll<HTMLElement>("[data-ghost-heart]")];
+	const oneUp = root.querySelector<HTMLElement>("[data-ghost-oneup]");
 	return ghost && gameOver && hearts.length > 0
-		? { ghost, hearts, gameOver }
+		? { ghost, hearts, gameOver, oneUp }
 		: null;
 };
 
@@ -26,7 +28,7 @@ export const initGhost = (root: ParentNode = document) => {
 	if (!els) {
 		return () => {};
 	}
-	const { ghost, hearts, gameOver } = els;
+	const { ghost, hearts, gameOver, oneUp } = els;
 
 	let life = hearts.length;
 	const place = ({ x, y }: { x: number; y: number }) => {
@@ -57,6 +59,11 @@ export const initGhost = (root: ParentNode = document) => {
 			heart.toggleAttribute("hidden", false);
 		}
 		gameOver.toggleAttribute("hidden", true);
+
+		// Reading layout between the class swaps restarts the animation on a repeat code.
+		oneUp?.classList.remove("flash");
+		oneUp?.getBoundingClientRect();
+		oneUp?.classList.add("flash");
 	};
 	document.addEventListener(KONAMI_EVENT, revive);
 

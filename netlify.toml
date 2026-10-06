@@ -15,14 +15,15 @@ status = 200
 from = "/cv/alt.pdf"
 to = "/cv/luca-lischetti-resume.pdf"
 
+# The full resume is no longer published; forced so a stray local copy can't shadow it.
+[[redirects]]
+from = "/cv/luca-lischetti-resume-full.pdf"
+to = "/cv/luca-lischetti-resume.pdf"
+force = true
+
 # Everything under /_astro is content-hashed, so a new build means a new name.
 [[headers]]
   for = "/_astro/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
-# Carries the phone number; a robots.txt Disallow would stop crawlers seeing this header.
-[[headers]]
-  for = "/cv/luca-lischetti-resume-full.pdf"
-  [headers.values]
-    X-Robots-Tag = "noindex, nofollow, noarchive"
