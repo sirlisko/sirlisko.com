@@ -37,12 +37,6 @@ const me = {
 	email: "luca@sirlisko.com",
 	links: [
 		{
-			name: "blog",
-			url: "/blog",
-			label: "blog",
-			reload: true,
-		},
-		{
 			name: "projects",
 			url: "/projects",
 			label: "projects",
@@ -61,6 +55,12 @@ const me = {
 			name: "uses",
 			url: "/uses",
 			label: "uses",
+		},
+		{
+			name: "blog",
+			url: "/blog",
+			label: "blog",
+			reload: true,
 		},
 	],
 } satisfies Me;
