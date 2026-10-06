@@ -19,3 +19,6 @@ pnpm-debug.log*
 tsconfig.tsbuildinfo
 
 .env
+
+# playwright mcp session output
+.playwright-mcp/
