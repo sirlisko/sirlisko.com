@@ -40,6 +40,9 @@ const tech = p.tech.filter((t) => t !== "NPM Module");
 		rel="noopener noreferrer"
 		tabindex="-1"
 		aria-label={p.title}
+		data-track="project"
+		data-track-name={p.title}
+		data-track-link="main"
 	>
 		{"screenshot" in p ? (
 			<img
@@ -62,7 +65,14 @@ const tech = p.tech.filter((t) => t !== "NPM Module");
 		)}
 	</a>
 	<div>
-		<a class="name" href={href} target="_blank" rel="noopener noreferrer"
+		<a
+			class="name"
+			href={href}
+			target="_blank"
+			rel="noopener noreferrer"
+			data-track="project"
+			data-track-name={p.title}
+			data-track-link="main"
 			>{p.title}</a
 		>
 		<p class="desc">{p.description[0]}</p>
@@ -72,7 +82,13 @@ const tech = p.tech.filter((t) => t !== "NPM Module");
 		{extra.length > 0 && (
 			<p class="extra">
 				{extra.map((l) => (
-					<a href={l.href} target="_blank" rel="noopener noreferrer">{l.label}</a>
+					<a
+						href={l.href}
+						target="_blank"
+						rel="noopener noreferrer"
+						data-track="project"
+						data-track-name={p.title}
+						data-track-link={l.label}>{l.label}</a>
 				))}
 			</p>
 		)}
