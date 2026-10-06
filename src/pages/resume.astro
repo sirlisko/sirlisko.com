@@ -1,27 +1,22 @@
 ---
-import resume from "../../data/resume";
+import "@fontsource/ibm-plex-mono/latin-400.css";
+import "@fontsource/ibm-plex-mono/latin-600.css";
+import resume, { type Rich } from "../../data/resume";
 import Links from "../components/Links.astro";
 import Contacts from "../components/resume/Contacts.astro";
-import Education from "../components/resume/Education.astro";
-import Experiences from "../components/resume/Experiences.astro";
-import Extras from "../components/resume/Extras.astro";
-import Interests from "../components/resume/Interests.astro";
-import Me from "../components/resume/Me.astro";
-import Projects from "../components/resume/Projects.astro";
-import Skills from "../components/resume/Skills.astro";
+import Frame from "../components/resume/Frame.astro";
+import Hero from "../components/resume/Hero.astro";
+import Proficiencies from "../components/resume/Proficiencies.astro";
+import QuestLog from "../components/resume/QuestLog.astro";
+import SideQuests from "../components/resume/SideQuests.astro";
 import Layout from "../layouts/Layout.astro";
+
+const rich = (text: Rich) => [text].flat();
 ---
 
-<script>
-const urlSearchParams = new URLSearchParams(window.location.search);
-if (urlSearchParams.has("alt")) {
-	document.body.classList.add("alt");
-	document.documentElement.classList.add("alt");
-}
-</script>
 <Layout
 	title="Luca Lischetti — Resume"
-	description="Luca Lischetti's resume. Senior Full Stack Engineer with expertise across the entire stack — from React and React Native on the client to Node.js, GraphQL, and cloud infrastructure on the server."
+	description="Luca Lischetti's resume. Senior software engineer working across the full stack, from TypeScript, React and React Native to Node.js and cloud infrastructure."
 	keywords={[
     "Luca Lischetti",
     "sirlisko",
@@ -35,232 +30,218 @@ if (urlSearchParams.has("alt")) {
 	colorScheme="dark"
 >
 	<Links inverted page="resume" />
-	<div class="resume">
-		<Me />
-		<div class="wrapper">
-			<Skills skills={resume.skills} />
-			<Experiences experiences={resume.experiences} />
-			<section class="section ouat">
-				<h2>Once upon a time...</h2>
-				I've also worked with Python, Java, Scala, PHP, MySQL, C++, and Ruby on
-				Rails — years of curiosity and exploring different parts of the stack.
-			</section>
-			<section class="section">
-				<h2>Freelancing</h2>
-				<ul>
-					<li>
-						Delivered commercial websites and bespoke solutions using WordPress,
-						Gatsby, and Astro.
-					</li>
-					<li>
-						Integrated headless CMS platforms including Sanity.io and others for
-						content management.
-					</li>
-					<li>
-						Built custom serverless features using Netlify Functions and AWS
-						Lambda.
-					</li>
-				</ul>
-			</section>
-			<Projects projects={resume.projects} /> <Education /> <Extras />
-			<Interests /> <Contacts />
+	<main class="sheet">
+		<Hero stats={resume.stats} />
+
+		<div class="columns">
+			<div class="main">
+				<QuestLog experiences={resume.experiences} earlier={resume.earlier} />
+				<SideQuests quests={resume.sideQuests} />
+			</div>
+
+			<div class="side">
+				<Proficiencies skills={resume.skills} />
+
+				<Frame title="Lore" id="lore">
+					<p>
+						{rich(resume.lore).map((s) =>
+							typeof s === "string" ? s : <a href={s.url}>{s.text}</a>,
+						)}
+					</p>
+				</Frame>
+
+				<Frame title="Feats" id="feats">
+					<ul>
+						{resume.feats.map((feat) => (
+							<li>
+								{rich(feat).map((s) =>
+									typeof s === "string" ? s : <a href={s.url}>{s.text}</a>,
+								)}
+							</li>
+						))}
+					</ul>
+				</Frame>
+
+				<Frame title="Traits" id="traits">
+					<ul>
+						{resume.traits.map((t) => <li>{t}</li>)}
+					</ul>
+				</Frame>
+
+				<Frame title="Ideals" id="ideals">
+					<ul>
+						{resume.ideals.map((i) => <li>{i}</li>)}
+					</ul>
+				</Frame>
+
+				<Frame title="Downtime" id="downtime">
+					<p>{resume.downtime}</p>
+				</Frame>
+			</div>
 		</div>
-	</div>
+
+		<Contacts />
+	</main>
 </Layout>
 
 <style is:global>
-:root {
-	--side: 18em;
-}
-
 html {
-	background-color: var(--gradient-resume-color);
+	--felt: #2f4a3a;
+	--ink: #111;
+	--paper: #fff;
+	--blood: #8f1d1d;
+	--faded: #555;
+	background-color: var(--felt);
+	background-image:
+		linear-gradient(rgb(255 255 255 / 0.07) 1px, transparent 1px),
+		linear-gradient(90deg, rgb(255 255 255 / 0.07) 1px, transparent 1px);
+	background-size: 40px 40px;
+	/* Keeps the pixel corners and legend backgrounds when backgrounds are off. */
+	print-color-adjust: exact;
+	-webkit-print-color-adjust: exact;
 }
-html.alt {
-	background-color: #fff;
+::selection {
+	background: var(--ink);
+	color: var(--paper);
 }
-body {
-	background-color: var(--gradient-resume-color);
-	background-image: var(--gradient-resume);
-	background-attachment: fixed;
-	color: var(--white);
-	min-height: 100dvh;
+/* Print stays on white paper whatever the system theme. */
+@media screen and (prefers-color-scheme: dark) {
+	html {
+		--felt: #0b2440;
+		--ink: #eaf2ff;
+		--paper: #1d4e89;
+		--blood: #ffd166;
+		--faded: #a9c7ec;
+		background-image: none;
+	}
 }
-body.alt {
-	background-color: #fff;
-	background-image: radial-gradient(circle, #fff, #fff);
-	color: #000;
+@media screen {
+	.print {
+		display: none;
+	}
 }
-.wrapper {
-	padding-bottom: 100px;
+@media print {
+	html {
+		background: var(--paper);
+	}
+	.nav,
+	.screen {
+		display: none;
+	}
 }
 
 @page {
-	padding: 1cm 0;
+	size: A4;
+	margin: 0;
+}
+</style>
+
+<style>
+.sheet {
+	max-width: 1120px;
+	margin: 6rem auto 4.5rem;
+	padding: 2.5rem 2.25rem;
+	background: var(--paper);
+	box-shadow: 0 10px 0 rgb(0 0 0 / 0.35);
+	color: var(--ink);
+	font-family: var(--font-mono);
+	font-size: 0.9375rem;
+	line-height: 1.6;
+	text-wrap: pretty;
+	display: flex;
+	flex-direction: column;
+	gap: 2.5rem;
 }
 
-.resume {
-	overflow: hidden;
-	@media (max-width: 1150px) {
-		font-size: 1.2vw;
-	}
-	@media print, (max-width: 650px) {
-		font-size: 9px;
-	}
-	& a {
-		color: var(--white);
-	}
-
-	& section {
-		line-height: 1.5;
-		margin: 1rem;
-		overflow: hidden;
-	}
-
-	& h2 {
-		font-size: 2em;
-		margin: 0.67em 0;
-		color: #c200c0;
-	}
-	& h3 {
-		font-size: 1.5em;
-		text-transform: capitalize;
-		margin: 1rem auto 0.5rem;
-		@media print, (min-width: 651px) {
-			display: flex;
-			align-items: center;
-			justify-content: space-between;
+/* Shared by the section components; :where() keeps them below a component's own styles. */
+:where(.sheet) {
+	& :global(a) {
+		color: var(--blood);
+		&:hover {
+			color: var(--ink);
 		}
-		&,
-		& a {
-			color: #00bcbc;
-		}
-		& span {
-			color: var(--white);
-			font-size: 0.5rem;
-			@media (max-width: 650px) {
-				display: block;
-				margin-top: 0.25rem;
-			}
+		&:focus-visible {
+			outline: 3px solid var(--blood);
+			outline-offset: 3px;
 		}
 	}
-
-	& h4 {
-		margin-top: 0.5rem;
-	}
-
-	& .wrapper {
-		overflow: hidden;
-		margin: 0 auto;
-		max-width: 1200px;
-	}
-
-	& .me {
-		margin: 20px auto 0;
-		max-width: 1200px;
-	}
-	& .me__face {
-		margin: 0 2em;
-		width: var(--side);
-		& img {
-			display: block;
-			margin: 0 auto;
-			width: 8em;
-			height: auto;
-		}
-	}
-	& .me__face,
-	& .me__intro {
-		display: inline-block;
-		vertical-align: middle;
-	}
-	& .me__intro {
-		font-size: 2em;
-		line-height: 1.5;
-		& span {
-			display: block;
-		}
-	}
-
-	& .skills > div {
-		@media print, (max-width: 650px) {
-			display: inline-block;
-			vertical-align: top;
-		}
-	}
-}
-
-.alt h2 {
-	color: red;
-}
-.alt a {
-	color: currentColor;
-}
-.alt h3,
-.alt h3 a {
-	color: blue;
-
-	& span {
-		color: #000;
-	}
-}
-
-@media print, screen and (min-width: 651px) {
-	.resume .skills {
-		float: left;
-		width: var(--side);
-	}
-
-	.resume .experiences {
-		margin-left: calc(var(--side) + 5em);
-	}
-}
-@media screen and (min-width: 651px) {
-	.resume .section {
-		margin-left: calc(var(--side) + 5em);
-	}
-}
-@media screen and (max-width: 650px) {
-	.resume .me {
-		text-align: center;
-		width: 95%;
-	}
-}
-
-@media print {
-	html {
-		background-color: unset;
-	}
-	.wrapper {
-		padding-bottom: 0;
-	}
-	@page {
+	& :global(:is(p, ul, dl, dd, h1, h2, h3)) {
 		margin: 0;
 	}
-	.nav {
-		display: none;
+	& :global(ul) {
+		padding-left: 1.25rem;
+		list-style: square;
 	}
-	.resume {
-		padding: 0 35px 12px;
-		& section {
-			margin: 0.4rem 1rem;
-			break-inside: avoid;
+	& :global(.label) {
+		font-size: 0.75rem;
+		font-weight: 400;
+		color: var(--faded);
+	}
+}
+
+.columns {
+	display: grid;
+	grid-template-columns: 1fr 22rem;
+	align-items: start;
+	gap: 2.5rem 1.75rem;
+}
+.side,
+.main {
+	display: flex;
+	flex-direction: column;
+	gap: 2.5rem;
+}
+
+/* Blueprint: the grid moves from the table onto the sheet. */
+@media screen and (prefers-color-scheme: dark) {
+	.sheet {
+		background-image:
+			linear-gradient(rgb(255 255 255 / 0.08) 1px, transparent 1px),
+			linear-gradient(90deg, rgb(255 255 255 / 0.08) 1px, transparent 1px);
+		background-size: 20px 20px;
+	}
+}
+
+@media screen and (max-width: 800px) {
+	.columns {
+		grid-template-columns: 1fr;
+	}
+	.sheet {
+		margin: 5rem 1rem 3rem;
+		padding: 2rem 1rem;
+	}
+}
+
+/*
+ * Print is the white sheet alone, filling one A4 page: lay out wider than the
+ * screen, then zoom down. The quest log sets the height; 0.555 is the most that
+ * fits in Chrome and Firefox, so 0.55 leaves a little slack for new content.
+ */
+@media print {
+	.sheet {
+		width: 1400px;
+		max-width: none;
+		margin: 0 auto;
+		padding: 2.5rem 3rem;
+		gap: 1.75rem;
+		box-shadow: none;
+		zoom: 0.55;
+		/* On paper a link is only as good as the address printed next to it. */
+		& :global(a[data-url])::after {
+			content: "(" attr(data-url) ")";
+			display: inline-block;
+			margin-left: 0.4em;
+			color: var(--faded);
+			font-size: 0.875rem;
+			font-weight: 400;
 		}
-		& .experiences > div {
-			break-inside: avoid;
-		}
-		& h2 {
-			margin: 0.3em 0;
-		}
-		& .me {
-			margin-top: 8px;
-		}
-		& h3 a {
-			text-decoration: none;
-		}
-		& .ouat {
-			padding-top: 12px;
-		}
+	}
+	.columns {
+		grid-template-columns: 1fr 24rem;
+	}
+	.side,
+	.main {
+		gap: 1.75rem;
 	}
 }
 </style>

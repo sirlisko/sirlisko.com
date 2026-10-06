@@ -1,0 +1,72 @@
+---
+import type { Resume } from "../../../data/resume";
+import Frame from "./Frame.astro";
+
+interface Props {
+	experiences: Resume["experiences"];
+	earlier: Resume["earlier"];
+}
+
+const { experiences, earlier } = Astro.props;
+---
+
+<Frame title="Quest log" id="quests" class="quests">
+	{experiences.map((exp) => (
+		<article>
+			<h3>
+				<span>
+					{exp.url ? (
+						<a href={exp.url} data-url={new URL(exp.url).host}>
+							{exp.where}
+						</a>
+					) : (
+						exp.where
+					)}
+					{exp.role && <span class="role">, {exp.role}</span>}
+				</span>
+				<span class="label">{exp.when}</span>
+			</h3>
+			<ul>{exp.blurb.map((b) => <li>{b}</li>)}</ul>
+		</article>
+	))}
+	<p class="earlier">
+		Earlier quests: {earlier.join(", ")}. Full log on{" "}
+		<a href="https://www.linkedin.com/in/lucalischetti/">LinkedIn</a>.
+	</p>
+</Frame>
+
+<style>
+.quests {
+	gap: 1.75rem;
+	& article {
+		display: flex;
+		flex-direction: column;
+		gap: 0.6rem;
+	}
+	& h3 {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		align-items: baseline;
+		gap: 0.25rem 1rem;
+		font-size: 1.2rem;
+		font-weight: 600;
+		& .role {
+			font-size: 0.9375rem;
+			font-weight: 400;
+		}
+		& .label {
+			font-size: 0.875rem;
+		}
+	}
+}
+.earlier {
+	color: var(--faded);
+}
+
+@media print {
+	.quests {
+		gap: 0.75rem;
+	}
+}
+</style>

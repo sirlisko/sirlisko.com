@@ -1,0 +1,40 @@
+---
+import type { Resume } from "../../../data/resume";
+import Frame from "./Frame.astro";
+
+interface Props {
+	skills: Resume["skills"];
+}
+
+const { skills } = Astro.props;
+---
+
+<Frame title="Proficiencies" id="prof" class="prof">
+	<h3>Expertise</h3>
+	<ul>
+		{skills.main.map((s) => <li>{s}</li>)}
+	</ul>
+	<h3>Also proficient</h3>
+	<p>{skills.misc.join(", ")}.</p>
+	<h3>Once upon a time</h3>
+	<p>{skills.past.join(", ")}.</p>
+</Frame>
+
+<style>
+.prof {
+	& h3 {
+		font-size: inherit;
+		font-weight: 600;
+	}
+	& h3 + * {
+		margin-top: -0.6rem;
+	}
+	& p {
+		text-wrap: balance;
+	}
+	& ul {
+		line-height: 1.35;
+		gap: 0.3rem;
+	}
+}
+</style>

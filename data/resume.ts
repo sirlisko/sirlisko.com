@@ -1,133 +1,183 @@
+export interface Link {
+	text: string;
+	url: string;
+}
+
+/** Prose with the odd inline link. */
+export type Rich = string | (string | Link)[];
+
 export interface Experience {
 	where: string;
+	role?: string;
+	when: string;
+	url?: string;
 	blurb: string[];
-	when?: string;
 }
 
-export interface Skills {
-	main: string[];
-	"misc.": string[];
-}
-
-export interface ProjectShort {
-	name: string;
-	url: string;
-	blurb: string[];
+export interface SideQuest {
+	link?: Link;
+	blurb: string;
 }
 
 export interface Resume {
-	skills: Skills;
+	stats: [value: string, label: string][];
 	experiences: Experience[];
-	projects: ProjectShort[];
+	earlier: string[];
+	sideQuests: SideQuest[];
+	skills: { main: string[]; misc: string[]; past: string[] };
+	lore: Rich;
+	feats: Rich[];
+	traits: string[];
+	ideals: string[];
+	downtime: string;
 }
 
 const resume = {
-	skills: {
-		main: [
-			"JavaScript",
-			"TypeScript",
-			"Node.js",
-			"Full Stack Architecture",
-			"React",
-			"React Native",
-			"Expo",
-			"Next.js",
-			"HTML/CSS",
-			"Accessibility (WCAG)",
-			"CI/CD",
-			"Testing (TDD / BDD / E2E)",
-		],
-		"misc.": [
-			"GraphQL",
-			"Redux",
-			"Tailwind",
-			"AWS",
-			"GitHub Actions",
-			"Astro",
-			"Chrome Extensions",
-			"Bash Scripting",
-		],
-	},
+	stats: [
+		["Senior software engineer", "Class"],
+		["London, UK", "Home base"],
+		["Computer Science graduate", "Background"],
+		["Since the Netscape/IE5 days", "Experience"],
+		["Chaotic good", "Alignment"],
+		["English, Italian, Spanish", "Languages"],
+	],
 	experiences: [
 		{
-			where: "Red Badger",
-			when: "02/25 - Now",
+			where: "Talelock",
+			role: "Founder & engineer",
+			when: "Sep 2026 to now",
+			url: "https://talelock.com",
 			blurb: [
-				"Developed a complete React Native app using Expo.",
-				"Focused on enhancing accessibility (WCAG 2.1 AA), improved the developer experience and expanded the test stack.",
-				"Integrated various systems using GraphQL and Auth0.",
+				"Building my own product: story-driven treasure hunts played on your phone. No app, no account, just a link.",
+				"A Studio for writing hunts (riddles, QR codes, GPS and photo steps) and a Play side for walking them, with answers checked server-side.",
+				"Stripe payments, with webhooks setting up each player's session and sending it straight to them.",
+			],
+		},
+		{
+			where: "Long rest",
+			when: "May 2026 to Aug 2026",
+			blurb: ["Took time out to travel and volunteer full time."],
+		},
+		{
+			where: "Red Badger",
+			role: "Senior software engineer",
+			when: "Feb 2025 to Apr 2026",
+			blurb: [
+				"Worked full stack on a React Native app built with Expo, from early development to its App Store launch, drastically improving its accessibility (WCAG 2.1 AA) and stability.",
+				"Consolidated the data layer across the app and the backend, replacing custom GraphQL and state code with Apollo Client and Zustand, and made the app work offline.",
+				"Introduced Architecture Decision Records, standardised team processes and coordinated work across multiple teams.",
 			],
 		},
 		{
 			where: "YLD",
-			when: "05/21 - 10/24",
+			role: "Senior software engineer",
+			when: "May 2021 to Oct 2024",
 			blurb: [
-				"Developed a Next.js application, orchestrated and maintained a RESTful service for seamless data integration from various sources.",
-				"Standardised and modernised codebase, enhanced accessibility, and strengthened test coverage.",
-				"Built pipelines with GitHub Actions and deployed to Azure for seamless CI/CD.",
+				"Built a Next.js application, later turned into a white-label product used by third parties, and maintained the REST service that brought together data from various sources.",
+				"Standardised and modernised the codebase, improved accessibility and strengthened test coverage.",
+				"Built pipelines with GitHub Actions and deployed to Azure.",
 			],
 		},
 		{
 			where: "Hackney Council",
-			when: "Multiple gigs (11/19 ~ 05/21)",
+			role: "Senior full stack developer",
+			when: "Nov 2019 to May 2021",
 			blurb: [
-				"Developed new services utilizing React/Next.js, lambda functions deployed on AWS.",
-				"Contributed to internal Component Libraries, mentored junior developers, and shared knowledge.",
-				"Revamped the Hackney website using Jamstack (Gatsby, WordPress, Netlify), emphasizing React best practices and implementing robust testing strategies. Improved CI/CD.",
+				"Called in after the 2020 cyberattack to build a new platform and rescue the services it had affected.",
+				"Built the services that helped the council cope with COVID, from food bank support to social services tracking, with React/Next.js and AWS Lambda.",
+				"Contributed to internal component libraries and mentored junior developers.",
+				"Rebuilt the Hackney website on Jamstack (Gatsby, WordPress, Netlify) with robust testing and improved CI/CD.",
 			],
 		},
 		{
 			where: "uSwitch / RVU",
-			when: "01/20 - 03/20",
+			role: "Senior software engineer",
+			when: "Jan 2020 to Mar 2020",
 			blurb: [
-				"Enhanced internal tools using React/Redux-Saga to manage complex async data flows and API integrations.",
-				"Contributed to the internal UI/component library, improving consistency across products.",
+				"Enhanced internal tools using React/Redux-Saga for complex async data flows and API integrations.",
+				"Contributed to the internal UI component library, improving consistency across products.",
 			],
 		},
 		{
-			where: "Architecture Consultant",
-			when: "09/19 - 11/19",
+			where: "Architecture consultant",
+			when: "Sep 2019 to Nov 2019",
 			blurb: [
-				"Initiated a Next.js (TypeScript) project with Apollo (FE/BE) and GraphQL Gateway, integrating REST APIs (internal and third-party) alongside WordPress data.",
-			],
-		},
-		{
-			where: "Kalo",
-			when: "04/19 - 06/19",
-			blurb: [
-				"Architected a monorepo and shared UI library, driving performance improvements and developer experience.",
-			],
-		},
-		{
-			where: "Reason",
-			when: "09/18 - 12/18",
-			blurb: [
-				"Built a new service from scratch for a client utilizing React/Redux and Node.js for API proxy.",
-			],
-		},
-		{
-			where: "Previous experiences:",
-			blurb: [
-				"Shazam (~5 years), YOOX Net-a-Porter (1+ years), Pobble (1+ years), Verve (1+ years). Full details on LinkedIn.",
+				"Started a Next.js project with Apollo and a GraphQL gateway, joining internal and third-party REST APIs with WordPress data.",
 			],
 		},
 	],
-	projects: [
+	earlier: [
+		"Shazam (about 5 years)",
+		"YOOX Net-a-Porter",
+		"Reason",
+		"Pobble",
+		"Kalo",
+		"Verve",
+	],
+	sideQuests: [
 		{
-			name: "GigPlaylist",
-			url: "https://gigplaylist.sirlisko.com/",
-			blurb: [
-				"Next.js app that proxies several APIs (Spotify, MusicBrainz, Songkick, etc.), combines their data to predict the most probable songs for a given artist's gig, and creates a Spotify playlist for you using Spotify Auth.",
-			],
+			link: { text: "GigPlayList", url: "https://gigplaylist.sirlisko.com" },
+			blurb:
+				"predicts the setlist for an upcoming gig and builds you a Spotify playlist, from a Next.js backend that mashes up a bunch of third-party APIs.",
 		},
 		{
-			name: "GifDay",
-			url: "https://gifday.sirlisko.com/",
-			blurb: [
-				"Webapp that assigns a GIF to every day of the year using the Giphy API, built with React, Supabase, and Edge Functions.",
-			],
+			link: { text: "Moon", url: "https://moon.sirlisko.com" },
+			blurb:
+				"a live 3D Moon showing its real phase and position from where you stand, rendered with Three.js on NASA imagery.",
+		},
+		{
+			blurb:
+				"Freelance sites with WordPress, Gatsby and Astro, with headless CMS (Sanity.io and others), payment integrations (Stripe and others) and serverless features on Netlify Functions, AWS Lambda, and Clouflare Workers.",
 		},
 	],
+	skills: {
+		main: [
+			"TypeScript",
+			"Node.js",
+			"Full stack architecture",
+			"React, React Native, Expo",
+			"Next.js",
+			"Accessibility (WCAG)",
+			"CI/CD",
+			"Testing (TDD, BDD, E2E)",
+		],
+		misc: [
+			"GraphQL, Apollo",
+			"Tailwind",
+			"Supabase, PostgreSQL",
+			"Stripe",
+			"AWS, GitHub Actions",
+			"Astro",
+		],
+		past: ["Python", "Java", "Scala", "PHP", "MySQL", "C++", "Ruby on Rails"],
+	},
+	lore: [
+		"Degree in Computer Science at Università degli Studi dell'Insubria and Universidad de Salamanca. Thesis on ",
+		{ text: "assistive technology", url: "https://assistivetechnology.it" },
+		".",
+	],
+	feats: [
+		"Co-ran a workshop on TDD in JavaScript at Università di Cesena.",
+		[
+			"Project lead and volunteer cook at ",
+			{ text: "FoodCycle", url: "https://foodcycle.org.uk/" },
+			".",
+		],
+		"Cisco CCNA certificate.",
+		"Trained as a fire marshal.",
+	],
+	traits: [
+		"Curious: picks up new tools to see how far they go",
+		"Enjoys building useful things",
+		"Team player and mentor",
+	],
+	ideals: [
+		"Accessible by default",
+		"Code the next person can maintain",
+		"Share what you learn",
+	],
+	downtime:
+		"Tabletop RPGs (running campaigns as Game Master), puzzle and brain-teaser games, long-distance walking, cinema, books, music, modern art, 8-bit graphics, travel and pizza.",
 } satisfies Resume;
 
 export default resume;

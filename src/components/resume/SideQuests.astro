@@ -1,0 +1,32 @@
+---
+import type { Resume } from "../../../data/resume";
+import Frame from "./Frame.astro";
+
+interface Props {
+	quests: Resume["sideQuests"];
+}
+
+const { quests } = Astro.props;
+---
+
+<Frame title="Side quests" id="side">
+	<ul>
+		{quests.map(({ link, blurb }) => (
+			<li>
+				{link && (
+					<>
+						<a href={link.url} data-url={new URL(link.url).host}>
+							{link.text}
+						</a>
+						:{" "}
+					</>
+				)}
+				{blurb}
+			</li>
+		))}
+	</ul>
+	<p>
+		Plus a shelf of{" "}
+		<a href="/projects" data-url="sirlisko.com/projects">side projects</a>.
+	</p>
+</Frame>

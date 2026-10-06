@@ -10,6 +10,11 @@ from = "/blog/*"
 to = "https://sirlisko-blog.netlify.app/:splat"
 status = 200
 
+# The light variants are gone; keep links already sent out working.
+[[redirects]]
+from = "/cv/alt.pdf"
+to = "/cv/luca-lischetti-resume.pdf"
+
 # Everything under /_astro is content-hashed, so a new build means a new name.
 [[headers]]
   for = "/_astro/*"
