@@ -2,6 +2,7 @@
 import "@fontsource/ibm-plex-mono/latin-400.css";
 import "@fontsource/ibm-plex-mono/latin-400-italic.css";
 import "@fontsource/ibm-plex-mono/latin-600.css";
+import me from "../../data/me";
 import { NOW_LAST_UPDATED, sections } from "../../data/now";
 import FaceLink from "../components/FaceLink.astro";
 import Links from "../components/Links.astro";
@@ -41,6 +42,14 @@ import Layout from "../layouts/Layout.astro";
 		</header>
 
 		{sections.map((section, i) => <Maze section={section} index={i} />)}
+
+		<footer class="coin">
+			<p class="credit">Insert coin</p>
+			<p>
+				Want to chase something together? Say ciao at{" "}
+				<a href={`mailto:${me.email}`}>{me.email}</a>.
+			</p>
+		</footer>
 	</main>
 </Layout>
 
@@ -108,7 +117,24 @@ header p {
 	color: #e4e4e4;
 }
 
-.intro a {
+.coin {
+	margin-top: 3.5rem;
+	text-align: center;
+	font-size: 16px;
+	color: #e4e4e4;
+
+	p {
+		margin: 0;
+	}
+}
+
+.coin .credit {
+	margin-bottom: 1rem;
+	font-family: var(--font-display);
+	color: #ffe14d;
+}
+
+:is(.intro, .coin) a {
 	color: #ffe14d;
 
 	&:hover {

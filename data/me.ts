@@ -9,6 +9,7 @@ export interface Link {
 export interface Me {
 	keywords: string[];
 	descriptions: string[];
+	email: string;
 	links: Link[];
 }
 
@@ -33,6 +34,7 @@ const me = {
 		"zombie coder",
 		"pizza eater",
 	],
+	email: "luca@sirlisko.com",
 	links: [
 		{
 			name: "blog",

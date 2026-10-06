@@ -1,6 +1,7 @@
 ---
 import "@fontsource/ibm-plex-mono/latin-400.css";
 import "@fontsource/ibm-plex-mono/latin-600.css";
+import me from "../../data/me";
 import {
 	NPMPackages,
 	pastProjects,
@@ -40,14 +41,22 @@ import Layout from "../layouts/Layout.astro";
 		<Section title="npm packages" projects={NPMPackages} />
 		<Section title="Out of order" projects={pastProjects} retired />
 
-		<p class="start">
-			<a
-				href="https://github.com/sirlisko"
-				target="_blank"
-				rel="noopener noreferrer"
-				>Push start for more on GitHub</a
-			>
-		</p>
+		<footer class="start">
+			<a class="p2" href={`mailto:${me.email}`}>Player 2, press start</a>
+			<p>
+				Got an idea, or a project you want to talk through? Write to{" "}
+				<a href={`mailto:${me.email}`}>{me.email}</a>.
+			</p>
+			<p>
+				Older experiments live on{" "}
+				<a
+					href="https://github.com/sirlisko"
+					target="_blank"
+					rel="noopener noreferrer"
+					>GitHub</a
+				>.
+			</p>
+		</footer>
 	</main>
 </Layout>
 
@@ -98,7 +107,21 @@ header {
 	margin: 4rem 0 0;
 	text-align: center;
 
-	a {
+	p {
+		margin: 1.25rem 0 0;
+		font-size: 15px;
+		color: var(--body);
+	}
+
+	p a {
+		color: var(--nes-yellow);
+
+		&:hover {
+			text-decoration: none;
+		}
+	}
+
+	.p2 {
 		font-family: var(--font-display);
 		font-size: 16px;
 		line-height: 1.5;

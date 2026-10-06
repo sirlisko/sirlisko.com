@@ -2,6 +2,7 @@
 import "@fontsource/ibm-plex-mono/latin-400.css";
 import "@fontsource/ibm-plex-mono/latin-400-italic.css";
 import "@fontsource/ibm-plex-mono/latin-600.css";
+import me from "../../data/me";
 import {
 	cli,
 	DOTFILES_SOURCE,
@@ -46,12 +47,13 @@ const EXITS = [
 			<p>The hardware and software I use daily, as a text adventure.</p>
 		</header>
 
-		<Terminal title="luca@sirlisko: ~ (zork)" location="Desk, London" moves={4}>
+		<Terminal title="luca@sirlisko: ~ (zork)" location="Desk, London" moves={5}>
 			<Prompt command="look" />
 			<p class="say room">Desk, London</p>
 			<p class="say">
 				You're at a desk in a flat in London. A monitor glows, a kneeling chair
-				waits, and cables lead off in every direction.
+				waits, and cables lead off in every direction. There is a small mailbox
+				here.
 			</p>
 			<p class="say">
 				Obvious exits:{" "}
@@ -80,6 +82,13 @@ const EXITS = [
 				unfold into:
 			</p>
 			<Listing items={cli} />
+
+			<Prompt command="open mailbox" />
+			<p class="say">
+				Opening the small mailbox reveals a leaflet. It reads: "Ideas, projects
+				or just a ciao, write to{" "}
+				<a href={`mailto:${me.email}`}>{me.email}</a>."
+			</p>
 
 			<Prompt />
 		</Terminal>
