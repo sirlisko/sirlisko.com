@@ -3,7 +3,6 @@ import pressStart2p from "@fontsource/press-start-2p/files/press-start-2p-latin-
 import "@fontsource/press-start-2p/latin-400.css";
 import "../styles/tokens.css";
 import "../styles/shared.css";
-import "../styles/doc.css";
 import { ClientRouter } from "astro:transitions";
 import { ANALYTICS, AUTHOR, SITE, SITE_URL } from "../config";
 
@@ -31,10 +30,11 @@ interface Props {
 	imageAlt?: string;
 	ogType?: "website" | "profile";
 	noindex?: boolean;
-	/** "doc" is the dark article shell shared by /uses and /projects. */
-	theme?: "dark" | "doc";
+	theme?: "dark";
 	/** Only for pages that paint their own dark background without a theme. */
 	colorScheme?: "dark" | "light";
+	/** The mobile browser bar, matched to the page so each game fills the screen. */
+	themeColor?: string | { light: string; dark: string };
 }
 
 const {
@@ -47,6 +47,7 @@ const {
 	noindex,
 	theme,
 	colorScheme = theme ? "dark" : "light",
+	themeColor = "#2eaed5",
 } = Astro.props;
 
 const metaDescription = description || SITE.description;
@@ -60,7 +61,14 @@ const formattedTitle = title ? `${title} | ${SITE.title}` : SITE.title;
 		<link rel="icon" type="image/x-icon" href="/favicon.ico">
 		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-		<meta name="theme-color" content="#2eaed5">
+		{typeof themeColor === "string" ? (
+			<meta name="theme-color" content={themeColor} />
+		) : (
+			<>
+				<meta name="theme-color" content={themeColor.light} media="(prefers-color-scheme: light)" />
+				<meta name="theme-color" content={themeColor.dark} media="(prefers-color-scheme: dark)" />
+			</>
+		)}
 		<meta name="color-scheme" content={colorScheme}>
 		<link rel="manifest" href="/manifest.json">
 		<link rel="apple-touch-icon" href="/images/icons/icon-192x192.png">

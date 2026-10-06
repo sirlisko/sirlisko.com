@@ -1,0 +1,41 @@
+---
+interface Props {
+	/** Leave out for the idle prompt with a blinking caret. */
+	command?: string;
+}
+
+const { command } = Astro.props;
+---
+
+<p class="prompt">
+	<span class="arrow">&gt;</span>
+	{command ?? <span class="caret" aria-hidden="true"></span>}
+</p>
+
+<style>
+.prompt {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	gap: 0 0.55ch;
+	margin: 1.75rem 0 0;
+	font-weight: 600;
+
+	&:first-child {
+		margin-top: 0;
+	}
+}
+
+.arrow {
+	color: var(--snazzy-green);
+}
+
+.caret {
+	display: inline-block;
+	width: 0.6em;
+	height: 1.1em;
+	background: var(--snazzy-fg);
+	vertical-align: text-bottom;
+	animation: blink 1s step-end infinite;
+}
+</style>

@@ -1,0 +1,129 @@
+---
+import me from "../../data/me";
+
+const diagonal = Array.from({ length: 7 }, (_, i) => i + 1);
+---
+
+<a
+	class="say-ciao"
+	href={`mailto:${me.email}`}
+	aria-label={`Say ciao: ${me.email}`}
+	data-say-ciao
+>
+	<span class="balloon" aria-hidden="true">
+		Say ciao!
+		<small>{me.email}</small>
+	</span>
+	<svg
+		class="envelope"
+		viewBox="0 0 16 12"
+		width="48"
+		height="36"
+		shape-rendering="crispEdges"
+		aria-hidden="true"
+	>
+		<rect width="16" height="12" fill="#fff" />
+		<path d="M0 0h16v1H0zM0 11h16v1H0zM0 0h1v12H0zM15 0h1v12h-1z" fill="#000" />
+		{diagonal.map((i) => <rect x={i} y={i} width="1" height="1" fill="#000" />)}
+		{diagonal.map((i) => <rect x={15 - i} y={i} width="1" height="1" fill="#000" />)}
+	</svg>
+</a>
+
+<style>
+.say-ciao {
+	position: fixed;
+	right: 1.5rem;
+	bottom: 1.5rem;
+	z-index: 5;
+	color: #000;
+	text-decoration: none;
+
+	&:focus-visible {
+		outline: none;
+
+		.envelope {
+			outline: 3px solid #000;
+			outline-offset: 4px;
+		}
+	}
+}
+
+.envelope {
+	display: block;
+	transition: translate 0.15s steps(2);
+}
+
+/* Pixel speech balloon: 4px borders drawn with shadows, stepped tail. */
+.balloon {
+	position: absolute;
+	right: 0;
+	bottom: calc(100% + 18px);
+	display: grid;
+	gap: 0.4rem;
+	width: max-content;
+	padding: 0.7rem 0.9rem;
+	background: #fff;
+	font-size: 14px;
+	box-shadow:
+		0 -4px 0 #000,
+		0 4px 0 #000,
+		-4px 0 0 #000,
+		4px 0 0 #000;
+	opacity: 0;
+	scale: 0.6;
+	transform-origin: bottom right;
+	pointer-events: none;
+	transition:
+		opacity 0.15s steps(2),
+		scale 0.15s steps(2);
+
+	small {
+		font-size: 10px;
+	}
+
+	&::after {
+		content: "";
+		position: absolute;
+		right: 14px;
+		bottom: -12px;
+		width: 12px;
+		height: 8px;
+		background: #fff;
+		box-shadow:
+			-4px 0 0 #000,
+			4px 0 0 #000,
+			0 4px 0 #000;
+		clip-path: polygon(-4px 0, 16px 0, 16px 12px, 8px 12px, 8px 8px, -4px 8px);
+	}
+}
+
+.say-ciao:is(:hover, :focus-visible, [data-open]) {
+	.balloon {
+		opacity: 1;
+		scale: 1;
+		pointer-events: auto;
+	}
+
+	.envelope {
+		translate: 0 -4px;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.balloon,
+	.envelope {
+		transition: none;
+	}
+}
+</style>
+
+<script>
+import { initSayCiao } from "../lib/sayCiao";
+
+let cleanup: (() => void) | undefined;
+
+document.addEventListener("astro:page-load", () => {
+	cleanup?.();
+	cleanup = initSayCiao(document);
+});
+</script>

@@ -1,0 +1,87 @@
+---
+import type { UsesItem } from "../../../data/uses";
+import AppNames from "./AppNames.astro";
+
+interface Props {
+	items: UsesItem[];
+	/** Names first with the category after, like a list of things carried. */
+	inventory?: boolean;
+}
+
+const { items, inventory } = Astro.props;
+---
+
+<ul class:list={{ inventory }}>
+	{items.map((item) => (
+		<li>
+			<span class="cat">{item.category.toLowerCase()}</span>
+			<span class="apps"><AppNames apps={item.apps} /></span>
+			{item.note && <span class="comment"># {item.note}</span>}
+		</li>
+	))}
+</ul>
+
+<style>
+ul {
+	list-style: none;
+	margin: 0.6rem 0 0;
+	padding: 0;
+}
+
+li {
+	display: grid;
+	grid-template-columns: 18ch minmax(0, auto) minmax(0, 1fr);
+	column-gap: 2ch;
+	padding: 1px 0;
+
+	@media (max-width: 640px) {
+		grid-template-columns: 1fr;
+		padding: 0.35rem 0;
+	}
+}
+
+.cat {
+	color: var(--snazzy-blue);
+}
+
+.apps {
+	font-weight: 600;
+	white-space: nowrap;
+
+	@media (max-width: 640px) {
+		white-space: normal;
+	}
+}
+
+.comment {
+	color: var(--snazzy-dim);
+	font-style: italic;
+}
+
+.inventory {
+	margin-top: 0;
+	padding-left: 2ch;
+
+	li {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0 1ch;
+		padding: 0;
+	}
+
+	.apps {
+		order: -1;
+		white-space: normal;
+	}
+
+	.cat {
+		&::before {
+			content: "(";
+		}
+
+		&::after {
+			content: ")";
+		}
+	}
+}
+</style>

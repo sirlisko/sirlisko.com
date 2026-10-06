@@ -1,0 +1,52 @@
+---
+import type { Project as ProjectData } from "../../../data/projects";
+import Project from "./Project.astro";
+
+interface Props {
+	title: string;
+	projects: ProjectData[];
+	big?: boolean;
+	retired?: boolean;
+}
+
+const { title, projects, big, retired } = Astro.props;
+---
+
+<section>
+	<h2>{title}</h2>
+	<ul class:list={["list", { big }]}>
+		{projects.map((project, i) => (
+			<Project project={project} big={big} retired={retired} eager={big && i < 3} />
+		))}
+	</ul>
+</section>
+
+<style>
+section {
+	margin-bottom: 4rem;
+}
+
+h2 {
+	margin: 0 0 1.75rem;
+	padding-bottom: 0.75rem;
+	border-bottom: 4px solid var(--nes-red);
+	font-family: var(--font-display);
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 1.5;
+}
+
+.list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(min(460px, 100%), 1fr));
+	gap: 2rem 3rem;
+}
+
+.big {
+	grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
+	gap: 3rem 2rem;
+}
+</style>

@@ -1,14 +1,7 @@
 ---
-import type { AstroComponent } from "@lucide/astro";
-import ArrowBigRight from "@lucide/astro/icons/arrow-big-right";
-import Atom from "@lucide/astro/icons/atom";
-import Earth from "@lucide/astro/icons/earth";
-import GitBranch from "@lucide/astro/icons/git-branch";
-import Mail from "@lucide/astro/icons/mail";
-import MapPinHouse from "@lucide/astro/icons/map-pin-house";
-import Rss from "@lucide/astro/icons/rss";
-import SquareArrowOutUpRight from "@lucide/astro/icons/square-arrow-out-up-right";
-import type { IconName } from "../../data/projects";
+import "@fontsource/ibm-plex-mono/latin-400.css";
+import "@fontsource/ibm-plex-mono/latin-600.css";
+import me from "../../data/me";
 import {
 	NPMPackages,
 	pastProjects,
@@ -16,31 +9,9 @@ import {
 	tinyProjects,
 } from "../../data/projects";
 import FaceLink from "../components/FaceLink.astro";
-import ChromeIcon from "../components/icons/ChromeIcon.astro";
-import GithubIcon from "../components/icons/GithubIcon.astro";
 import Links from "../components/Links.astro";
+import Section from "../components/projects/Section.astro";
 import Layout from "../layouts/Layout.astro";
-
-const ICONS: Record<IconName, AstroComponent> = {
-	atom: Atom,
-	earth: Earth,
-	"git-branch": GitBranch,
-	mail: Mail,
-	"map-pin-house": MapPinHouse,
-};
-
-const activeProjects = projects.filter((p) => !p.isDeprecated);
-const sections = [
-	{ title: "Active", list: activeProjects, tiny: false },
-	{ title: "Tiny things", list: tinyProjects, tiny: true },
-];
-
-function primaryLink(links: Record<string, string>) {
-	const entry = Object.entries(links).find(
-		([k]) => k !== "Github" && k !== "Blog",
-	);
-	return entry ? entry[1] : null;
-}
 ---
 
 <Layout
@@ -54,711 +25,120 @@ function primaryLink(links: Record<string, string>) {
     "projects",
     "ideas",
   ]}
-	theme="doc"
+	theme="dark"
+	themeColor="#000"
 >
-	<Links page="projects" inverted />
-	<main class="page">
-		<FaceLink />
+	<Links page="projects" />
+	<main class="cart">
+		<FaceLink width={48} />
 
 		<header>
-			<p class="eyebrow">// things I've built</p>
-			<h1>Projects<span class="cursor"></span></h1>
-			<p class="subtitle">Side projects, tools, experiments.</p>
-			<p class="subtitle">Some still alive, some honourably retired.</p>
+			<h1>Projects</h1>
+			<p>Every side project on one cartridge.</p>
 		</header>
 
-		<section class="s-apps">
-			{sections.map(({ title, list, tiny }) => (
-				<>
-					<p class="apps-title">{title}</p>
+		<Section title="Live" projects={projects} big />
+		<Section title="Tiny tools" projects={tinyProjects} />
+		<Section title="npm packages" projects={NPMPackages} />
+		<Section title="Out of order" projects={pastProjects} retired />
 
-					<div class="app-list">
-						{list.map((p, i) => {
-							const live = primaryLink(p.links);
-							const titleHref = live ?? p.links.Blog;
-							return (
-								<div class={`app${tiny ? " app--tiny" : ""}`}>
-									<a class="thumb" href={titleHref} target="_blank" rel="noopener noreferrer" tabindex="-1" aria-label={p.title}>
-										{"screenshot" in p ? (
-											<img
-												src={p.screenshot}
-												srcset={`${p.screenshot} 640w, ${p.screenshot.replace(".webp", "@2x.webp")} 1280w`}
-												sizes={tiny ? "96px" : "(max-width: 560px) 100vw, 168px"}
-												alt=""
-												width={640}
-												height={400}
-												loading={!tiny && i < 2 ? "eager" : "lazy"}
-												decoding="async"
-											/>
-										) : "logo" in p ? (
-											<img class={`app-icon${p.invertIcon ? " inverted" : ""}`} src={p.logo} alt="" width={32} height={32} />
-										) : (
-											(() => {
-												const Icon = ICONS[p.icon];
-												return <Icon size={32} />;
-											})()
-										)}
-									</a>
-									<div class="app-body">
-										<div class="app-header">
-											<a class="entry-name" href={titleHref} target="_blank" rel="noopener noreferrer">{p.title}</a>
-											<div class="app-links">
-												{live && (
-													<a href={live} target="_blank" rel="noopener noreferrer" aria-label="Live demo">
-														<SquareArrowOutUpRight size={20} />
-													</a>
-												)}
-												{p.links.Blog && (
-													<a href={p.links.Blog} target="_blank" rel="noopener noreferrer" aria-label="Blog post">
-														<Rss size={20} />
-													</a>
-												)}
-												{p.links.Github && (
-													<a href={p.links.Github} target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-														<GithubIcon size={20} />
-													</a>
-												)}
-											</div>
-										</div>
-										<p class="entry-desc">{p.description[0]}</p>
-										{!tiny && (
-											<div class="tags">
-												{p.tech.map((t) => (
-													<span class="tag">{t}</span>
-												))}
-											</div>
-										)}
-									</div>
-								</div>
-							);
-						})}
-					</div>
-				</>
-			))}
-		</section>
-
-		<div class="s-npm">
-			<p class="bp-title">NPM Packages</p>
-			<div class="npm-list">
-				{NPMPackages.map((p) => (
-					<div class="npm-row">
-						<div class="npm-body">
-							<div class="npm-header">
-								<div class="npm-name-wrap">
-									{"logo" in p ? (
-										<img class="npm-icon" src={p.logo} alt="" width={20} height={20} />
-									) : (
-										<span class="npm-icon npm-icon--svg">
-											{(() => {
-												const Icon = ICONS[p.icon];
-												return <Icon size={20} />;
-											})()}
-										</span>
-									)}
-									<a class="entry-name" href={p.links["NPM Module"]} target="_blank" rel="noopener noreferrer">{p.title}</a>
-								</div>
-								<div class="npm-links">
-									{p.links["NPM Module"] && (
-										<a href={p.links["NPM Module"]} target="_blank" rel="noopener noreferrer">
-											<SquareArrowOutUpRight size={20} />
-										</a>
-									)}
-									{p.links.Blog && (
-										<a href={p.links.Blog} target="_blank" rel="noopener noreferrer" aria-label="Blog post">
-											<Rss size={20} />
-										</a>
-									)}
-									{p.links.Github && (
-										<a href={p.links.Github} target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-											<GithubIcon size={20} />
-										</a>
-									)}
-								</div>
-							</div>
-							<p class="entry-desc">{p.description[0]}</p>
-							<div class="tags">
-								{p.tech.filter((t) => t !== "NPM Module").map((t) => (
-									<span class="tag">{t}</span>
-								))}
-							</div>
-						</div>
-					</div>
-				))}
-			</div>
-		</div>
-
-		<div class="s-deprecated">
-			<div class="term-bar">
-				<span class="dot r"></span>
-				<span class="dot y"></span>
-				<span class="dot g"></span>
-				<span class="term-bar-title">luca@sirlisko — git log --retired</span>
-			</div>
-			<div class="term-body">
-				<p class="dep-intro"># these served their time</p>
-				{pastProjects.map((p) => (
-					<div class="dep-entry">
-						<div class="dep-head">
-							<span class="dep-prompt">❯</span>
-							<div class="dep-name-wrap">
-								{"logo" in p ? (
-									<img
-										class={`dep-icon${p.invertIcon ? " inverted" : ""}`}
-										src={p.logo}
-										alt=""
-										width={20}
-										height={20}
-									/>
-								) : (
-									<span class="dep-icon dep-icon--svg">
-										{(() => {
-											const Icon = ICONS[p.icon];
-											return <Icon size={20} />;
-										})()}
-									</span>
-								)}
-								<span class="entry-name">{p.title}</span>
-								<span class="dep-badge">deprecated</span>
-							</div>
-							<div class="dep-links">
-								{Object.entries(p.links)
-									.map(([label, url]) => (
-										<a href={url} target="_blank" rel="noopener noreferrer" aria-label={label}>
-											{label === "Github" ? (
-												<GithubIcon size={20} />
-											) : label === "Blog" ? (
-												<Rss size={20} />
-											) : label === "Chrome extension" ? (
-												<ChromeIcon size={20} />
-											) : (
-												label.toLowerCase()
-											)}
-										</a>
-									))}
-							</div>
-						</div>
-						<p class="entry-desc">{p.description[0]}</p>
-						<div class="tags">
-							{p.tech.map((t) => (
-								<span class="tag">{t}</span>
-							))}
-						</div>
-					</div>
-				))}
-			</div>
-		</div>
-
-		<footer>
-			<span
-				>More on{' '}
+		<footer class="start">
+			<a class="p2" href={`mailto:${me.email}`}>Player 2, press start</a>
+			<p>
+				Got an idea, or a project you want to talk through? Write to{" "}
+				<a href={`mailto:${me.email}`}>{me.email}</a>.
+			</p>
+			<p>
+				Older experiments live on{" "}
 				<a
 					href="https://github.com/sirlisko"
 					target="_blank"
 					rel="noopener noreferrer"
-					>github</a
-				></span
-			>
-			<span><a href="/resume">resume</a> <ArrowBigRight size={14} /></span>
+					>GitHub</a
+				>.
+			</p>
 		</footer>
 	</main>
 </Layout>
 
 <style>
-.s-apps {
-	margin-bottom: 3.5rem;
-	animation: fadeUp 0.4s ease 0.06s both;
-
-	.entry-name {
-		color: var(--white);
-		font-weight: 600;
-	}
-
-	.entry-desc {
-		color: #9a9aac;
-	}
-
-	.tag {
-		border: 1px solid var(--border);
-		color: var(--muted);
-	}
+body.dark {
+	background: #000;
 }
 
-.apps-title {
-	font-family: var(--font-display);
-	font-size: 9px;
-	color: var(--yellow);
-	letter-spacing: 0.2em;
-	text-transform: uppercase;
-	margin-bottom: 1.5rem;
-	display: flex;
-	align-items: center;
-	gap: 0.75rem;
-
-	&::after {
-		content: "";
-		flex: 1;
-		height: 1px;
-		background: var(--border);
-	}
+/* Colours from the NES palette, as the bootleg multicart menus used them. */
+.cart {
+	--nes-white: #fcfcfc;
+	--nes-grey: #8c8c8c;
+	--nes-red: #f83800;
+	--nes-orange: #fca044;
+	--nes-yellow: #f8d878;
+	--nes-blue: #3cbcfc;
+	--body: #c8c8c8;
+	max-width: 1080px;
+	margin: 0 auto;
+	font-family: var(--font-mono);
+	font-size: 16px;
+	color: var(--nes-white);
 }
 
-.app-list {
-	display: flex;
-	flex-direction: column;
-	margin-bottom: 2.5rem;
+header {
+	text-align: center;
+	margin: 1rem 0 4rem;
 
-	&:last-child {
-		margin-bottom: 0;
+	h1 {
+		margin: 0;
+		font-family: var(--font-display);
+		font-weight: 400;
+		font-size: clamp(32px, 8vw, 64px);
+		line-height: 1.2;
+		color: var(--nes-yellow);
+		text-shadow:
+			4px 4px 0 var(--nes-orange),
+			8px 8px 0 var(--nes-red);
+	}
+
+	p {
+		margin: 1.75rem 0 0;
+		color: var(--body);
 	}
 }
 
-.app {
-	display: grid;
-	grid-template-columns: 168px minmax(0, 1fr);
-	gap: 1.2rem;
-	padding: 1.1rem 0;
-	border-bottom: 1px solid var(--border);
+.start {
+	margin: 4rem 0 0;
+	text-align: center;
 
-	&:first-child {
-		border-top: 1px solid var(--border);
-	}
-}
-
-.app--tiny {
-	grid-template-columns: 96px minmax(0, 1fr);
-	align-items: center;
-	padding: 0.8rem 0;
-}
-
-.thumb {
-	display: grid;
-	place-items: center;
-	aspect-ratio: 16 / 10;
-	align-self: start;
-	overflow: hidden;
-	background: var(--surface);
-	border: 1px solid var(--border);
-	color: var(--muted);
-	transition: border-color 0.15s;
-
-	&:hover {
-		border-color: var(--yellow);
+	p {
+		margin: 1.25rem 0 0;
+		font-size: 15px;
+		color: var(--body);
 	}
 
-	img:not(.app-icon) {
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-		object-position: top;
-		filter: brightness(0.8);
-		transition: filter 0.15s;
-	}
-
-	&:hover img:not(.app-icon),
-	.app:has(.entry-name:hover) & img:not(.app-icon) {
-		filter: none;
-	}
-}
-
-.thumb .app-icon {
-	width: 32px;
-	height: 32px;
-}
-
-.app-body {
-	display: flex;
-	flex-direction: column;
-	gap: 0.5rem;
-	min-width: 0;
-}
-
-.app-header {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	gap: 1rem;
-}
-
-.app-links {
-	display: flex;
-	gap: 0.75rem;
-	flex-shrink: 0;
-	align-items: center;
-
-	a {
-		color: var(--muted);
-		transition: color 0.15s;
-		display: flex;
-		align-items: center;
+	p a {
+		color: var(--nes-yellow);
 
 		&:hover {
-			color: var(--yellow);
+			text-decoration: none;
 		}
 	}
-}
 
-@media (max-width: 560px) {
-	.app {
-		grid-template-columns: 1fr;
-	}
-
-	.app--tiny {
-		grid-template-columns: 80px minmax(0, 1fr);
-	}
-}
-
-.s-npm {
-	margin-bottom: 3.5rem;
-	animation: fadeUp 0.4s ease 0.06s both;
-	background: #04090f;
-	border: 1px solid #0a1a30;
-	padding: 1.75rem;
-	position: relative;
-	overflow: hidden;
-
-	.entry-name {
-		color: rgba(var(--blue-rgb), 0.95);
-	}
-
-	.entry-desc {
-		color: rgba(var(--blue-rgb), 0.7);
-	}
-
-	.tag {
-		border: 1px solid rgba(var(--blue-rgb), 0.35);
-		color: rgba(var(--blue-rgb), 0.7);
-	}
-
-	/* grid lines */
-	&::before {
-		content: "";
-		position: absolute;
-		inset: 0;
-		background-image:
-			linear-gradient(rgba(var(--blue-rgb), 0.035) 1px, transparent 1px),
-			linear-gradient(90deg, rgba(var(--blue-rgb), 0.035) 1px, transparent 1px);
-		background-size: 22px 22px;
-		pointer-events: none;
-	}
-
-	/* corner brackets */
-	&::after {
-		content: "";
-		position: absolute;
-		inset: 0;
-		background:
-			linear-gradient(rgba(var(--blue-rgb), 0.35), rgba(var(--blue-rgb), 0.35))
-			top left / 14px 1px,
-			linear-gradient(rgba(var(--blue-rgb), 0.35), rgba(var(--blue-rgb), 0.35))
-			top left / 1px 14px,
-			linear-gradient(rgba(var(--blue-rgb), 0.35), rgba(var(--blue-rgb), 0.35))
-			top right / 14px 1px,
-			linear-gradient(rgba(var(--blue-rgb), 0.35), rgba(var(--blue-rgb), 0.35))
-			top right / 1px 14px,
-			linear-gradient(rgba(var(--blue-rgb), 0.35), rgba(var(--blue-rgb), 0.35))
-			bottom right / 14px 1px,
-			linear-gradient(rgba(var(--blue-rgb), 0.35), rgba(var(--blue-rgb), 0.35))
-			bottom right / 1px 14px,
-			linear-gradient(rgba(var(--blue-rgb), 0.35), rgba(var(--blue-rgb), 0.35))
-			bottom left / 14px 1px,
-			linear-gradient(rgba(var(--blue-rgb), 0.35), rgba(var(--blue-rgb), 0.35))
-			bottom left / 1px 14px;
-		background-repeat: no-repeat;
-		pointer-events: none;
-	}
-}
-
-.bp-title {
-	font-family: var(--font-display);
-	font-size: 9px;
-	color: rgba(var(--blue-rgb), 0.6);
-	letter-spacing: 0.2em;
-	text-transform: uppercase;
-	margin-bottom: 1.5rem;
-	display: flex;
-	align-items: center;
-	gap: 0.75rem;
-
-	&::after {
-		content: "";
-		flex: 1;
-		height: 1px;
-		background: rgba(var(--blue-rgb), 0.1);
-	}
-}
-
-.app-icon,
-.npm-icon,
-.dep-icon {
-	width: 20px;
-	height: 20px;
-	object-fit: contain;
-	flex-shrink: 0;
-	opacity: var(--icon-opacity, 0.7);
-	mix-blend-mode: screen;
-
-	&.inverted {
-		mix-blend-mode: normal;
-		filter: invert(1) opacity(var(--icon-opacity, 0.7));
-	}
-}
-.npm-icon {
-	--icon-opacity: 0.6;
-}
-.dep-icon {
-	--icon-opacity: 0.4;
-}
-
-.entry-name {
-	font-size: 13px;
-	letter-spacing: 0.05em;
-}
-
-a.entry-name {
-	text-decoration: none;
-
-	&:hover {
-		text-decoration: underline;
-	}
-}
-
-.entry-desc {
-	font-size: 13px;
-	line-height: 1.7;
-}
-
-.tags {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 0.3rem;
-}
-
-.tag {
-	font-family: var(--font-display);
-	font-size: 9px;
-	padding: 3px 7px;
-	letter-spacing: 0.05em;
-}
-
-.npm-list {
-	display: flex;
-	flex-direction: column;
-}
-
-.npm-row {
-	padding: 0.8rem 0;
-	border-bottom: 1px solid rgba(var(--blue-rgb), 0.06);
-
-	&:last-child {
-		border-bottom: none;
-	}
-}
-
-.npm-body {
-	display: flex;
-	flex-direction: column;
-	gap: 0.4rem;
-}
-
-.npm-header {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	gap: 1rem;
-	margin-bottom: 0.2rem;
-}
-
-.npm-name-wrap {
-	display: flex;
-	align-items: center;
-	gap: 0.5rem;
-}
-
-.npm-icon--svg {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	color: rgba(var(--blue-rgb), 0.6);
-	width: 16px;
-	height: 16px;
-	flex-shrink: 0;
-}
-
-.npm-links {
-	display: flex;
-	gap: 0.6rem;
-	white-space: nowrap;
-	flex-shrink: 0;
-	align-items: center;
-
-	a {
-		font-size: 11px;
-		color: rgba(var(--blue-rgb), 0.55);
+	.p2 {
+		font-family: var(--font-display);
+		font-size: 16px;
+		line-height: 1.5;
+		color: var(--nes-white);
 		text-decoration: none;
-		transition: color 0.15s;
-		display: flex;
-		align-items: center;
+		animation: blink 1.2s step-end infinite;
 
-		&:hover {
-			color: var(--blue);
+		&:hover,
+		&:focus-visible {
+			color: var(--nes-yellow);
+			animation: none;
 		}
-	}
-}
 
-/* ══════════════════════════════════════
-   ② TERMINAL — Deprecated
-══════════════════════════════════════ */
-
-.s-deprecated {
-	animation: fadeUp 0.4s ease 0.12s both;
-	background: #030a03;
-	border: 1px solid #122012;
-	overflow: hidden;
-
-	--dep-glow-rgb: 90, 154, 90;
-
-	.entry-name {
-		color: #6ab86a;
-		text-shadow: 0 0 10px rgba(var(--dep-glow-rgb), 0.7);
-	}
-
-	.entry-desc {
-		padding-left: 1.5rem;
-		color: #5aaa5a;
-		text-shadow: 0 0 8px rgba(var(--dep-glow-rgb), 0.3);
-	}
-
-	.tags {
-		padding-left: 1.5rem;
-		margin-bottom: 0.35rem;
-	}
-
-	.tag {
-		border: 1px solid #1e4a1e;
-		color: #3a6a3a;
-	}
-}
-
-.term-bar {
-	background: #0e1e0e;
-	border-bottom: 1px solid #122012;
-}
-
-.term-bar-title {
-	font-size: 9px;
-	color: #4a8a4a;
-	margin-left: 0.5rem;
-	text-shadow: 0 0 8px rgba(var(--dep-glow-rgb), 0.5);
-}
-
-.term-body {
-	padding: 1.5rem 1.5rem 1.75rem;
-}
-
-.dep-intro {
-	font-size: 12px;
-	color: #4a8a4a;
-	font-style: italic;
-	margin-bottom: 1.5rem;
-	padding-left: 1.25rem;
-	text-shadow: 0 0 8px rgba(var(--dep-glow-rgb), 0.4);
-}
-
-.dep-entry {
-	margin-bottom: 1.5rem;
-	padding-bottom: 1.5rem;
-	border-bottom: 1px dashed #0e200e;
-
-	&:last-child {
-		border-bottom: none;
-		margin-bottom: 0;
-		padding-bottom: 0;
-	}
-}
-
-.dep-head {
-	display: flex;
-	align-items: center;
-	gap: 0.5rem;
-	margin-bottom: 0.4rem;
-}
-
-.dep-name-wrap {
-	display: flex;
-	align-items: center;
-	gap: 0.5rem;
-}
-
-.dep-icon--svg {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	color: #4a8a4a;
-	width: 20px;
-	height: 20px;
-	flex-shrink: 0;
-}
-
-.dep-prompt {
-	font-size: 12px;
-	color: #4a8a4a;
-	text-shadow: 0 0 8px rgba(var(--dep-glow-rgb), 0.5);
-}
-
-.dep-badge {
-	font-family: var(--font-display);
-	font-size: 8px;
-	padding: 2px 6px;
-	border: 1px solid #2a5a2a;
-	color: #4a8a4a;
-	white-space: nowrap;
-	flex-shrink: 0;
-}
-
-.dep-links {
-	display: flex;
-	gap: 0.75rem;
-	align-items: center;
-	margin-left: auto;
-
-	a {
-		font-size: 11px;
-		color: #4a8a4a;
-		text-decoration: none;
-		transition:
-			color 0.15s,
-			text-shadow 0.15s;
-		text-shadow: 0 0 8px rgba(var(--dep-glow-rgb), 0.4);
-		display: flex;
-		align-items: center;
-
-		&:hover {
-			color: var(--green);
-			text-shadow: 0 0 10px rgba(74, 222, 128, 0.6);
-		}
-	}
-}
-
-/* ── FOOTER ── */
-
-footer {
-	margin-top: 4rem;
-	padding-top: 1.5rem;
-	border-top: 1px solid var(--border);
-	display: flex;
-	justify-content: space-between;
-	flex-wrap: wrap;
-	gap: 0.5rem;
-	font-size: 12px;
-	color: var(--muted);
-	font-style: italic;
-
-	a {
-		color: var(--blue);
-		text-decoration: none;
-
-		&:hover {
-			text-decoration: underline;
+		&:focus-visible {
+			outline: 2px solid var(--nes-yellow);
+			outline-offset: 3px;
 		}
 	}
 }

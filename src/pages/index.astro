@@ -1,10 +1,10 @@
 ---
-import { Image } from "astro:assets";
 import me from "../../data/me";
+import Face from "../components/Face.astro";
 import Ghost from "../components/Ghost.astro";
 import Greeting from "../components/Greeting.astro";
 import Links from "../components/Links.astro";
-import me_face from "../images/me.webp";
+import SayCiao from "../components/SayCiao.astro";
 import Layout from "../layouts/Layout.astro";
 ---
 
@@ -15,15 +15,12 @@ import Layout from "../layouts/Layout.astro";
 		<main class="main-content">
 			<div class="container grid">
 				<div class="face">
-					<Image
-						src={me_face}
+					<Face
 						alt="sirlisko face"
-						class="face-img"
 						widths={[400, 700, 1000, 1244]}
 						sizes="(max-width: 650px) 90vw, 50vw"
 						loading="eager"
 						fetchpriority="high"
-						transition:name="face"
 					/>
 				</div>
 				<div class="intro">
@@ -38,6 +35,7 @@ import Layout from "../layouts/Layout.astro";
 				</div>
 			</div>
 		</main>
+		<SayCiao />
 	</div>
 </Layout>
 

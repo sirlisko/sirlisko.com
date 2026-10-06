@@ -1,6 +1,5 @@
 ---
-import { Image } from "astro:assets";
-import me_face from "../images/me.webp";
+import Face from "./Face.astro";
 
 interface Props {
 	width?: number;
@@ -10,12 +9,5 @@ const { width = 60 } = Astro.props;
 ---
 
 <a href="/" class="face-link" aria-label="Home">
-	<Image
-		src={me_face}
-		alt=""
-		class="face-img"
-		width={width}
-		densities={[1, 2]}
-		transition:name="face"
-	/>
+	<Face width={width} densities={[1, 2]} loading="eager" />
 </a>
