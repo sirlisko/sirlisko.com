@@ -15,6 +15,9 @@
 
 	--gradient-home-color: #2eaed5;
 	--gradient-home: radial-gradient(circle, #6bd3e4, #2eaed5);
+	--gradient-home-night-color: #051a22;
+	--gradient-home-night: radial-gradient(circle, #0d3a4a, #051a22);
+	--lamp: 255 228 168;
 	--gradient-resume-color: #000024;
 	--gradient-resume: radial-gradient(circle, #0300ae, #000024);
 }
