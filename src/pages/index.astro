@@ -26,13 +26,29 @@ import Layout from "../layouts/Layout.astro";
 				<div class="face">
 					<Lamp />
 					{/* The face is min(70vw, 70vh) tall at a 0.7 aspect ratio, so its width tops out at 49% of the smaller side. */}
-					<Face
-						alt="sirlisko face"
-						widths={[400, 700, 1000, 1244]}
-						sizes="(max-aspect-ratio: 1/1) 49vw, 49vh"
-						loading="eager"
-						fetchpriority="high"
-					/>
+					<span class="head">
+						<Face
+							alt="sirlisko face"
+							widths={[400, 700, 1000, 1244]}
+							sizes="(max-aspect-ratio: 1/1) 49vw, 49vh"
+							loading="eager"
+							fetchpriority="high"
+						/>
+						{/* Drawn on the photo's own 21×30 pixel grid, over the crown. */}
+						<svg
+							class="shine"
+							viewBox="0 0 21 30"
+							preserveAspectRatio="none"
+							shape-rendering="crispEdges"
+							aria-hidden="true"
+						>
+							<path
+								d="M8 2h5v1H8zM7 3h2v1H7zM12 3h2v1h-2z"
+								fill="rgb(var(--lamp) / 0.45)"
+							/>
+							<path d="M9 3h3v1H9zM8 4h2v1H8z" fill="rgb(255 250 235 / 0.8)" />
+						</svg>
+					</span>
 				</div>
 				<div class="intro">
 					<h1>
@@ -99,6 +115,14 @@ body {
 	text-align: center;
 }
 /* Positioned so the ghost passes behind the photo, but not behind the rest of its column. */
+.head {
+	position: relative;
+	display: inline-block;
+	vertical-align: top;
+}
+.shine {
+	display: none;
+}
 .face img {
 	position: relative;
 	height: min(70vw, 70dvh);
@@ -131,6 +155,37 @@ body {
 	.face:has([data-lamp][aria-pressed="false"]) img {
 		filter: brightness(0.35) sepia(0.15);
 		animation: none;
+	}
+
+	/* The bulb catches the top of a bald head. */
+	.shine {
+		display: block;
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		pointer-events: none;
+		animation: flicker-shine 11s -7s infinite;
+	}
+
+	.face:has([data-lamp][aria-pressed="false"]) .shine {
+		display: none;
+	}
+}
+
+@keyframes flicker-shine {
+	0%,
+	90%,
+	91.5%,
+	93.5%,
+	100% {
+		opacity: 1;
+	}
+	90.5% {
+		opacity: 0.2;
+	}
+	92.5% {
+		opacity: 0;
 	}
 }
 
