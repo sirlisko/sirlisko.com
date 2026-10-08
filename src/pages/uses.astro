@@ -48,12 +48,12 @@ const serial = [updated.getFullYear() % 100, updated.getMonth() + 1, 1]
 	themeColor="#000"
 >
 	<Links page="uses" />
+	<FaceLink />
 	<p class="status">
 		<span>Desk, London</span>
 		<span>Moves: 5</span>
 	</p>
 	<main>
-		<FaceLink width={48} />
 		<header>
 			<h1>Uses</h1>
 			<p class="game">USES I: The Great Underground Desk</p>
@@ -139,7 +139,7 @@ body.dark {
 	display: flex;
 	justify-content: space-between;
 	gap: 1rem;
-	margin: 2rem -1.5rem 0;
+	margin: 0 -1.5rem;
 	padding: 0.15rem max(1.5rem, calc((100% - var(--column)) / 2));
 	background: var(--snazzy-fg);
 	color: #000;
@@ -150,10 +150,6 @@ main {
 	max-width: var(--column);
 	margin: 0 auto;
 	padding-top: 2.5rem;
-}
-
-main > :global(.face-link) {
-	margin-bottom: 2rem;
 }
 
 header {

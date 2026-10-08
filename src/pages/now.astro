@@ -26,9 +26,8 @@ import Layout from "../layouts/Layout.astro";
 	themeColor="#000"
 >
 	<Links page="now" />
+	<FaceLink />
 	<main class="page">
-		<FaceLink width={48} />
-
 		<header>
 			<div class="stats">
 				<p><span class="key">Loc</span> London, UK</p>
@@ -69,7 +68,6 @@ body.dark {
 .page {
 	max-width: 800px;
 	margin: 0 auto;
-	padding-top: 3rem;
 	display: flex;
 	flex-direction: column;
 	gap: 2.5rem;
