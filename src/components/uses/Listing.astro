@@ -16,7 +16,7 @@ const { items, inventory } = Astro.props;
 		<li>
 			<span class="cat">{item.category.toLowerCase()}</span>
 			<span class="apps"><AppNames apps={item.apps} /></span>
-			{item.note && <span class="comment"># {item.note}</span>}
+			{item.note && <span class="comment">{item.note}</span>}
 		</li>
 	))}
 </ul>
@@ -30,9 +30,9 @@ ul {
 
 li {
 	display: grid;
-	grid-template-columns: 18ch minmax(0, auto) minmax(0, 1fr);
+	grid-template-columns: 18ch minmax(0, 1fr);
 	column-gap: 2ch;
-	padding: 1px 0;
+	padding: 3px 0;
 
 	@media (max-width: 640px) {
 		grid-template-columns: 1fr;
@@ -54,8 +54,13 @@ li {
 }
 
 .comment {
+	grid-column: 2;
 	color: var(--snazzy-dim);
 	font-style: italic;
+
+	@media (max-width: 640px) {
+		grid-column: 1;
+	}
 }
 
 .inventory {
@@ -72,6 +77,10 @@ li {
 	.apps {
 		order: -1;
 		white-space: normal;
+	}
+
+	.comment::before {
+		content: "# ";
 	}
 
 	.cat {

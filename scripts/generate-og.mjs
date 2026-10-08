@@ -23,7 +23,7 @@ const THEMES = {
 		accent: "#f83800",
 	},
 	uses: {
-		bg: "#1b1c24",
+		bg: "#000",
 		fg: "#eff0eb",
 		accent: "#5af78e",
 	},

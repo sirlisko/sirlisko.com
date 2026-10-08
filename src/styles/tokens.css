@@ -1,13 +1,6 @@
 :root {
-	--bg: #0f0f13;
-	--surface: #1a1a22;
-	--border: #2e2e3e;
 	--text: #d4d4d8;
-	--muted: #6b6b80;
 	--yellow: #f0c040;
-	--blue: #6eb5ff;
-	--blue-rgb: 110, 181, 255;
-	--green: #4ade80;
 	--white: #fff;
 
 	--font-display: "Press Start 2P", monospace;
@@ -18,6 +11,4 @@
 	--gradient-home-night-color: #051a22;
 	--gradient-home-night: radial-gradient(circle, #0d3a4a, #051a22);
 	--lamp: 255 228 168;
-	--gradient-resume-color: #000024;
-	--gradient-resume: radial-gradient(circle, #0300ae, #000024);
 }

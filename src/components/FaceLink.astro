@@ -1,13 +1,27 @@
 ---
 import Face from "./Face.astro";
-
-interface Props {
-	width?: number;
-}
-
-const { width = 60 } = Astro.props;
 ---
 
+<!-- Pinned opposite the nav on every page, so the face only moves when it morphs to or from home. -->
 <a href="/" class="face-link" aria-label="Home">
-	<Face width={width} densities={[1, 2]} loading="eager" />
+	<Face width={48} densities={[1, 2]} loading="eager" />
 </a>
+
+<style>
+.face-link {
+	position: absolute;
+	top: 1.5rem;
+	left: 1.5rem;
+	z-index: 10;
+	opacity: 0.9;
+	transition: opacity 0.2s;
+
+	&:hover {
+		opacity: 1;
+	}
+
+	img {
+		display: block;
+	}
+}
+</style>

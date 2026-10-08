@@ -12,17 +12,6 @@
 	}
 }
 
-@keyframes fadeUp {
-	from {
-		opacity: 0;
-		transform: translateY(12px);
-	}
-	to {
-		opacity: 1;
-		transform: translateY(0);
-	}
-}
-
 @keyframes blink {
 	0%,
 	100% {
@@ -33,32 +22,19 @@
 	}
 }
 
-.face-link {
-	display: block;
-	width: fit-content;
-	opacity: 0.9;
-	transition: opacity 0.2s;
-}
-.face-link:hover {
-	opacity: 1;
-}
-.face-link img {
-	display: block;
-}
-
 /* The reserved box would otherwise paint the alt text until the image arrives;
    transparent hides it from sight while assistive tech still reads it. */
 .face-img {
 	color: transparent;
 }
 
-/* Ground shared by every dark page; each page then paints its own game.
+/* Ground shared by every dark page; each page then paints its own game below the face and nav.
    Zero specificity, since the build can load this after the pages' own styles. */
 :where(body.dark) {
-	background: var(--bg);
+	background: #000;
 	color: var(--text);
 	min-height: 100dvh;
-	padding: 3rem 1.5rem 6rem;
+	padding: 7rem 1.5rem 6rem;
 }
 
 /* Konami code: scanlines and a curved-glass vignette over every page, for the rest of the visit.
