@@ -1,20 +1,7 @@
 ---
-import type { AstroComponent } from "@lucide/astro";
-import Atom from "@lucide/astro/icons/atom";
-import Earth from "@lucide/astro/icons/earth";
-import GitBranch from "@lucide/astro/icons/git-branch";
-import Mail from "@lucide/astro/icons/mail";
-import MapPinHouse from "@lucide/astro/icons/map-pin-house";
-import type { IconName, Project } from "../../../data/projects";
+import type { Project } from "../../../data/projects";
+import { GRID, pixelIcon } from "../../lib/pixelIcon";
 import { projectLinks } from "../../lib/projects";
-
-const ICONS: Record<IconName, AstroComponent> = {
-	atom: Atom,
-	earth: Earth,
-	"git-branch": GitBranch,
-	mail: Mail,
-	"map-pin-house": MapPinHouse,
-};
 
 interface Props {
 	project: Project;
@@ -28,8 +15,8 @@ interface Props {
 
 const { project: p, big, retired, eager, priority } = Astro.props;
 const { href, extra } = projectLinks(p.links);
-const Icon = "icon" in p ? ICONS[p.icon] : undefined;
-const tech = p.tech.filter((t) => t !== "NPM Module");
+const sprite = "icon" in p ? await pixelIcon(p.icon) : undefined;
+const [tagline, detail] = p.description;
 ---
 
 <li class:list={["project", { big, retired }]}>
@@ -61,7 +48,11 @@ const tech = p.tech.filter((t) => t !== "NPM Module");
 		) : "logo" in p ? (
 			<img class:list={["logo", { inv: p.invertIcon }]} src={p.logo} alt="" width={36} height={36} loading="lazy" />
 		) : (
-			Icon && <Icon size={32} />
+			sprite && (
+				<svg class="sprite" viewBox={`0 0 ${GRID} ${GRID}`} width={48} height={48} aria-hidden="true">
+					<path d={sprite} />
+				</svg>
+			)
 		)}
 	</a>
 	<div>
@@ -75,9 +66,10 @@ const tech = p.tech.filter((t) => t !== "NPM Module");
 			data-track-link="main"
 			>{p.title}</a
 		>
-		<p class="desc">{p.description[0]}</p>
+		<p class="desc">{tagline}</p>
+		{detail && <p class="detail">{detail}</p>}
 		<ul class="tags" aria-label="Built with">
-			{tech.map((t) => <li>{t}</li>)}
+			{p.tech.map((t) => <li>{t}</li>)}
 		</ul>
 		{extra.length > 0 && (
 			<p class="extra">
@@ -147,6 +139,11 @@ a {
 	.inv {
 		filter: invert(1);
 	}
+
+	.sprite {
+		fill: var(--nes-white);
+		shape-rendering: crispEdges;
+	}
 }
 
 .big .shot {
@@ -189,6 +186,13 @@ a {
 	font-size: 15px;
 	line-height: 1.6;
 	color: var(--body);
+}
+
+.detail {
+	margin: -0.4rem 0 0.75rem;
+	font-size: 14px;
+	line-height: 1.6;
+	color: var(--nes-grey);
 }
 
 .tags {

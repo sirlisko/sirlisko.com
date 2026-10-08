@@ -1,6 +1,4 @@
 ---
-import "@fontsource/ibm-plex-mono/latin-400.css";
-import "@fontsource/ibm-plex-mono/latin-600.css";
 import { rolls, SOURCE } from "../../data/credits";
 import FaceLink from "../components/FaceLink.astro";
 import Links from "../components/Links.astro";
@@ -26,9 +24,8 @@ const external = (url: string) =>
 	themeColor="#000"
 >
 	<Links page="credits" />
+	<FaceLink />
 	<main class="roll" data-staff-roll>
-		<FaceLink width={48} />
-
 		<header>
 			<h1>sirlisko.com</h1>
 			<p>How this site is made.</p>
@@ -79,14 +76,9 @@ document.addEventListener("astro:page-load", () => {
 </script>
 
 <style>
-body.dark {
-	background: #000;
-}
-
 .roll {
 	max-width: 640px;
 	margin: 0 auto;
-	padding-top: 2rem;
 	text-align: center;
 	font-family: var(--font-mono);
 	font-size: 16px;
@@ -114,12 +106,8 @@ body.dark {
 	}
 }
 
-.roll > :global(.face-link) {
-	display: inline-block;
-}
-
 header {
-	margin: 4rem 0 8rem;
+	margin: 2rem 0 8rem;
 
 	h1 {
 		margin: 0 0 1.5rem;
