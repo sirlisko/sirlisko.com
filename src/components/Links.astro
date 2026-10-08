@@ -75,6 +75,8 @@ const attrs = (link: Link) =>
 	right: 1.5rem;
 	z-index: 10;
 	font-family: var(--font);
+	/* Pages set their own line-height, so pin it to keep the Start button the same size everywhere, blog included. */
+	line-height: 1.7;
 }
 
 @media (prefers-color-scheme: dark) {
