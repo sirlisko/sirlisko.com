@@ -1,7 +1,4 @@
 ---
-import "@fontsource/ibm-plex-mono/latin-400.css";
-import "@fontsource/ibm-plex-mono/latin-400-italic.css";
-import "@fontsource/ibm-plex-mono/latin-600.css";
 import me from "../../data/me";
 import { NOW_LAST_UPDATED, sections } from "../../data/now";
 import FaceLink from "../components/FaceLink.astro";
@@ -59,7 +56,6 @@ import Layout from "../layouts/Layout.astro";
 <style>
 /* Bound to the theme class so it outranks the display font Layout sets on body. */
 body.dark {
-	background: #000;
 	font-family: var(--font-mono);
 	font-size: 16px;
 	line-height: 1.7;
