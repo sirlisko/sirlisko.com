@@ -1,3 +1,10 @@
+/* The blog is a separate site, so only cross-document transitions can carry the face across. */
+@media (prefers-reduced-motion: no-preference) {
+	@view-transition {
+		navigation: auto;
+	}
+}
+
 /* !important is what makes this win over every per-page animation below. */
 @media (prefers-reduced-motion: reduce) {
 	*,
