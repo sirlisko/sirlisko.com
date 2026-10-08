@@ -85,13 +85,16 @@ header {
 	}
 }
 
-/* As wide as the longest key, so the values line up when the stats stack. */
 .key {
 	display: inline-block;
-	min-width: 4ch;
 	font-family: var(--font-display);
 	color: #ffe14d;
 	margin-right: 0.5rem;
+
+	/* As wide as the longest key, so the values line up when the stats stack. */
+	@media (max-width: 600px) {
+		min-width: 4ch;
+	}
 }
 
 h1 {
