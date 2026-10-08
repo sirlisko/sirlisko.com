@@ -15,6 +15,7 @@ const SIMPLE_CAPTURES = {
 	rainylondon: "https://rainylondon.sirlisko.com",
 	strahd: "https://strahd.ogreballerino.com",
 	talelock: "https://talelock.com",
+	pixelicons: "https://pixelicons.sirlisko.com",
 };
 
 const ZOOMMEME_EXAMPLE =
