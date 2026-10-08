@@ -153,8 +153,17 @@ main {
 }
 
 header {
+	position: relative;
 	margin-bottom: 4.5rem;
-	animation: fadeUp 0.4s ease both;
+
+	/* The monitor warming up: black, then every other scanline, then the rest. */
+	&::after {
+		content: "";
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+		animation: warm-up 0.6s step-end both;
+	}
 
 	h1 {
 		margin: 0 0 1.5rem;
@@ -209,5 +218,20 @@ footer {
 	margin-top: 4rem;
 	font-size: 15px;
 	color: var(--snazzy-dim);
+}
+
+@keyframes warm-up {
+	0% {
+		background: #000;
+	}
+	35% {
+		background: repeating-linear-gradient(transparent 0 2px, #000 2px 4px);
+	}
+	70% {
+		background: repeating-linear-gradient(transparent 0 3px, #000 3px 4px);
+	}
+	100% {
+		background: none;
+	}
 }
 </style>
