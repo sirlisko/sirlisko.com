@@ -1,20 +1,7 @@
 ---
-import type { AstroComponent } from "@lucide/astro";
-import Atom from "@lucide/astro/icons/atom";
-import Earth from "@lucide/astro/icons/earth";
-import GitBranch from "@lucide/astro/icons/git-branch";
-import Mail from "@lucide/astro/icons/mail";
-import MapPinHouse from "@lucide/astro/icons/map-pin-house";
-import type { IconName, Project } from "../../../data/projects";
+import type { Project } from "../../../data/projects";
+import { GRID, pixelIcon } from "../../lib/pixelIcon";
 import { projectLinks } from "../../lib/projects";
-
-const ICONS: Record<IconName, AstroComponent> = {
-	atom: Atom,
-	earth: Earth,
-	"git-branch": GitBranch,
-	mail: Mail,
-	"map-pin-house": MapPinHouse,
-};
 
 interface Props {
 	project: Project;
@@ -28,7 +15,7 @@ interface Props {
 
 const { project: p, big, retired, eager, priority } = Astro.props;
 const { href, extra } = projectLinks(p.links);
-const Icon = "icon" in p ? ICONS[p.icon] : undefined;
+const sprite = "icon" in p ? await pixelIcon(p.icon) : undefined;
 const tech = p.tech.filter((t) => t !== "NPM Module");
 ---
 
@@ -61,7 +48,11 @@ const tech = p.tech.filter((t) => t !== "NPM Module");
 		) : "logo" in p ? (
 			<img class:list={["logo", { inv: p.invertIcon }]} src={p.logo} alt="" width={36} height={36} loading="lazy" />
 		) : (
-			Icon && <Icon size={32} />
+			sprite && (
+				<svg class="sprite" viewBox={`0 0 ${GRID} ${GRID}`} width={48} height={48} aria-hidden="true">
+					<path d={sprite} />
+				</svg>
+			)
 		)}
 	</a>
 	<div>
@@ -146,6 +137,11 @@ a {
 
 	.inv {
 		filter: invert(1);
+	}
+
+	.sprite {
+		fill: var(--nes-white);
+		shape-rendering: crispEdges;
 	}
 }
 

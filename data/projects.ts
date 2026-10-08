@@ -1,9 +1,4 @@
-export type IconName =
-	| "atom"
-	| "earth"
-	| "git-branch"
-	| "mail"
-	| "map-pin-house";
+import type { IconName } from "../src/lib/pixelIcon";
 
 interface BaseProject {
 	title: string;
@@ -226,7 +221,7 @@ export const tinyProjects = [
 			"Daily, weekly or monthly analytics email digests for Umami.",
 			"Scheduled Cloudflare Worker that pulls stats from the Umami API and sends them via Resend.",
 		],
-		icon: "mail",
+		icon: "Mail",
 		links: {
 			Blog: "https://sirlisko.com/blog/umami-digest",
 			Github: "https://github.com/sirlisko/umami-digest",
@@ -284,7 +279,7 @@ export const NPMPackages = [
 			"Interactive CLI to switch, search and delete git branches.",
 			"NPM module that installs the `br` command, with branches sorted by most recent commit.",
 		],
-		icon: "git-branch",
+		icon: "GitBranch",
 		links: {
 			"NPM Module": "https://npmjs.com/package/git-branch-switcher",
 			Blog: "https://sirlisko.com/blog/git-branch-switcher",
@@ -298,7 +293,7 @@ export const NPMPackages = [
 			"JSON of SVG shapes for every country in the world. BYO map.",
 			"NPM module that provides a JSON file with all country shapes.",
 		],
-		icon: "earth",
+		icon: "Earth",
 		links: {
 			"NPM Module": "https://npmjs.com/package/world-map-country-shapes",
 			Github: "https://github.com/sirlisko/world-map-country-shapes",
@@ -311,7 +306,7 @@ export const NPMPackages = [
 			"Resets persisted Redux state after a configurable TTL.",
 			"NPM module that extends the functionality of the redux plugin.",
 		],
-		icon: "atom",
+		icon: "Atom",
 		links: {
 			"NPM Module":
 				"https://npmjs.com/package/redux-persist-transform-expire-in",
@@ -323,7 +318,7 @@ export const NPMPackages = [
 	{
 		title: "UK Postcode Validator",
 		description: ["Micro NPM module to validate UK postcodes."],
-		icon: "map-pin-house",
+		icon: "MapPinHouse",
 		links: {
 			"NPM Module": "https://npmjs.com/package/uk-postcode-validator",
 			Github: "https://github.com/sirlisko/uk-postcode-validator",
@@ -390,7 +385,7 @@ export const pastProjects = [
 		description: [
 			"Use Spotify songs as a Pomodoro timer. Focus mode, musical edition.",
 		],
-		logo: "https://raw.githubusercontent.com/sirlisko/apps-pomofy/master/img/pomodoro.png",
+		logo: "/images/projects/pomofy.png",
 		links: {
 			Github: "https://github.com/sirlisko/apps-pomofy",
 		},
