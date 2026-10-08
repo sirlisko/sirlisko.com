@@ -156,16 +156,17 @@ export const projects = [
 		],
 	},
 	{
-		title: "Can I Have a Cappuccino?",
+		title: "pixelicons",
 		description: [
-			"Can I have a cappuccino right now? The Italian verdict, updated every minute.",
-			"One static page, in English and Italian, with the rules of Italian coffee etiquette.",
+			"Any Iconify icon, redrawn as crisp pixel art.",
+			"Browse 200+ icon sets, tune the grid, fix pixand export SVGs, a sprite or a PNG sheet.",
 		],
-		screenshot: "/images/projects/screens/cappuccino.webp",
+		screenshot: "/images/projects/screens/pixelicons.webp",
 		links: {
-			Website: "https://cappuccino.sirlisko.com",
+			Website: "https://pixelicons.sirlisko.com",
+			Github: "https://github.com/sirlisko/pixelicon",
 		},
-		tech: ["HTML", "CSS", "Vanilla JS"],
+		tech: ["TypeScript", "Vite", "resvg (WASM)", "Iconify"],
 	},
 ] satisfies Project[];
 
@@ -222,6 +223,18 @@ export const tinyProjects = [
 			Github: "https://github.com/sirlisko/pizzaclub",
 		},
 		tech: ["Astro", "Sanity", "MapLibre"],
+	},
+	{
+		title: "Can I Have a Cappuccino?",
+		description: [
+			"Can I have a cappuccino right now? The Italian verdict, updated every minute.",
+			"One static page, in English and Italian, with the rules of Italian coffee etiquette.",
+		],
+		screenshot: "/images/projects/screens/cappuccino.webp",
+		links: {
+			Website: "https://cappuccino.sirlisko.com",
+		},
+		tech: ["HTML", "CSS", "Vanilla JS"],
 	},
 ] satisfies Project[];
 
