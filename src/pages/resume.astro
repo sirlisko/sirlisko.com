@@ -177,6 +177,11 @@ html {
 		font-size: 0.75rem;
 		font-weight: 400;
 		color: var(--faded);
+
+		/* Paper keeps the smaller size, which the one-page print relies on. */
+		@media screen {
+			font-size: 0.8125rem;
+		}
 	}
 }
 
