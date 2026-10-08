@@ -12,7 +12,7 @@ export const sections: Section[] = [
 		label: "day job",
 		title: "Building, shipping & breaking things",
 		content: [
-			'Lately most of my time goes into <a href="https://talelock.com" target="_blank" rel="noopener noreferrer">Talelock</a>, a side project about story-driven treasure hunts played on your phone. Early days, still figuring out what it wants to be.',
+			'Full-time on <a href="https://talelock.com" target="_blank" rel="noopener noreferrer">Talelock</a>, a side project that turned into the day job: story-driven treasure hunts played on your phone. Early days, still figuring out what it wants to be.',
 			"I like picking up new tools and seeing how far I can push them before they (or I) give up.",
 			'Also running <a href="https://barbooto.com" target="_blank" rel="noopener noreferrer">Barbooto</a>, a small software consultancy. Got a project in mind? If you need someone who\'s been fighting with the web since the Netscape/IE5 days, we might be a good fit.',
 			'Drop a line at <a href="mailto:ciao@barbooto.com">ciao@barbooto.com</a>.',

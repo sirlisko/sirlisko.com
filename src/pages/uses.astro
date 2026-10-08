@@ -1,7 +1,4 @@
 ---
-import "@fontsource/ibm-plex-mono/latin-400.css";
-import "@fontsource/ibm-plex-mono/latin-400-italic.css";
-import "@fontsource/ibm-plex-mono/latin-600.css";
 import me from "../../data/me";
 import {
 	cli,
@@ -15,7 +12,6 @@ import FaceLink from "../components/FaceLink.astro";
 import Links from "../components/Links.astro";
 import Listing from "../components/uses/Listing.astro";
 import Prompt from "../components/uses/Prompt.astro";
-import Terminal from "../components/uses/Terminal.astro";
 import { ogCard } from "../config";
 import Layout from "../layouts/Layout.astro";
 
@@ -25,6 +21,12 @@ const EXITS = [
 	{ name: "now", url: "/now" },
 	{ name: "resume", url: "/resume" },
 ];
+
+// Infocom serial numbers were the build date as YYMMDD.
+const updated = new Date(`1 ${USES_LAST_UPDATED}`);
+const serial = [updated.getFullYear() % 100, updated.getMonth() + 1, 1]
+	.map((n) => String(n).padStart(2, "0"))
+	.join("");
 ---
 
 <Layout
@@ -40,61 +42,66 @@ const EXITS = [
     "setup",
   ]}
 	theme="dark"
-	themeColor="#1b1c24"
+	themeColor="#000"
 >
 	<Links page="uses" />
+	<FaceLink />
+	<p class="status">
+		<span>Desk, London</span>
+		<span>Moves: 5</span>
+	</p>
 	<main>
-		<FaceLink width={48} />
 		<header>
 			<h1>Uses</h1>
+			<p class="game">USES I: The Great Underground Desk</p>
+			<p>Copyright (c) {USES_LAST_UPDATED} sirlisko. All rights reserved.</p>
 			<p>The hardware and software I use daily.</p>
+			<p>Serial number {serial}</p>
 		</header>
 
-		<Terminal title="luca@sirlisko: ~ (zork)" location="Desk, London" moves={5}>
-			<Prompt command="look" />
-			<p class="say room">Desk, London</p>
-			<p class="say">
-				You're at a desk in a flat in London. A monitor glows, a kneeling chair
-				waits, and cables lead off in every direction. There is a small mailbox
-				here.
-			</p>
-			<p class="say">
-				Obvious exits:{" "}
-				{EXITS.map((exit, i) => (
-					<>
-						{i > 0 && ", "}
-						<a href={exit.url}>{exit.name}</a>
-					</>
-				))}.
-			</p>
+		<Prompt command="look" />
+		<p class="say room">Desk, London</p>
+		<p class="say">
+			You're at a desk in a flat in London. A monitor glows, a kneeling chair
+			waits, and cables lead off in every direction. There is a small mailbox
+			here.
+		</p>
+		<p class="say">
+			Obvious exits:{" "}
+			{EXITS.map((exit, i) => (
+				<>
+					{i > 0 && ", "}
+					<a href={exit.url}>{exit.name}</a>
+				</>
+			))}.
+		</p>
 
-			<Prompt command="inventory" />
-			<p class="say">You are carrying:</p>
-			<Listing items={hardware} inventory />
+		<Prompt command="inventory" />
+		<p class="say">You are carrying:</p>
+		<Listing items={hardware} inventory />
 
-			<Prompt command="examine apps" />
-			<p class="say">Inside the toolbox you find:</p>
-			<Listing items={uses} />
+		<Prompt command="examine apps" />
+		<p class="say">Inside the toolbox you find:</p>
+		<Listing items={uses} />
 
-			<Prompt command="examine dotfiles" />
-			<p class="say">
-				The{" "}
-				<a href={DOTFILES_SOURCE} target="_blank" rel="noopener noreferrer"
-					>dotfiles</a
-				>{" "}
-				unfold into:
-			</p>
-			<Listing items={cli} />
+		<Prompt command="examine dotfiles" />
+		<p class="say">
+			The{" "}
+			<a href={DOTFILES_SOURCE} target="_blank" rel="noopener noreferrer"
+				>dotfiles</a
+			>{" "}
+			unfold into:
+		</p>
+		<Listing items={cli} />
 
-			<Prompt command="open mailbox" />
-			<p class="say">
-				Opening the small mailbox reveals a leaflet. It reads: "Ideas, projects
-				or just a ciao, write to{" "}
-				<a href={`mailto:${me.email}`}>{me.email}</a>."
-			</p>
+		<Prompt command="open mailbox" />
+		<p class="say">
+			Opening the small mailbox reveals a leaflet. It reads: "Ideas, projects or
+			just a ciao, write to{" "}
+			<a href={`mailto:${me.email}`}>{me.email}</a>."
+		</p>
 
-			<Prompt />
-		</Terminal>
+		<Prompt />
 
 		<footer>
 			Started as{" "}
@@ -105,42 +112,81 @@ const EXITS = [
 </Layout>
 
 <style>
+/* Snazzy, the iTerm2 theme this all actually runs in, on a bare black screen.
+   Bound to the theme class so it outranks the display font Layout sets on body. */
 body.dark {
-	background: #1b1c24;
+	--snazzy-fg: #eff0eb;
+	--snazzy-green: #5af78e;
+	--snazzy-yellow: #f3f99d;
+	--snazzy-blue: #57c7ff;
+	--snazzy-dim: #9799a8;
+	--column: 880px;
+	color: var(--snazzy-fg);
+	font-family: var(--font-mono);
+	font-size: 16px;
+	line-height: 1.65;
+}
+
+/* The Infocom status line: full width, and it stays on screen like the real one. */
+.status {
+	position: sticky;
+	top: 0;
+	z-index: 1;
+	display: flex;
+	justify-content: space-between;
+	gap: 1rem;
+	margin: 0 -1.5rem;
+	padding: 0.15rem max(1.5rem, calc((100% - var(--column)) / 2));
+	background: var(--snazzy-fg);
+	color: #000;
+	font-weight: 600;
 }
 
 main {
-	max-width: 880px;
+	max-width: var(--column);
 	margin: 0 auto;
-	padding-top: 2rem;
-	font-family: var(--font-mono);
+	padding-top: 2.5rem;
 }
 
 header {
-	margin-bottom: 2.5rem;
-	animation: fadeUp 0.4s ease both;
+	position: relative;
+	margin-bottom: 4.5rem;
+
+	/* The monitor warming up: black, then every other scanline, then the rest. */
+	&::after {
+		content: "";
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+		animation: warm-up 0.6s step-end both;
+	}
 
 	h1 {
-		margin: 0 0 0.85rem;
+		margin: 0 0 1.5rem;
 		font-family: var(--font-display);
 		font-weight: 400;
-		font-size: clamp(22px, 5vw, 34px);
-		line-height: 1.4;
+		font-size: 48px;
+		line-height: 1.2;
 		color: var(--white);
+
+		@media (max-width: 640px) {
+			font-size: 32px;
+		}
 	}
 
 	p {
-		color: #a4a2ae;
-		font-size: 16px;
+		margin: 0;
+		color: var(--snazzy-dim);
 	}
-}
 
-main > :global(.face-link) {
-	margin-bottom: 2rem;
+	.game {
+		color: var(--snazzy-fg);
+	}
 }
 
 .say {
 	margin: 0.6rem 0 0;
+	max-width: 72ch;
 
 	a {
 		color: var(--snazzy-yellow);
@@ -152,21 +198,36 @@ main > :global(.face-link) {
 }
 
 a {
-	color: var(--yellow);
+	color: var(--snazzy-yellow);
 
 	&:hover {
 		text-decoration: none;
 	}
 
 	&:focus-visible {
-		outline: 2px solid var(--yellow);
+		outline: 2px solid var(--snazzy-yellow);
 		outline-offset: 2px;
 	}
 }
 
 footer {
-	margin-top: 2rem;
+	margin-top: 4rem;
 	font-size: 15px;
-	color: #a4a2ae;
+	color: var(--snazzy-dim);
+}
+
+@keyframes warm-up {
+	0% {
+		background: #000;
+	}
+	35% {
+		background: repeating-linear-gradient(transparent 0 2px, #000 2px 4px);
+	}
+	70% {
+		background: repeating-linear-gradient(transparent 0 3px, #000 3px 4px);
+	}
+	100% {
+		background: none;
+	}
 }
 </style>
