@@ -169,6 +169,12 @@ const attrs = (link: Link) =>
 	}
 }
 
+/* Home's accent is its text colour, so focus needs a mark the cursor alone can't give. */
+.nav[data-game="home"] .menu a:focus-visible {
+	text-decoration: underline 3px;
+	text-underline-offset: 0.4em;
+}
+
 /* One cursor at a time: the parked one steps aside while another link is picked. */
 .menu:is(:hover, :has(:focus-visible))
 a[aria-current]:not(:hover, :focus-visible)::before {
