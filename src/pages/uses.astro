@@ -20,6 +20,7 @@ const EXITS = [
 	{ name: "projects", url: "/projects" },
 	{ name: "now", url: "/now" },
 	{ name: "resume", url: "/resume" },
+	{ name: "blog", url: "/blog" },
 ];
 
 // Infocom serial numbers were the build date as YYMMDD.
@@ -136,7 +137,8 @@ body.dark {
 	justify-content: space-between;
 	gap: 1rem;
 	margin: 0 -1.5rem;
-	padding: 0.15rem max(1.5rem, calc((100% - var(--column)) / 2));
+	/* 100% is the body's content box; the 3rem puts back the gutters the bar bleeds into. */
+	padding: 0.15rem max(1.5rem, calc((100% + 3rem - var(--column)) / 2));
 	background: var(--snazzy-fg);
 	color: #000;
 	font-weight: 600;
