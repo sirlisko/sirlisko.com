@@ -50,7 +50,7 @@ export const sections: Section[] = [
 		label: "writing more",
 		title: "Actually committing to the blog",
 		content: [
-			"I've had a blog for years but never taken it seriously. That's changing. I want to write about everything: code, tabletop, food, community, whatever I'm thinking about.",
+			`I've had a <a href="https://sirlisko.com/blog" target="_blank" rel="noopener noreferrer">blog</a> for years but never taken it seriously. That's changing. I want to write about everything: code, tabletop, food, community, whatever I'm thinking about.`,
 		],
 	},
 ];
