@@ -68,6 +68,8 @@ const attrs = (link: Link) =>
 	--pause-title: #f8d878;
 	--pause-accent: #f8d878;
 	--cursor: "▶";
+	/* Labels are all lowercase, so glyphs that centre on the em box read high. */
+	--cursor-nudge: 0em;
 	--font: var(--font-display);
 	--size: 16px;
 	position: absolute;
@@ -91,6 +93,7 @@ const attrs = (link: Link) =>
 	--accent: #ffe737;
 	--pause-title: #ffe737;
 	--pause-accent: #ffe737;
+	--cursor-nudge: 0.125em;
 }
 
 .nav[data-game="projects"] {
@@ -107,6 +110,7 @@ const attrs = (link: Link) =>
 	--pause-title: #f3f99d;
 	--pause-accent: #5af78e;
 	--cursor: ">";
+	--cursor-nudge: 0.2em;
 }
 
 .nav[data-game="resume"] {
@@ -146,7 +150,7 @@ const attrs = (link: Link) =>
 		font-size: 0.75em;
 		line-height: inherit;
 		top: 50%;
-		translate: 0 -50%;
+		translate: 0 calc(-50% + var(--cursor-nudge));
 		visibility: hidden;
 	}
 
