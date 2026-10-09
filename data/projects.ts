@@ -201,7 +201,6 @@ export const tinyProjects = [
 			"Dedicated to the legendary Nando Martellone, from the Italian TV show Boris.",
 		],
 		logo: "/images/projects/martellone.png",
-		invertIcon: true,
 		links: {
 			"Amazon UK store":
 				"https://www.amazon.co.uk/sirlisko-Martellone-Boris/dp/B08C7SHW3T/",

@@ -46,7 +46,7 @@ const [tagline, detail] = p.description;
 				decoding="async"
 			/>
 		) : "logo" in p ? (
-			<img class:list={["logo", { inv: p.invertIcon }]} src={p.logo} alt="" width={36} height={36} loading="lazy" />
+			<img class:list={["logo", { inv: p.invertIcon }]} src={p.logo} alt="" width={48} height={48} loading="lazy" />
 		) : (
 			sprite && (
 				<svg class="sprite" viewBox={`0 0 ${GRID} ${GRID}`} width={48} height={48} aria-hidden="true">
@@ -131,8 +131,8 @@ a {
 	}
 
 	.logo {
-		width: 36px;
-		height: 36px;
+		width: 48px;
+		height: 48px;
 		object-fit: contain;
 	}
 
