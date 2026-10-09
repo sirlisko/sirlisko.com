@@ -20,7 +20,7 @@ const EXITS = [
 	{ name: "projects", url: "/projects" },
 	{ name: "now", url: "/now" },
 	{ name: "resume", url: "/resume" },
-	{ name: "blog", url: "/blog" },
+	{ name: "blog", url: "/blog", reload: true },
 ];
 
 // Infocom serial numbers were the build date as YYMMDD.
@@ -72,7 +72,9 @@ const serial = [updated.getFullYear() % 100, updated.getMonth() + 1, 1]
 			{EXITS.map((exit, i) => (
 				<>
 					{i > 0 && ", "}
-					<a href={exit.url}>{exit.name}</a>
+					<a href={exit.url} data-astro-reload={exit.reload}>
+						{exit.name}
+					</a>
 				</>
 			))}.
 		</p>
@@ -106,8 +108,8 @@ const serial = [updated.getFullYear() % 100, updated.getMonth() + 1, 1]
 
 		<footer>
 			Started as{" "}
-			<a href={USES_SOURCE} target="_blank" rel="noopener">a blog post</a>, last
-			updated {USES_LAST_UPDATED}. Roll the <a href="/credits">credits</a>.
+			<a href={USES_SOURCE} data-astro-reload>a blog post</a>, last updated
+			{USES_LAST_UPDATED}. Roll the <a href="/credits">credits</a>.
 		</footer>
 	</main>
 </Layout>
