@@ -71,7 +71,7 @@ export const projects = [
 		title: "GigPlayList",
 		description: [
 			"Predicts the setlist for an upcoming gig and builds you a Spotify playlist.",
-			"Mashes up recent setlists and track data from third-party music APIs to work out what the band will play.",
+			"Mashes up recent setlists from third-party music APIs into a predicted running order, showing how often each song gets played.",
 		],
 		screenshot: "/images/projects/screens/gigplaylist.webp",
 		links: {
@@ -186,14 +186,15 @@ export const tinyProjects = [
 	{
 		title: "ZoomMEME",
 		description: [
-			"Drag-and-drop zoom-in meme generator. Does exactly what it says.",
+			"Pick a spot in any photo and get a zoom-in meme, as a stacked image or a GIF.",
+			"Runs entirely in the browser: canvas for the frames, gifenc for the animation, and your photo never leaves your device.",
 		],
 		screenshot: "/images/projects/screens/zoommeme.webp",
 		links: {
 			Website: "https://zoomme.me",
 			Github: "https://github.com/sirlisko/zoommeme",
 		},
-		tech: ["Vanilla JS", "PWA"],
+		tech: ["Vanilla JS", "Canvas", "GIF encoding", "Vite", "PWA"],
 	},
 	{
 		title: "Martellone Alexa Skill",

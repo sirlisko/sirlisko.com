@@ -1,5 +1,4 @@
-import { mkdtemp, writeFile } from "node:fs/promises";
-import { tmpdir } from "node:os";
+import { writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { stdin, stdout } from "node:process";
 import { createInterface } from "node:readline/promises";
@@ -11,17 +10,15 @@ const VIEWPORT = { width: 1280, height: 800 };
 const SIMPLE_CAPTURES = {
 	been: "https://been.sirlisko.com/@luca",
 	countdown: "https://countdown.sirlisko.com/",
-	gigplaylist: "https://gigplaylist.sirlisko.com/the%20black%20keys",
 	moon: "https://moon.sirlisko.com",
 	pizzaclub: "https://pizzaclub.sirlisko.com/",
 	rainylondon: "https://rainylondon.sirlisko.com",
 	strahd: "https://strahd.ogreballerino.com",
 	talelock: "https://talelock.com",
 	pixelicons: "https://pixelicons.sirlisko.com",
+	zoommeme: "https://zoomme.me",
 };
 
-const ZOOMMEME_EXAMPLE =
-	"https://raw.githubusercontent.com/sirlisko/zoomMEME/master/example.jpeg";
 const GIF_TOPICS = [
 	"cat",
 	"dog",
@@ -132,36 +129,6 @@ async function randomGifDays() {
 	return days;
 }
 
-async function zoomMemeFace() {
-	const example = Buffer.from(
-		await (await fetch(ZOOMMEME_EXAMPLE)).arrayBuffer(),
-	).toString("base64");
-	const face = await canvas.evaluate(async (src) => {
-		const img = new Image();
-		img.src = `data:image/jpeg;base64,${src}`;
-		await img.decode();
-		const c = document.createElement("canvas");
-		c.width = 800;
-		c.height = 400;
-		// example.jpeg stacks four zoom frames; the first is the unzoomed photo
-		c.getContext("2d").drawImage(
-			img,
-			0,
-			0,
-			img.width,
-			img.width / 2,
-			0,
-			0,
-			800,
-			400,
-		);
-		return c.toDataURL("image/jpeg", 0.9).split(",")[1];
-	}, example);
-	const path = join(await mkdtemp(join(tmpdir(), "zoommeme-")), "face.jpg");
-	await writeFile(path, face, "base64");
-	return path;
-}
-
 // The page centres its content and pads only SÌ for the accent, so the two verdicts land at
 // different heights; top-align both and pad both so they line up when cut side by side.
 const alignVerdict = async (page) => {
@@ -215,29 +182,6 @@ async function cappuccino() {
 	);
 }
 
-async function zoommeme() {
-	const face = await zoomMemeFace();
-	return shoot("https://zoomme.me", {
-		before: async (page) => {
-			const input = await page.$("input[type=file]");
-			await input.uploadFile(face);
-			await sleep(2000);
-			// The same width and margins the +/- buttons and dragging set, keeping the face centred.
-			await page.evaluate(() => {
-				const imgs = [...document.querySelectorAll(".zoom__box img")];
-				const base = imgs[0].offsetWidth;
-				for (const [frame, img] of imgs.entries()) {
-					const grown = frame * 200;
-					img.style.width = `${base + grown}px`;
-					img.style.marginLeft = `${-grown * 0.55}px`;
-					img.style.marginTop = `${-grown * 0.2}px`;
-				}
-			});
-			await sleep(800);
-		},
-	});
-}
-
 async function gifday() {
 	return shoot("https://gifday.sirlisko.com/", {
 		setup: seedStorage("dailyGifs", await randomGifDays()),
@@ -248,8 +192,15 @@ async function gifday() {
 	});
 }
 
+// The band photo and setlist highlights fade in after the page settles.
+async function gigplaylist() {
+	return shoot("https://gigplaylist.sirlisko.com/the%20black%20keys", {
+		before: () => sleep(5000),
+	});
+}
+
 const CAPTURES = {
-	zoommeme,
+	gigplaylist,
 	gifday,
 	cappuccino,
 	...Object.fromEntries(
