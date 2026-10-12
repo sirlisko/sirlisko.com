@@ -190,7 +190,10 @@ export const uses = [
 		category: "chat",
 		apps: [
 			{ name: "Signal", url: "https://signal.org" },
-			{ name: "iMessage", url: "https://www.apple.com/imessage/" },
+			{
+				name: "iMessage",
+				url: "https://support.apple.com/guide/messages/welcome/mac",
+			},
 			{ name: "WhatsApp", url: "https://www.whatsapp.com" },
 		],
 		note: "Would love to drop WhatsApp, but 99% of contacts live there.",
