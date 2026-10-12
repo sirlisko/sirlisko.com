@@ -164,7 +164,7 @@ export const projects = [
 		screenshot: "/images/projects/screens/pixelicons.webp",
 		links: {
 			Website: "https://pixelicons.sirlisko.com",
-			Github: "https://github.com/sirlisko/pixelicon",
+			Github: "https://github.com/sirlisko/pixelicons",
 		},
 		tech: ["TypeScript", "Vite", "resvg (WASM)", "Iconify"],
 	},
