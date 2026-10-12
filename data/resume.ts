@@ -81,7 +81,7 @@ const resume = {
 		{
 			where: "Hackney Council",
 			role: "Senior full stack developer",
-			when: "Nov 2019 to May 2021",
+			when: "Nov 2019 to Jan 2020, Mar 2020 to May 2021",
 			blurb: [
 				"Called in after the 2020 cyberattack to build a new platform and rescue the services it had affected.",
 				"Built the services that helped the council cope with COVID, from food bank support to social services tracking, with React/Next.js and AWS Lambda.",
