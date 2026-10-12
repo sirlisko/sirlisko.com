@@ -1,4 +1,6 @@
 ---
+import { Picture } from "astro:assets";
+import type { ImageMetadata } from "astro";
 import type { Project } from "../../../data/projects";
 import { GRID, pixelIcon } from "../../lib/pixelIcon";
 import { projectLinks } from "../../lib/projects";
@@ -17,6 +19,20 @@ const { project: p, big, retired, eager, priority } = Astro.props;
 const { href, extra } = projectLinks(p.links);
 const sprite = "icon" in p ? await pixelIcon(p.icon) : undefined;
 const [tagline, detail] = p.description;
+
+const screens = import.meta.glob<{ default: ImageMetadata }>(
+	"../../images/projects/*.webp",
+);
+const loadScreen =
+	"screenshot" in p
+		? screens[`../../images/projects/${p.screenshot}.webp`]
+		: undefined;
+if ("screenshot" in p && !loadScreen) {
+	throw new Error(
+		`No screenshot named "${p.screenshot}" in src/images/projects`,
+	);
+}
+const screen = loadScreen && (await loadScreen()).default;
 ---
 
 <li class:list={["project", { big, retired }]}>
@@ -31,16 +47,16 @@ const [tagline, detail] = p.description;
 		data-track-name={p.title}
 		data-track-link="main"
 	>
-		{"screenshot" in p ? (
-			<img
-				src={p.screenshot}
-				srcset={`${p.screenshot} 640w, ${p.screenshot.replace(".webp", "@2x.webp")} 1280w`}
+		{screen ? (
+			<Picture
+				src={screen}
+				formats={["avif"]}
+				fallbackFormat="webp"
+				widths={[640, 1280]}
 				sizes={big
 					? "(max-width: 670px) calc(100vw - 68px), (max-width: 1010px) calc(50vw - 60px), 320px"
 					: "112px"}
 				alt=""
-				width={640}
-				height={400}
 				loading={eager ? "eager" : "lazy"}
 				fetchpriority={priority ? "high" : undefined}
 				decoding="async"
@@ -122,6 +138,10 @@ a {
 	background: #161616;
 	border: 2px solid #333;
 	color: var(--nes-grey);
+
+	picture {
+		display: contents;
+	}
 
 	img {
 		width: 100%;

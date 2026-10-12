@@ -5,7 +5,8 @@ export interface Section {
 	tags?: string[];
 }
 
-export const NOW_LAST_UPDATED = "October 2026";
+/** Year and month, as a `<time datetime>` takes it. */
+export const NOW_LAST_UPDATED = "2026-10";
 
 export const sections: Section[] = [
 	{

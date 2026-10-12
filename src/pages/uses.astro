@@ -15,14 +15,14 @@ import Prompt from "../components/uses/Prompt.astro";
 import { ogCard } from "../config";
 import Layout from "../layouts/Layout.astro";
 import { navLinks } from "../lib/links";
+import { formatMonth } from "../lib/month";
 
 const EXITS = navLinks(me.links, "uses").filter(({ name }) => name !== "uses");
 
 // Infocom serial numbers were the build date as YYMMDD.
-const updated = new Date(`1 ${USES_LAST_UPDATED}`);
-const serial = [updated.getFullYear() % 100, updated.getMonth() + 1, 1]
-	.map((n) => String(n).padStart(2, "0"))
-	.join("");
+const [year, month] = USES_LAST_UPDATED.split("-");
+const serial = `${year.slice(2)}${month}01`;
+const updated = formatMonth(USES_LAST_UPDATED);
 ---
 
 <Layout
@@ -42,7 +42,7 @@ const serial = [updated.getFullYear() % 100, updated.getMonth() + 1, 1]
 		<header>
 			<h1>Uses</h1>
 			<p class="game">USES I: The Great Underground Desk</p>
-			<p>Copyright (c) {USES_LAST_UPDATED} sirlisko. All rights reserved.</p>
+			<p>Copyright (c) {updated} sirlisko. All rights reserved.</p>
 			<p>The hardware and software I use daily.</p>
 			<p>Serial number {serial}</p>
 		</header>
@@ -95,8 +95,9 @@ const serial = [updated.getFullYear() % 100, updated.getMonth() + 1, 1]
 
 		<footer>
 			Started as{" "}
-			<a href={USES_SOURCE} data-astro-reload>a blog post</a>, last updated
-			{USES_LAST_UPDATED}. Roll the <a href="/credits">credits</a>.
+			<a href={USES_SOURCE} data-astro-reload>a blog post</a>, last updated{" "}
+			<time datetime={USES_LAST_UPDATED}>{updated}</time>. Roll the{" "}
+			<a href="/credits">credits</a>.
 		</footer>
 	</main>
 </Layout>

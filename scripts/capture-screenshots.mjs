@@ -4,7 +4,7 @@ import { stdin, stdout } from "node:process";
 import { createInterface } from "node:readline/promises";
 import puppeteer from "puppeteer";
 
-const OUTPUT_DIR = "public/images/projects/screens";
+const OUTPUT_DIR = "src/images/projects";
 const VIEWPORT = { width: 1280, height: 800 };
 
 const SIMPLE_CAPTURES = {
@@ -58,21 +58,19 @@ async function shoot(url, { setup, before, clip, scale = 1 } = {}) {
 	return png;
 }
 
+// Astro re-encodes this into the served sizes, so keep the source close to lossless.
 async function save(name, png) {
-	const [large, small] = await canvas.evaluate(async (src) => {
+	const webp = await canvas.evaluate(async (src) => {
 		const img = new Image();
 		img.src = `data:image/png;base64,${src}`;
 		await img.decode();
-		return [1280, 640].map((width) => {
-			const c = document.createElement("canvas");
-			c.width = width;
-			c.height = (width * 10) / 16;
-			c.getContext("2d").drawImage(img, 0, 0, c.width, c.height);
-			return c.toDataURL("image/webp", 0.8).split(",")[1];
-		});
+		const c = document.createElement("canvas");
+		c.width = 1280;
+		c.height = 800;
+		c.getContext("2d").drawImage(img, 0, 0, c.width, c.height);
+		return c.toDataURL("image/webp", 0.95).split(",")[1];
 	}, png);
-	await writeFile(join(OUTPUT_DIR, `${name}@2x.webp`), large, "base64");
-	await writeFile(join(OUTPUT_DIR, `${name}.webp`), small, "base64");
+	await writeFile(join(OUTPUT_DIR, `${name}.webp`), webp, "base64");
 	console.log("✓", name);
 }
 
