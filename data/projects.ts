@@ -322,7 +322,7 @@ export const pastProjects = [
 		links: {
 			"Chrome extension":
 				"https://chrome.google.com/webstore/detail/gulp-blacklist-marker/kifhpjdagaiganbdabkpepncopmbfbal",
-			Blog: "https://sirlisko.com/blog/gulp-blacklist-marker/",
+			Blog: "https://sirlisko.com/blog/gulp-blacklist-marker",
 			Github: "https://github.com/sirlisko/gulp-blacklist-marker",
 		},
 		tech: ["Chrome Extension", "Gulp", "npm"],
@@ -334,7 +334,7 @@ export const pastProjects = [
 		],
 		logo: "/images/projects/sproxify.png",
 		links: {
-			Blog: "https://sirlisko.com/blog/sproxify/",
+			Blog: "https://sirlisko.com/blog/sproxify",
 			Github: "https://github.com/sirlisko/sproxify",
 		},
 		tech: ["Chrome Extension", "Userscript"],
