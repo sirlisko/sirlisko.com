@@ -63,7 +63,6 @@ const setMetadata = async (filePath, meta) => {
 	pdf.setTitle(meta.title, { showInWindowTitleBar: true });
 	pdf.setAuthor(meta.author);
 	pdf.setSubject(meta.description);
-	pdf.setKeywords([meta.keywords]);
 	pdf.setCreator(SITE_URL);
 	pdf.setLanguage(meta.lang);
 	pdf.catalog.delete(PDFName.of("Metadata"));
@@ -126,7 +125,6 @@ const generatePdf = async (browser, baseUrl, path, outputFile) => {
 				content('meta[property="profile:last_name"]'),
 			].join(" "),
 			description: content('meta[name="description"]'),
-			keywords: content('meta[name="keywords"]'),
 			lang: document.documentElement.lang,
 		};
 	});
