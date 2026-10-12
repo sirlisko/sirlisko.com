@@ -6,11 +6,11 @@ import Greeting from "../components/Greeting.astro";
 import Lamp from "../components/Lamp.astro";
 import Links from "../components/Links.astro";
 import SayCiao from "../components/SayCiao.astro";
-import { AUTHOR, SITE_URL } from "../config";
+import { AUTHOR, ogCard, SITE_URL } from "../config";
 import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout themeColor={{ light: "#2eaed5", dark: "#051a22" }}>
+<Layout {...ogCard("home")} themeColor={{ light: "#2eaed5", dark: "#051a22" }}>
 	<Ghost />
 	<div class="page-container h-card">
 		<data class="p-name" value={AUTHOR.name}></data>

@@ -12,6 +12,11 @@ const TEXT = JSON.parse(readFileSync("data/og.json", "utf8"));
 // Each card wears its page's game, so a shared link already hints at what's behind it.
 // Colours are the site's own palette tokens, inlined into every card below.
 const THEMES = {
+	home: {
+		bg: "var(--gradient-home-color)",
+		fg: "#000",
+		accent: "#000",
+	},
 	now: {
 		bg: "#000",
 		fg: "var(--white)",
