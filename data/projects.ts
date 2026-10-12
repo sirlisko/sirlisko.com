@@ -159,12 +159,12 @@ export const projects = [
 		title: "pixelicons",
 		description: [
 			"Any Iconify icon, redrawn as crisp pixel art.",
-			"Browse 200+ icon sets, tune the grid, fix pixand export SVGs, a sprite or a PNG sheet.",
+			"Browse 200+ icon sets, tune the grid, edit pixels and export SVGs, a sprite or a PNG sheet.",
 		],
 		screenshot: "/images/projects/screens/pixelicons.webp",
 		links: {
 			Website: "https://pixelicons.sirlisko.com",
-			Github: "https://github.com/sirlisko/pixelicon",
+			Github: "https://github.com/sirlisko/pixelicons",
 		},
 		tech: ["TypeScript", "Vite", "resvg (WASM)", "Iconify"],
 	},
@@ -322,7 +322,7 @@ export const pastProjects = [
 		links: {
 			"Chrome extension":
 				"https://chrome.google.com/webstore/detail/gulp-blacklist-marker/kifhpjdagaiganbdabkpepncopmbfbal",
-			Blog: "https://sirlisko.com/blog/gulp-blacklist-marker/",
+			Blog: "https://sirlisko.com/blog/gulp-blacklist-marker",
 			Github: "https://github.com/sirlisko/gulp-blacklist-marker",
 		},
 		tech: ["Chrome Extension", "Gulp", "npm"],
@@ -334,7 +334,7 @@ export const pastProjects = [
 		],
 		logo: "/images/projects/sproxify.png",
 		links: {
-			Blog: "https://sirlisko.com/blog/sproxify/",
+			Blog: "https://sirlisko.com/blog/sproxify",
 			Github: "https://github.com/sirlisko/sproxify",
 		},
 		tech: ["Chrome Extension", "Userscript"],

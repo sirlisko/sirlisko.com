@@ -25,16 +25,16 @@ export const sections: Section[] = [
 			"Keeper for a <strong>Call of Cthulhu</strong> campaign, currently running a homebrew scenario set in the New Mexico desert, digging into the origins of my investigator Agatha Fletcher.",
 			'Playing <strong>Curse of Strahd</strong> as Tariq Cornelius, a halfling Divination Wizard with strong opinions about fate and a questionable track record predicting it. The sessions end up in a <a href="https://strahd.ogreballerino.com/" target="_blank" rel="noopener noreferrer">campaign journal</a> (in Italian, sorry).',
 			"Recently joined <strong>D17</strong>, a local TTRPG community in Walthamstow. Good people, good dice.",
-			'Also started something new: <a href="https://ogreballerino.com" target="_blank" rel="noopener noreferrer" style="display: inline-block">Ogre Ballerino</a>, a community for Italian-speaking tabletop players in London. Just shipped a fresh rebrand of the site. Early days, but let\'s see where it goes.',
+			'Also started something new: <a href="https://ogreballerino.com" target="_blank" rel="noopener noreferrer">Ogre&nbsp;Ballerino</a>, a community for Italian-speaking tabletop players in London. Just shipped a fresh rebrand of the site. Early days, but let\'s see where it goes.',
 		],
 	},
 	{
 		label: "out and about",
 		title: "Walking, local communities & getting outside",
 		content: [
-			'Just back from a long trip in South East Asia: <a href="https://sirlisko.com/blog/southeast-asia-2026-part-1" data-astro-reload>Thailand, Malaysia, and Indonesia</a>, then <a href="https://sirlisko.com/blog/southeast-asia-2026-part-2" data-astro-reload>northern Thailand and Laos</a> on my own.',
+			'Just back from a long trip in Southeast Asia: <a href="https://sirlisko.com/blog/southeast-asia-2026-part-1" data-astro-reload>Thailand, Malaysia, and Indonesia</a>, then <a href="https://sirlisko.com/blog/southeast-asia-2026-part-2" data-astro-reload>northern Thailand and Laos</a> on my own.',
 			'Still training for long distances. Completed the <a href="https://sirlisko.com/blog/brighton-to-hastings" data-astro-reload>Brighton to Hastings coastal walk over Easter</a>, and recently did a <a href="https://sirlisko.com/blog/100km" data-astro-reload>100km walk in one day</a> just because why not. Now aiming for an Ultra Challenge event, London to Brighton is on the list.',
-			'Volunteering with <a href="https://sirlisko.com/blog/one-year-at-foodcycle" data-astro-reload>FoodCycle</a>, cooking community meals from surplus food and helping lead the project locally. Good people, good food, zero waste. Lately became project leader of a new venue (Finsbury Park).',
+			'Volunteering with <a href="https://sirlisko.com/blog/one-year-at-foodcycle" data-astro-reload>FoodCycle</a>, cooking community meals from surplus food. Good people, good food, zero waste. Lately I became project leader of a new venue in Finsbury Park.',
 		],
 	},
 	{
@@ -42,8 +42,8 @@ export const sections: Section[] = [
 		title: "Dark worlds, on and off the page",
 		content: [
 			"Working through <strong>Between Two Fires</strong> (no spoilers, please) and <strong>Delicious in Dungeon</strong>.",
-			'On the PlayStation, just finished the <strong>Silent Hill 2</strong> remake. WHAT A GAME! Before that I wrapped up <a href="https://sirlisko.com/blog/death-stranding" data-astro-reload>Death Stranding</a>, and <a href="https://sirlisko.com/blog/final-fantasy-xvi" data-astro-reload>Final Fantasy XVI</a>.',
-			"Trying to watch more films and get to the cinema at least once a month. Recent top picks: <strong>Obsession</strong> and <strong>Project Hail Mary</strong>",
+			'On the PlayStation, just finished the <strong>Silent Hill 2</strong> remake. WHAT A GAME! Before that I wrapped up <a href="https://sirlisko.com/blog/death-stranding" data-astro-reload>Death Stranding</a> and <a href="https://sirlisko.com/blog/final-fantasy-xvi" data-astro-reload>Final Fantasy XVI</a>.',
+			"Trying to watch more films and get to the cinema at least once a month. Recent top picks: <strong>Obsession</strong> and <strong>Project Hail Mary</strong>.",
 		],
 	},
 	{

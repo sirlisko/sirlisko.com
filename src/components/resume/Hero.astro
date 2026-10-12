@@ -28,8 +28,8 @@ const { stats } = Astro.props;
 	<Frame as="dl" class="stats">
 		{stats.map(([value, label, print]) => (
 			<div>
-				<dd>{value}{print && <span class="print"> ({print})</span>}</dd>
 				<dt class="label">{label}</dt>
+				<dd>{value}{print && <span class="print"> ({print})</span>}</dd>
 			</div>
 		))}
 	</Frame>
@@ -83,10 +83,11 @@ const { stats } = Astro.props;
 	& dt {
 		margin-top: 0.375rem;
 	}
-	/* Bottom-aligned so a wrapped value doesn't push its row's rules apart. */
+	/* The label comes first for screen readers but sits under its value.
+	   Bottom-aligned so a wrapped value doesn't push its row's rules apart. */
 	& div {
 		display: flex;
-		flex-direction: column;
+		flex-direction: column-reverse;
 		justify-content: end;
 	}
 }

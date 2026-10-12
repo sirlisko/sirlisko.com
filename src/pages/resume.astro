@@ -17,15 +17,6 @@ const rich = (text: Rich) => [text].flat();
 	{...ogCard("resume")}
 	title="Resume"
 	description="Luca Lischetti's resume. Senior software engineer working across the full stack, from TypeScript, React and React Native to Node.js and cloud infrastructure."
-	keywords={[
-    "Luca Lischetti",
-    "sirlisko",
-    "full stack engineer",
-    "full stack developer",
-    "software engineer",
-    "resume",
-    "cv",
-  ]}
 	ogType="profile"
 	colorScheme="dark"
 	themeColor={{ light: "#2f4a3a", dark: "#0b2440" }}
@@ -87,11 +78,11 @@ const rich = (text: Rich) => [text].flat();
 
 <style is:global>
 html {
-	--felt: #2f4a3a;
-	--ink: #111;
-	--paper: #fff;
-	--blood: #8f1d1d;
-	--faded: #555;
+	--felt: var(--sheet-felt);
+	--ink: var(--sheet-ink);
+	--paper: var(--sheet-paper);
+	--blood: var(--sheet-blood);
+	--faded: var(--sheet-faded);
 	background-color: var(--felt);
 	background-image:
 		linear-gradient(rgb(255 255 255 / 0.07) 1px, transparent 1px),
@@ -108,11 +99,11 @@ html {
 /* Print stays on white paper whatever the system theme. */
 @media screen and (prefers-color-scheme: dark) {
 	html {
-		--felt: #0b2440;
-		--ink: #eaf2ff;
-		--paper: #1d4e89;
-		--blood: #ffd166;
-		--faded: #a9c7ec;
+		--felt: var(--blueprint-felt);
+		--ink: var(--blueprint-ink);
+		--paper: var(--blueprint-paper);
+		--blood: var(--blueprint-gold);
+		--faded: var(--blueprint-faded);
 		background-image: none;
 	}
 }

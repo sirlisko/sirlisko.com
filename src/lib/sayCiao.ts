@@ -1,4 +1,4 @@
-const TOUCH_QUERY = "(hover: none)";
+import { finePointer } from "./pointer";
 
 /** Touch screens can't hover, so the first tap shows the balloon and the second sends. */
 export const initSayCiao = (root: ParentNode = document) => {
@@ -7,10 +7,10 @@ export const initSayCiao = (root: ParentNode = document) => {
 		return () => {};
 	}
 
-	const touchQuery = window.matchMedia(TOUCH_QUERY);
+	const pointer = finePointer();
 
 	const onClick = (e: MouseEvent) => {
-		if (touchQuery.matches && !link.hasAttribute("data-open")) {
+		if (!pointer.matches && !link.hasAttribute("data-open")) {
 			e.preventDefault();
 			link.toggleAttribute("data-open", true);
 		}

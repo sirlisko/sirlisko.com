@@ -14,14 +14,9 @@ import Listing from "../components/uses/Listing.astro";
 import Prompt from "../components/uses/Prompt.astro";
 import { ogCard } from "../config";
 import Layout from "../layouts/Layout.astro";
+import { navLinks } from "../lib/links";
 
-const EXITS = [
-	{ name: "home", url: "/" },
-	{ name: "projects", url: "/projects" },
-	{ name: "now", url: "/now" },
-	{ name: "resume", url: "/resume" },
-	{ name: "blog", url: "/blog", reload: true },
-];
+const EXITS = navLinks(me.links, "uses").filter(({ name }) => name !== "uses");
 
 // Infocom serial numbers were the build date as YYMMDD.
 const updated = new Date(`1 ${USES_LAST_UPDATED}`);
@@ -34,14 +29,6 @@ const serial = [updated.getFullYear() % 100, updated.getMonth() + 1, 1]
 	{...ogCard("uses")}
 	title="Uses"
 	description="The apps and tools Luca Lischetti (sirlisko) actually uses day to day — browser, editor, notes, passwords, and everything else running the show."
-	keywords={[
-    "sirlisko",
-    "uses",
-    "Luca Lischetti",
-    "apps",
-    "tools",
-    "setup",
-  ]}
 	theme="dark"
 	themeColor="#000"
 >
@@ -115,14 +102,9 @@ const serial = [updated.getFullYear() % 100, updated.getMonth() + 1, 1]
 </Layout>
 
 <style>
-/* Snazzy, the iTerm2 theme this all actually runs in, on a bare black screen.
+/* Snazzy on a bare black screen.
    Bound to the theme class so it outranks the display font Layout sets on body. */
 body.dark {
-	--snazzy-fg: #eff0eb;
-	--snazzy-green: #5af78e;
-	--snazzy-yellow: #f3f99d;
-	--snazzy-blue: #57c7ff;
-	--snazzy-dim: #9799a8;
 	--column: 880px;
 	color: var(--snazzy-fg);
 	font-family: var(--font-mono);

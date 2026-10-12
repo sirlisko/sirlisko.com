@@ -1,10 +1,10 @@
 {
 	"name": "sirlisko.com",
-	"private": "true",
+	"private": true,
 	"description": "Personal Website of Luca Lischetti",
 	"repository": {
 		"type": "git",
-		"url": "git://github.com/sirlisko/sirlisko.com.git"
+		"url": "git+https://github.com/sirlisko/sirlisko.com.git"
 	},
 	"author": {
 		"name": "Luca Lischetti",

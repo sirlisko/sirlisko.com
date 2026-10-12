@@ -49,7 +49,7 @@ const ghost = GHOSTS[index % GHOSTS.length];
 
 <style>
 .maze {
-	border: 6px double #2121de;
+	border: 6px double var(--pac-maze);
 	border-radius: 14px;
 	padding: 1.75rem 2rem 2rem;
 	display: flex;
@@ -101,7 +101,7 @@ h2 {
 
 p {
 	margin: 0;
-	color: #e4e4e4;
+	color: var(--pac-text);
 
 	/* Section copy arrives through set:html, which scoped styles can't reach. */
 	:global(strong) {
@@ -111,14 +111,14 @@ p {
 }
 
 p :global(a) {
-	color: #ffe14d;
+	color: var(--pac-yellow);
 
 	&:hover {
 		color: var(--white);
 	}
 
 	&:focus-visible {
-		outline: 3px solid #ffe14d;
+		outline: 3px solid var(--pac-yellow);
 		outline-offset: 3px;
 	}
 }
@@ -132,7 +132,7 @@ p :global(a) {
 .tag {
 	font-size: 13px;
 	padding: 2px 8px;
-	border: 2px solid #2121de;
+	border: 2px solid var(--pac-maze);
 	color: #c4c4cc;
 }
 </style>

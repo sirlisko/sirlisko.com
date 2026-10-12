@@ -65,11 +65,13 @@ const attrs = (link: Link) =>
 	--accent: #000;
 	--pause-bg: #000;
 	--pause-fg: #fff;
-	--pause-title: #f8d878;
-	--pause-accent: #f8d878;
-	--cursor: "▶";
-	/* Labels are all lowercase, so glyphs that centre on the em box read high. */
-	--cursor-nudge: 0em;
+	--pause-title: var(--nes-yellow);
+	--pause-accent: var(--nes-yellow);
+	/* Drawn shapes, since the display font lacks ▶ and ✦ and fallback fonts sit them at a different height per platform. */
+	--cursor: polygon(0 0, 100% 50%, 0 100%);
+	--cursor-width: 0.6em;
+	/* Labels are all lowercase, so shapes centred on the em box read high. */
+	--cursor-nudge: 0.08em;
 	--font: var(--font-display);
 	--size: 16px;
 	position: absolute;
@@ -83,49 +85,57 @@ const attrs = (link: Link) =>
 
 @media (prefers-color-scheme: dark) {
 	.nav[data-game="home"] {
-		--fg: #e6f6fb;
+		--fg: var(--home-night-text);
 		--accent: rgb(var(--lamp));
 	}
 }
 
 .nav[data-game="now"] {
-	--fg: #dedeff;
-	--accent: #ffe737;
-	--pause-title: #ffe737;
-	--pause-accent: #ffe737;
-	--cursor-nudge: 0.125em;
+	--fg: var(--pac-menu);
+	--accent: var(--pac-yellow);
+	--pause-title: var(--pac-yellow);
+	--pause-accent: var(--pac-yellow);
 }
 
 .nav[data-game="projects"] {
-	--fg: #fcfcfc;
-	--accent: #f83800;
-	--pause-accent: #f83800;
+	--fg: var(--nes-white);
+	--accent: var(--nes-red);
+	--pause-accent: var(--nes-red);
 }
 
 .nav[data-game="uses"] {
-	--fg: #eff0eb;
-	--accent: #5af78e;
-	--pause-bg: #282a36;
-	--pause-fg: #eff0eb;
-	--pause-title: #f3f99d;
-	--pause-accent: #5af78e;
-	--cursor: ">";
-	--cursor-nudge: 0.2em;
+	--fg: var(--snazzy-fg);
+	--accent: var(--snazzy-green);
+	--pause-bg: var(--snazzy-bg);
+	--pause-fg: var(--snazzy-fg);
+	--pause-title: var(--snazzy-yellow);
+	--pause-accent: var(--snazzy-green);
+	--cursor-nudge: 0.15em;
 }
 
 .nav[data-game="resume"] {
-	--fg: #fff;
-	--accent: #ffd166;
-	--pause-bg: #fff;
-	--pause-fg: #111;
-	--pause-title: #8f1d1d;
-	--pause-accent: #8f1d1d;
-	--cursor: "✦";
+	--fg: var(--white);
+	--accent: var(--blueprint-gold);
+	--pause-bg: var(--sheet-paper);
+	--pause-fg: var(--sheet-ink);
+	--pause-title: var(--sheet-blood);
+	--pause-accent: var(--sheet-blood);
+	--cursor: polygon(
+		50% 0,
+		62% 38%,
+		100% 50%,
+		62% 62%,
+		50% 100%,
+		38% 62%,
+		0 50%,
+		38% 38%
+	);
+	--cursor-width: 0.75em;
 }
 
 .nav[data-game="credits"] {
-	--fg: #fcfcfc;
-	--accent: #f8d878;
+	--fg: var(--nes-white);
+	--accent: var(--nes-yellow);
 }
 
 .menu {
@@ -143,12 +153,14 @@ const attrs = (link: Link) =>
 	text-decoration: none;
 
 	&::before {
-		content: var(--cursor);
+		content: "";
 		position: absolute;
 		right: calc(100% + 0.5em);
-		color: var(--accent);
+		width: var(--cursor-width);
+		height: 0.75em;
+		background: var(--accent);
+		clip-path: var(--cursor);
 		font-size: 0.75em;
-		line-height: inherit;
 		top: 50%;
 		translate: 0 calc(-50% + var(--cursor-nudge));
 		visibility: hidden;
@@ -185,11 +197,21 @@ a[aria-current]:not(:hover, :focus-visible)::before {
 	visibility: hidden;
 }
 
+/* The terminal's prompt is in the font, so it stays a glyph. */
+.nav[data-game="uses"] .menu a::before {
+	content: ">";
+	width: auto;
+	height: auto;
+	background: none;
+	clip-path: none;
+	color: var(--accent);
+	line-height: inherit;
+}
+
 /* Pac-Man chomps instead of pointing. */
 .nav[data-game="now"] .menu a::before {
-	content: "";
 	width: 0.75em;
-	height: 0.75em;
+	clip-path: none;
 	border-radius: 50%;
 	background: conic-gradient(
 		var(--accent) 0 60deg,

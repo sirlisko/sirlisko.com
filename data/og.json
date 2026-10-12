@@ -1,7 +1,11 @@
 {
+	"home": {
+		"title": "sirlisko",
+		"tagline": "Developer, cook, hiker and dungeon crawler"
+	},
 	"now": { "title": "/now", "tagline": "What I'm up to right now" },
 	"projects": { "title": "Projects", "tagline": "Side projects & experiments" },
 	"uses": { "title": "> uses", "tagline": "Apps and tools I use daily" },
-	"resume": { "title": "Resume", "tagline": "Senior full stack engineer" },
+	"resume": { "title": "Resume", "tagline": "Senior software engineer" },
 	"credits": { "title": "Credits", "tagline": "How this site is made" }
 }

@@ -1,11 +1,11 @@
 import { afterEach, describe, expect, test, vi } from "vitest";
 import { initSayCiao } from "./sayCiao";
 
-// jsdom ships no matchMedia; only the touch check matters here.
-const stubTouch = (matches: boolean) =>
+// jsdom ships no matchMedia; the only query asked is for a fine pointer, which touch lacks.
+const stubTouch = (touch: boolean) =>
 	vi.stubGlobal(
 		"matchMedia",
-		vi.fn(() => ({ matches })),
+		vi.fn(() => ({ matches: !touch })),
 	);
 
 const mount = () => {

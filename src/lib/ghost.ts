@@ -1,6 +1,7 @@
 import { debounce } from "./debounce";
 import { KONAMI_EVENT } from "./konami";
 import { prefersReducedMotion } from "./motion";
+import { finePointer } from "./pointer";
 
 const GHOST_WIDTH = 64;
 const MOVE_DEBOUNCE = 100;
@@ -81,8 +82,7 @@ export const initGhost = (root: ParentNode = document) => {
 		document.removeEventListener(KONAMI_EVENT, cheat);
 	};
 
-	// `ontouchstart` is null on touch devices, so only `in` detects it.
-	if ("ontouchstart" in window || prefersReducedMotion()) {
+	if (!finePointer().matches || prefersReducedMotion()) {
 		return detach;
 	}
 
