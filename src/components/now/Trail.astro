@@ -1,40 +1,22 @@
-<div class="trail">
-	<button class="pacman" type="button" aria-label="Eat the dots"></button>
+<div class="trail" data-trail>
+	<button
+		class="pacman"
+		type="button"
+		aria-label="Eat the dots"
+		data-trail-pacman
+	></button>
 	<span class="pellets" aria-hidden="true"></span>
-	<span class="power" aria-hidden="true"></span>
+	<span class="power" aria-hidden="true" data-trail-power></span>
 </div>
 
 <script>
-const SPEED = 180;
-const PAUSE = 600;
+import { initTrail } from "../../lib/trail";
+
+let cleanup: (() => void) | undefined;
 
 document.addEventListener("astro:page-load", () => {
-	const trail = document.querySelector<HTMLElement>(".trail");
-	const pacman = trail?.querySelector<HTMLButtonElement>(".pacman");
-	const power = trail?.querySelector<HTMLElement>(".power");
-	if (!trail || !pacman || !power) return;
-
-	pacman.addEventListener("click", () => {
-		if (trail.dataset.state) return;
-
-		const travel = trail.clientWidth - pacman.offsetWidth;
-		trail.style.setProperty("--travel", `${travel}px`);
-		trail.style.setProperty("--duration", `${travel / SPEED}s`);
-		trail.dataset.state = "eating";
-		window.umami?.track("pacman");
-	});
-
-	trail.addEventListener("transitionend", (event) => {
-		if (event.target !== trail) return;
-		trail.dataset.state = "cleared";
-		setTimeout(() => {
-			trail.dataset.state = "respawn";
-		}, PAUSE);
-	});
-
-	power.addEventListener("animationend", () => {
-		delete trail.dataset.state;
-	});
+	cleanup?.();
+	cleanup = initTrail(document);
 });
 </script>
 
