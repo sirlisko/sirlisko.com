@@ -160,14 +160,14 @@ export const projects = [
 		title: "pixelicons",
 		description: [
 			"Any Iconify icon, redrawn as crisp pixel art.",
-			"Browse 200+ icon sets, tune the grid, edit pixels and export SVGs, a sprite or a PNG sheet.",
+			"Browse 200+ icon sets, snap colours to a palette like the Game Boy's or any from Lospec, edit pixels and export SVGs, a sprite or a PNG sheet.",
 		],
 		screenshot: "pixelicons",
 		links: {
 			Website: "https://pixelicons.sirlisko.com",
 			Github: "https://github.com/sirlisko/pixelicons",
 		},
-		tech: ["TypeScript", "Vite", "resvg (WASM)", "Iconify"],
+		tech: ["TypeScript", "Vite", "resvg (WASM)", "Iconify", "Lospec"],
 	},
 ] satisfies Project[];
 
@@ -240,6 +240,20 @@ export const tinyProjects = [
 ] satisfies Project[];
 
 export const NPMPackages = [
+	{
+		title: "Leaflet Game Boy",
+		description: [
+			"Repaints Leaflet map tiles in the greens of the original Game Boy.",
+			"An SVG filter maps each pixel's brightness to a fixed palette, with light and dark themes and a matching skin for controls and tooltips.",
+		],
+		icon: "Gamepad2",
+		links: {
+			"NPM Module": "https://npmjs.com/package/leaflet-gameboy",
+			Github: "https://github.com/sirlisko/leaflet-gameboy",
+			Demo: "https://sirlisko.github.io/leaflet-gameboy/",
+		},
+		tech: ["Leaflet", "SVG", "TypeScript"],
+	},
 	{
 		title: "World Map Country Shapes",
 		description: [
