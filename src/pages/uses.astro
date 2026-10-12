@@ -14,14 +14,9 @@ import Listing from "../components/uses/Listing.astro";
 import Prompt from "../components/uses/Prompt.astro";
 import { ogCard } from "../config";
 import Layout from "../layouts/Layout.astro";
+import { navLinks } from "../lib/links";
 
-const EXITS = [
-	{ name: "home", url: "/" },
-	{ name: "projects", url: "/projects" },
-	{ name: "now", url: "/now" },
-	{ name: "resume", url: "/resume" },
-	{ name: "blog", url: "/blog", reload: true },
-];
+const EXITS = navLinks(me.links, "uses").filter(({ name }) => name !== "uses");
 
 // Infocom serial numbers were the build date as YYMMDD.
 const updated = new Date(`1 ${USES_LAST_UPDATED}`);
