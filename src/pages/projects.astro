@@ -9,7 +9,7 @@ import {
 import FaceLink from "../components/FaceLink.astro";
 import Links from "../components/Links.astro";
 import Section from "../components/projects/Section.astro";
-import { ogCard } from "../config";
+import { AUTHOR, ogCard } from "../config";
 import Layout from "../layouts/Layout.astro";
 ---
 
@@ -17,14 +17,6 @@ import Layout from "../layouts/Layout.astro";
 	{...ogCard("projects")}
 	title="Projects"
 	description="Side projects by Luca Lischetti (sirlisko): web apps, tiny single-purpose sites, npm packages, and retired Chrome extensions and experiments."
-	keywords={[
-    "Luca Lischetti",
-    "sirlisko",
-    "web developer",
-    "software engineer",
-    "projects",
-    "ideas",
-  ]}
 	theme="dark"
 	themeColor="#000"
 >
@@ -50,7 +42,7 @@ import Layout from "../layouts/Layout.astro";
 			<p>
 				Older experiments live on{" "}
 				<a
-					href="https://github.com/sirlisko"
+					href={AUTHOR.profiles.GitHub}
 					target="_blank"
 					rel="noopener noreferrer"
 					>GitHub</a
@@ -62,15 +54,7 @@ import Layout from "../layouts/Layout.astro";
 </Layout>
 
 <style>
-/* Colours from the NES palette, as the bootleg multicart menus used them. */
 .cart {
-	--nes-white: #fcfcfc;
-	--nes-grey: #8c8c8c;
-	--nes-red: #f83800;
-	--nes-orange: #fca044;
-	--nes-yellow: #f8d878;
-	--nes-blue: #3cbcfc;
-	--body: #c8c8c8;
 	max-width: 1080px;
 	margin: 0 auto;
 	font-family: var(--font-mono);
@@ -96,7 +80,7 @@ header {
 
 	p {
 		margin: 1.75rem 0 0;
-		color: var(--body);
+		color: var(--nes-silver);
 	}
 }
 
@@ -107,7 +91,7 @@ header {
 	p {
 		margin: 1.25rem 0 0;
 		font-size: 15px;
-		color: var(--body);
+		color: var(--nes-silver);
 	}
 
 	p a {

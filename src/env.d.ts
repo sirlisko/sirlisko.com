@@ -13,7 +13,13 @@ declare global {
 	interface Window {
 		// Injected by the umami script loaded in Layout.astro.
 		umami?: {
-			track: (event: string, data?: Record<string, unknown>) => void;
+			track: {
+				(event: string, data?: Record<string, unknown>): void;
+				/** A pageview, with Umami's own payload passed in to adjust. */
+				(
+					payload: (props: Record<string, unknown>) => Record<string, unknown>,
+				): void;
+			};
 		};
 	}
 }

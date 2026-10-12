@@ -1,19 +1,39 @@
 import { existsSync } from "node:fs";
 import { describe, expect, test } from "vitest";
+import { rolls } from "./credits";
 import me from "./me";
 import { NOW_LAST_UPDATED, sections } from "./now";
-import { projects, tinyProjects } from "./projects";
+import { NPMPackages, pastProjects, projects, tinyProjects } from "./projects";
 import resume from "./resume";
 import { cli, hardware, USES_LAST_UPDATED, uses } from "./uses";
 
-const isReachable = (url: string) =>
-	url.startsWith("/") ||
-	url.startsWith("mailto:") ||
-	URL.canParse(url) === true;
+// Served by the blog through the /blog/* rewrite in netlify.toml.
+const isBlog = (path: string) => path === "/blog" || path.startsWith("/blog/");
+
+/** A path on this site has to be a page or a public file. */
+const resolves = (path: string) =>
+	isBlog(path) ||
+	existsSync(`src/pages/${path === "/" ? "index" : path.slice(1)}.astro`) ||
+	existsSync(`public${path}`);
+
+// Tests stay offline, so an address elsewhere is only checked for its shape.
+const isWellFormed = (url: string) =>
+	/^(https?|mailto):/.test(url) && URL.canParse(url);
+
+const isBroken = (url: string) =>
+	url.startsWith("/") ? !resolves(url) : !isWellFormed(url);
 
 describe("site data", () => {
-	test("every nav link points somewhere", () => {
-		const broken = me.links.filter(({ url }) => !isReachable(url));
+	test("every nav link leads to a page", () => {
+		const broken = me.links.filter(({ url }) => isBroken(url));
+		expect(broken).toEqual([]);
+	});
+
+	test("every credits link resolves or is well formed", () => {
+		const broken = rolls
+			.flatMap(({ credits }) => credits)
+			.flatMap(({ url }) => (url ? [url] : []))
+			.filter(isBroken);
 		expect(broken).toEqual([]);
 	});
 
@@ -32,7 +52,7 @@ describe("site data", () => {
 		expect(me.descriptions.every((d) => d.length <= 13)).toBe(true);
 	});
 
-	test("every resume link points somewhere", () => {
+	test("every resume link is well formed", () => {
 		const urls = [
 			...resume.experiences.flatMap(({ url }) => (url ? [url] : [])),
 			...resume.sideQuests.flatMap(({ link }) => (link ? [link.url] : [])),
@@ -40,7 +60,7 @@ describe("site data", () => {
 				.flat()
 				.flatMap((s) => (typeof s === "string" ? [] : [s.url])),
 		];
-		expect(urls.filter((url) => !isReachable(url))).toEqual([]);
+		expect(urls.filter(isBroken)).toEqual([]);
 	});
 
 	test("every resume experience has content", () => {
@@ -67,10 +87,22 @@ describe("site data", () => {
 		}
 	});
 
-	test("every /uses entry links to a real app", () => {
+	test("every /uses link is well formed", () => {
 		const broken = [...hardware, ...uses, ...cli]
 			.flatMap(({ apps }) => apps)
-			.filter(({ url }) => url !== undefined && !isReachable(url));
+			.filter(({ url }) => url !== undefined && isBroken(url));
+		expect(broken).toEqual([]);
+	});
+
+	test("every project link is well formed", () => {
+		const broken = [
+			...projects,
+			...tinyProjects,
+			...NPMPackages,
+			...pastProjects,
+		]
+			.flatMap(({ links }) => Object.values(links))
+			.filter(isBroken);
 		expect(broken).toEqual([]);
 	});
 

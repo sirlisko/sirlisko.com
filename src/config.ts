@@ -26,15 +26,17 @@ export const ogCard = (page: keyof typeof OG_CARDS) => {
 export const BLOG_FEED = `${SITE_URL}/blog/rss.xml`;
 
 export const AUTHOR = {
+	// The blog's posts point their author here, so both sites describe one person.
+	id: `${SITE_URL}/#person`,
 	name: "Luca Lischetti",
 	alternateName: "sirlisko",
 	firstName: "Luca",
 	lastName: "Lischetti",
 	username: "sirlisko",
-	profiles: [
-		"https://github.com/sirlisko",
-		"https://linkedin.com/in/lucalischetti",
-	],
+	profiles: {
+		GitHub: "https://github.com/sirlisko",
+		LinkedIn: "https://www.linkedin.com/in/lucalischetti/",
+	},
 };
 
 export const ANALYTICS = {

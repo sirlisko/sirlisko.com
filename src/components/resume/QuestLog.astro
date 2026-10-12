@@ -1,5 +1,6 @@
 ---
 import type { Resume } from "../../../data/resume";
+import { AUTHOR } from "../../config";
 import Frame from "./Frame.astro";
 
 interface Props {
@@ -31,7 +32,7 @@ const { experiences, earlier } = Astro.props;
 	))}
 	<p class="earlier">
 		Earlier quests: {earlier.join(", ")}. Full log on{" "}
-		<a href="https://www.linkedin.com/in/lucalischetti/">LinkedIn</a>.
+		<a href={AUTHOR.profiles.LinkedIn}>LinkedIn</a>.
 	</p>
 </Frame>
 

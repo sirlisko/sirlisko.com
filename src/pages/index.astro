@@ -6,12 +6,13 @@ import Greeting from "../components/Greeting.astro";
 import Lamp from "../components/Lamp.astro";
 import Links from "../components/Links.astro";
 import SayCiao from "../components/SayCiao.astro";
-import { AUTHOR, SITE_URL } from "../config";
+import { AUTHOR, ogCard, SITE_URL } from "../config";
 import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout
-	keywords={me.keywords}
+	{...ogCard("home")}
+	title={AUTHOR.name}
 	themeColor={{ light: "#2eaed5", dark: "#051a22" }}
 >
 	<Ghost />
@@ -136,7 +137,7 @@ body {
 	body {
 		background-color: var(--gradient-home-night-color);
 		background-image: var(--gradient-home-night);
-		color: #e6f6fb;
+		color: var(--home-night-text);
 	}
 
 	.main-content {

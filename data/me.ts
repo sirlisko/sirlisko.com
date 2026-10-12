@@ -7,21 +7,12 @@ export interface Link {
 }
 
 export interface Me {
-	keywords: string[];
 	descriptions: string[];
 	email: string;
 	links: Link[];
 }
 
 const me = {
-	keywords: [
-		"Luca Lischetti",
-		"sirlisko",
-		"web developer",
-		"dreamer",
-		"8-bit",
-		"super hero",
-	],
 	descriptions: [
 		"developer",
 		"8-bit lover",
