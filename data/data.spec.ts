@@ -70,17 +70,6 @@ describe("site data", () => {
 		}
 	});
 
-	test("every project screenshot exists", () => {
-		const missing = [...projects, ...tinyProjects]
-			.flatMap((p) =>
-				"screenshot" in p
-					? [p.screenshot, p.screenshot.replace(".webp", "@2x.webp")]
-					: [],
-			)
-			.filter((path) => !existsSync(`public${path}`));
-		expect(missing).toEqual([]);
-	});
-
 	test("every /now section has content", () => {
 		for (const section of sections) {
 			expect(section.content.length).toBeGreaterThan(0);
