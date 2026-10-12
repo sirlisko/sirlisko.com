@@ -98,12 +98,12 @@ export const uses = [
 	},
 	{
 		category: "code editor",
-		apps: [{ name: "VSCode", url: "https://code.visualstudio.com" }],
+		apps: [{ name: "VS Code", url: "https://code.visualstudio.com" }],
 	},
 	{
 		category: "terminal",
 		apps: [{ name: "iTerm2", url: "https://iterm2.com" }],
-		note: "Snazzy theme, Fira Code Nerd Font.",
+		note: "Snazzy theme, FiraCode Nerd Font Mono.",
 	},
 	{
 		category: "git client",
@@ -128,7 +128,7 @@ export const uses = [
 	},
 	{
 		category: "mail service",
-		apps: [{ name: "FastMail", url: "https://www.fastmail.com" }],
+		apps: [{ name: "Fastmail", url: "https://www.fastmail.com" }],
 		note: "Masked emails + tight 1Password integration.",
 	},
 	{
