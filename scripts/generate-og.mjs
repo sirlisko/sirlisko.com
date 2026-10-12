@@ -10,34 +10,42 @@ const SIZE = { width: 1200, height: 630 };
 const TEXT = JSON.parse(readFileSync("data/og.json", "utf8"));
 
 // Each card wears its page's game, so a shared link already hints at what's behind it.
+// Colours are the site's own palette tokens, inlined into every card below.
 const THEMES = {
+	home: {
+		bg: "var(--gradient-home-color)",
+		fg: "#000",
+		accent: "#000",
+	},
 	now: {
 		bg: "#000",
-		fg: "#fff",
-		accent: "#ffe14d",
+		fg: "var(--white)",
+		accent: "var(--pac-yellow)",
 		pellets: true,
 	},
 	projects: {
 		bg: "#000",
-		fg: "#fcfcfc",
-		accent: "#f83800",
+		fg: "var(--nes-white)",
+		accent: "var(--nes-red)",
 	},
 	uses: {
 		bg: "#000",
-		fg: "#eff0eb",
-		accent: "#5af78e",
+		fg: "var(--snazzy-fg)",
+		accent: "var(--snazzy-green)",
 	},
 	resume: {
-		bg: "#2f4a3a",
-		fg: "#fff",
-		accent: "#ffd166",
+		bg: "var(--sheet-felt)",
+		fg: "var(--white)",
+		accent: "var(--blueprint-gold)",
 	},
 	credits: {
 		bg: "#000",
-		fg: "#fcfcfc",
-		accent: "#f8d878",
+		fg: "var(--nes-white)",
+		accent: "var(--nes-yellow)",
 	},
 };
+
+const TOKENS = readFileSync("src/styles/tokens.css", "utf8");
 
 const dataUri = (path, type) =>
 	`data:${type};base64,${readFileSync(path).toString("base64")}`;
@@ -57,6 +65,7 @@ const html = ({ title, tagline, bg, fg, accent, pellets }) => `<!doctype html>
 <html>
 <head>
 <style>
+${TOKENS}
 @font-face { font-family: "Press Start 2P"; src: url(${DISPLAY}); }
 @font-face { font-family: "IBM Plex Mono"; src: url(${MONO}); }
 * { box-sizing: border-box; }
@@ -79,7 +88,7 @@ p { margin: 0; font: 400 34px/1.4 "IBM Plex Mono"; opacity: 0.9; }
 .site { font: 400 20px "Press Start 2P"; color: ${accent}; }
 .pellets {
 	height: 16px;
-	background-image: radial-gradient(circle, #ffb8ae 5px, transparent 5.5px);
+	background-image: radial-gradient(circle, var(--pac-pellet) 5px, transparent 5.5px);
 	background-size: 40px 16px;
 }
 </style>

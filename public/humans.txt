@@ -7,5 +7,5 @@
 
 
 /* SITE */
-  Language: English / Italian
+  Language: English
   Doctype: HTML5

@@ -28,6 +28,15 @@ const mount = () => {
 	};
 };
 
+// jsdom ships no matchMedia: a mouse and no motion preference, unless a test says otherwise.
+const stubMedia = ({ touch = false, reducedMotion = false } = {}) =>
+	vi.stubGlobal(
+		"matchMedia",
+		vi.fn((query: string) => ({
+			matches: query.includes("reduced-motion") ? reducedMotion : !touch,
+		})),
+	);
+
 const moveMouse = (clientX: number, clientY: number) => {
 	document.dispatchEvent(new MouseEvent("mousemove", { clientX, clientY }));
 	vi.advanceTimersByTime(100);
@@ -36,16 +45,13 @@ const moveMouse = (clientX: number, clientY: number) => {
 describe("ghost", () => {
 	beforeEach(() => {
 		vi.useFakeTimers();
+		stubMedia();
 	});
 
 	afterEach(() => {
 		vi.useRealTimers();
+		vi.unstubAllGlobals();
 		document.body.innerHTML = "";
-		Object.defineProperty(window, "ontouchstart", {
-			value: undefined,
-			configurable: true,
-		});
-		delete (window as { ontouchstart?: unknown }).ontouchstart;
 	});
 
 	test("starts off-screen with all lives", () => {
@@ -143,10 +149,7 @@ describe("ghost", () => {
 	});
 
 	test("does not follow the mouse on touch devices", () => {
-		Object.defineProperty(window, "ontouchstart", {
-			value: null,
-			configurable: true,
-		});
+		stubMedia({ touch: true });
 		const { sprite } = mount();
 		initGhost();
 
@@ -156,17 +159,13 @@ describe("ghost", () => {
 	});
 
 	test("does not follow the mouse when reduced motion is requested", () => {
-		vi.stubGlobal(
-			"matchMedia",
-			vi.fn(() => ({ matches: true })),
-		);
+		stubMedia({ reducedMotion: true });
 		const { sprite } = mount();
 		initGhost();
 
 		moveMouse(100, 200);
 
 		expect(sprite.style.left).toBe("-164px");
-		vi.unstubAllGlobals();
 	});
 
 	test("detaches its listeners on cleanup", () => {

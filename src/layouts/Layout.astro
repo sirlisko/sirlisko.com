@@ -12,11 +12,12 @@ import { ANALYTICS, AUTHOR, BLOG_FEED, SITE, SITE_URL } from "../config";
 const jsonLd = {
 	"@context": "https://schema.org",
 	"@type": "Person",
+	"@id": AUTHOR.id,
 	name: AUTHOR.name,
 	alternateName: AUTHOR.alternateName,
 	url: SITE_URL,
 	image: SITE.image,
-	sameAs: AUTHOR.profiles,
+	sameAs: Object.values(AUTHOR.profiles),
 };
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site)
@@ -31,7 +32,6 @@ interface Props {
 	image?: string;
 	imageWidth?: number;
 	imageHeight?: number;
-	keywords?: string[];
 	imageAlt?: string;
 	ogType?: "website" | "profile";
 	noindex?: boolean;
@@ -49,7 +49,6 @@ const {
 	imageWidth = image ? undefined : SITE.imageWidth,
 	imageHeight = image ? undefined : SITE.imageHeight,
 	imageAlt,
-	keywords,
 	ogType,
 	noindex,
 	theme,
@@ -105,7 +104,6 @@ const formattedTitle = title ? `${title} | ${SITE.title}` : SITE.title;
 		<meta name="twitter:description" content={metaDescription}>
 		<meta name="twitter:image" content={image || SITE.image}>
 		<meta name="twitter:image:alt" content={imageAlt || SITE.imageAlt}>
-		{keywords && keywords.length > 0 ? (    <meta name="keywords" content={keywords.join(`, `)} />  ) : null}
 		<link type="text/plain" rel="author" href={`${SITE_URL}/humans.txt`}>
 		<link
 			rel="alternate"
@@ -113,7 +111,7 @@ const formattedTitle = title ? `${title} | ${SITE.title}` : SITE.title;
 			title="sirlisko blog"
 			href={BLOG_FEED}
 		>
-		{AUTHOR.profiles.map((profile) => <link rel="me" href={profile} />)}
+		{Object.values(AUTHOR.profiles).map((profile) => <link rel="me" href={profile} />)}
 		<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 		<link rel="preconnect" href={analyticsOrigin}>
 		<ClientRouter />
