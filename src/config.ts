@@ -33,10 +33,10 @@ export const AUTHOR = {
 	firstName: "Luca",
 	lastName: "Lischetti",
 	username: "sirlisko",
-	profiles: [
-		"https://github.com/sirlisko",
-		"https://linkedin.com/in/lucalischetti",
-	],
+	profiles: {
+		GitHub: "https://github.com/sirlisko",
+		LinkedIn: "https://www.linkedin.com/in/lucalischetti/",
+	},
 };
 
 export const ANALYTICS = {

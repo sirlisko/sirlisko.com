@@ -9,7 +9,7 @@ import {
 import FaceLink from "../components/FaceLink.astro";
 import Links from "../components/Links.astro";
 import Section from "../components/projects/Section.astro";
-import { ogCard } from "../config";
+import { AUTHOR, ogCard } from "../config";
 import Layout from "../layouts/Layout.astro";
 ---
 
@@ -50,7 +50,7 @@ import Layout from "../layouts/Layout.astro";
 			<p>
 				Older experiments live on{" "}
 				<a
-					href="https://github.com/sirlisko"
+					href={AUTHOR.profiles.GitHub}
 					target="_blank"
 					rel="noopener noreferrer"
 					>GitHub</a

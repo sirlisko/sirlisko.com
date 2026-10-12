@@ -17,7 +17,7 @@ const jsonLd = {
 	alternateName: AUTHOR.alternateName,
 	url: SITE_URL,
 	image: SITE.image,
-	sameAs: AUTHOR.profiles,
+	sameAs: Object.values(AUTHOR.profiles),
 };
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site)
@@ -114,7 +114,7 @@ const formattedTitle = title ? `${title} | ${SITE.title}` : SITE.title;
 			title="sirlisko blog"
 			href={BLOG_FEED}
 		>
-		{AUTHOR.profiles.map((profile) => <link rel="me" href={profile} />)}
+		{Object.values(AUTHOR.profiles).map((profile) => <link rel="me" href={profile} />)}
 		<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 		<link rel="preconnect" href={analyticsOrigin}>
 		<ClientRouter />

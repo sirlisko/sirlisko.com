@@ -1,5 +1,6 @@
 ---
 import me from "../../../data/me";
+import { AUTHOR, SITE_URL } from "../../config";
 import Qr from "../../images/qr-code.svg";
 
 // The phone number must never reach the public build: only `pnpm generate:cv`
@@ -8,11 +9,7 @@ const phoneNumber = import.meta.env.CV_BUILD
 	? import.meta.env.PHONE_NUMBER
 	: undefined;
 
-const contacts = [
-	["GitHub", "https://github.com/sirlisko"],
-	["LinkedIn", "https://linkedin.com/in/lucalischetti/"],
-	["Website", "https://sirlisko.com"],
-];
+const contacts = [...Object.entries(AUTHOR.profiles), ["Website", SITE_URL]];
 ---
 
 <footer class="contacts">
