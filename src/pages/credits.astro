@@ -33,7 +33,11 @@ const external = (url: string) =>
 							<dt>{credit.role}</dt>
 							<dd>
 								{credit.url ? (
-									<a href={credit.url} {...external(credit.url)}>
+									<a
+										href={credit.url}
+										data-astro-reload={credit.reload}
+										{...external(credit.url)}
+									>
 										{credit.name}
 									</a>
 								) : (

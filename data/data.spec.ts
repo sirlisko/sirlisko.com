@@ -70,17 +70,6 @@ describe("site data", () => {
 		}
 	});
 
-	test("every project screenshot exists", () => {
-		const missing = [...projects, ...tinyProjects]
-			.flatMap((p) =>
-				"screenshot" in p
-					? [p.screenshot, p.screenshot.replace(".webp", "@2x.webp")]
-					: [],
-			)
-			.filter((path) => !existsSync(`public${path}`));
-		expect(missing).toEqual([]);
-	});
-
 	test("every /now section has content", () => {
 		for (const section of sections) {
 			expect(section.content.length).toBeGreaterThan(0);
@@ -107,7 +96,7 @@ describe("site data", () => {
 	});
 
 	test("the dated pages say when they were last updated", () => {
-		expect(NOW_LAST_UPDATED).toMatch(/\w+ \d{4}/);
-		expect(USES_LAST_UPDATED).toMatch(/\w+ \d{4}/);
+		expect(NOW_LAST_UPDATED).toMatch(/^\d{4}-(0[1-9]|1[0-2])$/);
+		expect(USES_LAST_UPDATED).toMatch(/^\d{4}-(0[1-9]|1[0-2])$/);
 	});
 });

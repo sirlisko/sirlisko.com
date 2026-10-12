@@ -7,6 +7,7 @@ import Maze from "../components/now/Maze.astro";
 import Trail from "../components/now/Trail.astro";
 import { ogCard } from "../config";
 import Layout from "../layouts/Layout.astro";
+import { formatMonth } from "../lib/month";
 ---
 
 <Layout
@@ -22,7 +23,12 @@ import Layout from "../layouts/Layout.astro";
 		<header>
 			<div class="stats">
 				<p><span class="key">Loc</span> London, UK</p>
-				<p><span class="key">Date</span> {NOW_LAST_UPDATED}</p>
+				<p>
+					<span class="key">Date</span>{" "}
+					<time datetime={NOW_LAST_UPDATED}
+						>{formatMonth(NOW_LAST_UPDATED)}</time
+					>
+				</p>
 			</div>
 			<h1>/now</h1>
 			<p class="intro">
