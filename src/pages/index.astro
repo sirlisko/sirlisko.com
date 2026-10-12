@@ -10,7 +10,11 @@ import { AUTHOR, ogCard, SITE_URL } from "../config";
 import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout {...ogCard("home")} themeColor={{ light: "#2eaed5", dark: "#051a22" }}>
+<Layout
+	{...ogCard("home")}
+	title={AUTHOR.name}
+	themeColor={{ light: "#2eaed5", dark: "#051a22" }}
+>
 	<Ghost />
 	<div class="page-container h-card">
 		<data class="p-name" value={AUTHOR.name}></data>
