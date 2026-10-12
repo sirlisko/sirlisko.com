@@ -10,7 +10,8 @@ export interface UsesItem {
 }
 
 export const USES_SOURCE = "https://sirlisko.com/blog/my-default-apps-2024";
-export const USES_LAST_UPDATED = "September 2026";
+/** Year and month, as a `<time datetime>` takes it. */
+export const USES_LAST_UPDATED = "2026-09";
 export const DOTFILES_SOURCE = "https://github.com/sirlisko/dotfiles";
 
 export const hardware = [

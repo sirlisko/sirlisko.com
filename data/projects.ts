@@ -15,6 +15,7 @@ interface ProjectWithIcon extends BaseProject {
 	icon: IconName;
 }
 interface ProjectWithScreenshot extends BaseProject {
+	/** File name in src/images/projects, without the extension. */
 	screenshot: string;
 }
 
@@ -27,7 +28,7 @@ export const projects = [
 			"Story-driven treasure hunts played on your phone. No app, no account, just a link.",
 			"A studio for writing hunts with riddles, QR codes, GPS and photo steps, and a player for walking them.",
 		],
-		screenshot: "/images/projects/screens/talelock.webp",
+		screenshot: "talelock",
 		links: {
 			Website: "https://talelock.com",
 		},
@@ -47,7 +48,7 @@ export const projects = [
 			"A live 3D Moon showing its real phase and position from where you stand, plus a lunar calendar.",
 			"Textured with NASA imagery, with the phase and position calculated rather than fetched.",
 		],
-		screenshot: "/images/projects/screens/moon.webp",
+		screenshot: "moon",
 		links: {
 			Website: "https://moon.sirlisko.com",
 			Github: "https://github.com/sirlisko/moon",
@@ -60,7 +61,7 @@ export const projects = [
 			"Is it raining in London right now? Probably not.",
 			'A live answer plus a year of real rainfall data comparing London with cities around the world, with a "near you" card from IP geolocation.',
 		],
-		screenshot: "/images/projects/screens/rainylondon.webp",
+		screenshot: "rainylondon",
 		links: {
 			Website: "https://rainylondon.sirlisko.com",
 			Github: "https://github.com/sirlisko/rainyLondon",
@@ -73,7 +74,7 @@ export const projects = [
 			"Predicts the setlist for an upcoming gig and builds you a Spotify playlist.",
 			"Mashes up recent setlists from third-party music APIs into a predicted running order, showing how often each song gets played.",
 		],
-		screenshot: "/images/projects/screens/gigplaylist.webp",
+		screenshot: "gigplaylist",
 		links: {
 			Website: "https://gigplaylist.sirlisko.com",
 			Github: "https://github.com/sirlisko/gigplaylist",
@@ -95,7 +96,7 @@ export const projects = [
 			"Customisable countdowns for future and past events.",
 			"Yearly rollovers, progress bars, obfuscated share links, calendar export, and Open Graph previews rendered on the edge.",
 		],
-		screenshot: "/images/projects/screens/countdown.webp",
+		screenshot: "countdown",
 		links: {
 			Website: "https://countdown.sirlisko.com/",
 			Github: "https://github.com/sirlisko/countdown",
@@ -108,7 +109,7 @@ export const projects = [
 			"Track the countries you've visited on an interactive world map.",
 			"Every map gets a public profile you can share, like /@luca.",
 		],
-		screenshot: "/images/projects/screens/been.webp",
+		screenshot: "been",
 		links: {
 			Website: "https://been.sirlisko.com/@luca",
 			Github: "https://github.com/sirlisko/been",
@@ -128,7 +129,7 @@ export const projects = [
 			"Companion site for an Italian Curse of Strahd D&D campaign, with a recap written from every session's recording.",
 			"Parakeet transcribes the audio on the Neural Engine, then Claude Code runs headless to write the session journal and update characters, NPCs and places.",
 		],
-		screenshot: "/images/projects/screens/strahd.webp",
+		screenshot: "strahd",
 		links: {
 			Website: "https://strahd.ogreballerino.com",
 			Github: "https://github.com/sirlisko/strahd",
@@ -141,7 +142,7 @@ export const projects = [
 			"Assign a GIF to every day of the year. Your year, in GIFs.",
 			"Search GIPHY for the right one, and your year syncs across devices.",
 		],
-		screenshot: "/images/projects/screens/gifday.webp",
+		screenshot: "gifday",
 		links: {
 			Website: "https://gifday.sirlisko.com/",
 			Github: "https://github.com/sirlisko/gifday",
@@ -161,7 +162,7 @@ export const projects = [
 			"Any Iconify icon, redrawn as crisp pixel art.",
 			"Browse 200+ icon sets, tune the grid, edit pixels and export SVGs, a sprite or a PNG sheet.",
 		],
-		screenshot: "/images/projects/screens/pixelicons.webp",
+		screenshot: "pixelicons",
 		links: {
 			Website: "https://pixelicons.sirlisko.com",
 			Github: "https://github.com/sirlisko/pixelicons",
@@ -189,7 +190,7 @@ export const tinyProjects = [
 			"Pick a spot in any photo and get a zoom-in meme, as a stacked image or a GIF.",
 			"Runs entirely in the browser: canvas for the frames, gifenc for the animation, and your photo never leaves your device.",
 		],
-		screenshot: "/images/projects/screens/zoommeme.webp",
+		screenshot: "zoommeme",
 		links: {
 			Website: "https://zoomme.me",
 			Github: "https://github.com/sirlisko/zoommeme",
@@ -217,7 +218,7 @@ export const tinyProjects = [
 			"A personal log of every pizza eaten around the world. Because someone has to.",
 			"A map and stats for every pizzeria visited.",
 		],
-		screenshot: "/images/projects/screens/pizzaclub.webp",
+		screenshot: "pizzaclub",
 		links: {
 			Website: "https://pizzaclub.sirlisko.com/",
 			Github: "https://github.com/sirlisko/pizzaclub",
@@ -230,7 +231,7 @@ export const tinyProjects = [
 			"Can I have a cappuccino right now? The Italian verdict, updated every minute.",
 			"One static page, in English and Italian, with the rules of Italian coffee etiquette.",
 		],
-		screenshot: "/images/projects/screens/cappuccino.webp",
+		screenshot: "cappuccino",
 		links: {
 			Website: "https://cappuccino.sirlisko.com",
 		},
