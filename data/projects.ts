@@ -159,7 +159,7 @@ export const projects = [
 		title: "pixelicons",
 		description: [
 			"Any Iconify icon, redrawn as crisp pixel art.",
-			"Browse 200+ icon sets, tune the grid, fix pixand export SVGs, a sprite or a PNG sheet.",
+			"Browse 200+ icon sets, tune the grid, edit pixels and export SVGs, a sprite or a PNG sheet.",
 		],
 		screenshot: "/images/projects/screens/pixelicons.webp",
 		links: {
