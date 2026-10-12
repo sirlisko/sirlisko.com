@@ -96,7 +96,7 @@ describe("site data", () => {
 	});
 
 	test("the dated pages say when they were last updated", () => {
-		expect(NOW_LAST_UPDATED).toMatch(/\w+ \d{4}/);
-		expect(USES_LAST_UPDATED).toMatch(/\w+ \d{4}/);
+		expect(NOW_LAST_UPDATED).toMatch(/^\d{4}-(0[1-9]|1[0-2])$/);
+		expect(USES_LAST_UPDATED).toMatch(/^\d{4}-(0[1-9]|1[0-2])$/);
 	});
 });
