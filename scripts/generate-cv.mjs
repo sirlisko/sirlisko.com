@@ -21,6 +21,7 @@ const detectBaseUrl = (proc, timeout = 15000) =>
 		let output = "";
 		const timer = setTimeout(() => {
 			proc.stdout.off("data", onData);
+			proc.stderr.off("data", onData);
 			reject(
 				new Error(
 					`Preview server did not report a port within ${timeout}ms:\n${output}`,
@@ -29,14 +30,18 @@ const detectBaseUrl = (proc, timeout = 15000) =>
 		}, timeout);
 		const onData = (chunk) => {
 			output += chunk.toString();
-			const match = output.match(/localhost:(\d+)/);
+			// The server's own "Local" line, not one it started alongside.
+			const match = output.match(/Local\s+http:\/\/localhost:(\d+)/);
 			if (match) {
 				clearTimeout(timer);
 				proc.stdout.off("data", onData);
+				proc.stderr.off("data", onData);
 				resolve(`http://localhost:${match[1]}`);
 			}
 		};
+		// Astro reports a refusal to start on stderr, so read both.
 		proc.stdout.on("data", onData);
+		proc.stderr.on("data", onData);
 	});
 
 const compress = (filePath) => {
@@ -143,8 +148,11 @@ const withPreview = async (env, run) => {
 	execSync("pnpm build", { stdio: "inherit", env: { ...process.env, ...env } });
 
 	console.log("Starting preview server...");
-	const server = spawn("pnpm", ["preview"], {
-		stdio: ["ignore", "pipe", "ignore"],
+	// --ignore-lock keeps the server in the foreground, where the kill below
+	// reaches it: Astro backgrounds a locked preview when an agent runs it,
+	// and refuses to start one while another is up.
+	const server = spawn("pnpm", ["exec", "astro", "preview", "--ignore-lock"], {
+		stdio: ["ignore", "pipe", "pipe"],
 		detached: true,
 	});
 	try {
