@@ -12,6 +12,7 @@ import { ANALYTICS, AUTHOR, BLOG_FEED, SITE, SITE_URL } from "../config";
 const jsonLd = {
 	"@context": "https://schema.org",
 	"@type": "Person",
+	"@id": AUTHOR.id,
 	name: AUTHOR.name,
 	alternateName: AUTHOR.alternateName,
 	url: SITE_URL,
