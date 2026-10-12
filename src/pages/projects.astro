@@ -62,15 +62,7 @@ import Layout from "../layouts/Layout.astro";
 </Layout>
 
 <style>
-/* Colours from the NES palette, as the bootleg multicart menus used them. */
 .cart {
-	--nes-white: #fcfcfc;
-	--nes-grey: #8c8c8c;
-	--nes-red: #f83800;
-	--nes-orange: #fca044;
-	--nes-yellow: #f8d878;
-	--nes-blue: #3cbcfc;
-	--body: #c8c8c8;
 	max-width: 1080px;
 	margin: 0 auto;
 	font-family: var(--font-mono);
@@ -96,7 +88,7 @@ header {
 
 	p {
 		margin: 1.75rem 0 0;
-		color: var(--body);
+		color: var(--nes-silver);
 	}
 }
 
@@ -107,7 +99,7 @@ header {
 	p {
 		margin: 1.25rem 0 0;
 		font-size: 15px;
-		color: var(--body);
+		color: var(--nes-silver);
 	}
 
 	p a {

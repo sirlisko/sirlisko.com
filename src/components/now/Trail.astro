@@ -79,7 +79,7 @@ document.addEventListener("astro:page-load", () => {
 	transform: translateX(var(--eat));
 
 	&:focus-visible {
-		outline: 3px solid #ffe14d;
+		outline: 3px solid var(--pac-yellow);
 		outline-offset: 3px;
 	}
 
@@ -90,7 +90,7 @@ document.addEventListener("astro:page-load", () => {
 		left: 0;
 		width: 100%;
 		height: 50%;
-		background: #ffe14d;
+		background: var(--pac-yellow);
 	}
 
 	&::before {
@@ -121,7 +121,11 @@ document.addEventListener("astro:page-load", () => {
 .pellets {
 	flex: 1;
 	height: 12px;
-	background-image: radial-gradient(circle, #ffb8ae 3px, transparent 3.5px);
+	background-image: radial-gradient(
+		circle,
+		var(--pac-pellet) 3px,
+		transparent 3.5px
+	);
 	background-size: 28px 12px;
 	/* Offset by the gap between the pacman's centre and the first pellet's leading edge. */
 	clip-path: inset(0 0 0 max(0px, var(--eat) - 23px));
@@ -132,7 +136,7 @@ document.addEventListener("astro:page-load", () => {
 	width: 16px;
 	height: 16px;
 	border-radius: 50%;
-	background: #ffb8ae;
+	background: var(--pac-pellet);
 
 	[data-state="cleared"] & {
 		visibility: hidden;

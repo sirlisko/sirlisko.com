@@ -82,7 +82,7 @@ document.addEventListener("astro:page-load", () => {
 	text-align: center;
 	font-family: var(--font-mono);
 	font-size: 16px;
-	color: #fcfcfc;
+	color: var(--nes-white);
 
 	/* Credits fade in from the bottom of the screen and out at the top. */
 	&::before,
@@ -119,7 +119,7 @@ header {
 
 	p {
 		margin: 0;
-		color: #c8c8c8;
+		color: var(--nes-silver);
 	}
 }
 
@@ -133,7 +133,7 @@ h2 {
 	font-weight: 400;
 	font-size: 16px;
 	line-height: 1.5;
-	color: #f8d878;
+	color: var(--nes-yellow);
 }
 
 dl {
@@ -160,11 +160,11 @@ a {
 	text-underline-offset: 0.25em;
 
 	&:hover {
-		color: #f8d878;
+		color: var(--nes-yellow);
 	}
 
 	&:focus-visible {
-		outline: 3px solid #f8d878;
+		outline: 3px solid var(--nes-yellow);
 		outline-offset: 3px;
 	}
 }
@@ -179,7 +179,7 @@ a {
 
 	p {
 		margin: 0;
-		color: #c8c8c8;
+		color: var(--nes-silver);
 	}
 }
 
@@ -189,7 +189,7 @@ a {
 	line-height: 1.5;
 
 	.end & {
-		color: #fcfcfc;
+		color: var(--nes-white);
 	}
 }
 
@@ -197,7 +197,7 @@ a {
 	font-family: var(--font-display);
 	font-size: 16px;
 	text-decoration: none;
-	color: #f8d878;
+	color: var(--nes-yellow);
 	animation: blink 1.2s step-end infinite;
 
 	&:hover,

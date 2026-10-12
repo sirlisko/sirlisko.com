@@ -88,7 +88,7 @@ header {
 .key {
 	display: inline-block;
 	font-family: var(--font-display);
-	color: #ffe14d;
+	color: var(--pac-yellow);
 	margin-right: 0.5rem;
 
 	/* As wide as the longest key, so the values line up when the stats stack. */
@@ -118,14 +118,14 @@ h1 {
 }
 
 header p {
-	color: #e4e4e4;
+	color: var(--pac-text);
 }
 
 .coin {
 	margin-top: 3.5rem;
 	text-align: center;
 	font-size: 16px;
-	color: #e4e4e4;
+	color: var(--pac-text);
 
 	p {
 		margin: 0;
@@ -135,18 +135,18 @@ header p {
 .coin .credit {
 	margin-bottom: 1rem;
 	font-family: var(--font-display);
-	color: #ffe14d;
+	color: var(--pac-yellow);
 }
 
 :is(.intro, .coin) a {
-	color: #ffe14d;
+	color: var(--pac-yellow);
 
 	&:hover {
 		color: var(--white);
 	}
 
 	&:focus-visible {
-		outline: 3px solid #ffe14d;
+		outline: 3px solid var(--pac-yellow);
 		outline-offset: 3px;
 	}
 }

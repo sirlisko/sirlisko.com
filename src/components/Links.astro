@@ -65,8 +65,8 @@ const attrs = (link: Link) =>
 	--accent: #000;
 	--pause-bg: #000;
 	--pause-fg: #fff;
-	--pause-title: #f8d878;
-	--pause-accent: #f8d878;
+	--pause-title: var(--nes-yellow);
+	--pause-accent: var(--nes-yellow);
 	--cursor: "▶";
 	/* Labels are all lowercase, so glyphs that centre on the em box read high. */
 	--cursor-nudge: 0em;
@@ -83,49 +83,49 @@ const attrs = (link: Link) =>
 
 @media (prefers-color-scheme: dark) {
 	.nav[data-game="home"] {
-		--fg: #e6f6fb;
+		--fg: var(--home-night-text);
 		--accent: rgb(var(--lamp));
 	}
 }
 
 .nav[data-game="now"] {
-	--fg: #dedeff;
-	--accent: #ffe737;
-	--pause-title: #ffe737;
-	--pause-accent: #ffe737;
+	--fg: var(--pac-menu);
+	--accent: var(--pac-yellow);
+	--pause-title: var(--pac-yellow);
+	--pause-accent: var(--pac-yellow);
 	--cursor-nudge: 0.125em;
 }
 
 .nav[data-game="projects"] {
-	--fg: #fcfcfc;
-	--accent: #f83800;
-	--pause-accent: #f83800;
+	--fg: var(--nes-white);
+	--accent: var(--nes-red);
+	--pause-accent: var(--nes-red);
 }
 
 .nav[data-game="uses"] {
-	--fg: #eff0eb;
-	--accent: #5af78e;
-	--pause-bg: #282a36;
-	--pause-fg: #eff0eb;
-	--pause-title: #f3f99d;
-	--pause-accent: #5af78e;
+	--fg: var(--snazzy-fg);
+	--accent: var(--snazzy-green);
+	--pause-bg: var(--snazzy-bg);
+	--pause-fg: var(--snazzy-fg);
+	--pause-title: var(--snazzy-yellow);
+	--pause-accent: var(--snazzy-green);
 	--cursor: ">";
 	--cursor-nudge: 0.2em;
 }
 
 .nav[data-game="resume"] {
-	--fg: #fff;
-	--accent: #ffd166;
-	--pause-bg: #fff;
-	--pause-fg: #111;
-	--pause-title: #8f1d1d;
-	--pause-accent: #8f1d1d;
+	--fg: var(--white);
+	--accent: var(--blueprint-gold);
+	--pause-bg: var(--sheet-paper);
+	--pause-fg: var(--sheet-ink);
+	--pause-title: var(--sheet-blood);
+	--pause-accent: var(--sheet-blood);
 	--cursor: "✦";
 }
 
 .nav[data-game="credits"] {
-	--fg: #fcfcfc;
-	--accent: #f8d878;
+	--fg: var(--nes-white);
+	--accent: var(--nes-yellow);
 }
 
 .menu {

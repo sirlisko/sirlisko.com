@@ -6,9 +6,55 @@
 	--font-display: "Press Start 2P", monospace;
 	--font-mono: "IBM Plex Mono", monospace;
 
+	/*
+	 * Each page is a different game. Its palette lives here so the page, its
+	 * menu (Links.astro) and its share card (scripts/generate-og.mjs) agree.
+	 */
+
+	/* Home: a sky by day, a lamp-lit room at night. */
 	--gradient-home-color: #2eaed5;
 	--gradient-home: radial-gradient(circle, #6bd3e4, #2eaed5);
 	--gradient-home-night-color: #051a22;
 	--gradient-home-night: radial-gradient(circle, #0d3a4a, #051a22);
+	--home-night-text: #e6f6fb;
 	--lamp: 255 228 168;
+
+	/* /now: Pac-Man. */
+	--pac-yellow: #ffe14d;
+	--pac-pellet: #ffb8ae;
+	--pac-maze: #2121de;
+	--pac-text: #e4e4e4;
+	--pac-menu: #dedeff;
+
+	/* /projects and /credits: the NES palette, as bootleg multicart menus used it. */
+	--nes-white: #fcfcfc;
+	--nes-silver: #c8c8c8;
+	--nes-grey: #8c8c8c;
+	--nes-red: #f83800;
+	--nes-orange: #fca044;
+	--nes-yellow: #f8d878;
+	--nes-blue: #3cbcfc;
+
+	/* /uses: Snazzy, the iTerm2 theme it all actually runs in. */
+	--snazzy-bg: #282a36;
+	--snazzy-fg: #eff0eb;
+	--snazzy-green: #5af78e;
+	--snazzy-yellow: #f3f99d;
+	--snazzy-blue: #57c7ff;
+	--snazzy-dim: #9799a8;
+
+	/* /resume: a character sheet on a felt table by day, a blueprint at night. */
+	--sheet-felt: #2f4a3a;
+	--sheet-paper: #fff;
+	--sheet-ink: #111;
+	--sheet-blood: #8f1d1d;
+	--sheet-faded: #555;
+	--blueprint-felt: #0b2440;
+	--blueprint-paper: #1d4e89;
+	--blueprint-ink: #eaf2ff;
+	--blueprint-gold: #ffd166;
+	--blueprint-faded: #a9c7ec;
+
+	/* 404 */
+	--game-over: #ff4d55;
 }
