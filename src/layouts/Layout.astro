@@ -7,17 +7,37 @@ import "@fontsource/ibm-plex-mono/latin-600.css";
 import "../styles/tokens.css";
 import "../styles/shared.css";
 import { ClientRouter } from "astro:transitions";
-import { ANALYTICS, AUTHOR, BLOG_FEED, SITE, SITE_URL } from "../config";
+import {
+	ANALYTICS,
+	AUTHOR,
+	BLOG_FEED,
+	SITE,
+	SITE_DOMAIN,
+	SITE_URL,
+} from "../config";
 
 const jsonLd = {
 	"@context": "https://schema.org",
-	"@type": "Person",
-	"@id": AUTHOR.id,
-	name: AUTHOR.name,
-	alternateName: AUTHOR.alternateName,
-	url: SITE_URL,
-	image: SITE.image,
-	sameAs: Object.values(AUTHOR.profiles),
+	"@graph": [
+		{
+			"@type": "Person",
+			"@id": AUTHOR.id,
+			name: AUTHOR.name,
+			alternateName: AUTHOR.alternateName,
+			url: SITE_URL,
+			image: SITE.image,
+			sameAs: Object.values(AUTHOR.profiles),
+		},
+		{
+			"@type": "WebSite",
+			"@id": `${SITE_URL}/#website`,
+			name: SITE.title,
+			// Google's site name picks from these, so searching the full name still finds the site.
+			alternateName: [AUTHOR.name, SITE_DOMAIN],
+			url: SITE_URL,
+			publisher: { "@id": AUTHOR.id },
+		},
+	],
 };
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site)
