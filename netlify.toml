@@ -5,6 +5,33 @@ publish = "dist"
 [build.environment]
   NODE_VERSION = "24"
 
+# The blog's old URLs. They live here because the proxy below follows the
+# blog site's own redirects instead of passing them on.
+[[redirects]]
+from = "/blog/the-invariant-pattern---cleaner-typescript-with-assertion-functions"
+to = "/blog/the-invariant-pattern-cleaner-typescript-with-assertion-functions"
+status = 301
+
+[[redirects]]
+from = "/blog/my-default-apps-at-the-end-of-2024"
+to = "/blog/my-default-apps-2024"
+status = 301
+
+[[redirects]]
+from = "/blog/tags/code"
+to = "/blog/tags/dev"
+status = 301
+
+[[redirects]]
+from = "/blog/posts"
+to = "/blog"
+status = 301
+
+[[redirects]]
+from = "/blog/about"
+to = "/"
+status = 301
+
 [[redirects]]
 from = "/blog/*"
 to = "https://sirlisko-blog.netlify.app/:splat"
