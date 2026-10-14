@@ -24,6 +24,8 @@ const jsonLd = {
 			"@id": AUTHOR.id,
 			name: AUTHOR.name,
 			alternateName: AUTHOR.alternateName,
+			jobTitle: AUTHOR.jobTitle,
+			description: SITE.description,
 			url: SITE_URL,
 			image: SITE.image,
 			sameAs: Object.values(AUTHOR.profiles),
@@ -98,7 +100,7 @@ const formattedTitle = title ? `${title} | ${SITE.title}` : SITE.title;
 		<meta name="color-scheme" content={colorScheme}>
 		<link rel="manifest" href="/manifest.json">
 		<link rel="apple-touch-icon" href="/images/icons/icon-192x192.png">
-		<link rel="canonical" href={canonicalURL}>
+		{!noindex && <link rel="canonical" href={canonicalURL} />}
 		<link
 			rel="preload"
 			href={pressStart2p}
@@ -118,6 +120,7 @@ const formattedTitle = title ? `${title} | ${SITE.title}` : SITE.title;
 		<meta property="og:description" content={metaDescription}>
 		<meta property="og:site_name" content={SITE.title}>
 		<meta property="og:type" content={ogType || "website"}>
+		<meta property="og:locale" content="en_GB">
 		{ogType === "profile" && (  <>    <meta property="profile:first_name" content={AUTHOR.firstName} />    <meta property="profile:last_name" content={AUTHOR.lastName} />    <meta property="profile:username" content={AUTHOR.username} />  </>)}
 		<meta name="twitter:card" content="summary_large_image">
 		<meta name="twitter:title" content={formattedTitle}>

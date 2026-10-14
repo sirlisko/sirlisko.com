@@ -5,7 +5,7 @@ export const SITE_DOMAIN = "sirlisko.com";
 
 export const SITE = {
 	title: `sirlisko`,
-	description: `Ciao! I'm Luca, another fellow <developer />, cook, hiker, dungeon crawler, and maker of things. Web stuff, games, dinner, bad decisions, and sometimes all at once.`,
+	description: `Ciao! I'm Luca, another fellow developer, cook, hiker, dungeon crawler, and maker of things. Web stuff, games, dinner, bad decisions, and sometimes all at once.`,
 	image: `${SITE_URL}/images/me_banner.jpg`,
 	imageAlt: `Luca Lischetti, aka sirlisko`,
 	imageWidth: 2048,
@@ -33,6 +33,7 @@ export const AUTHOR = {
 	firstName: "Luca",
 	lastName: "Lischetti",
 	username: "sirlisko",
+	jobTitle: "Senior software engineer",
 	profiles: {
 		GitHub: "https://github.com/sirlisko",
 		LinkedIn: "https://www.linkedin.com/in/lucalischetti/",

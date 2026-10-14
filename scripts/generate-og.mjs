@@ -43,6 +43,11 @@ const THEMES = {
 		fg: "var(--nes-white)",
 		accent: "var(--nes-yellow)",
 	},
+	404: {
+		bg: "#000",
+		fg: "var(--nes-white)",
+		accent: "var(--nes-red)",
+	},
 };
 
 const TOKENS = readFileSync("src/styles/tokens.css", "utf8");

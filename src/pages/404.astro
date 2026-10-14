@@ -1,10 +1,12 @@
 ---
+import { ogCard } from "../config";
 import Layout from "../layouts/Layout.astro";
 
 const LIVES = 3;
 ---
 
 <Layout
+	{...ogCard("404")}
 	title="404: Not found"
 	description="This page does not exist."
 	noindex
