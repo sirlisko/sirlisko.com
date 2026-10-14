@@ -7,5 +7,6 @@
 	"projects": { "title": "Projects", "tagline": "Side projects & experiments" },
 	"uses": { "title": "> uses", "tagline": "Apps and tools I use daily" },
 	"resume": { "title": "Resume", "tagline": "Senior software engineer" },
-	"credits": { "title": "Credits", "tagline": "How this site is made" }
+	"credits": { "title": "Credits", "tagline": "How this site is made" },
+	"404": { "title": "404", "tagline": "Game over: this page does not exist" }
 }
