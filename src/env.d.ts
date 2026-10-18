@@ -11,7 +11,7 @@ declare global {
 	}
 
 	interface Window {
-		// Injected by the umami script loaded in Layout.astro.
+		// Set by the Umami script that lib/analytics.ts loads.
 		umami?: {
 			track: {
 				(event: string, data?: Record<string, unknown>): void;

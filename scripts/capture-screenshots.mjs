@@ -243,8 +243,10 @@ if (unknown.length) {
 const browser = await puppeteer.launch({ channel: "chrome" });
 const canvas = await browser.newPage();
 
-for (const name of selected) {
-	await save(name, await CAPTURES[name]());
+try {
+	for (const name of selected) {
+		await save(name, await CAPTURES[name]());
+	}
+} finally {
+	await browser.close();
 }
-
-await browser.close();

@@ -83,7 +83,7 @@ A GitHub Actions workflow runs on every push and pull request to ensure that:
 pnpm generate:og
 ```
 
-Draws a 1200×630 card for the home page, `/now`, `/projects`, `/uses`, `/resume` and `/credits` into `public/images/og/`. Rerun it after changing a card in `scripts/generate-og.mjs`. Pages without a card, like the 404, fall back to `me_banner.jpg`.
+Draws a 1200×630 card for the home page, `/now`, `/projects`, `/uses`, `/resume`, `/credits` and the 404 into `public/images/og/`. Rerun it after changing a card's text in `data/og.json` or its look in `scripts/generate-og.mjs`. A page without a card falls back to `me_banner.jpg`.
 
 ## Generate the resume in pdf format
 
@@ -91,10 +91,10 @@ Draws a 1200×630 card for the home page, `/now`, `/projects`, `/uses`, `/resume
 pnpm generate:cv
 ```
 
-This builds the site, spins up a preview server, and prints `/resume` to `public/cv/`:
+This builds the site, spins up a preview server, and prints `/resume` twice:
 
-- `luca-lischetti-resume.pdf` — public
-- `luca-lischetti-resume-full.pdf` — with the phone number from `.env`; gitignored, so it's never published. Send it on request.
+- `public/cv/luca-lischetti-resume.pdf` — public
+- `private/luca-lischetti-resume-full.pdf` — with the phone number from `.env`. Built in a temporary directory and written outside `public/`, so neither the page nor the PDF can reach `dist/`; `private/` is gitignored. Send it on request.
 
 PDFs are automatically compressed using Ghostscript if available. To install it:
 

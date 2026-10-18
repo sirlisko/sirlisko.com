@@ -9,7 +9,7 @@ interface Props {
 	retired?: boolean;
 }
 
-const { title, projects, big, retired } = Astro.props;
+const { title, projects, big = false, retired = false } = Astro.props;
 ---
 
 <section>

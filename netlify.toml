@@ -53,6 +53,13 @@ force = true
 from = "/colophon"
 to = "/credits"
 
+# Nothing here is meant to be framed; the CSP sets only that, so scripts are untouched.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Content-Security-Policy = "frame-ancestors 'none'"
+
 # Everything under /_astro is content-hashed, so a new build means a new name.
 [[headers]]
   for = "/_astro/*"
