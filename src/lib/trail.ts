@@ -1,3 +1,5 @@
+import { track } from "./analytics";
+
 const SPEED = 180;
 const PAUSE = 600;
 
@@ -20,7 +22,7 @@ export const initTrail = (root: ParentNode = document) => {
 		trail.style.setProperty("--travel", `${travel}px`);
 		trail.style.setProperty("--duration", `${travel / SPEED}s`);
 		trail.dataset.state = "eating";
-		window.umami?.track("pacman");
+		track("pacman");
 	};
 
 	// Only the trail's own transition marks the end of the run.
