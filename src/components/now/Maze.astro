@@ -8,7 +8,7 @@ const GHOSTS = [
 	{ body: "#00e5ff", label: "#00e5ff", pupils: true },
 	{ body: "#ffb852", label: "#ffb852", pupils: true },
 	{ body: "#2121de", label: "#8c8cff", pupils: false },
-];
+] as const;
 
 interface Props {
 	section: Section;
@@ -17,7 +17,7 @@ interface Props {
 }
 
 const { section: s, index } = Astro.props;
-const ghost = GHOSTS[index % GHOSTS.length];
+const ghost = GHOSTS[index % GHOSTS.length] ?? GHOSTS[0];
 ---
 
 <section class="maze" style={`--label: ${ghost.label}`}>

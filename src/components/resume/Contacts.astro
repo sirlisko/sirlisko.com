@@ -9,7 +9,10 @@ const phoneNumber = import.meta.env.CV_BUILD
 	? import.meta.env.PHONE_NUMBER
 	: undefined;
 
-const contacts = [...Object.entries(AUTHOR.profiles), ["Website", SITE_URL]];
+const contacts: [name: string, url: string][] = [
+	...Object.entries(AUTHOR.profiles),
+	["Website", SITE_URL],
+];
 ---
 
 <footer class="contacts">
