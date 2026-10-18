@@ -83,6 +83,30 @@ describe("trail", () => {
 		cleanup();
 	});
 
+	test("the run still ends when no transitionend comes", () => {
+		const { trail, pacman, cleanup } = mount();
+
+		pacman.click();
+		vi.advanceTimersByTime(2200);
+		expect(trail.dataset.state).toBe("cleared");
+
+		vi.advanceTimersByTime(600);
+		expect(trail.dataset.state).toBe("respawn");
+		cleanup();
+	});
+
+	test("a late transitionend doesn't restart the pause", () => {
+		const { trail, pacman, cleanup } = mount();
+
+		pacman.click();
+		vi.advanceTimersByTime(2500);
+		transitionEnd(trail);
+		vi.advanceTimersByTime(300);
+
+		expect(trail.dataset.state).toBe("respawn");
+		cleanup();
+	});
+
 	test("cleanup stops the game, including a pending respawn", () => {
 		const { trail, pacman, cleanup } = mount();
 
