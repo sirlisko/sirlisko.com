@@ -36,6 +36,8 @@ const LIVES = 3;
 		</div>
 	</main>
 	<script>
+	import { track } from "../lib/analytics";
+
 	document.addEventListener("astro:page-load", () => {
 		// Built once as /404.html, so the missing address is only known in the browser.
 		const path = document.querySelector("[data-path]");
@@ -44,7 +46,7 @@ const LIVES = 3;
 			return;
 		}
 		path.textContent = window.location.pathname;
-		window.umami?.track("404", { url: window.location.pathname });
+		track("404", { url: window.location.pathname });
 	});
 	</script>
 </Layout>

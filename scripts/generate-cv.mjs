@@ -1,15 +1,25 @@
 import { execSync, spawn } from "node:child_process";
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
-import { join } from "node:path";
+import {
+	existsSync,
+	mkdirSync,
+	mkdtempSync,
+	readFileSync,
+	rmSync,
+	writeFileSync,
+} from "node:fs";
+import { tmpdir } from "node:os";
+import { basename, join } from "node:path";
 import { PDFDocument, PDFName } from "pdf-lib";
 import puppeteer from "puppeteer";
 
 const SITE_URL = "https://sirlisko.com";
-const OUTPUT_DIR = "public/cv";
+const PUBLIC_DIR = "public/cv";
+// Gitignored and outside public/, so no build ever copies it into dist/.
+const PRIVATE_DIR = "private";
 const ENV_FILE = ".env";
 
-if (!existsSync(OUTPUT_DIR)) {
-	mkdirSync(OUTPUT_DIR, { recursive: true });
+for (const dir of [PUBLIC_DIR, PRIVATE_DIR]) {
+	mkdirSync(dir, { recursive: true });
 }
 
 if (!existsSync(ENV_FILE)) {
@@ -74,7 +84,7 @@ const setMetadata = async (filePath, meta) => {
 	writeFileSync(filePath, await pdf.save());
 };
 
-const generatePdf = async (browser, baseUrl, path, outputFile) => {
+const generatePdf = async (browser, baseUrl, path, outPath) => {
 	const page = await browser.newPage();
 	await page.setRequestInterception(true);
 	page.on("request", async (request) => {
@@ -118,7 +128,7 @@ const generatePdf = async (browser, baseUrl, path, outputFile) => {
 		},
 		baseUrl,
 		SITE_URL,
-		outputFile.replace(".pdf", ""),
+		basename(outPath, ".pdf"),
 	);
 	const meta = await page.evaluate(() => {
 		const content = (selector) =>
@@ -133,7 +143,6 @@ const generatePdf = async (browser, baseUrl, path, outputFile) => {
 			lang: document.documentElement.lang,
 		};
 	});
-	const outPath = join(OUTPUT_DIR, outputFile);
 	await page.pdf({ path: outPath, format: "A4", printBackground: true });
 	await page.close();
 	compress(outPath);
@@ -143,18 +152,25 @@ const generatePdf = async (browser, baseUrl, path, outputFile) => {
 
 // The phone number is baked in at build time by CV_BUILD, so the public and
 // private PDFs need a build each rather than a querystring on one preview.
-const withPreview = async (env, run) => {
+const withPreview = async (env, outDir, run) => {
 	console.log("Building...");
-	execSync("pnpm build", { stdio: "inherit", env: { ...process.env, ...env } });
+	execSync(`pnpm build --outDir "${outDir}"`, {
+		stdio: "inherit",
+		env: { ...process.env, ...env },
+	});
 
 	console.log("Starting preview server...");
 	// --ignore-lock keeps the server in the foreground, where the kill below
 	// reaches it: Astro backgrounds a locked preview when an agent runs it,
 	// and refuses to start one while another is up.
-	const server = spawn("pnpm", ["exec", "astro", "preview", "--ignore-lock"], {
-		stdio: ["ignore", "pipe", "pipe"],
-		detached: true,
-	});
+	const server = spawn(
+		"pnpm",
+		["exec", "astro", "preview", "--outDir", outDir, "--ignore-lock"],
+		{
+			stdio: ["ignore", "pipe", "pipe"],
+			detached: true,
+		},
+	);
 	try {
 		console.log("Waiting for server...");
 		const baseUrl = await detectBaseUrl(server);
@@ -179,20 +195,31 @@ const browser = await puppeteer.launch({
 try {
 	// Explicitly empty, not merely absent: a stray CV_BUILD in the shell or in
 	// .env would otherwise leak the phone number into the public PDFs.
-	await withPreview({ CV_BUILD: "" }, async (baseUrl) => {
+	await withPreview({ CV_BUILD: "" }, "dist", async (baseUrl) => {
 		console.log("Generating public PDFs...");
-		await generatePdf(browser, baseUrl, "/resume", "luca-lischetti-resume.pdf");
-	});
-
-	await withPreview({ CV_BUILD: "1" }, async (baseUrl) => {
-		console.log("Generating private PDFs...");
 		await generatePdf(
 			browser,
 			baseUrl,
 			"/resume",
-			"luca-lischetti-resume-full.pdf",
+			join(PUBLIC_DIR, "luca-lischetti-resume.pdf"),
 		);
 	});
+
+	// Built outside dist/, so a manual deploy after this script can't ship the phone number.
+	const privateBuild = mkdtempSync(join(tmpdir(), "sirlisko-cv-"));
+	try {
+		await withPreview({ CV_BUILD: "1" }, privateBuild, async (baseUrl) => {
+			console.log("Generating private PDFs...");
+			await generatePdf(
+				browser,
+				baseUrl,
+				"/resume",
+				join(PRIVATE_DIR, "luca-lischetti-resume-full.pdf"),
+			);
+		});
+	} finally {
+		rmSync(privateBuild, { recursive: true, force: true });
+	}
 	console.log("Done!");
 } finally {
 	await browser.close();

@@ -24,4 +24,6 @@ tsconfig.tsbuildinfo
 .playwright-mcp/
 
 # carries the phone number; generated locally and sent on request
+private/
+# where it used to be written, in case a stale copy is still around
 public/cv/luca-lischetti-resume-full.pdf
