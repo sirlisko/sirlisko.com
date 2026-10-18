@@ -138,26 +138,6 @@ const formattedTitle = title ? `${title} | ${SITE.title}` : SITE.title;
 		<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 		<link rel="preconnect" href={analyticsOrigin}>
 		<ClientRouter />
-		<script
-			is:inline
-			defer
-			src={ANALYTICS.src}
-			data-website-id={ANALYTICS.websiteId}
-			data-auto-track="false"
-			data-domains={ANALYTICS.domains}
-		></script>
-		<script is:inline>
-		document.addEventListener("astro:page-load", () => {
-			void window.umami?.track((props) => ({
-				...props,
-				title: document.title,
-				url:
-					window.location.pathname +
-					window.location.search +
-					window.location.hash,
-			}));
-		});
-		</script>
 	</head>
 	<body class:list={[theme]}>
 		<slot />
@@ -165,6 +145,8 @@ const formattedTitle = title ? `${title} | ${SITE.title}` : SITE.title;
 </html>
 
 <script>
+import { ANALYTICS } from "../config";
+import { initAnalytics, track } from "../lib/analytics";
 import { applyCrt, toggleCrt } from "../lib/crt";
 import { initKonami, KONAMI_EVENT } from "../lib/konami";
 import { initTracking } from "../lib/track";
@@ -173,11 +155,12 @@ import { initTracking } from "../lib/track";
 document.addEventListener("astro:after-swap", () => applyCrt());
 applyCrt();
 
+initAnalytics(ANALYTICS);
 initKonami();
 initTracking();
 document.addEventListener(KONAMI_EVENT, () => {
 	const on = toggleCrt();
-	window.umami?.track("konami", { crt: on });
+	track("konami", { crt: on });
 });
 </script>
 

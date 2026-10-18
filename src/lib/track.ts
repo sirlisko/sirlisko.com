@@ -1,3 +1,5 @@
+import { track } from "./analytics";
+
 const PREFIX = "track";
 
 /** `data-track-foo="bar"` on the element becomes `{ foo: "bar" }`. */
@@ -21,7 +23,7 @@ export const initTracking = (target: Document = document) => {
 		const el = event.target.closest<HTMLElement>("[data-track]");
 		const name = el?.dataset.track;
 		if (el && name) {
-			window.umami?.track(name, props(el));
+			track(name, props(el));
 		}
 	};
 

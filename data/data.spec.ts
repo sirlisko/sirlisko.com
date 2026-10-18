@@ -1,8 +1,10 @@
-import { existsSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { describe, expect, test } from "vitest";
+import { SITE_URL } from "../src/config";
 import { rolls } from "./credits";
 import me from "./me";
 import { NOW_LAST_UPDATED, sections } from "./now";
+import OG_CARDS from "./og.json";
 import { NPMPackages, pastProjects, projects, tinyProjects } from "./projects";
 import resume from "./resume";
 import { cli, hardware, USES_LAST_UPDATED, uses } from "./uses";
@@ -22,6 +24,20 @@ const isWellFormed = (url: string) =>
 
 const isBroken = (url: string) =>
 	url.startsWith("/") ? !resolves(url) : !isWellFormed(url);
+
+const allProjects = [
+	...projects,
+	...tinyProjects,
+	...NPMPackages,
+	...pastProjects,
+];
+
+// /now is written as HTML, so its links only exist once it's parsed.
+const nowLinks = sections
+	.flatMap(({ content }) => content)
+	.flatMap((html) => [
+		...new DOMParser().parseFromString(html, "text/html").querySelectorAll("a"),
+	]);
 
 describe("site data", () => {
 	test("every nav link leads to a page", () => {
@@ -83,16 +99,52 @@ describe("site data", () => {
 		expect(broken).toEqual([]);
 	});
 
+	test("every /now link is well formed", () => {
+		const broken = nowLinks
+			.map((a) => a.getAttribute("href") ?? "")
+			.filter(isBroken);
+		expect(broken).toEqual([]);
+	});
+
+	// The router would otherwise try to swap the blog, a separate site, into the page.
+	test("every /now link to the blog reloads the page", () => {
+		const swapped = nowLinks
+			.filter((a) => {
+				const url = new URL(a.getAttribute("href") ?? "", SITE_URL);
+				return url.origin === SITE_URL && isBlog(url.pathname);
+			})
+			.filter((a) => !a.hasAttribute("data-astro-reload"))
+			.map((a) => a.getAttribute("href"));
+		expect(swapped).toEqual([]);
+	});
+
 	test("every project link is well formed", () => {
-		const broken = [
-			...projects,
-			...tinyProjects,
-			...NPMPackages,
-			...pastProjects,
-		]
+		const broken = allProjects
 			.flatMap(({ links }) => Object.values(links))
 			.filter(isBroken);
 		expect(broken).toEqual([]);
+	});
+
+	test("every project logo is a public file", () => {
+		const missing = allProjects
+			.flatMap((p) => ("logo" in p ? [p.logo] : []))
+			.filter((logo) => !existsSync(`public${logo}`));
+		expect(missing).toEqual([]);
+	});
+
+	test("every share card has its image", () => {
+		const missing = Object.keys(OG_CARDS).filter(
+			(page) => !existsSync(`public/images/og/${page}.png`),
+		);
+		expect(missing).toEqual([]);
+	});
+
+	test("every netlify.toml redirect onto this site resolves", () => {
+		const targets = [
+			...readFileSync("netlify.toml", "utf8").matchAll(/^to = "(\/[^"]*)"/gm),
+		].flatMap(([, to]) => (to ? [to] : []));
+		expect(targets.length).toBeGreaterThan(0);
+		expect(targets.filter(isBroken)).toEqual([]);
 	});
 
 	test("the dated pages say when they were last updated", () => {
