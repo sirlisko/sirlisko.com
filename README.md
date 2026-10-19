@@ -2,9 +2,7 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/fd6aac84-e915-4db6-aaf1-eb996620da79/deploy-status)](https://app.netlify.com/sites/sirlisko/deploys)
 
-> [https://sirlisko.com](https://sirlisko.com) - personal (and experimental) website.
-
-I tried to keep this website as a proof of concept of the technologies I am currently working with or to just trying out new stuff :)
+> [https://sirlisko.com](https://sirlisko.com) - personal website.
 
 ---
 
