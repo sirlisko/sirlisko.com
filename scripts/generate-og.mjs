@@ -43,6 +43,11 @@ const THEMES = {
 		fg: "var(--nes-white)",
 		accent: "var(--nes-yellow)",
 	},
+	friends: {
+		bg: "#000",
+		fg: "#f4f4f4",
+		accent: "#ff3b3b",
+	},
 	404: {
 		bg: "#000",
 		fg: "var(--nes-white)",

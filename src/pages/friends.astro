@@ -1,0 +1,218 @@
+---
+import "@fontsource/ibm-plex-mono/latin-400.css";
+import "@fontsource/ibm-plex-mono/latin-600.css";
+import { friends } from "../../data/friends";
+import FaceLink from "../components/FaceLink.astro";
+import Links from "../components/Links.astro";
+import { ogCard } from "../config";
+import Layout from "../layouts/Layout.astro";
+
+const RANKS = ["1st", "2nd", "3rd"];
+const rank = (i: number) => RANKS[i] ?? `${i + 1}th`;
+const host = (url: string) => new URL(url).host;
+---
+
+<Layout
+	{...ogCard("friends")}
+	title="Friends"
+	description="People Luca Lischetti (sirlisko) likes and follows around the web."
+	theme="dark"
+	themeColor="#000"
+>
+	<Links page="friends" />
+	<main class="page">
+		<FaceLink width={48} />
+
+		<header>
+			<h1>High scores</h1>
+			<p class="intro">
+				Friends and people I like around the web.
+				<br>
+				<a href="https://slashfriends.org/about" target="_blank" rel="noopener"
+					>What's a /friends page?</a
+				>
+			</p>
+		</header>
+
+		<ol class="scores">
+			{friends.map((friend, i) => (
+				<li>
+					<a href={friend.url} target="_blank" rel="noopener">
+						<span class="rank">{rank(i)}</span>
+						<span class="initials">{friend.initials}</span>
+						<span class="score">{String(friend.score).padStart(6, "0")}</span>
+						<span class="note">
+							{host(friend.url)}
+							{friend.note && <> · {friend.note}</>}
+						</span>
+					</a>
+				</li>
+			))}
+		</ol>
+
+		<footer class="coin">
+			<p class="credit">Insert coin</p>
+			<p>
+				Part of the{" "}
+				<a href="https://slashfriends.org" target="_blank" rel="noopener"
+					>slashfriends</a
+				>{" "}
+				directory.
+			</p>
+		</footer>
+	</main>
+</Layout>
+
+<style>
+/* Bound to the theme class so it outranks the display font Layout sets on body. */
+body.dark {
+	--red: #ff3b3b;
+	--yellow: #ffd23f;
+	--cyan: #3fe0ff;
+	background: #000;
+	font-family: var(--font-mono);
+	font-size: 16px;
+	line-height: 1.7;
+}
+
+.page {
+	max-width: 720px;
+	margin: 0 auto;
+	padding-top: 3rem;
+	display: flex;
+	flex-direction: column;
+	gap: 3rem;
+}
+
+header {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1.25rem;
+	text-align: center;
+}
+
+h1 {
+	margin: 0;
+	font-family: var(--font-display);
+	font-weight: 400;
+	font-size: 40px;
+	line-height: 1.2;
+	color: var(--red);
+
+	@media (prefers-reduced-motion: no-preference) {
+		animation: blink 1.2s steps(1) infinite;
+	}
+
+	@media (max-width: 600px) {
+		font-size: 24px;
+	}
+}
+
+.intro {
+	margin: 0;
+	max-width: 60ch;
+	font-size: 18px;
+	color: #e4e4e4;
+}
+
+.scores {
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.scores a {
+	display: grid;
+	grid-template-columns: 4ch 4ch 1fr;
+	gap: 0.5rem 1.5rem;
+	align-items: baseline;
+	color: inherit;
+	text-decoration: none;
+	font-family: var(--font-display);
+	font-size: 24px;
+
+	@media (max-width: 600px) {
+		gap: 0.5rem 1rem;
+		font-size: 16px;
+	}
+
+	&:hover .initials,
+	&:focus-visible .initials {
+		color: var(--yellow);
+	}
+
+	&:focus-visible {
+		outline: 3px solid var(--yellow);
+		outline-offset: 8px;
+	}
+}
+
+.rank {
+	color: var(--yellow);
+	text-transform: uppercase;
+}
+
+li:nth-child(3n + 2) .rank {
+	color: var(--cyan);
+}
+
+li:nth-child(3n + 3) .rank {
+	color: var(--red);
+}
+
+.initials {
+	color: var(--white);
+}
+
+.score {
+	color: var(--red);
+	text-align: right;
+	font-variant-numeric: tabular-nums;
+}
+
+.note {
+	grid-column: 2 / -1;
+	font-family: var(--font-mono);
+	font-size: 16px;
+	color: var(--cyan);
+}
+
+.coin {
+	margin-top: 2rem;
+	text-align: center;
+	color: #e4e4e4;
+
+	p {
+		margin: 0;
+	}
+}
+
+.coin .credit {
+	margin-bottom: 1rem;
+	font-family: var(--font-display);
+	color: var(--yellow);
+}
+
+:is(.intro, .coin) a {
+	color: var(--yellow);
+
+	&:hover {
+		color: var(--white);
+	}
+
+	&:focus-visible {
+		outline: 3px solid var(--yellow);
+		outline-offset: 3px;
+	}
+}
+
+@keyframes blink {
+	50% {
+		opacity: 0.25;
+	}
+}
+</style>
