@@ -1,0 +1,120 @@
+<div id="back-to-top" class="back-to-top">
+	<button type="button">
+		<span class="progress" aria-hidden="true"></span>
+		<span aria-hidden="true" class="pixel-arrow up"></span>
+		<span class="text">Back to top</span>
+	</button>
+</div>
+
+<style>
+/* A round progress button on phones; a quiet text link floated by the tags on wider screens. */
+.back-to-top {
+	position: fixed;
+	right: 1rem;
+	bottom: 2rem;
+	z-index: 50;
+	opacity: 0;
+	translate: 0 3.5rem;
+	transition:
+		opacity 0.5s,
+		translate 0.5s;
+
+	&.visible {
+		opacity: 1;
+		translate: 0 0;
+	}
+
+	@media (min-width: 768px) {
+		position: sticky;
+		right: auto;
+		float: inline-end;
+		margin-inline-end: 0.25rem;
+	}
+}
+
+button {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.5rem;
+	width: 3.5rem;
+	height: 3.5rem;
+	border: 2px solid var(--foreground);
+	background: var(--background);
+	font-family: var(--font-pixel);
+	font-size: 10px;
+
+	@media (min-width: 768px) {
+		width: fit-content;
+		height: auto;
+		padding: 0.375rem 0.5rem;
+		border: 0;
+		color: var(--muted-foreground);
+
+		&:hover {
+			color: var(--foreground);
+		}
+	}
+}
+
+.progress {
+	position: absolute;
+	inset: -0.25rem;
+	z-index: -1;
+	background-image: conic-gradient(
+		var(--accent) var(--progress, 0%),
+		transparent var(--progress, 0%)
+	);
+
+	@media (min-width: 768px) {
+		display: none;
+	}
+}
+
+.pixel-arrow {
+	@media (max-width: 767px) {
+		scale: 1.5;
+	}
+}
+
+.text {
+	@media (max-width: 767px) {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
+		clip-path: inset(50%);
+	}
+}
+</style>
+
+<script>
+import { scrollPercent } from "../../lib/blog/post";
+
+// Shown once a third of the page is read; the ring fills as the reader goes on.
+let frame = 0;
+const update = () => {
+	frame = 0;
+	const container = document.getElementById("back-to-top");
+	if (!container) {
+		return;
+	}
+	const percent = scrollPercent();
+	container.style.setProperty("--progress", `${Math.floor(percent)}%`);
+	container.classList.toggle("visible", percent > 30);
+};
+
+document.addEventListener("scroll", () => {
+	frame ||= requestAnimationFrame(update);
+});
+
+document.addEventListener("astro:page-load", () => {
+	document
+		.querySelector("#back-to-top button")
+		?.addEventListener("click", () => {
+			document.documentElement.scrollTop = 0;
+		});
+	update();
+});
+</script>

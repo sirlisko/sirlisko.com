@@ -1,0 +1,31 @@
+---
+import { boundsOf, readGpx } from "../../lib/blog/gpx";
+
+interface Props {
+	tracks: { file: string }[];
+	height?: string;
+}
+
+const { tracks, height = "420px" } = Astro.props;
+
+const files = tracks.map(({ file }) => file);
+// Lets the map load its tiles while the GPX files, megabytes each, download.
+const bounds = boundsOf(await Promise.all(files.map(readGpx)));
+---
+
+<div
+	class="gpx-map"
+	data-gpx-tracks={JSON.stringify(files)}
+	data-gpx-bounds={JSON.stringify(bounds)}
+	style={{ height }}
+></div>
+
+<style>
+.gpx-map {
+	position: relative;
+	z-index: 0;
+	width: 100%;
+	margin-block: 1.5rem;
+	overflow: hidden;
+}
+</style>

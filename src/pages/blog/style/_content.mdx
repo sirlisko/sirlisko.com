@@ -1,0 +1,161 @@
+import GpxMap from "../../../components/blog/GpxMap.astro";
+import GpxStats from "../../../components/blog/GpxStats.astro";
+import Palette from "./_components/Palette.astro";
+import Typography from "./_components/Typography.astro";
+import Components from "./_components/Components.astro";
+import ImageStates from "./_components/ImageStates.astro";
+import MapStates from "./_components/MapStates.astro";
+import PostPage from "./_components/PostPage.astro";
+
+export const track = {
+  file: "/blog/gpx/brighton-hastings-day2.gpx",
+  label: "Seven Sisters",
+  distance: 22.7,
+  elevGain: 783,
+  duration: "7h 28m",
+};
+
+## Table of contents
+
+## Palette
+
+<div class="not-prose">
+  <Palette />
+</div>
+
+## Typography
+
+Body text is set in **IBM Plex Mono**, titles and small labels in **Press Start 2P**. This paragraph is long enough to wrap a few times, so line height and measure can be judged at a glance on both a phone and a wide screen.
+
+<Typography />
+
+## Inline elements
+
+A [link](https://sirlisko.com), **bold**, _italic_, **_both_**, ~~strikethrough~~, `inline code`, <kbd>Ctrl</kbd> + <kbd>C</kbd>, <abbr title="Game Boy">DMG</abbr>, <mark>highlighted text</mark>, H<sub>2</sub>O and E = mc<sup>2</sup>. A footnote reference sits at the end of this sentence.[^1]
+
+## Lists
+
+- An unordered list
+- With a second item
+  - And a nested one
+  - With a sibling
+
+1. An ordered list
+2. With a second item
+   1. And a nested one
+
+- [x] A finished task
+- [ ] An open task
+
+## Quotes and callouts
+
+> A plain blockquote. It can run over several lines and still read as one quotation.
+
+> [!NOTE]
+> A note, for context worth knowing.
+
+> [!TIP]
+> A tip, for an optional shortcut.
+
+> [!IMPORTANT]
+> Something the reader shouldn't miss.
+
+> [!WARNING]
+> A warning, for when things can go wrong.
+
+> [!CAUTION]
+> A caution, for when they will.
+
+## Table
+
+| Model  | Year | Screen        |
+| ------ | ---: | ------------- |
+| DMG    | 1989 | 4-shade green |
+| Pocket | 1996 | 4-shade grey  |
+| Color  | 1998 | 56 colours    |
+
+## Code
+
+```typescript file=src/hello.ts
+type Greeting = { name: string };
+
+export function hello({ name }: Greeting) {
+  const message = `Hello, ${name}!`; // [!code highlight]
+  console.log(message);
+}
+```
+
+```js
+function boot() {
+  return "Nintendo"; // [!code --]
+  return "Nintendo®"; // [!code ++]
+}
+```
+
+```bash
+# [!code word:pnpm]
+pnpm install
+pnpm run build
+```
+
+Long lines scroll sideways instead of wrapping:
+
+```bash
+pnpm exec astro build && pnpm exec pagefind --site dist --output-subdir pagefind --glob "**/*.html"
+```
+
+## Collapsible
+
+<details>
+<summary>Click to expand</summary>
+
+Hidden content, shown on demand.
+
+</details>
+
+## Image
+
+![A calm blue lake under a clear sky, wooded hills on the far shore](./_lake.jpg)
+
+Until an image arrives a pixel block blinks in its place, and a cross marks one that never does:
+
+<ImageStates />
+
+## Diagram
+
+![How a post gets published: the Obsidian vault and src/content/posts sync both ways through Unison every minute; a git push runs astro build on Netlify, which makes the pages, share cards and search index; sirlisko.com/blog is built with the rest of the site](./_pipeline.svg)
+
+## Share card
+
+The preview shown when a page is shared. Posts get their own, with the post title on the screen.
+
+![The blog's share card: a Game Boy with the site title on its screen](/blog/og.png)
+
+## Maps
+
+<GpxMap tracks={[track]} height="320px" />
+<GpxStats tracks={[track]} />
+
+<div
+  data-route-map='[{"name":"Prague","lat":50.0755,"lng":14.4378},{"name":"Brno","lat":49.1951,"lng":16.6068,"mode":"train"},{"name":"Vienna","lat":48.2082,"lng":16.3738,"mode":"bus"}]'
+  style={{ height: "320px" }}
+  class="not-prose"
+/>
+
+Before Leaflet loads, and if it never does:
+
+<MapStates />
+
+## Components
+
+<Components />
+
+## Post page
+
+The parts below every post. The back to top button is live on this page too, once you scroll.
+
+<PostPage />
+
+---
+
+[^1]: And this is the footnote.

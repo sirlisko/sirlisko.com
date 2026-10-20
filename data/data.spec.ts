@@ -1,6 +1,5 @@
 import { existsSync, readFileSync } from "node:fs";
 import { describe, expect, test } from "vitest";
-import { SITE_URL } from "../src/config";
 import { rolls } from "./credits";
 import me from "./me";
 import { NOW_LAST_UPDATED, sections } from "./now";
@@ -9,7 +8,7 @@ import { NPMPackages, pastProjects, projects, tinyProjects } from "./projects";
 import resume from "./resume";
 import { cli, hardware, USES_LAST_UPDATED, uses } from "./uses";
 
-// Served by the blog through the /blog/* rewrite in netlify.toml.
+// Blog pages are built from the posts, not one file each, so only their prefix is checked here.
 const isBlog = (path: string) => path === "/blog" || path.startsWith("/blog/");
 
 /** A path on this site has to be a page or a public file. */
@@ -104,18 +103,6 @@ describe("site data", () => {
 			.map((a) => a.getAttribute("href") ?? "")
 			.filter(isBroken);
 		expect(broken).toEqual([]);
-	});
-
-	// The router would otherwise try to swap the blog, a separate site, into the page.
-	test("every /now link to the blog reloads the page", () => {
-		const swapped = nowLinks
-			.filter((a) => {
-				const url = new URL(a.getAttribute("href") ?? "", SITE_URL);
-				return url.origin === SITE_URL && isBlog(url.pathname);
-			})
-			.filter((a) => !a.hasAttribute("data-astro-reload"))
-			.map((a) => a.getAttribute("href"));
-		expect(swapped).toEqual([]);
 	});
 
 	test("every project link is well formed", () => {

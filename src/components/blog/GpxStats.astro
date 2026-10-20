@@ -1,0 +1,103 @@
+---
+interface Track {
+	label?: string | undefined;
+	distance?: number | undefined;
+	elevGain?: number | undefined;
+	duration?: string | undefined;
+}
+
+interface Props {
+	tracks: Track[];
+}
+
+const withStats = Astro.props.tracks.filter(
+	(t) => t.distance || t.elevGain || t.duration,
+);
+const totalDistance = withStats.reduce((sum, t) => sum + (t.distance ?? 0), 0);
+const totalGain = withStats.reduce((sum, t) => sum + (t.elevGain ?? 0), 0);
+---
+
+{withStats.length > 0 && (
+	<div class="stats">
+		{withStats.map((t, i) => (
+			<div class="row">
+				<div class="label">{t.label ?? `Day ${i + 1}`}</div>
+				{t.distance && (
+					<div class="stat">
+						<span>Distance</span>
+						{t.distance.toFixed(1)} km
+					</div>
+				)}
+				{t.elevGain && (
+					<div class="stat">
+						<span>Elevation</span>+{t.elevGain} m
+					</div>
+				)}
+				{t.duration && (
+					<div class="stat">
+						<span>Time</span>
+						{t.duration}
+					</div>
+				)}
+			</div>
+		))}
+		{withStats.length > 1 && (
+			<div class="row total">
+				<div class="label">Total</div>
+				<div class="stat">
+					<span>Distance</span>
+					{totalDistance.toFixed(1)} km
+				</div>
+				<div class="stat">
+					<span>Elevation</span>+{totalGain} m
+				</div>
+			</div>
+		)}
+	</div>
+)}
+
+<style>
+.stats {
+	margin-block: 1.5rem;
+	border: 1px solid var(--border);
+	font-size: 0.875rem;
+	line-height: 1.25rem;
+}
+
+.row {
+	display: grid;
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+	gap: 0.5rem;
+	padding: 0.75rem 1rem;
+
+	& + & {
+		border-top: 1px solid var(--border);
+	}
+}
+
+.total {
+	background: color-mix(in srgb, var(--muted) 40%, transparent);
+	font-weight: 500;
+}
+
+.label {
+	grid-column: span 4;
+	font-weight: 500;
+
+	@media (min-width: 640px) {
+		grid-column: span 1;
+	}
+}
+
+.stat {
+	display: flex;
+	flex-direction: column;
+
+	span {
+		font-size: 0.75rem;
+		line-height: 1rem;
+		font-weight: 400;
+		color: var(--muted-foreground);
+	}
+}
+</style>

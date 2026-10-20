@@ -1,0 +1,39 @@
+---
+import BackLink from "../../../components/blog/BackLink.astro";
+import BackToTop from "../../../components/blog/BackToTop.astro";
+import Main from "../../../components/blog/Main.astro";
+import BlogLayout from "../../../layouts/BlogLayout.astro";
+import leafletCss from "../../../styles/blog/leaflet.css?url";
+import { Content } from "./_content.mdx";
+
+const DESCRIPTION = "Every element this blog can render, in one place.";
+---
+
+<BlogLayout title="Style" description={DESCRIPTION} backToTop>
+	<Fragment slot="head">
+		<link rel="preconnect" href="https://tile.openstreetmap.org">
+		<link rel="preload" as="style" href={leafletCss}>
+	</Fragment>
+	<BackLink href="/blog" label="/blog" />
+	<Main
+		title="Style"
+		description={`${DESCRIPTION} I check it after changing the CSS or messing with the layout, and you're welcome to have a look too.`}
+	>
+		<article id="article" class="prose">
+			<Content />
+		</article>
+		<BackToTop />
+	</Main>
+</BlogLayout>
+
+<style>
+.prose {
+	width: 100%;
+}
+</style>
+
+<script>
+import "../../../lib/blog/codeBlocks";
+import "../../../lib/blog/images";
+import "../../../lib/blog/maps";
+</script>

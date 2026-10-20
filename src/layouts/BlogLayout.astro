@@ -1,0 +1,79 @@
+---
+import "@fontsource/ibm-plex-mono/latin-600-italic.css";
+import "../styles/blog/skin.css";
+import "../styles/blog/prose.css";
+import "../styles/blog/map.css";
+import Footer from "../components/blog/Footer.astro";
+import Header from "../components/blog/Header.astro";
+import { BLOG } from "../config";
+import { OG_IMAGE_SIZE } from "../lib/blog/ogCard";
+import Layout from "./Layout.astro";
+
+interface Props {
+	title: string;
+	description?: string;
+	/** The generated Game Boy card for the blog, unless a page brings its own. */
+	image?: string | undefined;
+	imageWidth?: number | undefined;
+	imageHeight?: number | undefined;
+	ogType?: "website" | "article";
+	canonical?: string | undefined;
+	noindex?: boolean;
+	/** Pages ending in pagination keep it at the bottom, so the footer sits right under it. */
+	footerNoMarginTop?: boolean;
+	/** For pages with the back-to-top button. */
+	backToTop?: boolean;
+}
+
+const {
+	title,
+	description = BLOG.description,
+	image,
+	ogType = "website",
+	canonical,
+	noindex = false,
+	footerNoMarginTop = false,
+	backToTop = false,
+} = Astro.props;
+
+const ogImage = new URL(image ?? "/blog/og.png", Astro.site).href;
+const size = image
+	? { width: Astro.props.imageWidth, height: Astro.props.imageHeight }
+	: OG_IMAGE_SIZE;
+// Layout's props are optional, not undefined, so unknown sizes are left out.
+const imageSize =
+	size.width && size.height
+		? { imageWidth: size.width, imageHeight: size.height }
+		: {};
+---
+
+<Layout
+	{title}
+	{description}
+	image={ogImage}
+	{...imageSize}
+	imageAlt={title}
+	{ogType}
+	{canonical}
+	{noindex}
+	theme="blog"
+	themeColor={{ light: "#dde4c3", dark: "#142a12" }}
+>
+	<slot name="head" slot="head" />
+	<Header />
+	<slot />
+	<Footer noMarginTop={footerNoMarginTop} clearBackToTop={backToTop} />
+</Layout>
+
+<script>
+import { rememberBackUrl } from "../lib/blog/backUrl";
+
+// Lists mark themselves with data-back-url, so a post's back link returns to them.
+document.addEventListener("astro:page-load", () => {
+	const url =
+		document.querySelector<HTMLElement>("[data-back-url]")?.dataset.backUrl;
+	if (url) {
+		rememberBackUrl(url);
+	}
+});
+</script>

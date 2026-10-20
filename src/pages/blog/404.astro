@@ -1,0 +1,65 @@
+---
+import BlogLayout from "../../layouts/BlogLayout.astro";
+---
+
+<!-- Served for any missing /blog/* page by netlify.toml; the rest of the site gets the Game Over screen. -->
+<BlogLayout title="404 Not Found" noindex>
+	<main id="main-content" class="app-layout no-cartridge">
+		<div class="message">
+			<h1 class="boot pixel-title">404</h1>
+			<p>
+				There's no post at this address. It may have moved, or the link has a
+				typo.
+			</p>
+			<div class="actions">
+				<a href="/blog" class="pixel-button">Back to /blog</a>
+				<a href="/blog/search" class="pixel-button-outline">Search</a>
+			</div>
+		</div>
+	</main>
+</BlogLayout>
+
+<style>
+.no-cartridge {
+	display: flex;
+	flex: 1;
+	align-items: center;
+	justify-content: center;
+}
+
+.message {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1.75rem;
+	margin-bottom: 3.5rem;
+	padding-block: 2.5rem;
+	text-align: center;
+
+	p {
+		max-width: 44ch;
+	}
+}
+
+h1 {
+	--boot-window: 6rem;
+	font-size: 44px;
+
+	@media (min-width: 640px) {
+		font-size: 64px;
+	}
+}
+
+.actions {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 1.25rem;
+}
+</style>
+
+<script>
+import { track } from "../../lib/analytics";
+
+track("404", { url: location.pathname });
+</script>

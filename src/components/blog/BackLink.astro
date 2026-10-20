@@ -1,0 +1,41 @@
+---
+interface Props {
+	href: string;
+	label: string;
+	/** Posts go back to whichever list the reader came from, not always to /blog. */
+	remembered?: boolean;
+}
+
+const { href, label, remembered = false } = Astro.props;
+---
+
+<nav class="app-layout" aria-label="breadcrumb">
+	<a
+		href={href}
+		class="back-link"
+		data-remembered-back={remembered || undefined}
+	>
+		<span aria-hidden="true" class="pixel-arrow back"></span>
+		{label}
+	</a>
+</nav>
+
+<style>
+nav {
+	margin-top: 1.5rem;
+}
+</style>
+
+<script>
+import { recallBackUrl } from "../../lib/blog/backUrl";
+
+document.addEventListener("astro:page-load", () => {
+	const link = document.querySelector<HTMLAnchorElement>(
+		"[data-remembered-back]",
+	);
+	const url = recallBackUrl();
+	if (link && url) {
+		link.href = url;
+	}
+});
+</script>

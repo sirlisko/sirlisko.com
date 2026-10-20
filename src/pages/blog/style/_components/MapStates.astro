@@ -1,0 +1,28 @@
+---
+import State from "./State.astro";
+---
+
+<div class="states">
+	<State label="loading">
+		<div data-map-state="loading"></div>
+	</State>
+	<State label="failed">
+		<div data-map-state="failed"></div>
+	</State>
+</div>
+
+<style>
+.states {
+	display: grid;
+	gap: 1.5rem;
+
+	@media (min-width: 640px) {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
+[data-map-state] {
+	width: 100%;
+	height: 10rem;
+}
+</style>

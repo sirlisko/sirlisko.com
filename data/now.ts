@@ -33,9 +33,9 @@ export const sections: Section[] = [
 		label: "out and about",
 		title: "Walking, local communities & getting outside",
 		content: [
-			'Just back from a long trip in Southeast Asia: <a href="https://sirlisko.com/blog/southeast-asia-2026-part-1" data-astro-reload>Thailand, Malaysia, and Indonesia</a>, then <a href="https://sirlisko.com/blog/southeast-asia-2026-part-2" data-astro-reload>northern Thailand and Laos</a> on my own.',
-			'Still training for long distances. Completed the <a href="https://sirlisko.com/blog/brighton-to-hastings" data-astro-reload>Brighton to Hastings coastal walk over Easter</a>, and recently did a <a href="https://sirlisko.com/blog/100km" data-astro-reload>100km walk in one day</a> just because why not. Now aiming for an Ultra Challenge event, London to Brighton is on the list.',
-			'Volunteering with <a href="https://sirlisko.com/blog/one-year-at-foodcycle" data-astro-reload>FoodCycle</a>, cooking community meals from surplus food. Good people, good food, zero waste. Lately I became project leader of a new venue in Finsbury Park.',
+			'Just back from a long trip in Southeast Asia: <a href="https://sirlisko.com/blog/southeast-asia-2026-part-1">Thailand, Malaysia, and Indonesia</a>, then <a href="https://sirlisko.com/blog/southeast-asia-2026-part-2">northern Thailand and Laos</a> on my own.',
+			'Still training for long distances. Completed the <a href="https://sirlisko.com/blog/brighton-to-hastings">Brighton to Hastings coastal walk over Easter</a>, and recently did a <a href="https://sirlisko.com/blog/100km">100km walk in one day</a> just because why not. Now aiming for an Ultra Challenge event, London to Brighton is on the list.',
+			'Volunteering with <a href="https://sirlisko.com/blog/one-year-at-foodcycle">FoodCycle</a>, cooking community meals from surplus food. Good people, good food, zero waste. Lately I became project leader of a new venue in Finsbury Park.',
 		],
 	},
 	{
@@ -43,7 +43,7 @@ export const sections: Section[] = [
 		title: "Dark worlds, on and off the page",
 		content: [
 			"Working through <strong>Between Two Fires</strong> (no spoilers, please) and <strong>Delicious in Dungeon</strong>.",
-			'On the PlayStation, just finished the <strong>Silent Hill 2</strong> remake. WHAT A GAME! Before that I wrapped up <a href="https://sirlisko.com/blog/death-stranding" data-astro-reload>Death Stranding</a> and <a href="https://sirlisko.com/blog/final-fantasy-xvi" data-astro-reload>Final Fantasy XVI</a>.',
+			'On the PlayStation, just finished the <strong>Silent Hill 2</strong> remake. WHAT A GAME! Before that I wrapped up <a href="https://sirlisko.com/blog/death-stranding">Death Stranding</a> and <a href="https://sirlisko.com/blog/final-fantasy-xvi">Final Fantasy XVI</a>.',
 			"Trying to watch more films and get to the cinema at least once a month. Recent top picks: <strong>Obsession</strong> and <strong>Project Hail Mary</strong>.",
 		],
 	},
@@ -51,7 +51,7 @@ export const sections: Section[] = [
 		label: "writing more",
 		title: "Actually committing to the blog",
 		content: [
-			`I've had a <a href="https://sirlisko.com/blog" data-astro-reload>blog</a> for years but never taken it seriously. That's changing. I want to write about everything: code, tabletop, food, community, whatever I'm thinking about.`,
+			`I've had a <a href="https://sirlisko.com/blog">blog</a> for years but never taken it seriously. That's changing. I want to write about everything: code, tabletop, food, community, whatever I'm thinking about.`,
 		],
 	},
 ];

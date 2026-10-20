@@ -1,0 +1,33 @@
+---
+import State from "./State.astro";
+
+// A transparent 16:9 frame, so the placeholder background is all that shows.
+const blank = `data:image/svg+xml,${encodeURIComponent(
+	"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 9'/>",
+)}`;
+---
+
+<div class="states">
+	<State label="loading">
+		<img src={blank} alt="" data-image-state="loading">
+	</State>
+	<State label="failed">
+		<img src={blank} alt="" data-image-state="failed">
+	</State>
+</div>
+
+<style>
+.states {
+	display: grid;
+	gap: 1.5rem;
+
+	@media (min-width: 640px) {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
+img {
+	width: 100%;
+	margin: 0;
+}
+</style>

@@ -1,0 +1,114 @@
+---
+import me from "../../../data/me";
+
+interface Props {
+	/** Pages ending in pagination keep it at the bottom, so the footer sits right under it. */
+	noMarginTop?: boolean;
+	/** Leaves room for the back-to-top button, fixed in the corner on phones. */
+	clearBackToTop?: boolean;
+}
+
+const { noMarginTop = false, clearBackToTop = false } = Astro.props;
+
+const links = [
+	{ label: "tags", href: "/blog/tags" },
+	{ label: "archives", href: "/blog/archives" },
+	{ label: "search", href: "/blog/search" },
+	{ label: "style", href: "/blog/style" },
+	{ label: "rss", href: "/blog/rss.xml", track: "rss-feed", reload: true },
+	{ label: "mail", href: `mailto:${me.email}`, track: "social-mail" },
+];
+---
+
+<footer
+	class:list={[
+		"app-layout",
+		{ "push-down": !noMarginTop, "clear-back-to-top": clearBackToTop },
+	]}
+>
+	<div class="bar">
+		<nav aria-label="Blog">
+			<ul>
+				{links.map(({ label, href, track, reload }) => (
+					<li>
+						<a
+							href={href}
+							class="pixel-link"
+							data-track={track}
+							data-astro-reload={reload}>{label}</a
+						>
+					</li>
+				))}
+			</ul>
+		</nav>
+		<p class="copyright">
+			<span>&#169; {new Date().getFullYear()} Luca Lischetti</span>
+			<a href="https://creativecommons.org/licenses/by/4.0/" rel="license"
+				>CC BY 4.0</a
+			>
+		</p>
+	</div>
+</footer>
+
+<style>
+.push-down {
+	margin-top: auto;
+}
+
+.clear-back-to-top {
+	@media (max-width: 767px) {
+		padding-bottom: 6rem;
+	}
+}
+
+.bar {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+	margin-top: 4rem;
+	padding-block: 1.5rem;
+	border-top: 2px solid var(--pea);
+
+	@media (min-width: 640px) {
+		flex-direction: row-reverse;
+		padding-block: 1rem;
+	}
+}
+
+ul {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	font-family: var(--font-pixel);
+	font-size: 12px;
+	line-height: 1rem;
+
+	@media (min-width: 640px) {
+		column-gap: 0.5rem;
+	}
+}
+
+/* Stacked, so the licence never pushes the links onto a second row. */
+.copyright {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.5rem;
+	margin-block: 0.5rem;
+	font-family: var(--font-pixel);
+	font-size: 10px;
+	white-space: nowrap;
+	color: var(--muted-foreground);
+
+	a {
+		text-decoration: underline;
+		text-underline-offset: 3px;
+
+		&:is(:hover, :focus-visible) {
+			color: var(--foreground);
+		}
+	}
+}
+</style>

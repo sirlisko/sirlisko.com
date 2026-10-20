@@ -1,0 +1,86 @@
+---
+import paletteCss from "../../../../styles/blog/palette.css?raw";
+
+// Read from palette.css, so this page can't drift from it; the first block is light, the second dark.
+const [light = "", dark = ""] = [
+	...paletteCss.matchAll(/\.blog \{([^}]*)\}/g),
+].map(([, block]) => block ?? "");
+
+const tokensOf = (block: string) =>
+	[...block.matchAll(/--([\w-]+):\s*([^;]+);/g)].map(
+		([, name = "", value = ""]) => ({
+			name,
+			value,
+		}),
+	);
+
+const themes = [
+	{ name: "light", tokens: tokensOf(light) },
+	{ name: "dark", tokens: tokensOf(dark) },
+];
+---
+
+<div class="palette">
+	{themes.map(({ name, tokens }) => (
+		<section style={Object.fromEntries(tokens.map((t) => [`--${t.name}`, t.value]))}>
+			<h3 class="font-pixel">{name}</h3>
+			<ul>
+				{tokens.map((token) => (
+					<li>
+						<span class="swatch" style={{ background: `var(--${token.name})` }}></span>
+						<code>--{token.name}</code>
+						<span class="value">{token.value}</span>
+					</li>
+				))}
+			</ul>
+		</section>
+	))}
+</div>
+
+<style>
+.palette {
+	display: grid;
+	gap: 1rem;
+
+	@media (min-width: 640px) {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
+section {
+	padding: 1rem;
+	border: 2px solid var(--border);
+	background: var(--background);
+	color: var(--foreground);
+}
+
+h3 {
+	margin-bottom: 0.75rem;
+	font-size: 12px;
+}
+
+ul {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+li {
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+	font-size: 0.875rem;
+}
+
+.swatch {
+	flex-shrink: 0;
+	width: 2rem;
+	height: 2rem;
+	border: 2px solid var(--foreground);
+}
+
+.value {
+	margin-inline-start: auto;
+	color: var(--muted-foreground);
+}
+</style>

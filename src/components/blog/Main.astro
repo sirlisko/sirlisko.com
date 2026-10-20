@@ -1,0 +1,41 @@
+---
+interface Props {
+	title: string;
+	description?: string;
+}
+
+const { title, description } = Astro.props;
+
+// Single-word section titles read as paths, matching the /blog heading.
+const heading = /^\w+$/.test(title) ? `/${title.toLowerCase()}` : title;
+---
+
+<main
+	id="main-content"
+	class="app-layout section"
+	data-back-url={Astro.url.pathname}
+>
+	<h1 class="pixel-title">{heading}</h1>
+	{description && <p class="description">{description}</p>}
+	<slot />
+</main>
+
+<style>
+.section {
+	padding-bottom: 1rem;
+}
+
+h1 {
+	margin-top: 0.5rem;
+	font-size: 28px;
+
+	@media (min-width: 640px) {
+		font-size: 44px;
+	}
+}
+
+.description {
+	margin-block: 1.25rem 1.5rem;
+	color: var(--foreground-soft);
+}
+</style>
