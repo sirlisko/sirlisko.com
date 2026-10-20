@@ -12,12 +12,14 @@ const { title, description, tags, pubDatetime, modDatetime, timezone, bump } =
 	post.data;
 ---
 
-<li class="card">
+<li class="card h-entry">
 	<PostDate {pubDatetime} {modDatetime} {timezone} {bump} />
-	<a href={postUrl(post)} class="title menu-cursor">
-		<Heading transition:name={`post-${post.id}`}>{title}</Heading>
+	<a href={postUrl(post)} class="title menu-cursor u-url">
+		<Heading class="p-name" transition:name={`post-${post.id}`}
+			>{title}</Heading
+		>
 	</a>
-	<p class="description">{description}</p>
+	<p class="description p-summary">{description}</p>
 	{tags.length > 0 && (
 		<p class="tags">
 			{tags.map((tag) => <a href={tagUrl(tag)} class="tag-link">#{tag}</a>)}

@@ -46,7 +46,10 @@ const listed = bump && updated ? updated : published;
 	) : (
 		<>
 			{listed === updated && <span>Updated:</span>}
-			<time datetime={listed.iso}>{listed.label}</time>
+			<time
+				class={listed === updated ? "dt-updated" : "dt-published"}
+				datetime={listed.iso}>{listed.label}</time
+			>
 		</>
 	)}
 </div>
