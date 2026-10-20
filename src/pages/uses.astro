@@ -58,7 +58,7 @@ const updated = formatMonth(USES_LAST_UPDATED);
 			{EXITS.map((exit, i) => (
 				<>
 					{i > 0 && ", "}
-					<a href={exit.url} data-astro-reload={exit.reload}>
+					<a href={exit.url}>
 						{exit.name}
 					</a>
 				</>
@@ -94,7 +94,7 @@ const updated = formatMonth(USES_LAST_UPDATED);
 
 		<footer>
 			Started as{" "}
-			<a href={USES_SOURCE} data-astro-reload>a blog post</a>, last updated{" "}
+			<a href={USES_SOURCE}>a blog post</a>, last updated{" "}
 			<time datetime={USES_LAST_UPDATED}>{updated}</time>. Roll the{" "}
 			<a href="/credits">credits</a>.
 		</footer>

@@ -2,8 +2,6 @@ export interface Link {
 	name: string;
 	url: string;
 	label: string;
-	/** The blog is same-origin but a separate site, so the router must not swap it in. */
-	reload?: boolean;
 }
 
 export interface Me {
@@ -54,7 +52,6 @@ const me = {
 			name: "blog",
 			url: "/blog",
 			label: "blog",
-			reload: true,
 		},
 	],
 } satisfies Me;

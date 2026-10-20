@@ -1,5 +1,4 @@
 ---
-import type { Link } from "../../data/me";
 import me from "../../data/me";
 import { navLinks, type PageName } from "../lib/links";
 
@@ -20,8 +19,6 @@ const PAUSE_TITLES: Record<typeof game, string> = {
 	credits: "The end",
 	blog: "Paused",
 };
-const attrs = (link: Link) =>
-	link.reload ? { "data-astro-reload": true } : {};
 ---
 
 <nav class="nav" data-game={game} aria-label="Main">
@@ -30,8 +27,7 @@ const attrs = (link: Link) =>
 			<li>
 				<a
 					href={link.url}
-					aria-current={link.name === page ? "page" : undefined}
-					{...attrs(link)}>{link.label}</a
+					aria-current={link.name === page ? "page" : undefined}>{link.label}</a
 				>
 			</li>
 		))}
@@ -47,8 +43,7 @@ const attrs = (link: Link) =>
 				<a
 					href={link.url}
 					aria-current={link.name === page ? "page" : undefined}
-					autofocus={link.name === page}
-					{...attrs(link)}>{link.label}</a
+					autofocus={link.name === page}>{link.label}</a
 				>
 			</li>
 			))}
