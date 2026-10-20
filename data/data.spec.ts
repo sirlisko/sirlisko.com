@@ -1,6 +1,7 @@
 import { existsSync, readFileSync } from "node:fs";
 import { describe, expect, test } from "vitest";
 import { rolls } from "./credits";
+import { friends } from "./friends";
 import me from "./me";
 import { NOW_LAST_UPDATED, sections } from "./now";
 import OG_CARDS from "./og.json";
@@ -89,6 +90,10 @@ describe("site data", () => {
 		for (const section of sections) {
 			expect(section.content.length).toBeGreaterThan(0);
 		}
+	});
+
+	test("every friend links to a real site", () => {
+		expect(friends.filter(({ url }) => !isWellFormed(url))).toEqual([]);
 	});
 
 	test("every /uses link is well formed", () => {

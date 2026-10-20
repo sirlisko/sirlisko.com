@@ -1,0 +1,10 @@
+---
+import { AUTHOR, SITE_URL } from "../../config";
+---
+
+{/* Microformats readers take the author of a post or feed from this card. */}
+<span class="p-author h-card" hidden>
+	<data class="p-name" value={AUTHOR.name}></data>
+	<data class="u-url" value={SITE_URL}></data>
+	<data class="u-photo" value={`${SITE_URL}/images/avatar.png`}></data>
+</span>

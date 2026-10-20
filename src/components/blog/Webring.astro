@@ -1,0 +1,33 @@
+---
+const RING = "https://xn--sr8hvo.ws";
+---
+
+{/* The ring knows the blog by its exact URL, so the links send the full referrer. */}
+<nav class="webring" aria-label="IndieWeb Webring">
+	<a
+		href={`${RING}/previous`}
+		referrerpolicy="no-referrer-when-downgrade"
+		aria-label="Previous site in the IndieWeb Webring"
+		>&lt;</a
+	>
+	<a href={RING} title="An IndieWeb Webring">🕸💍</a>
+	<a
+		href={`${RING}/next`}
+		referrerpolicy="no-referrer-when-downgrade"
+		aria-label="Next site in the IndieWeb Webring"
+		>&gt;</a
+	>
+</nav>
+
+<style>
+.webring {
+	display: flex;
+	gap: 0.75rem;
+	align-items: center;
+	font-size: 12px;
+
+	a:is(:hover, :focus-visible) {
+		color: var(--foreground);
+	}
+}
+</style>

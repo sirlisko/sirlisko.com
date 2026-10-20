@@ -8,5 +8,6 @@
 	"uses": { "title": "> uses", "tagline": "Apps and tools I use daily" },
 	"resume": { "title": "Resume", "tagline": "Senior software engineer" },
 	"credits": { "title": "Credits", "tagline": "How this site is made" },
+	"friends": { "title": "High scores", "tagline": "Friends around the web" },
 	"404": { "title": "404", "tagline": "Game over: this page does not exist" }
 }

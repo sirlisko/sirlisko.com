@@ -1,5 +1,6 @@
 ---
 import { getCollection } from "astro:content";
+import AuthorCard from "../../components/blog/AuthorCard.astro";
 import PostCard from "../../components/blog/PostCard.astro";
 import { AUTHOR, BLOG, SITE_URL } from "../../config";
 import IconSearch from "../../images/blog/search.svg";
@@ -33,7 +34,9 @@ const structuredData = {
 		is:inline
 		set:html={JSON.stringify(structuredData)}
 	/>
-	<main id="main-content" class="app-layout" data-back-url="/blog">
+	<main id="main-content" class="app-layout h-feed" data-back-url="/blog">
+		<data class="p-name" value={BLOG.title}></data>
+		<AuthorCard />
 		<section class="hero">
 			<div class="title-row">
 				<h1 class="pixel-title">/blog</h1>
