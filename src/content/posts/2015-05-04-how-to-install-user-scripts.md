@@ -1,6 +1,6 @@
 ---
 title: How to Install User Scripts
-description: How to install and run user scripts across different browsers.
+description: How to install and run user scripts across different browsers, with a user script manager like Tampermonkey.
 pubDatetime: 2015-05-04
 modDatetime: 2026-10-12
 tags:

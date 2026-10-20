@@ -1,6 +1,6 @@
 ---
 title: "Silent Hill 2 Remake"
-description: I finally played the Silent Hill 2 remake, right before it left PS Plus. A dark, heavy story, a perfect atmosphere, and a soundtrack I've had on repeat for twenty years.
+description: I finally played the Silent Hill 2 remake, right before it left PS Plus. A dark, heavy story and a soundtrack I've had on repeat for twenty years.
 pubDatetime: 2026-10-05
 tags:
   - gaming

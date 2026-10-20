@@ -26,6 +26,12 @@ from = "/blog/posts"
 to = "/blog"
 status = 301
 
+# Page 1 of the posts is the blog home.
+[[redirects]]
+from = "/blog/posts/1"
+to = "/blog"
+status = 301
+
 [[redirects]]
 from = "/blog/about"
 to = "/"

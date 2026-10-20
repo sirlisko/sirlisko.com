@@ -1,6 +1,6 @@
 ---
 title: "Final Fantasy XVI"
-description: A late playthrough of Final Fantasy XVI. A cinematic, enjoyable action game that drops most of the series' RPG depth for style, and never quite reaches the highs of its PlayStation-era games.
+description: A late playthrough of Final Fantasy XVI. A cinematic, enjoyable action game that drops most of the series' RPG depth for style.
 pubDatetime: 2026-09-01
 tags:
   - gaming

@@ -1,6 +1,6 @@
 ---
 title: One Year at FoodCycle
-description: Reflections on my first year of volunteering with FoodCycle, cooking for the community, fighting food waste, and finding something that actually matters on a Saturday morning.
+description: Reflections on my first year of volunteering with FoodCycle, cooking for the community and fighting food waste.
 pubDatetime: 2026-03-15
 tags:
   - life

@@ -3,7 +3,7 @@ title: Dependencies vs devDependencies
 pubDatetime: 2019-11-07
 tags:
   - dev
-description: When to put an npm package in dependencies vs devDependencies.
+description: When to put an npm package in dependencies vs devDependencies, and where tools like Babel and @types should go.
 ---
 
 It's probably the most famous dilemma after the [chicken or the egg](https://en.wikipedia.org/wiki/Chicken_or_the_egg): should I install this package in _dependencies_ or in _devDependencies_?

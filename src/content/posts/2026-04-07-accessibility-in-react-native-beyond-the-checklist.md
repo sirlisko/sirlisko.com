@@ -1,6 +1,6 @@
 ---
 title: "Accessibility in React Native: Beyond the Checklist"
-description: Practical approaches to building accessible React Native apps, from screen readers and font scaling to testing tools like Accessibility Inspector, VoiceOver, and BrowserStack.
+description: Practical approaches to building accessible React Native apps, from screen readers and font scaling to testing with VoiceOver and Accessibility Inspector.
 pubDatetime: 2026-04-07
 tags:
   - dev

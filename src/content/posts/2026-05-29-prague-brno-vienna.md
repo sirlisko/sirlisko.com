@@ -1,6 +1,6 @@
 ---
 title: "Prague, Brno, and Vienna"
-description: A ten-day trip through central Europe, starting in Prague for Charles Bridge and its mystique, a surprise brief stop in Brno, and continuing to Vienna for its museums, Klimt's Kiss, and far more good food than planned.
+description: A ten-day trip through central Europe, from Prague to Vienna with a surprise stop in Brno, and far more good food than planned.
 pubDatetime: 2026-05-29
 tags:
   - travel

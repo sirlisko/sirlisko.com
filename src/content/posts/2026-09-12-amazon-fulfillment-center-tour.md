@@ -1,6 +1,6 @@
 ---
 title: "Inside LCY3: A Tour of Europe's Biggest Fulfillment Center"
-description: I signed up for a free guided tour of Amazon's largest fulfillment center in Europe. Here's what the process from delivery truck to shipped box looks like, and what I made of the visit itself.
+description: I signed up for a free guided tour of Amazon's largest fulfillment center in Europe. Here's what the process from delivery truck to shipped box looks like.
 pubDatetime: 2026-09-12
 tags:
   - life

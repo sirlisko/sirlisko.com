@@ -1,6 +1,6 @@
 ---
 title: My Default Apps at the End of 2024
-description: List of the apps I use, updated at the end of 2024.
+description: List of the apps I use every day, from mail and notes to passwords and music, updated at the end of 2024.
 pubDatetime: 2024-12-30
 tags:
   - web-life

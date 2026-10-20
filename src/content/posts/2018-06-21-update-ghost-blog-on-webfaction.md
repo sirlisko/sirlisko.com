@@ -1,7 +1,7 @@
 ---
 title: Update Ghost Blog on WebFaction
 pubDatetime: 2018-06-21
-description: How to update a self-hosted Ghost blog on Webfaction.
+description: How to update a self-hosted Ghost blog on Webfaction with ghost-cli. Archived, since Webfaction shut down in 2020.
 tags:
   - dev
 ---

@@ -1,6 +1,6 @@
 ---
 title: "Southeast Asia: Northern Thailand and Laos, Solo"
-description: The second part of a five-week trip through Southeast Asia, a solo loop out of Bangkok through Chiang Mai's temples and hills, Chiang Rai's strange modern temples, two days down the Mekong, Laos, a viewpoint in Vang Vieng, and Vientiane Laos' capital.
+description: The second part of a five-week trip through Southeast Asia, a solo loop out of Bangkok through Chiang Mai, Chiang Rai, two days down the Mekong, and Laos.
 pubDatetime: 2026-08-26
 tags:
   - travel

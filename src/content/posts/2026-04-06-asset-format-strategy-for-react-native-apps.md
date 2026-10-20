@@ -1,6 +1,6 @@
 ---
 title: Asset Format Strategy for React Native Apps
-description: A practical guide to choosing between WebP, SVG, Lottie, and compressed MP4 in React Native with Expo, when to use each, how to convert, and how to organise your assets.
+description: A practical guide to choosing between WebP, SVG, Lottie, and compressed MP4 in React Native with Expo, and when to use each.
 pubDatetime: 2026-04-06
 tags:
   - dev
