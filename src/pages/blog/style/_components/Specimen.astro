@@ -1,0 +1,38 @@
+---
+interface Props {
+	name: string;
+}
+
+const { name } = Astro.props;
+---
+
+<div class="specimen">
+	<span class="pixel-label">{name}</span>
+	<div class="sample"><slot /></div>
+</div>
+
+<style>
+.specimen {
+	display: grid;
+	align-items: center;
+	gap: 0.75rem 1.5rem;
+	padding-block: 1.25rem;
+	border-top: 1px dashed var(--border);
+
+	@media (min-width: 640px) {
+		grid-template-columns: 11rem 1fr;
+	}
+}
+
+.pixel-label {
+	font-size: 10px;
+}
+
+.sample {
+	min-width: 0;
+
+	> :global(*) {
+		margin-block: 0;
+	}
+}
+</style>

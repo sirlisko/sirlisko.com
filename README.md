@@ -59,7 +59,7 @@ pnpm preview
 This project uses **Biome** and **Vitest** to ensure code quality, consistency, and correctness. The following commands are available:
 
 - `pnpm check`: Run Biome to lint and format all files.
-- `pnpm typecheck`: Run the TypeScript type check (`tsc --noEmit`).
+- `pnpm typecheck`: Generate Astro's types, then run the TypeScript type check (`tsc --noEmit`).
 - `pnpm test`: Run unit tests using Vitest.
 
 ### GitHub Actions

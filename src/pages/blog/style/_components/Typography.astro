@@ -1,0 +1,28 @@
+---
+import Specimen from "./Specimen.astro";
+import Specimens from "./Specimens.astro";
+---
+
+<Specimens>
+	<Specimen name=".pixel-title">
+		<p class="pixel-title title">/blog</p>
+	</Specimen>
+	<Specimen name=".pixel-label">
+		<p class="pixel-label">Recent posts</p>
+	</Specimen>
+	<Specimen name="h2"><h2>Heading level 2</h2></Specimen>
+	<Specimen name="h3"><h3>Heading level 3</h3></Specimen>
+	<Specimen name="h4"><h4>Heading level 4</h4></Specimen>
+	<Specimen name="h5"><h5>Heading level 5</h5></Specimen>
+	<Specimen name="h6"><h6>Heading level 6</h6></Specimen>
+</Specimens>
+
+<style>
+.title {
+	font-size: 28px;
+
+	@media (min-width: 640px) {
+		font-size: 44px;
+	}
+}
+</style>

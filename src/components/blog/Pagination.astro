@@ -1,0 +1,78 @@
+---
+import type { Page } from "astro";
+
+interface Props {
+	page: Page;
+	/** Where page 2 goes back to, when page 1 lives somewhere else. */
+	firstPageUrl?: string;
+}
+
+const { page, firstPageUrl } = Astro.props;
+
+const prev =
+	page.currentPage === 2 && firstPageUrl ? firstPageUrl : page.url.prev;
+const next = page.url.next;
+---
+
+{page.lastPage > 1 && (
+	<nav aria-label="Pagination Navigation">
+		{prev ? (
+			<a href={prev} aria-label="Go to previous page">
+				<span aria-hidden="true" class="pixel-arrow back"></span>
+				Prev
+			</a>
+		) : (
+			<span aria-disabled="true">
+				<span aria-hidden="true" class="pixel-arrow back"></span>
+				Prev
+			</span>
+		)}
+		<span class="count">{page.currentPage} / {page.lastPage}</span>
+		{next ? (
+			<a href={next} aria-label="Go to next page">
+				Next
+				<span aria-hidden="true" class="pixel-arrow"></span>
+			</a>
+		) : (
+			<span aria-disabled="true">
+				Next
+				<span aria-hidden="true" class="pixel-arrow"></span>
+			</span>
+		)}
+	</nav>
+)}
+
+<style>
+nav {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 1.5rem;
+	margin-top: auto;
+	margin-bottom: 2rem;
+	font-family: var(--font-pixel);
+	font-size: 12px;
+	line-height: 1rem;
+}
+
+a,
+[aria-disabled] {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	min-height: 44px;
+	user-select: none;
+}
+
+a:hover {
+	color: var(--accent);
+}
+
+[aria-disabled] {
+	opacity: 0.4;
+}
+
+.count {
+	color: var(--muted-foreground);
+}
+</style>

@@ -42,10 +42,6 @@ const jsonLd = {
 	],
 };
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site)
-	.toString()
-	.replace(/\/+$/, "");
-
 const analyticsOrigin = new URL(ANALYTICS.src).origin;
 
 interface Props {
@@ -55,11 +51,14 @@ interface Props {
 	imageWidth?: number;
 	imageHeight?: number;
 	imageAlt?: string;
-	ogType?: "website" | "profile";
+	ogType?: "website" | "profile" | "article";
+	/** A post first published elsewhere points here instead of at itself. */
+	canonical?: string | undefined;
 	noindex?: boolean;
-	theme?: "dark";
+	/** The blog follows the system scheme, so it's light by day and dark at night. */
+	theme?: "dark" | "blog";
 	/** Only for pages that paint their own dark background without a theme. */
-	colorScheme?: "dark" | "light";
+	colorScheme?: "dark" | "light" | "light dark";
 	/** The mobile browser bar, matched to the page so each game fills the screen. */
 	themeColor?: string | { light: string; dark: string };
 }
@@ -72,11 +71,16 @@ const {
 	imageHeight = image ? undefined : SITE.imageHeight,
 	imageAlt,
 	ogType,
+	canonical,
 	noindex,
 	theme,
-	colorScheme = theme ? "dark" : "light",
+	colorScheme = theme === "blog" ? "light dark" : theme ? "dark" : "light",
 	themeColor = "#2eaed5",
 } = Astro.props;
+
+const canonicalURL =
+	canonical ??
+	new URL(Astro.url.pathname, Astro.site).toString().replace(/\/+$/, "");
 
 const metaDescription = description || SITE.description;
 const formattedTitle = title ? `${title} | ${SITE.title}` : SITE.title;
@@ -137,6 +141,7 @@ const formattedTitle = title ? `${title} | ${SITE.title}` : SITE.title;
 		{Object.values(AUTHOR.profiles).map((profile) => <link rel="me" href={profile} />)}
 		<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 		<link rel="preconnect" href={analyticsOrigin}>
+		<slot name="head" />
 		<ClientRouter />
 	</head>
 	<body class:list={[theme]}>

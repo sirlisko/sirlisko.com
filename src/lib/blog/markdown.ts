@@ -1,0 +1,52 @@
+import type { AstroUserConfig } from "astro";
+
+type ShikiTransformer = NonNullable<
+	NonNullable<
+		NonNullable<AstroUserConfig["markdown"]>["shikiConfig"]
+	>["transformers"]
+>[number];
+
+interface Node {
+	type: string;
+	tagName?: string;
+	properties?: Record<string, unknown>;
+	children?: Node[];
+}
+
+// Posts render in a 768px column (minus the 1rem gutters); left to the
+// constrained layout's own guess, desktops would download candidates far wider.
+const SIZES = "(min-width: 768px) 736px, calc(100vw - 2rem)";
+
+const makeResponsive = (node: Node) => {
+	if (node.tagName === "img" && node.properties) {
+		node.properties.layout ??= "constrained";
+		node.properties.sizes ??= SIZES;
+	}
+	node.children?.forEach(makeResponsive);
+};
+
+/**
+ * Post images get a srcset sized to the column. Astro hands an image's
+ * properties to its image service, so this sets the layout per image rather
+ * than as the site-wide default, which would override every other page's images.
+ */
+export const rehypeResponsiveImages = () => makeResponsive;
+
+/** ```ts file="astro.config.ts" puts a badge with the file name on the block. */
+export const transformerFileName = (): ShikiTransformer => ({
+	pre(node) {
+		const file = this.options.meta?.__raw?.match(
+			/\bfile=["'`]?([^"'`\s]+)/,
+		)?.[1];
+		if (!file) {
+			return;
+		}
+		this.addClassToHast(node, "has-file-name");
+		node.children.push({
+			type: "element",
+			tagName: "span",
+			properties: { class: "file-name" },
+			children: [{ type: "text", value: file }],
+		});
+	},
+});

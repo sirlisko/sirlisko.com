@@ -1,0 +1,39 @@
+---
+import { getCollection } from "astro:content";
+import AdjacentPostNav from "../../../../components/blog/AdjacentPostNav.astro";
+import ReplyByEmail from "../../../../components/blog/ReplyByEmail.astro";
+import { postUrl, publishedPosts } from "../../../../lib/blog/posts";
+import Specimen from "./Specimen.astro";
+import Specimens from "./Specimens.astro";
+
+const [newer, older] = publishedPosts(await getCollection("posts")).map(
+	(post) => ({
+		url: postUrl(post),
+		title: post.data.title,
+	}),
+);
+---
+
+<Specimens>
+	<Specimen name="<ReplyByEmail>">
+		<div class="not-prose flush">
+			<ReplyByEmail
+				title="Style"
+				prompt="Spotted something off on this page?"
+			/>
+		</div>
+	</Specimen>
+	{newer && older && (
+		<Specimen name="<AdjacentPostNav>">
+			<div class="not-prose flush">
+				<AdjacentPostNav prev={older} next={newer} />
+			</div>
+		</Specimen>
+	)}
+</Specimens>
+
+<style>
+.flush > :global(*) {
+	margin-block: 0;
+}
+</style>

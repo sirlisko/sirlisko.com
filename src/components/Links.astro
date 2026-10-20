@@ -18,6 +18,7 @@ const PAUSE_TITLES: Record<typeof game, string> = {
 	uses: "Where to?",
 	resume: "Short rest",
 	credits: "The end",
+	blog: "Paused",
 };
 const attrs = (link: Link) =>
 	link.reload ? { "data-astro-reload": true } : {};
@@ -52,6 +53,7 @@ const attrs = (link: Link) =>
 			</li>
 			))}
 		</ul>
+		<slot name="pause" />
 		<form method="dialog">
 			<button type="submit" class="menu-close">Continue</button>
 		</form>
@@ -133,6 +135,17 @@ const attrs = (link: Link) =>
 	--cursor-width: 0.75em;
 }
 
+.nav[data-game="blog"] {
+	--fg: var(--foreground);
+	--accent: var(--led);
+	--pause-bg: var(--foreground);
+	--pause-fg: var(--background);
+	--pause-title: var(--pea);
+	--pause-accent: var(--led);
+	/* A round dot has nothing to lean, so it sits dead centre. */
+	--cursor-nudge: 0;
+}
+
 .nav[data-game="credits"] {
 	--fg: var(--nes-white);
 	--accent: var(--nes-yellow);
@@ -206,6 +219,21 @@ a[aria-current]:not(:hover, :focus-visible)::before {
 	clip-path: none;
 	color: var(--accent);
 	line-height: inherit;
+}
+
+/* The screen shows through, darkened, behind the pause menu. */
+.nav[data-game="blog"] .pause::backdrop {
+	background: rgb(15 56 15 / 0.6);
+}
+
+/* The Game Boy's power LED, glowing. */
+.nav[data-game="blog"] .menu a::before {
+	width: 8px;
+	height: 8px;
+	font-size: inherit;
+	clip-path: none;
+	border-radius: 50%;
+	box-shadow: 0 0 6px var(--accent);
 }
 
 /* Pac-Man chomps instead of pointing. */

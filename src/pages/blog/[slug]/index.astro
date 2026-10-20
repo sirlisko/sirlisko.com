@@ -1,0 +1,219 @@
+---
+import { getCollection, render } from "astro:content";
+import AdjacentPostNav from "../../../components/blog/AdjacentPostNav.astro";
+import BackLink from "../../../components/blog/BackLink.astro";
+import BackToTop from "../../../components/blog/BackToTop.astro";
+import GpxMap from "../../../components/blog/GpxMap.astro";
+import GpxStats from "../../../components/blog/GpxStats.astro";
+import PostDate from "../../../components/blog/PostDate.astro";
+import ReplyByEmail from "../../../components/blog/ReplyByEmail.astro";
+import { AUTHOR, BLOG, SITE_URL } from "../../../config";
+import BlogLayout from "../../../layouts/BlogLayout.astro";
+import { OG_IMAGE_SIZE } from "../../../lib/blog/ogCard";
+import { cropOgImage } from "../../../lib/blog/ogImage";
+import {
+	type Post,
+	postSlug,
+	postUrl,
+	publishedPosts,
+	tagUrl,
+} from "../../../lib/blog/posts";
+import leafletCss from "../../../styles/blog/leaflet.css?url";
+
+export async function getStaticPaths() {
+	const posts = publishedPosts(await getCollection("posts"));
+	const adjacent = (post: Post | undefined) =>
+		post ? { url: postUrl(post), title: post.data.title } : null;
+
+	return posts.map((post, i) => ({
+		params: { slug: postSlug(post.id) },
+		props: { post, prev: adjacent(posts[i - 1]), next: adjacent(posts[i + 1]) },
+	}));
+}
+
+const { post, prev, next } = Astro.props;
+const { title, description, ogImage, canonicalURL, pubDatetime, modDatetime } =
+	post.data;
+const { timezone, tags, gpxFiles, replyPrompt } = post.data;
+
+const { Content } = await render(post);
+const hasMap =
+	!!gpxFiles?.length || /data-(gpx|route)-map/.test(post.body ?? "");
+
+const image =
+	typeof ogImage === "string"
+		? { src: ogImage, width: undefined, height: undefined }
+		: ogImage
+			? await cropOgImage(ogImage)
+			: { src: `${postUrl(post)}/index.png`, ...OG_IMAGE_SIZE };
+const imageUrl = new URL(image.src, SITE_URL).href;
+const url = canonicalURL ?? `${SITE_URL}${postUrl(post)}`;
+
+const structuredData = {
+	"@context": "https://schema.org",
+	"@type": "BlogPosting",
+	headline: title,
+	description,
+	url,
+	mainEntityOfPage: url,
+	isPartOf: { "@id": `${BLOG.url}#blog` },
+	publisher: { "@id": AUTHOR.id },
+	image: imageUrl,
+	datePublished: pubDatetime.toISOString(),
+	...(modDatetime && { dateModified: modDatetime.toISOString() }),
+	author: [
+		{ "@type": "Person", name: AUTHOR.name, "@id": AUTHOR.id, url: SITE_URL },
+	],
+};
+---
+
+<BlogLayout
+	{title}
+	{description}
+	image={imageUrl}
+	imageWidth={image.width}
+	imageHeight={image.height}
+	ogType="article"
+	canonical={canonicalURL}
+	backToTop
+>
+	<Fragment slot="head">
+		{hasMap && (
+			<>
+				<link rel="preconnect" href="https://tile.openstreetmap.org" />
+				<link rel="preload" as="style" href={leafletCss} />
+			</>
+		)}
+		<meta property="article:published_time" content={pubDatetime.toISOString()}>
+		{modDatetime && (
+			<meta property="article:modified_time" content={modDatetime.toISOString()} />
+		)}
+		{tags.map((tag) => <meta property="article:tag" content={tag} />)}
+		<script
+			type="application/ld+json"
+			is:inline
+			set:html={JSON.stringify(structuredData)}
+		/>
+	</Fragment>
+
+	<div class="reading-progress" aria-hidden="true"><div></div></div>
+
+	<BackLink href="/blog" label="Go back" remembered />
+
+	<main id="main-content" class="app-layout post" data-pagefind-body>
+		<h1 transition:name={`post-${post.id}`}>{title}</h1>
+
+		<PostDate {pubDatetime} {modDatetime} {timezone} size="lg" showBoth />
+
+		{gpxFiles && gpxFiles.length > 0 && (
+			<div class="tracks">
+				<GpxMap tracks={gpxFiles} />
+				<GpxStats tracks={gpxFiles} />
+			</div>
+		)}
+
+		<article id="article" class="prose">
+			<Content />
+		</article>
+
+		<hr class="dashed-rule">
+
+		<ReplyByEmail {title} prompt={replyPrompt} />
+
+		<BackToTop />
+
+		<ul class="tags">
+			{tags.map((tag) => (
+				<li><a href={tagUrl(tag)} class="tag-link">#{tag}</a></li>
+			))}
+		</ul>
+
+		<hr class="dashed-rule">
+
+		<AdjacentPostNav {prev} {next} />
+	</main>
+</BlogLayout>
+
+<style>
+.post {
+	margin-top: 1rem;
+}
+
+h1 {
+	display: inline-block;
+	margin-bottom: 0.5rem;
+	font-size: 28px;
+	font-weight: 600;
+	line-height: 1.25;
+	letter-spacing: -0.025em;
+
+	@media (min-width: 640px) {
+		font-size: 38px;
+	}
+}
+
+.tracks {
+	margin-top: 2rem;
+}
+
+.prose {
+	width: 100%;
+	margin-top: 2rem;
+}
+
+.tags {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1rem;
+	margin-block: 1rem 2rem;
+
+	@media (min-width: 640px) {
+		margin-block: 2rem;
+	}
+
+	a {
+		font-size: 0.875rem;
+		line-height: 1.25rem;
+	}
+}
+
+.reading-progress {
+	position: fixed;
+	top: 0;
+	z-index: 10;
+	width: 100%;
+	height: 4px;
+	background: var(--background);
+
+	div {
+		width: var(--progress, 0%);
+		height: 100%;
+		background: var(--accent);
+	}
+}
+</style>
+
+<script>
+import "../../../lib/blog/codeBlocks";
+import "../../../lib/blog/images";
+import "../../../lib/blog/maps";
+import { initLightbox } from "../../../lib/blog/lightbox";
+import { addHeadingLinks, scrollPercent } from "../../../lib/blog/post";
+
+let closeLightbox: (() => void) | undefined;
+
+document.addEventListener("astro:page-load", () => {
+	const article = document.getElementById("article");
+	if (article && document.querySelector("[data-pagefind-body]")) {
+		addHeadingLinks(article);
+		closeLightbox = initLightbox(article);
+	}
+});
+
+document.addEventListener("astro:before-swap", () => closeLightbox?.());
+
+document.addEventListener("scroll", () => {
+	const bar = document.querySelector<HTMLElement>(".reading-progress");
+	bar?.style.setProperty("--progress", `${scrollPercent()}%`);
+});
+</script>

@@ -1,0 +1,128 @@
+---
+import { getCollection } from "astro:content";
+import PostCard from "../../../../components/blog/PostCard.astro";
+import PostDate from "../../../../components/blog/PostDate.astro";
+import IconSearch from "../../../../images/blog/search.svg";
+import { publishedPosts, tagUrl } from "../../../../lib/blog/posts";
+import Specimen from "./Specimen.astro";
+import Specimens from "./Specimens.astro";
+import State from "./State.astro";
+
+const [latest] = publishedPosts(await getCollection("posts"));
+---
+
+<!-- Pinned states are spans, so they don't add tab stops or duplicate links. -->
+<Specimens>
+	{latest && (
+		<Specimen name="<PostCard>">
+			<ul class="not-prose flush">
+				<PostCard post={latest} />
+			</ul>
+		</Specimen>
+	)}
+	<Specimen name="<PostDate>">
+		<PostDate
+			pubDatetime={new Date("2026-04-14")}
+			modDatetime={new Date("2026-05-01")}
+			size="lg"
+			showBoth
+		/>
+	</Specimen>
+	<Specimen name=".tag-link">
+		<p class="not-prose row">
+			<a href={tagUrl("travel")} class="tag-link">#travel</a>
+			<a href={tagUrl("hiking")} class="tag-link">#hiking</a>
+		</p>
+	</Specimen>
+	<Specimen name=".back-link">
+		<a href="#components" class="back-link">
+			<span aria-hidden="true" class="pixel-arrow back"></span>
+			/blog
+		</a>
+	</Specimen>
+	<Specimen name=".menu-cursor">
+		<State label="hover">
+			<span aria-hidden="true" data-hover class="menu-cursor cursor-sample"
+				>Post title</span
+			>
+		</State>
+	</Specimen>
+	<Specimen name=".pixel-link">
+		<div class="row">
+			<State label="default">
+				<a href="#components" class="pixel-link">github</a>
+			</State>
+			<State label="hover">
+				<span aria-hidden="true" data-hover class="pixel-link">github</span>
+			</State>
+		</div>
+	</Specimen>
+	<Specimen name=".pixel-icon">
+		<div class="row">
+			<State label="default">
+				<a
+					href="/blog/search"
+					class="pixel-icon"
+					aria-label="Search"
+					title="Search"
+				>
+					<IconSearch aria-hidden="true" />
+				</a>
+			</State>
+			<State label="hover">
+				<span aria-hidden="true" data-hover class="pixel-icon"
+					><IconSearch /></span
+				>
+			</State>
+		</div>
+	</Specimen>
+	<Specimen name=".pixel-button">
+		<div class="row">
+			<State label="default">
+				<a href="/blog/posts/2" class="pixel-button">More posts</a>
+			</State>
+			<State label="hover">
+				<span aria-hidden="true" data-hover class="pixel-button"
+					>More posts</span
+				>
+			</State>
+			<State label="pressed">
+				<span aria-hidden="true" data-hover data-active class="pixel-button"
+					>More posts</span
+				>
+			</State>
+		</div>
+	</Specimen>
+	<Specimen name=".pixel-rule">
+		<div aria-hidden="true" class="pixel-rule"></div>
+	</Specimen>
+</Specimens>
+
+<style>
+.flush > :global(li) {
+	margin-block: 0;
+}
+
+.row {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	gap: 1.5rem;
+}
+
+.cursor-sample {
+	margin-inline-start: 15px;
+	font-size: 19px;
+	font-weight: 600;
+	line-height: 1.375;
+}
+
+/* Their hit areas pad the text, so pull them back onto the column edge. */
+.pixel-link {
+	margin-inline-start: -5px;
+}
+
+.pixel-icon {
+	margin-inline-start: -0.625rem;
+}
+</style>

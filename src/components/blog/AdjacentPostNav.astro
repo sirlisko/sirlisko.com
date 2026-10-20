@@ -1,0 +1,79 @@
+---
+interface Adjacent {
+	url: string;
+	title: string;
+}
+
+interface Props {
+	prev: Adjacent | null;
+	next: Adjacent | null;
+}
+
+const { prev, next } = Astro.props;
+---
+
+<div data-pagefind-ignore class="adjacent">
+	{prev && (
+		<a href={prev.url}>
+			<span class="pixel-label direction">
+				<span aria-hidden="true" class="pixel-arrow back"></span>
+				Previous
+			</span>
+			<span class="title">{prev.title}</span>
+		</a>
+	)}
+	{next && (
+		<a href={next.url} class="next">
+			<span class="pixel-label direction">
+				Next
+				<span aria-hidden="true" class="pixel-arrow"></span>
+			</span>
+			<span class="title">{next.title}</span>
+		</a>
+	)}
+</div>
+
+<style>
+.adjacent {
+	display: grid;
+	gap: 1.5rem;
+	margin-block: 2rem;
+
+	@media (min-width: 640px) {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
+a {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+
+	&:hover {
+		opacity: 0.75;
+	}
+}
+
+.next {
+	text-align: end;
+
+	@media (min-width: 640px) {
+		grid-column-start: 2;
+	}
+
+	.direction {
+		justify-content: flex-end;
+	}
+}
+
+.direction {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	font-size: 11px;
+}
+
+.title {
+	font-weight: 600;
+}
+</style>
