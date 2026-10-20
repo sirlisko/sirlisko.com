@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 320">
+  <!-- The blog's Game Boy palette (src/styles/theme.css): an <img> can't read the page's variables -->
+  <style>
+    :root {
+      --bg: #dde4c3;
+      --fg: #0f380f;
+      --soft: #2b4a28;
+      --accent: #306230;
+      --muted: #c8d3a2;
+      --pea: #8bac0f;
+      --inner: rgba(139, 172, 15, 0.3);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #142a12;
+        --fg: #d3dfb0;
+        --soft: #b5c495;
+        --accent: #9bbc0f;
+        --muted: #253f22;
+        --pea: #306230;
+        --inner: rgba(155, 188, 15, 0.14);
+      }
+    }
+    text { font-family: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace; }
+    .layer { stroke: var(--fg); stroke-width: 2; }
+    .l3 { fill: var(--bg); }
+    .l2 { fill: var(--muted); }
+    .l1 { fill: var(--inner); }
+    .shadow { fill: var(--pea); }
+    .t-num { font-size: 10px; font-weight: 700; fill: var(--accent); letter-spacing: 1px; }
+    .t-title { font-size: 14px; font-weight: 600; fill: var(--fg); }
+    .t-code { font-size: 11px; fill: var(--accent); }
+    .t-detail { font-size: 12px; fill: var(--soft); }
+    .t-center { font-size: 13px; font-weight: 600; fill: var(--soft); }
+  </style>
+
+  <!-- Layer 3: Metro -->
+  <rect class="shadow" x="14" y="12" width="538" height="302"/>
+  <rect class="layer l3" x="10" y="8" width="538" height="302"/>
+  <text class="t-num" x="28" y="32">LAYER 3</text>
+  <text class="t-title" x="92" y="32">Metro Bundler</text>
+  <text class="t-code" x="28" y="52">onDisabledRemoveStorybook: true</text>
+  <text class="t-detail" x="28" y="70">All Storybook imports → empty modules → 0 bytes in bundle</text>
+
+  <!-- Layer 2: Env Var -->
+  <rect class="layer l2" x="28" y="88" width="502" height="204"/>
+  <text class="t-num" x="46" y="112">LAYER 2</text>
+  <text class="t-title" x="110" y="112">Environment Variable</text>
+  <text class="t-code" x="46" y="132">EXPO_PUBLIC_STORYBOOK_ENABLED ≠ "true"</text>
+  <text class="t-detail" x="46" y="150">Only set in dev scripts + preview-with-storybook profile</text>
+
+  <!-- Layer 1: Route Guard -->
+  <rect class="layer l1" x="46" y="166" width="466" height="108"/>
+  <text class="t-num" x="64" y="190">LAYER 1</text>
+  <text class="t-title" x="128" y="190">Route Guard</text>
+  <text class="t-code" x="64" y="210">Stack.Protected guard={env === "true"}</text>
+  <text class="t-detail" x="64" y="228">Route doesn't exist → /storybook returns 404</text>
+
+  <!-- Center: Storybook -->
+  <text class="t-center" x="279" y="258" text-anchor="middle">Storybook UI</text>
+</svg>

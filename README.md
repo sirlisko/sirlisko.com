@@ -28,6 +28,12 @@ pnpm install
 
 This will install all the software needed in order to build and run the Website.
 
+## Blog posts
+
+The posts live in `src/content/posts`, one Markdown file each, with their images in `images/<slug>/`. GPX tracks sit in `public/blog/gpx`.
+
+The posts folder is two-way synced with the `Blog` folder of an Obsidian vault, so files can change outside git. Files starting with `_` are drafts: never published, and ignored by git.
+
 ## Build the Website
 
 ```bash
@@ -99,3 +105,7 @@ PDFs are automatically compressed using Ghostscript if available. To install it:
 ```bash
 brew install ghostscript
 ```
+
+## License
+
+The code is [MIT](LICENSE). The blog posts, their images and GPX tracks are [CC BY-NC-SA 4.0](src/content/posts/LICENSE); code snippets in the posts are MIT like the rest.
