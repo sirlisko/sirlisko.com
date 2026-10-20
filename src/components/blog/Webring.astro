@@ -8,23 +8,30 @@ const RING = "https://xn--sr8hvo.ws";
 		href={`${RING}/previous`}
 		referrerpolicy="no-referrer-when-downgrade"
 		aria-label="Previous site in the IndieWeb Webring"
-		>&lt;</a
+		><span aria-hidden="true" class="pixel-arrow back"></span></a
 	>
 	<a href={RING} title="An IndieWeb Webring">🕸💍</a>
 	<a
 		href={`${RING}/next`}
 		referrerpolicy="no-referrer-when-downgrade"
 		aria-label="Next site in the IndieWeb Webring"
-		>&gt;</a
+		><span aria-hidden="true" class="pixel-arrow"></span></a
 	>
 </nav>
 
 <style>
 .webring {
 	display: flex;
-	gap: 0.75rem;
 	align-items: center;
 	font-size: 12px;
+
+	a {
+		display: inline-flex;
+		min-width: 32px;
+		min-height: 32px;
+		align-items: center;
+		justify-content: center;
+	}
 
 	a:is(:hover, :focus-visible) {
 		color: var(--foreground);
