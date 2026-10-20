@@ -37,6 +37,9 @@ export const BLOG = {
 
 export const BLOG_FEED = `${BLOG.url}/rss.xml`;
 
+/** Webmention.io collects mentions of any page here; Bridgy Fed delivers fediverse replies to it too. */
+export const WEBMENTION_ENDPOINT = `https://webmention.io/${SITE_DOMAIN}/webmention`;
+
 export const AUTHOR = {
 	// Blog posts point their author here too, so every page describes one person.
 	id: `${SITE_URL}/#person`,

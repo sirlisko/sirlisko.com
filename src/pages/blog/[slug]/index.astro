@@ -104,8 +104,16 @@ const structuredData = {
 
 	<BackLink href="/blog" label="Go back" remembered />
 
-	<main id="main-content" class="app-layout post" data-pagefind-body>
-		<h1 transition:name={`post-${post.id}`}>{title}</h1>
+	<main id="main-content" class="app-layout post h-entry" data-pagefind-body>
+		<data class="u-url" value={url}></data>
+		<data class="p-summary" value={description}></data>
+		<span class="p-author h-card" hidden>
+			<data class="p-name" value={AUTHOR.name}></data>
+			<data class="u-url" value={SITE_URL}></data>
+			<data class="u-photo" value={`${SITE_URL}/images/avatar.png`}></data>
+		</span>
+		{tags.map((tag) => <data class="p-category" value={tag}></data>)}
+		<h1 class="p-name" transition:name={`post-${post.id}`}>{title}</h1>
 
 		<PostDate {pubDatetime} {modDatetime} {timezone} size="lg" showBoth />
 
@@ -116,7 +124,7 @@ const structuredData = {
 			</div>
 		)}
 
-		<article id="article" class="prose">
+		<article id="article" class="prose e-content">
 			<Content />
 		</article>
 

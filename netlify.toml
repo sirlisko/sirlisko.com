@@ -53,6 +53,23 @@ force = true
 from = "/colophon"
 to = "/credits"
 
+# Bridgy Fed answers for the domain, so the fediverse handle is @sirlisko.com@sirlisko.com.
+[[redirects]]
+from = "/.well-known/host-meta*"
+to = "https://fed.brid.gy/.well-known/host-meta:splat"
+status = 302
+
+[[redirects]]
+from = "/.well-known/webfinger*"
+to = "https://fed.brid.gy/.well-known/webfinger"
+status = 302
+
+# Proves the Bluesky handle sirlisko.com belongs to the Bridgy Fed account.
+[[headers]]
+  for = "/.well-known/atproto-did"
+  [headers.values]
+    Content-Type = "text/plain"
+
 # Nothing here is meant to be framed; the CSP sets only that, so scripts are untouched.
 [[headers]]
   for = "/*"
