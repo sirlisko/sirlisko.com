@@ -5,8 +5,7 @@ publish = "dist"
 [build.environment]
   NODE_VERSION = "24"
 
-# The blog's old URLs. They live here because the proxy below follows the
-# blog site's own redirects instead of passing them on.
+# The blog's old URLs, here rather than in astro.config so they stay real 301s.
 [[redirects]]
 from = "/blog/the-invariant-pattern---cleaner-typescript-with-assertion-functions"
 to = "/blog/the-invariant-pattern-cleaner-typescript-with-assertion-functions"
@@ -32,10 +31,11 @@ from = "/blog/about"
 to = "/"
 status = 301
 
+# Missing /blog pages get the blog's own 404 instead of Game Over.
 [[redirects]]
 from = "/blog/*"
-to = "https://sirlisko-blog.netlify.app/:splat"
-status = 200
+to = "/blog/404/index.html"
+status = 404
 
 # The light variants are gone; keep links already sent out working.
 [[redirects]]
