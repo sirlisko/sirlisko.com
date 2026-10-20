@@ -100,7 +100,7 @@ A GitHub Actions workflow runs on every push and pull request to ensure that:
 pnpm generate:og
 ```
 
-Draws a 1200×630 card for the home page, `/now`, `/projects`, `/uses`, `/resume`, `/credits` and the 404 into `public/images/og/`. Rerun it after changing a card's text in `data/og.json` or its look in `scripts/generate-og.mjs`. A page without a card falls back to `me_banner.jpg`. Blog cards aren't drawn here: see [Blog posts](#blog-posts).
+Draws a 1200×630 card for the home page, `/now`, `/projects`, `/uses`, `/resume`, `/credits`, `/friends` and the 404 into `public/images/og/`. Rerun it after changing a card's text in `data/og.json` or its look in `scripts/generate-og.mjs`. A page without a card falls back to `me_banner.jpg`. Blog cards aren't drawn here: see [Blog posts](#blog-posts).
 
 ## Capture the project screenshots
 

@@ -28,6 +28,7 @@ export const rolls: Roll[] = [
 			{ role: "NES multicart", name: "/projects", url: "/projects" },
 			{ role: "Zork", name: "/uses", url: "/uses" },
 			{ role: "D&D character sheet", name: "/resume", url: "/resume" },
+			{ role: "Arcade high scores", name: "/friends", url: "/friends" },
 			{ role: "Game Boy", name: "/blog", url: "/blog" },
 			{ role: "Game Boy manual", name: "/blog/style", url: "/blog/style" },
 			{ role: "Game over", name: "/404", url: "/404" },
@@ -77,6 +78,11 @@ export const rolls: Roll[] = [
 				url: "https://nownownow.com/about",
 			},
 			{ role: "/uses pages", name: "uses.tech", url: "https://uses.tech" },
+			{
+				role: "/friends pages",
+				name: "slashfriends",
+				url: "https://slashfriends.org",
+			},
 		],
 	},
 	{

@@ -2,6 +2,7 @@
 import { getCollection, render } from "astro:content";
 import { SOURCE } from "../../../../data/credits";
 import AdjacentPostNav from "../../../components/blog/AdjacentPostNav.astro";
+import AuthorCard from "../../../components/blog/AuthorCard.astro";
 import BackLink from "../../../components/blog/BackLink.astro";
 import BackToTop from "../../../components/blog/BackToTop.astro";
 import GpxMap from "../../../components/blog/GpxMap.astro";
@@ -107,11 +108,7 @@ const structuredData = {
 	<main id="main-content" class="app-layout post h-entry" data-pagefind-body>
 		<data class="u-url" value={url}></data>
 		<data class="p-summary" value={description}></data>
-		<span class="p-author h-card" hidden>
-			<data class="p-name" value={AUTHOR.name}></data>
-			<data class="u-url" value={SITE_URL}></data>
-			<data class="u-photo" value={`${SITE_URL}/images/avatar.png`}></data>
-		</span>
+		<AuthorCard />
 		{tags.map((tag) => <data class="p-category" value={tag}></data>)}
 		<h1 class="p-name" transition:name={`post-${post.id}`}>{title}</h1>
 
