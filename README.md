@@ -108,4 +108,4 @@ brew install ghostscript
 
 ## License
 
-The code is [MIT](LICENSE). The blog posts, their images and GPX tracks are [CC BY-NC-SA 4.0](src/content/posts/LICENSE); code snippets in the posts are MIT like the rest.
+The code is [MIT](LICENSE). The blog posts, their images and GPX tracks are [CC BY 4.0](src/content/posts/LICENSE); code snippets in the posts are MIT like the rest.
