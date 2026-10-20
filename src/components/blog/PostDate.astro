@@ -35,11 +35,11 @@ const listed = bump && updated ? updated : published;
 <div class:list={["post-date", size]}>
 	{showBoth ? (
 		<>
-			<time datetime={published.iso}>{published.label}</time>
+			<time class="dt-published" datetime={published.iso}>{published.label}</time>
 			{updated && (
 				<>
 					<span aria-hidden="true">·</span>
-					<span>Updated <time datetime={updated.iso}>{updated.label}</time></span>
+					<span>Updated <time class="dt-updated" datetime={updated.iso}>{updated.label}</time></span>
 				</>
 			)}
 		</>

@@ -14,6 +14,7 @@ import {
 	SITE,
 	SITE_DOMAIN,
 	SITE_URL,
+	WEBMENTION_ENDPOINT,
 } from "../config";
 
 const jsonLd = {
@@ -139,6 +140,7 @@ const formattedTitle = title ? `${title} | ${SITE.title}` : SITE.title;
 			href={BLOG_FEED}
 		>
 		{Object.values(AUTHOR.profiles).map((profile) => <link rel="me" href={profile} />)}
+		<link rel="webmention" href={WEBMENTION_ENDPOINT}>
 		<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 		<link rel="preconnect" href={analyticsOrigin}>
 		<slot name="head" />
