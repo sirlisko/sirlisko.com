@@ -53,6 +53,11 @@ force = true
 from = "/colophon"
 to = "/credits"
 
+# The /friends page doubles as the blogroll.
+[[redirects]]
+from = "/blogroll"
+to = "/friends"
+
 # Bridgy Fed answers for the domain, so the fediverse handle is @sirlisko.com@sirlisko.com.
 [[redirects]]
 from = "/.well-known/host-meta*"
