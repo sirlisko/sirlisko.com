@@ -1,6 +1,6 @@
 ---
 title: "A Year Building a React Native App with Expo"
-description: A retrospective on joining a React Native project, shaping its technical direction through ADRs, and shipping it to production, plus a series of deep-dive posts on the decisions that mattered most.
+description: A retrospective on joining a React Native project, shaping its technical direction through ADRs, and shipping it to production.
 pubDatetime: 2026-04-01
 tags:
   - dev

@@ -1,6 +1,6 @@
 ---
 title: "Upgrading Through Three Major Expo Versions (and Getting to Zero Warnings)"
-description: What it takes to upgrade a production React Native app through Expo 53, 54, and 55, the breaking changes, the dependency hell, the unmaintained packages, and the payoff.
+description: What it takes to upgrade a production React Native app through Expo 53, 54, and 55, the breaking changes, the dependency hell, and the payoff.
 pubDatetime: 2026-04-02
 tags:
   - dev

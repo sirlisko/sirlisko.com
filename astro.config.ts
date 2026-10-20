@@ -15,6 +15,9 @@ import {
 	transformerFileName,
 } from "./src/lib/blog/markdown";
 import gameBoyTheme from "./src/lib/blog/shikiGameBoy";
+import { postLastmods } from "./src/lib/blog/sitemap";
+
+const lastmods = postLastmods("./src/content/posts");
 
 // https://astro.build/config
 export default defineConfig({
@@ -24,7 +27,11 @@ export default defineConfig({
 		sitemap({
 			filter: (page) => !/\/blog\/(search|404)\/?$/.test(page),
 			// The blog home is listed as /blog/, which redirects to /blog.
-			serialize: (item) => ({ ...item, url: item.url.replace(/\/$/, "") }),
+			serialize: (item) => {
+				const url = item.url.replace(/\/$/, "");
+				const lastmod = lastmods.get(url);
+				return { ...item, url, ...(lastmod && { lastmod }) };
+			},
 		}),
 	],
 	trailingSlash: "never",

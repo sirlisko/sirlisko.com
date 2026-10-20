@@ -1,6 +1,6 @@
 ---
 title: "Southeast Asia: Thailand, Malaysia, and Indonesia"
-description: The first part of a five-week trip through Southeast Asia, from an overnight train out of Bangkok to Penang's food, Cameron Highlands' tea, Kuala Lumpur's chaos, and temples in Bali and Java.
+description: The first part of a five-week trip through Southeast Asia, from an overnight train out of Bangkok to Penang, Kuala Lumpur, Bali and Java.
 pubDatetime: 2026-08-17
 tags:
   - travel
