@@ -1,0 +1,70 @@
+---
+import { BLOG } from "../../config";
+import { formatPostDate } from "../../lib/blog/date";
+
+interface Props {
+	pubDatetime: Date;
+	modDatetime?: Date | null | undefined;
+	timezone?: string | undefined;
+	bump?: boolean | undefined;
+	size?: "sm" | "lg";
+	/** Post pages show both dates; lists show the one the post is sorted by. */
+	showBoth?: boolean;
+}
+
+const {
+	pubDatetime,
+	modDatetime,
+	timezone = BLOG.timezone,
+	bump = false,
+	size = "sm",
+	showBoth = false,
+} = Astro.props;
+
+const date = (value: Date) => ({
+	iso: value.toISOString(),
+	label: formatPostDate(value, timezone),
+});
+
+const published = date(pubDatetime);
+const updated =
+	modDatetime && modDatetime > pubDatetime ? date(modDatetime) : null;
+const listed = bump && updated ? updated : published;
+---
+
+<div class:list={["post-date", size]}>
+	{showBoth ? (
+		<>
+			<time datetime={published.iso}>{published.label}</time>
+			{updated && (
+				<>
+					<span aria-hidden="true">·</span>
+					<span>Updated <time datetime={updated.iso}>{updated.label}</time></span>
+				</>
+			)}
+		</>
+	) : (
+		<>
+			{listed === updated && <span>Updated:</span>}
+			<time datetime={listed.iso}>{listed.label}</time>
+		</>
+	)}
+</div>
+
+<style>
+.post-date {
+	display: flex;
+	align-items: center;
+	column-gap: 0.5rem;
+	font-size: 0.875rem;
+	line-height: 1.25rem;
+	color: var(--muted-foreground);
+}
+
+@media (min-width: 640px) {
+	.lg {
+		font-size: 1rem;
+		line-height: 1.5rem;
+	}
+}
+</style>

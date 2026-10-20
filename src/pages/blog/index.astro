@@ -1,0 +1,147 @@
+---
+import { getCollection } from "astro:content";
+import PostCard from "../../components/blog/PostCard.astro";
+import { AUTHOR, BLOG, SITE_URL } from "../../config";
+import IconSearch from "../../images/blog/search.svg";
+import BlogLayout from "../../layouts/BlogLayout.astro";
+import { publishedPosts } from "../../lib/blog/posts";
+
+const posts = publishedPosts(await getCollection("posts"));
+const featured = posts.filter(({ data }) => data.featured);
+const recent = posts.filter(({ data }) => !data.featured);
+
+const INTRO =
+	"Mostly code, with travel, long walks, games and the odd bad decision in between. Written from London.";
+
+const structuredData = {
+	"@context": "https://schema.org",
+	"@type": "Blog",
+	"@id": `${BLOG.url}#blog`,
+	name: BLOG.title,
+	description: BLOG.description,
+	url: BLOG.url,
+	author: { "@id": AUTHOR.id },
+	publisher: { "@id": AUTHOR.id },
+	isPartOf: { "@id": `${SITE_URL}/#website` },
+};
+---
+
+<BlogLayout title="Blog" description={`${AUTHOR.name}'s blog. ${INTRO}`}>
+	<script
+		slot="head"
+		type="application/ld+json"
+		is:inline
+		set:html={JSON.stringify(structuredData)}
+	/>
+	<main id="main-content" class="app-layout" data-back-url="/blog">
+		<section class="hero">
+			<div class="title-row">
+				<h1 class="pixel-title">/blog</h1>
+				<script is:inline>
+				// The boot scroll plays on the first visit of a session, like powering on.
+				try {
+					if (!sessionStorage.getItem("booted")) {
+						sessionStorage.setItem("booted", "1");
+						document.currentScript.previousElementSibling.classList.add("boot");
+					}
+				} catch {}
+				</script>
+				<a
+					href="/blog/search"
+					class="pixel-icon search"
+					aria-label="Search"
+					title="Search"
+				>
+					<IconSearch aria-hidden="true" />
+				</a>
+			</div>
+			<p class="intro">{INTRO}</p>
+		</section>
+
+		<div aria-hidden="true" class="pixel-rule"></div>
+
+		{featured.length > 0 && (
+			<section class:list={["list", { divided: recent.length > 0 }]}>
+				<h2 class="pixel-label">Featured</h2>
+				<ul>{featured.map((post) => <PostCard {post} heading="h3" />)}</ul>
+			</section>
+		)}
+
+		{recent.length > 0 && (
+			<section class="list">
+				<h2 class="pixel-label">Recent posts</h2>
+				<ul>
+					{recent.slice(0, BLOG.perPage).map((post) => (
+						<PostCard {post} heading="h3" />
+					))}
+				</ul>
+			</section>
+		)}
+
+		{posts.length > BLOG.perPage && (
+			<div class="more">
+				<a href="/blog/posts/2" class="pixel-button">More posts</a>
+			</div>
+		)}
+	</main>
+</BlogLayout>
+
+<style>
+.hero {
+	display: flex;
+	flex-direction: column;
+	gap: 1.25rem;
+	padding-block: 1rem 2rem;
+
+	@media (min-width: 640px) {
+		padding-top: 1.5rem;
+	}
+}
+
+.title-row {
+	display: flex;
+	align-items: flex-end;
+	justify-content: space-between;
+	gap: 1rem;
+}
+
+h1 {
+	--boot-window: 1.5rem;
+	font-size: 44px;
+
+	@media (min-width: 640px) {
+		--boot-window: 8rem;
+		font-size: 64px;
+	}
+}
+
+.search {
+	margin-inline-end: -0.625rem;
+	translate: 0 0.125rem;
+
+	@media (min-width: 640px) {
+		translate: 0 -1px;
+	}
+}
+
+.intro {
+	max-width: 62ch;
+}
+
+.list {
+	padding-block: 2rem 0.5rem;
+
+	h2 {
+		font-size: 0.875rem;
+		line-height: 1.25rem;
+	}
+}
+
+.divided {
+	border-bottom: 2px solid var(--pea);
+}
+
+.more {
+	margin-block: 1.5rem;
+}
+</style>

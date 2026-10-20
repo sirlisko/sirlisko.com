@@ -1,6 +1,12 @@
 import type { Link } from "../../data/me";
 
-export type PageName = "projects" | "resume" | "now" | "uses" | "credits";
+export type PageName =
+	| "projects"
+	| "resume"
+	| "now"
+	| "uses"
+	| "credits"
+	| "blog";
 
 const HOME: Link = { name: "home", url: "/", label: "home" };
 

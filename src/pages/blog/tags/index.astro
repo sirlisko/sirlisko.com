@@ -1,0 +1,94 @@
+---
+import { getCollection } from "astro:content";
+import BackLink from "../../../components/blog/BackLink.astro";
+import Main from "../../../components/blog/Main.astro";
+import { AUTHOR } from "../../../config";
+import BlogLayout from "../../../layouts/BlogLayout.astro";
+import { tagsOf, tagUrl } from "../../../lib/blog/posts";
+
+const tags = tagsOf(await getCollection("posts")).sort(
+	(a, b) => b.count - a.count || a.slug.localeCompare(b.slug),
+);
+const top = tags
+	.slice(0, 6)
+	.map(({ name }) => name)
+	.join(", ");
+---
+
+<BlogLayout
+	title="Tags"
+	description={`${AUTHOR.name}'s blog by topic: ${top} and more.`}
+>
+	<BackLink href="/blog" label="/blog" />
+	<Main title="Tags" description="All the tags used in posts.">
+		<ul class="tags">
+			{tags.map(({ slug, name, count }) => (
+				<li>
+					<a href={tagUrl(slug)} transition:name={`tag-${slug}`} class="tag-row">
+						<span>#{name}</span>
+						<span class="tag-bar" style={{ width: `${count * 14}px` }} aria-hidden="true"></span>
+						<span class="count font-pixel">
+							{count}
+							<span class="sr-only">posts</span>
+						</span>
+					</a>
+				</li>
+			))}
+		</ul>
+	</Main>
+</BlogLayout>
+
+<style>
+.tags {
+	display: flex;
+	flex-direction: column;
+	gap: 0.125rem;
+}
+
+/* One pixel block per post, like a health bar. */
+.tag-row {
+	display: grid;
+	grid-template-columns: minmax(0, 12rem) minmax(0, 1fr) 3rem;
+	align-items: center;
+	gap: 1.25rem;
+	padding: 0.625rem 0.75rem;
+	margin-inline: -0.75rem;
+	font-weight: 600;
+
+	&:hover,
+	&:focus-visible {
+		background: var(--foreground);
+		color: var(--background);
+		outline: none;
+	}
+}
+
+.tag-bar {
+	max-width: 100%;
+	height: 12px;
+	color: var(--accent);
+	background-image: linear-gradient(90deg, currentColor 10px, transparent 10px);
+	background-size: 14px 12px;
+	background-repeat: repeat-x;
+
+	.tag-row:is(:hover, :focus-visible) & {
+		color: var(--pea);
+	}
+}
+
+.count {
+	font-size: 12px;
+	line-height: 1rem;
+	text-align: right;
+}
+
+@media (width < 640px) {
+	.tag-row {
+		grid-template-columns: minmax(0, 1fr) 3rem;
+	}
+
+	.tag-bar {
+		display: none;
+	}
+}
+</style>

@@ -1,0 +1,327 @@
+@import "./palette.css";
+
+.blog {
+	--font-app: var(--font-mono);
+	--font-pixel: var(--font-display);
+	/* The nav reuses --accent for its cursor, so anything inside it reads the blog's from here. */
+	--blog-accent: var(--accent);
+
+	display: flex;
+	flex-direction: column;
+	min-height: 100svh;
+	background: var(--background);
+	color: var(--foreground);
+	font-family: var(--font-app);
+	line-height: 1.5;
+	-webkit-font-smoothing: antialiased;
+
+	::selection {
+		background: color-mix(in srgb, var(--accent) 75%, transparent);
+		color: var(--accent-foreground);
+	}
+}
+
+html:has(> .blog) {
+	overflow-y: scroll;
+	scroll-behavior: smooth;
+	scrollbar-color: var(--muted) transparent;
+}
+
+/* Zero specificity, so every rule below and every component wins over it. */
+:where(.blog) {
+	:where(h1, h2, h3, h4, h5, h6, p, ul, ol, figure, blockquote) {
+		margin: 0;
+	}
+
+	:where(h1, h2, h3, h4, h5, h6) {
+		font-size: inherit;
+		font-weight: inherit;
+	}
+
+	:where(ul, ol) {
+		padding: 0;
+		list-style: none;
+	}
+
+	:where(a) {
+		color: inherit;
+		text-decoration: inherit;
+	}
+
+	:where(img, svg, video) {
+		display: block;
+		max-width: 100%;
+		height: auto;
+	}
+
+	:where(button) {
+		padding: 0;
+		border: 0;
+		background: none;
+		color: inherit;
+		font: inherit;
+		cursor: pointer;
+	}
+
+	/* Footnote markers would otherwise stretch their line. */
+	:where(sub, sup) {
+		position: relative;
+		font-size: 75%;
+		line-height: 0;
+		vertical-align: baseline;
+	}
+
+	:where(sup) {
+		top: -0.5em;
+	}
+
+	:where(sub) {
+		bottom: -0.25em;
+	}
+
+	:where(hr) {
+		height: 0;
+		border: 0;
+		border-top: 1px solid var(--border);
+	}
+
+	:where(a, button, #main-content):focus-visible {
+		outline: 2px dashed var(--accent);
+		outline-offset: 1px;
+		text-decoration: none;
+	}
+}
+
+.blog :target {
+	scroll-margin-block: 1rem;
+}
+
+.app-layout {
+	width: 100%;
+	max-width: 48rem;
+	margin-inline: auto;
+	padding-inline: 1rem;
+}
+
+.sr-only {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip-path: inset(50%);
+	white-space: nowrap;
+}
+
+.font-pixel {
+	font-family: var(--font-pixel);
+	font-weight: 400;
+}
+
+.pixel-title {
+	font-family: var(--font-pixel);
+	font-weight: 400;
+	line-height: 1.1;
+	letter-spacing: -0.04em;
+	text-shadow:
+		0.0625em 0.0625em 0 var(--pea),
+		0.125em 0.125em 0 var(--pixel-shadow);
+}
+
+.pixel-label {
+	font-family: var(--font-pixel);
+	font-weight: 400;
+	font-size: 12px;
+	line-height: 1.4;
+	color: var(--muted-foreground);
+}
+
+/*
+ * A right-pointing triangle on whole 2px pixels. Press Start 2P's own ◀ ▶
+ * glyphs are tiny and sit on the baseline, so they never centre on the text.
+ */
+.pixel-arrow {
+	display: inline-block;
+	flex-shrink: 0;
+	width: 6px;
+	height: 10px;
+	background: currentColor;
+	mask:
+		url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3 5' shape-rendering='crispEdges'%3E%3Cpath d='M0 0h1v5H0zM1 1h1v3H1zM2 2h1v1H2z'/%3E%3C/svg%3E")
+		center / 100% 100% no-repeat;
+
+	&.back {
+		scale: -1 1;
+	}
+
+	&.up {
+		rotate: -90deg;
+	}
+}
+
+/* data-hover and data-active pin a state, so /blog/style can show it without a pointer. */
+.pixel-button {
+	display: inline-block;
+	font-family: var(--font-pixel);
+	font-size: 12px;
+	line-height: 1;
+	text-decoration: none;
+	padding: 16px 18px;
+	background: var(--foreground);
+	color: var(--background);
+	box-shadow: 4px 4px 0 var(--pea);
+
+	&:hover,
+	&[data-hover] {
+		background: var(--accent);
+		color: var(--accent-foreground);
+	}
+
+	/* Pressed into its shadow, only while actually clicked. */
+	&:active,
+	&[data-active] {
+		translate: 4px 4px;
+		box-shadow: none;
+	}
+}
+
+/* The button's outlined sibling, for the second choice next to it. */
+.pixel-button-outline {
+	padding: 13px 18px;
+	border: 3px solid var(--foreground);
+	font-family: var(--font-pixel);
+	font-size: 12px;
+	line-height: 1;
+
+	&:hover {
+		background: var(--foreground);
+		color: var(--background);
+	}
+
+	&:active {
+		translate: 0 2px;
+	}
+}
+
+/* 44px hit area; on hover the icon shifts shade over a short pixel bar. */
+.pixel-icon {
+	display: inline-flex;
+	width: 44px;
+	height: 44px;
+	align-items: center;
+	justify-content: center;
+	color: var(--foreground);
+
+	& svg {
+		width: 24px;
+		height: 24px;
+	}
+
+	&:hover,
+	&:focus-visible,
+	&[data-hover] {
+		color: var(--accent);
+		background:
+			linear-gradient(var(--pea), var(--pea)) center calc(100% - 4px) / 24px 3px
+			no-repeat;
+	}
+}
+
+/* Text counterpart of pixel-icon: 44px tall hit area, same hover bar. */
+.pixel-link {
+	display: inline-flex;
+	min-height: 44px;
+	align-items: center;
+	padding-inline: 5px;
+	color: var(--foreground);
+	text-decoration: none;
+
+	&:hover,
+	&:focus-visible,
+	&[data-hover] {
+		color: var(--accent);
+		background:
+			linear-gradient(var(--pea), var(--pea)) center calc(100% - 8px) /
+			calc(100% - 10px) 3px no-repeat;
+	}
+}
+
+/* The pointer of a Game Boy menu, hung in the gutter so the list doesn't shift. */
+.menu-cursor {
+	position: relative;
+
+	&:hover::before,
+	&:focus-visible::before,
+	&[data-hover]::before {
+		content: "";
+		position: absolute;
+		inset-inline-start: -15px;
+		top: calc(0.6875em - 7px);
+		width: 8px;
+		height: 14px;
+		background: currentColor;
+		mask:
+			url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 7' shape-rendering='crispEdges'%3E%3Cpath d='M0 0h1v7H0zM1 1h1v5H1zM2 2h1v3H2zM3 3h1v1H3z'/%3E%3C/svg%3E")
+			center / 100% 100% no-repeat;
+	}
+}
+
+/* Dashed underline for #tag links. */
+.tag-link {
+	text-decoration: underline dashed;
+	text-underline-offset: 4px;
+
+	&:hover {
+		color: var(--accent);
+	}
+}
+
+/* The back links at the top of a page: ◀ /blog. */
+.back-link {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	padding-block: 0.875rem;
+	font-family: var(--font-pixel);
+	font-size: 12px;
+	line-height: 1rem;
+	color: var(--muted-foreground);
+
+	&:hover {
+		color: var(--foreground);
+	}
+}
+
+/*
+ * The DMG boot: the logo scrolls down from the top edge of the screen and settles.
+ * The clip moves against the slide, so that edge stays put --boot-window above
+ * where the element comes to rest.
+ */
+@media (prefers-reduced-motion: no-preference) {
+	.boot {
+		animation: boot-scroll 2s steps(60) backwards;
+	}
+}
+
+@keyframes boot-scroll {
+	from {
+		translate: 0 calc(-100% - var(--boot-window, 0px));
+		clip-path: inset(100% -1em -1em -1em);
+	}
+	to {
+		translate: 0 0;
+		clip-path: inset(calc(-1 * var(--boot-window, 0px)) -1em -1em -1em);
+	}
+}
+
+.pixel-rule {
+	height: 4px;
+	background-image: linear-gradient(90deg, var(--pea) 50%, transparent 50%);
+	background-size: 8px 4px;
+}
+
+.dashed-rule {
+	margin-block: 2rem;
+	border-top-style: dashed;
+}

@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 320">
+  <!-- The blog's Game Boy palette (src/styles/theme.css): an <img> can't read the page's variables -->
+  <style>
+    :root {
+      --fg: #0f380f;
+      --soft: #2b4a28;
+      --accent: #306230;
+      --muted: #c8d3a2;
+      --pea: #8bac0f;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --fg: #d3dfb0;
+        --soft: #b5c495;
+        --accent: #9bbc0f;
+        --muted: #253f22;
+        --pea: #306230;
+      }
+    }
+    text { font-family: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace; }
+    .box { stroke: var(--fg); stroke-width: 2; fill: var(--muted); }
+    .shadow { fill: var(--pea); }
+    .line { stroke: var(--fg); stroke-width: 2; fill: none; }
+    .dash { stroke: var(--pea); stroke-width: 2; stroke-dasharray: 4 4; }
+    .t-title { font-size: 15px; font-weight: 600; fill: var(--fg); }
+    .t-sub { font-size: 12px; fill: var(--soft); }
+    .t-body { font-size: 12px; fill: var(--fg); }
+    .t-label { font-size: 11px; font-weight: 600; fill: var(--accent); letter-spacing: 0.5px; }
+  </style>
+  <defs>
+    <marker id="a" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L8,4 L0,8 Z" fill="var(--fg)" shape-rendering="crispEdges"/>
+    </marker>
+  </defs>
+
+  <!-- Hook -->
+  <rect class="shadow" x="134" y="12" width="300" height="50"/>
+  <rect class="box" x="130" y="8" width="300" height="50"/>
+  <text class="t-title" x="280" y="30" text-anchor="middle">useOfflineMutation</text>
+  <text class="t-sub" x="280" y="47" text-anchor="middle">drop-in useMutation replacement</text>
+
+  <!-- Branch -->
+  <path class="line" d="M 210 58 L 210 82 L 130 82 L 130 106" marker-end="url(#a)"/>
+  <path class="line" d="M 350 58 L 350 82 L 410 82 L 410 106" marker-end="url(#a)"/>
+  <text class="t-label" x="146" y="76">ONLINE</text>
+  <text class="t-label" x="356" y="76">OFFLINE / 5XX</text>
+
+  <!-- Apollo -->
+  <rect class="box" x="40" y="108" width="180" height="52"/>
+  <text class="t-title" x="130" y="132" text-anchor="middle">Apollo Client</text>
+  <text class="t-sub" x="130" y="149" text-anchor="middle">mutate() → server</text>
+
+  <!-- Queue -->
+  <rect class="box" x="290" y="108" width="240" height="64"/>
+  <text class="t-body" x="410" y="129" text-anchor="middle">Optimistic cache update</text>
+  <text class="t-body" x="410" y="146" text-anchor="middle">+ enqueue to AsyncStorage</text>
+  <text class="t-sub" x="410" y="163" text-anchor="middle">deduplicated · max 5 retries</text>
+
+  <!-- Divider -->
+  <line class="dash" x1="20" y1="212" x2="196" y2="212"/>
+  <text class="t-label" x="280" y="216" text-anchor="middle">NETWORK RETURNS</text>
+  <line class="dash" x1="364" y1="212" x2="540" y2="212"/>
+
+  <!-- Queue drains into recovery once the network is back -->
+  <path class="line" d="M 410 172 L 410 234" marker-end="url(#a)" stroke-dasharray="4 4"/>
+
+  <!-- Recovery -->
+  <rect class="shadow" x="104" y="242" width="360" height="56"/>
+  <rect class="box" x="100" y="238" width="360" height="56"/>
+  <text class="t-title" x="280" y="261" text-anchor="middle">processQueue()</text>
+  <text class="t-body" x="280" y="280" text-anchor="middle">then refetchQueries({ include: "active" })</text>
+</svg>

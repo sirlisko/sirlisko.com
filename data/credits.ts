@@ -2,8 +2,6 @@ export interface Credit {
 	role: string;
 	name: string;
 	url?: string;
-	/** The blog is same-origin but a separate site, so the router must not swap it in. */
-	reload?: boolean;
 }
 
 export interface Roll {
@@ -30,13 +28,8 @@ export const rolls: Roll[] = [
 			{ role: "NES multicart", name: "/projects", url: "/projects" },
 			{ role: "Zork", name: "/uses", url: "/uses" },
 			{ role: "D&D character sheet", name: "/resume", url: "/resume" },
-			{ role: "Game Boy", name: "/blog", url: "/blog", reload: true },
-			{
-				role: "Game Boy manual",
-				name: "/blog/style",
-				url: "/blog/style",
-				reload: true,
-			},
+			{ role: "Game Boy", name: "/blog", url: "/blog" },
+			{ role: "Game Boy manual", name: "/blog/style", url: "/blog/style" },
 			{ role: "Game over", name: "/404", url: "/404" },
 		],
 	},

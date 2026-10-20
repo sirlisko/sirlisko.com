@@ -1,0 +1,55 @@
+---
+import { type Post, postUrl, tagUrl } from "../../lib/blog/posts";
+import PostDate from "./PostDate.astro";
+
+interface Props {
+	post: Post;
+	heading?: "h2" | "h3";
+}
+
+const { post, heading: Heading = "h2" } = Astro.props;
+const { title, description, tags, pubDatetime, modDatetime, timezone, bump } =
+	post.data;
+---
+
+<li class="card">
+	<PostDate {pubDatetime} {modDatetime} {timezone} {bump} />
+	<a href={postUrl(post)} class="title menu-cursor">
+		<Heading transition:name={`post-${post.id}`}>{title}</Heading>
+	</a>
+	<p class="description">{description}</p>
+	{tags.length > 0 && (
+		<p class="tags">
+			{tags.map((tag) => <a href={tagUrl(tag)} class="tag-link">#{tag}</a>)}
+		</p>
+	)}
+</li>
+
+<style>
+.card {
+	display: flex;
+	flex-direction: column;
+	gap: 0.25rem;
+	margin-block: 2rem;
+}
+
+.title {
+	display: inline-block;
+	font-size: 19px;
+	font-weight: 600;
+	line-height: 1.375;
+}
+
+.description {
+	font-size: 15px;
+	color: var(--foreground-soft);
+}
+
+.tags {
+	display: flex;
+	flex-wrap: wrap;
+	column-gap: 0.875rem;
+	font-size: 0.875rem;
+	line-height: 1.25rem;
+}
+</style>

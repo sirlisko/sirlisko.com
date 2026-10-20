@@ -27,3 +27,11 @@ tsconfig.tsbuildinfo
 private/
 # where it used to be written, in case a stale copy is still around
 public/cv/luca-lischetti-resume-full.pdf
+
+# blog drafts begun in Obsidian, and what its vault sync leaves behind
+src/content/posts/_*
+src/content/posts/.obsidian/
+*.icloud
+
+# raw post images and GPX tracks, optimised copies are committed
+assets/

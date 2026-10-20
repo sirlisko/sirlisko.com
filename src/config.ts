@@ -23,10 +23,22 @@ export const ogCard = (page: keyof typeof OG_CARDS) => {
 	};
 };
 
-export const BLOG_FEED = `${SITE_URL}/blog/rss.xml`;
+export const BLOG = {
+	path: "/blog",
+	url: `${SITE_URL}/blog`,
+	title: "sirlisko blog",
+	description: "Luca's notes on code, travel, long walks and games.",
+	timezone: "Europe/London",
+	perPage: 10,
+	// A post scheduled a little ahead still goes out with the build that publishes it.
+	scheduledPostMargin: 15 * 60 * 1000,
+	replyTo: "blog@sirlisko.com",
+};
+
+export const BLOG_FEED = `${BLOG.url}/rss.xml`;
 
 export const AUTHOR = {
-	// The blog's posts point their author here, so both sites describe one person.
+	// Blog posts point their author here too, so every page describes one person.
 	id: `${SITE_URL}/#person`,
 	name: "Luca Lischetti",
 	alternateName: "sirlisko",

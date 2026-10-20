@@ -1,0 +1,493 @@
+@import "rehype-callouts/theme/github";
+
+/*
+ * A post's body. The spacing follows Tailwind Typography's scale, which the
+ * blog was first set in; .not-prose opts a block out.
+ */
+.prose {
+	max-width: 48rem;
+	font-size: 1rem;
+	line-height: 1.75;
+	color: var(--foreground);
+
+	:where(p):not(:where(.not-prose *)) {
+		margin-block: 1.25em;
+	}
+
+	:where(strong):not(:where(.not-prose *)) {
+		font-weight: 600;
+	}
+
+	:where(a):not(:where(.not-prose *)) {
+		font-weight: 500;
+		overflow-wrap: break-word;
+		text-decoration: underline dashed var(--pea) 2px;
+		text-underline-offset: 4px;
+
+		&:hover {
+			color: var(--accent);
+		}
+
+		&:focus-visible {
+			text-decoration: none;
+		}
+	}
+
+	:where(h2, h3, h4):not(:where(.not-prose *)) {
+		margin-bottom: 0.75rem;
+		font-weight: 600;
+	}
+
+	:where(h2):not(:where(.not-prose *)) {
+		margin-top: 2em;
+		font-size: 1.5em;
+		line-height: 1.3333333;
+	}
+
+	:where(h3):not(:where(.not-prose *)) {
+		margin-top: 1.6em;
+		font-size: 1.25em;
+		line-height: 1.6;
+	}
+
+	:where(h4):not(:where(.not-prose *)) {
+		margin-top: 1.5em;
+		line-height: 1.5;
+	}
+
+	:where(ul, ol):not(:where(.not-prose, .not-prose *)) {
+		margin-block: 1.25em;
+		padding-inline-start: 1.625em;
+		overflow-x: clip;
+	}
+
+	:where(ol):not(:where(.not-prose, .not-prose *)) {
+		list-style: decimal;
+	}
+
+	:where(ul):not(:where(.not-prose, .not-prose *)) {
+		list-style: disc;
+	}
+
+	:where(li):not(:where(.not-prose *)) {
+		margin-block: 0.5em;
+		padding-inline-start: 0.375em;
+
+		&::marker {
+			color: var(--pea);
+		}
+	}
+
+	:where(ul, ol) :where(ul, ol) {
+		margin-block: 0.75em;
+	}
+
+	/* Explicit content outlives list-style: none, so opt-outs need skipping. */
+	ul:not(.not-prose, .not-prose *) > li::marker {
+		content: "■  ";
+		font-size: 0.8em;
+	}
+
+	/* The checkbox is the marker; disabled checkboxes ignore accent-color. */
+	li.task-list-item {
+		&::marker {
+			content: none;
+		}
+
+		input {
+			width: 0.875rem;
+			height: 0.875rem;
+			margin: 0 0.5rem 0 0;
+			vertical-align: -1px;
+			appearance: none;
+			border: 2px solid var(--foreground);
+		}
+
+		input:checked {
+			background: var(--accent);
+			box-shadow: inset 0 0 0 2px var(--background);
+		}
+	}
+
+	:where(hr):not(:where(.not-prose *)) {
+		margin-block: 3em;
+	}
+
+	:where(blockquote):not(:where(.not-prose *)) {
+		margin-block: 1.6em;
+		padding-inline-start: 1em;
+		border-inline-start: 4px solid var(--pea);
+		font-style: italic;
+		font-weight: 500;
+		overflow-wrap: break-word;
+		quotes: "\201C" "\201D" "\2018" "\2019";
+
+		p:first-of-type::before {
+			content: open-quote;
+		}
+
+		p:last-of-type::after {
+			content: close-quote;
+		}
+	}
+
+	:where(img, video, picture):not(:where(.not-prose *)) {
+		margin-block: 2em;
+	}
+
+	:where(img):not(:where(.not-prose *)) {
+		margin-inline: auto;
+		border: 2px solid var(--pea);
+	}
+
+	:where(picture) > img {
+		margin-block: 0;
+	}
+
+	:where(figure):not(:where(.not-prose *)) {
+		margin-block: 2em;
+
+		> * {
+			margin-block: 0;
+		}
+	}
+
+	:where(figcaption):not(:where(.not-prose *)) {
+		margin-top: 0.8571429em;
+		font-size: 0.875em;
+		line-height: 1.4285714;
+		opacity: 0.75;
+	}
+
+	:where(code):not(:where(pre code, .not-prose *)) {
+		padding: 0.125rem 0.375rem;
+		background: var(--muted);
+		font-size: 0.875em;
+		font-weight: 600;
+		overflow-wrap: break-word;
+	}
+
+	:where(kbd):not(:where(.not-prose *)) {
+		padding: 0 0.375rem;
+		border: 2px solid var(--foreground);
+		background: var(--muted);
+		box-shadow: 2px 2px 0 var(--pea);
+		font-family: inherit;
+		font-size: 0.875em;
+		font-weight: 500;
+	}
+
+	:where(mark):not(:where(.not-prose *)) {
+		padding-inline: 0.125rem;
+		background: var(--pea);
+		color: var(--foreground);
+	}
+
+	:where(table):not(:where(.not-prose *)) {
+		width: 100%;
+		margin-block: 2em;
+		border-collapse: collapse;
+		font-size: 0.875em;
+		line-height: 1.7142857;
+
+		th,
+		td {
+			padding: 0.5rem;
+			border: 1px solid var(--border);
+			text-align: start;
+		}
+
+		th {
+			padding-block: 0.375rem;
+			background: var(--muted);
+			font-weight: 600;
+			vertical-align: bottom;
+		}
+
+		td {
+			vertical-align: baseline;
+		}
+
+		:is(th, td)[align="center"] {
+			text-align: center;
+		}
+
+		:is(th, td)[align="right"] {
+			text-align: right;
+		}
+	}
+
+	/* remark-collapse folds the table of contents into one of these. */
+	details:not(.callout) {
+		display: inline-block;
+		cursor: pointer;
+		user-select: none;
+
+		p {
+			display: none;
+		}
+
+		ul {
+			margin-block: 0;
+		}
+	}
+
+	summary:focus-visible {
+		outline: 2px dashed var(--accent);
+		outline-offset: 1px;
+	}
+
+	img[role="button"] {
+		cursor: zoom-in;
+
+		&:focus-visible {
+			outline: 2px dashed var(--accent);
+			outline-offset: 2px;
+		}
+	}
+
+	/*
+	 * Until lib/blog/images.ts marks an image loaded: a blinking pixel block
+	 * on a muted screen. Cleared on load, so transparent images don't keep it
+	 * behind them.
+	 */
+	img:not([data-image-state], .leaflet-container img),
+	img[data-image-state="loading"] {
+		background:
+			var(--muted)
+			linear-gradient(var(--muted-foreground), var(--muted-foreground)) center /
+			16px 16px no-repeat;
+
+		@media (prefers-reduced-motion: no-preference) {
+			animation: image-loading 1.2s steps(1) infinite;
+		}
+	}
+
+	/* SVG backgrounds can't read CSS variables, so the X repeats the palette. */
+	img[data-image-state="failed"] {
+		background:
+			var(--muted)
+			url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 5 5' shape-rendering='crispEdges' fill='%23306230'%3E%3Cpath d='M0 0h1v1H0zM1 1h1v1H1zM2 2h1v1H2zM3 3h1v1H3zM4 4h1v1H4zM4 0h1v1H4zM3 1h1v1H3zM1 3h1v1H1zM0 4h1v1H0z'/%3E%3C/svg%3E")
+			center / 20px 20px no-repeat;
+
+		@media (prefers-color-scheme: dark) {
+			background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 5 5' shape-rendering='crispEdges' fill='%239bbc0f'%3E%3Cpath d='M0 0h1v1H0zM1 1h1v1H1zM2 2h1v1H2zM3 3h1v1H3zM4 4h1v1H4zM4 0h1v1H4zM3 1h1v1H3zM1 3h1v1H1zM0 4h1v1H0z'/%3E%3C/svg%3E");
+		}
+	}
+
+	/* Last among the zero-specificity rules, so it beats each element's own margin. */
+	:where(h2, h3, h4, hr) + * {
+		margin-top: 0;
+	}
+
+	/* Map tiles and markers are images too; framing them draws a grid. */
+	.leaflet-container img {
+		margin: 0;
+		border: 0;
+	}
+}
+
+@keyframes image-loading {
+	50% {
+		background-size: 0 0;
+	}
+}
+
+/* Code is a dark Game Boy screen in both colour schemes. */
+.astro-code {
+	display: flex;
+	background-color: var(--shiki-light-bg);
+	color: var(--shiki-light);
+	margin-block: 1.7142857em;
+	padding: 0.8571429em 1.1428571em;
+	overflow-x: auto;
+	box-shadow: 6px 6px 0 var(--pea);
+	font-size: 0.875em;
+	line-height: 1.7142857;
+
+	@media (prefers-color-scheme: dark) {
+		outline: 2px solid var(--border);
+	}
+
+	&:focus-visible {
+		outline: 2px dashed var(--accent);
+	}
+
+	code {
+		flex: 1 0 100%;
+		font-size: inherit;
+	}
+
+	span {
+		color: var(--shiki-light);
+	}
+
+	.line.diff,
+	.line.highlighted {
+		position: relative;
+		display: inline-block;
+		width: 100%;
+	}
+
+	.line.diff::before {
+		position: absolute;
+		left: -0.75rem;
+	}
+
+	.line.diff.add {
+		background: rgb(155 188 15 / 0.2);
+
+		&::before {
+			content: "+";
+			color: #9bbc0f;
+		}
+	}
+
+	.line.diff.remove {
+		background: rgb(255 138 122 / 0.15);
+
+		&::before {
+			content: "-";
+			color: #ff8a7a;
+		}
+	}
+
+	.line.highlighted {
+		background: rgb(255 255 255 / 0.08);
+	}
+
+	.highlighted-word {
+		padding: 1px 0.125rem;
+		border: 1px solid var(--border);
+	}
+}
+
+/* Room below the badge, which overhangs the block's top edge. */
+.astro-code.has-file-name {
+	margin-top: 2rem;
+	padding-top: 1.75rem;
+}
+
+/* The badge from lib/blog/markdown.ts, with the power LED as its dot. */
+.file-name {
+	position: absolute;
+	top: -0.75rem;
+	left: 1rem;
+	padding: 0.25rem 0.5rem 0.25rem 1.25rem;
+	border: 2px solid var(--pea);
+	background: var(--background);
+	color: var(--foreground);
+	font-family: var(--font-pixel);
+	font-size: 10px;
+	line-height: 1rem;
+
+	&::before {
+		content: "";
+		position: absolute;
+		top: 50%;
+		left: 0.5rem;
+		width: 0.25rem;
+		height: 0.25rem;
+		translate: 0 -50%;
+		background: var(--led);
+	}
+}
+
+/* Solid, so long lines scrolling underneath stay hidden. */
+.copy-code {
+	position: absolute;
+	top: 0.5rem;
+	right: 0.5rem;
+	padding: 0.375rem 0.5rem;
+	background: #c4d49a;
+	color: #0f380f;
+	font-family: var(--font-pixel);
+	font-size: 10px;
+	line-height: 1;
+
+	&:hover {
+		background: #9bbc0f;
+	}
+}
+
+.prose .callout {
+	margin-block: 1em;
+	padding: 12px 12px 12px 24px;
+	border: 2px solid var(--foreground);
+	border-radius: 0;
+	background-color: var(--muted);
+	box-shadow: 4px 4px 0 var(--pea);
+
+	.callout-title {
+		align-items: center;
+		gap: 0.5rem;
+		font-family: var(--font-pixel);
+		font-size: 12px;
+		color: var(--foreground);
+	}
+
+	.callout-title-icon svg {
+		width: 18px;
+		height: 18px;
+	}
+
+	&:is([data-callout="warning"], [data-callout="caution"]) .callout-title-icon {
+		color: var(--led);
+	}
+}
+
+/* Added by lib/blog/post.ts: dim on phones, shown on hover elsewhere. */
+.heading-link {
+	margin-inline-start: 0.5rem;
+	text-decoration: none;
+	opacity: 0.75;
+
+	@media (min-width: 768px) {
+		opacity: 0;
+
+		:is(h2, h3, h4, h5, h6):hover > &,
+		&:focus {
+			opacity: 1;
+		}
+	}
+}
+
+/* Added by lib/blog/lightbox.ts. */
+.lightbox {
+	position: fixed;
+	inset: 0;
+	z-index: 50;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: rgb(0 0 0 / 0.7);
+	backdrop-filter: blur(4px);
+	cursor: zoom-out;
+	opacity: 0;
+	transition: opacity 0.2s;
+
+	&.open {
+		opacity: 1;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		transition: none;
+	}
+
+	img {
+		max-width: 90dvw;
+		max-height: 90dvh;
+		object-fit: contain;
+		cursor: default;
+	}
+}
+
+.lightbox-close {
+	position: absolute;
+	top: 1rem;
+	right: 1rem;
+	padding: 0.5rem;
+	color: #fff;
+	font-size: 1.875rem;
+	line-height: 1;
+}

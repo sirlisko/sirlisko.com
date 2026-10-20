@@ -1,0 +1,127 @@
+/*
+ * Leaflet maps in the Game Boy skin, which comes from leaflet-gameboy; this
+ * maps its colours onto the site theme and styles the map before it loads.
+ */
+
+/* A bare data-map-state pins the loading or failed screen, for /style */
+html
+:is(
+	.leaflet-container,
+	[data-gpx-tracks],
+	[data-gpx-map],
+	[data-route-map],
+	[data-map-state]
+) {
+	--gb-darkest: var(--foreground);
+	--gb-dark: var(--muted-foreground);
+	--gb-light: var(--pea);
+	--gb-lighter: var(--muted);
+	--gb-lightest: var(--background);
+	--gb-highlight: var(--led);
+	--gb-font: var(--font-app);
+
+	border: 2px solid var(--gb-darkest);
+	border-radius: 0;
+	background: var(--gb-lighter);
+	box-shadow: 6px 6px 0 var(--gb-light);
+}
+
+/* Shown until Leaflet fills the map in, or for good if it can't load */
+html
+:is(
+	[data-gpx-tracks],
+	[data-gpx-map],
+	[data-route-map],
+	[data-map-state]
+):empty {
+	display: grid;
+	place-items: center;
+
+	&::before {
+		content: "LOADING...";
+		font-family: var(--font-pixel);
+		font-size: 12px;
+		color: var(--muted-foreground);
+
+		@media (prefers-reduced-motion: no-preference) {
+			animation: map-loading 1.2s steps(1) infinite;
+		}
+	}
+
+	&[data-map-state="failed"]::before {
+		content: "NO SIGNAL";
+		animation: none;
+	}
+}
+
+@keyframes map-loading {
+	50% {
+		opacity: 0;
+	}
+}
+
+/* Paths are SVG, so stroke here beats the colour Leaflet sets as an attribute */
+.map-track,
+.route-leg {
+	shape-rendering: crispEdges;
+}
+
+.map-track {
+	stroke: var(--led);
+	stroke-opacity: 1;
+}
+
+.map-track-1 {
+	stroke: var(--foreground);
+}
+
+.map-track-2 {
+	stroke-dasharray: 6 6;
+}
+
+.route-stop {
+	stroke: var(--foreground);
+	fill: var(--background);
+	fill-opacity: 1;
+}
+
+.route-leg {
+	stroke: var(--leg);
+	stroke-opacity: 1;
+}
+
+.route-leg-train,
+.route-leg-flight {
+	--leg: var(--led);
+}
+
+.route-leg-bus,
+.route-leg-foot {
+	--leg: var(--foreground);
+}
+
+.route-leg-boat {
+	--leg: var(--accent);
+}
+
+/* The embeds written into posts; their old utility classes no longer do anything. */
+:is([data-gpx-map], [data-route-map]) {
+	margin-block: 1.5rem;
+	overflow: hidden;
+}
+
+.route-map-legend {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.25rem 1rem;
+	margin-top: 0.5rem;
+	font-size: 0.875rem;
+	line-height: 1.25rem;
+	color: color-mix(in srgb, var(--foreground) 80%, transparent);
+
+	> span {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.375rem;
+	}
+}

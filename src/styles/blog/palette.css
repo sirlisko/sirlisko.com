@@ -1,0 +1,33 @@
+/*
+ * The blog is the Game Boy: a pale DMG screen with the four-shade green ramp,
+ * inverted to lit pixels on a dark screen at night.
+ */
+.blog {
+	--background: #dde4c3;
+	--foreground: #0f380f;
+	--foreground-soft: #2b4a28;
+	--accent: #306230;
+	--accent-foreground: #dde4c3;
+	--muted: #c8d3a2;
+	--muted-foreground: #306230;
+	--border: #8bac0f;
+	--pea: #8bac0f;
+	--pixel-shadow: #306230;
+	--led: #c8231b;
+}
+
+@media (prefers-color-scheme: dark) {
+	.blog {
+		--background: #142a12;
+		--foreground: #d3dfb0;
+		--foreground-soft: #b5c495;
+		--accent: #9bbc0f;
+		--accent-foreground: #142a12;
+		--muted: #253f22;
+		--muted-foreground: #9bbc0f;
+		--border: #306230;
+		--pea: #306230;
+		--pixel-shadow: #0b1a09;
+		--led: #e0392f;
+	}
+}
