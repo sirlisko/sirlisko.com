@@ -1,5 +1,6 @@
 ---
 import { getCollection, render } from "astro:content";
+import { SOURCE } from "../../../../data/credits";
 import AdjacentPostNav from "../../../components/blog/AdjacentPostNav.astro";
 import BackLink from "../../../components/blog/BackLink.astro";
 import BackToTop from "../../../components/blog/BackToTop.astro";
@@ -48,6 +49,9 @@ const image =
 			: { src: `${postUrl(post)}/index.png`, ...OG_IMAGE_SIZE };
 const imageUrl = new URL(image.src, SITE_URL).href;
 const url = canonicalURL ?? `${SITE_URL}${postUrl(post)}`;
+const editUrl = post.filePath
+	? `${SOURCE}/edit/main/${post.filePath}`
+	: undefined;
 
 const structuredData = {
 	"@context": "https://schema.org",
@@ -118,7 +122,7 @@ const structuredData = {
 
 		<hr class="dashed-rule">
 
-		<ReplyByEmail {title} prompt={replyPrompt} />
+		<ReplyByEmail {title} prompt={replyPrompt} {editUrl} />
 
 		<BackToTop />
 

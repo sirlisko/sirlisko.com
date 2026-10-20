@@ -4,9 +4,11 @@ import { BLOG } from "../../config";
 interface Props {
 	title: string;
 	prompt?: string | undefined;
+	/** The post's source on GitHub, so a reader can propose a fix themselves. */
+	editUrl?: string | undefined;
 }
 
-const { title, prompt = "Thoughts?" } = Astro.props;
+const { title, prompt = "Thoughts?", editUrl } = Astro.props;
 
 const href = `mailto:${BLOG.replyTo}?subject=${encodeURIComponent(`Re: ${title}`)}`;
 ---
@@ -17,6 +19,17 @@ const href = `mailto:${BLOG.replyTo}?subject=${encodeURIComponent(`Re: ${title}`
 		<span aria-hidden="true" class="pixel-arrow"></span>
 		<span class="label">Reply via email</span>
 	</a>
+	{editUrl && (
+		<a
+			href={editUrl}
+			target="_blank"
+			rel="noopener noreferrer"
+			data-track="suggest-edit"
+		>
+			<span aria-hidden="true" class="pixel-arrow"></span>
+			<span class="label">Suggest an edit</span>
+		</a>
+	)}
 </p>
 
 <style>
@@ -39,6 +52,13 @@ a {
 
 	&:is(:hover, :focus-visible) {
 		color: var(--accent);
+	}
+
+	/* A second option goes underneath, like the next line of a Game Boy menu. */
+	& + & {
+		display: flex;
+		width: fit-content;
+		margin-top: 0.5rem;
 	}
 }
 

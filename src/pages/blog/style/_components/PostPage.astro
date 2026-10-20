@@ -1,5 +1,6 @@
 ---
 import { getCollection } from "astro:content";
+import { SOURCE } from "../../../../../data/credits";
 import AdjacentPostNav from "../../../../components/blog/AdjacentPostNav.astro";
 import ReplyByEmail from "../../../../components/blog/ReplyByEmail.astro";
 import { postUrl, publishedPosts } from "../../../../lib/blog/posts";
@@ -20,6 +21,7 @@ const [newer, older] = publishedPosts(await getCollection("posts")).map(
 			<ReplyByEmail
 				title="Style"
 				prompt="Spotted something off on this page?"
+				editUrl={`${SOURCE}/edit/main/src/pages/blog/style/_content.mdx`}
 			/>
 		</div>
 	</Specimen>
