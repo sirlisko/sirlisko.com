@@ -21,15 +21,25 @@ from = "/blog/tags/code"
 to = "/blog/tags/dev"
 status = 301
 
+# Every post is listed on the blog home, so the paged lists and archives are gone.
 [[redirects]]
 from = "/blog/posts"
 to = "/blog"
 status = 301
 
-# Page 1 of the posts is the blog home.
 [[redirects]]
-from = "/blog/posts/1"
+from = "/blog/posts/*"
 to = "/blog"
+status = 301
+
+[[redirects]]
+from = "/blog/archives"
+to = "/blog"
+status = 301
+
+[[redirects]]
+from = "/blog/tags/:tag/:page"
+to = "/blog/tags/:tag"
 status = 301
 
 [[redirects]]

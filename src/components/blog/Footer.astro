@@ -3,17 +3,14 @@ import me from "../../../data/me";
 import Webring from "./Webring.astro";
 
 interface Props {
-	/** Pages ending in pagination keep it at the bottom, so the footer sits right under it. */
-	noMarginTop?: boolean;
 	/** Leaves room for the back-to-top button, fixed in the corner on phones. */
 	clearBackToTop?: boolean;
 }
 
-const { noMarginTop = false, clearBackToTop = false } = Astro.props;
+const { clearBackToTop = false } = Astro.props;
 
 const links = [
 	{ label: "tags", href: "/blog/tags" },
-	{ label: "archives", href: "/blog/archives" },
 	{ label: "search", href: "/blog/search" },
 	{ label: "rss", href: "/blog/rss.xml", track: "rss-feed", reload: true },
 	{ label: "mail", href: `mailto:${me.email}`, track: "social-mail" },
@@ -21,12 +18,7 @@ const links = [
 ];
 ---
 
-<footer
-	class:list={[
-		"app-layout",
-		{ "push-down": !noMarginTop, "clear-back-to-top": clearBackToTop },
-	]}
->
+<footer class:list={["app-layout", { "clear-back-to-top": clearBackToTop }]}>
 	<div class="bar">
 		<nav aria-label="Blog">
 			<ul>
@@ -55,7 +47,7 @@ const links = [
 </footer>
 
 <style>
-.push-down {
+footer {
 	margin-top: auto;
 }
 

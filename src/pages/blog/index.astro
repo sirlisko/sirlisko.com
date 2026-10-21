@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import AuthorCard from "../../components/blog/AuthorCard.astro";
 import PostCard from "../../components/blog/PostCard.astro";
+import PostIndex from "../../components/blog/PostIndex.astro";
 import { AUTHOR, BLOG, SITE_URL } from "../../config";
 import IconSearch from "../../images/blog/search.svg";
 import BlogLayout from "../../layouts/BlogLayout.astro";
@@ -63,19 +64,20 @@ const structuredData = {
 
 		{posts.length > 0 && (
 			<section class="list">
-				<h2 class="pixel-label">Recent posts</h2>
+				<h2 class="pixel-label">Latest</h2>
 				<ul>
-					{posts.slice(0, BLOG.perPage).map((post) => (
+					{posts.slice(0, BLOG.latest).map((post) => (
 						<PostCard {post} heading="h3" />
 					))}
 				</ul>
 			</section>
 		)}
 
-		{posts.length > BLOG.perPage && (
-			<div class="more">
-				<a href="/blog/posts/2" class="pixel-button">More posts</a>
-			</div>
+		{posts.length > BLOG.latest && (
+			<section class="list">
+				<h2 class="pixel-label">Every post</h2>
+				<PostIndex {posts} level={3} />
+			</section>
 		)}
 	</main>
 </BlogLayout>
@@ -129,9 +131,5 @@ h1 {
 		font-size: 0.875rem;
 		line-height: 1.25rem;
 	}
-}
-
-.more {
-	margin-block: 1.5rem;
 }
 </style>

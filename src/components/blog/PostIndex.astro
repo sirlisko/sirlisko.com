@@ -1,0 +1,113 @@
+---
+import { type Post, postUrl } from "../../lib/blog/posts";
+
+interface Props {
+	posts: Post[];
+	/** The year headings' level; months sit one below. */
+	level?: 2 | 3;
+}
+
+const { posts, level = 2 } = Astro.props;
+const [Year, Month] =
+	level === 2 ? (["h2", "h3"] as const) : (["h3", "h4"] as const);
+
+// Listed by when they were first published, not by when they were bumped.
+const sorted = posts.toSorted(
+	(a, b) => b.data.pubDatetime.getTime() - a.data.pubDatetime.getTime(),
+);
+const monthName = new Intl.DateTimeFormat("en", { month: "long" });
+const years = [
+	...Map.groupBy(sorted, (post) => post.data.pubDatetime.getFullYear()),
+];
+---
+
+{years.map(([year, yearPosts]) => (
+	<section class="year">
+		<Year class="font-pixel year-title">
+			{year}
+			<span class="sr-only">({yearPosts.length} posts)</span>
+		</Year>
+		<div>
+			{[...Map.groupBy(yearPosts, (post) => post.data.pubDatetime.getMonth())].map(
+				([month, monthPosts]) => (
+					<>
+						<Month class="month">{monthName.format(new Date(2000, month, 1))}</Month>
+						<ul>
+							{monthPosts.map((post) => (
+								<li class="h-entry">
+									<a href={postUrl(post)} class="row u-url">
+										<time
+											class="day dt-published"
+											datetime={post.data.pubDatetime.toISOString()}
+										>
+											{String(post.data.pubDatetime.getDate()).padStart(2, "0")}
+										</time>
+										<span class="p-name">{post.data.title}</span>
+									</a>
+								</li>
+							))}
+						</ul>
+					</>
+				),
+			)}
+		</div>
+	</section>
+))}
+
+<style>
+.year {
+	display: grid;
+	grid-template-columns: 7.5rem minmax(0, 1fr);
+	gap: 1.5rem;
+	padding-top: 1.75rem;
+	margin-top: 1.25rem;
+	background-image: linear-gradient(90deg, var(--pea) 50%, transparent 50%);
+	background-size: 8px 4px;
+	background-repeat: repeat-x;
+
+	@media (width < 640px) {
+		grid-template-columns: minmax(0, 1fr);
+		gap: 1rem;
+	}
+}
+
+.year-title {
+	font-size: 1.125rem;
+	line-height: 1.375;
+}
+
+.month {
+	margin-bottom: 0.25rem;
+	font-size: 13px;
+	font-weight: 600;
+	color: var(--muted-foreground);
+}
+
+ul {
+	margin-bottom: 1.25rem;
+}
+
+.row {
+	display: grid;
+	grid-template-columns: 2.75rem minmax(0, 1fr);
+	gap: 0.75rem;
+	padding: 0.25rem 0.5rem;
+	margin-inline: -0.5rem;
+	font-size: 15px;
+
+	&:hover,
+	&:focus-visible {
+		background: var(--foreground);
+		color: var(--background);
+		outline: none;
+
+		.day {
+			color: inherit;
+		}
+	}
+}
+
+.day {
+	color: var(--muted-foreground);
+}
+</style>
