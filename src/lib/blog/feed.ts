@@ -26,8 +26,8 @@ const absolute = (url: string, origin: string) =>
 	url.startsWith("/") ? `${origin}${url}` : url;
 
 /**
- * A rendered post, cleaned up for feed readers: maps and the table of
- * contents only work on the page, and every link and image needs the full URL.
+ * A rendered post, cleaned up for feed readers: maps only work on the page,
+ * and every link and image needs the full URL.
  */
 export const feedHtml = (html: string, origin: string): string =>
 	sanitizeHtml(html, {
@@ -37,10 +37,8 @@ export const feedHtml = (html: string, origin: string): string =>
 			"details",
 			"summary",
 		],
-		exclusiveFilter: ({ tag, attribs, text }) =>
-			"data-gpx-map" in attribs ||
-			"data-route-map" in attribs ||
-			(tag === "details" && /^\s*Table of contents/i.test(text)),
+		exclusiveFilter: ({ attribs }) =>
+			"data-gpx-map" in attribs || "data-route-map" in attribs,
 		transformTags: {
 			img: (tagName, { srcset, src = "", ...attribs }) => ({
 				tagName,

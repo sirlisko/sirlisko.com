@@ -7,6 +7,7 @@ tags:
   - react-native
 ogImage: https://images.unsplash.com/photo-1767334850102-b37f04d4e2b0?fm=jpg&q=80&w=1280&h=720&fit=crop
 replyPrompt: "Are you using Expo in production? What surprised you?"
+toc: true
 ---
 
 In early 2025, I joined a team building a React Native app with Expo. The app was already underway: there was a codebase, a product direction, and a team. My job was to help shape the technical direction as we pushed toward a production launch.
@@ -14,8 +15,6 @@ In early 2025, I joined a team building a React Native app with Expo. The app wa
 Over the following year, the app went from early development to version 1.8 in the App Store. I wrote around 500 commits across a codebase that grew to nearly 2,000 total. Along the way, I introduced Architecture Decision Records[^1] to the project and ended up writing 15 of them, documenting everything from file system organisation to offline mutation queues.
 
 Now, as my time on the project comes to an end, I wanted to write this series as a retrospective: part technical deep-dive, part closure. This was a project I poured a lot of effort and care into, and writing it down is how I process what worked, what didn't, and what I'd carry forward. This post is the overview. The individual posts go deeper into specific topics.
-
-## Table of contents
 
 ## The App
 

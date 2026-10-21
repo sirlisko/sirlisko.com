@@ -19,8 +19,6 @@ interface Props {
 	ogType?: "website" | "article";
 	canonical?: string | undefined;
 	noindex?: boolean;
-	/** Pages ending in pagination keep it at the bottom, so the footer sits right under it. */
-	footerNoMarginTop?: boolean;
 	/** For pages with the back-to-top button. */
 	backToTop?: boolean;
 }
@@ -32,7 +30,6 @@ const {
 	ogType = "website",
 	canonical,
 	noindex = false,
-	footerNoMarginTop = false,
 	backToTop = false,
 } = Astro.props;
 
@@ -62,11 +59,14 @@ const imageSize =
 	<slot name="head" slot="head" />
 	<Header />
 	<slot />
-	<Footer noMarginTop={footerNoMarginTop} clearBackToTop={backToTop} />
+	<Footer clearBackToTop={backToTop} />
 </Layout>
 
 <script>
 import { rememberBackUrl } from "../lib/blog/backUrl";
+import { handleMenuKeys } from "../lib/blog/menuNav";
+
+document.addEventListener("keydown", handleMenuKeys);
 
 // Lists mark themselves with data-back-url, so a post's back link returns to them.
 document.addEventListener("astro:page-load", () => {

@@ -8,8 +8,6 @@ import {
 } from "@shikijs/transformers";
 import { defineConfig } from "astro/config";
 import rehypeCallouts from "rehype-callouts";
-import remarkCollapse from "remark-collapse";
-import remarkToc from "remark-toc";
 import {
 	rehypeResponsiveImages,
 	transformerFileName,
@@ -37,10 +35,6 @@ export default defineConfig({
 	trailingSlash: "never",
 	markdown: {
 		processor: unified({
-			remarkPlugins: [
-				remarkToc,
-				[remarkCollapse, { test: "Table of contents" }],
-			],
 			// The github theme gives each alert type its own icon.
 			rehypePlugins: [
 				[rehypeCallouts, { theme: "github" }],

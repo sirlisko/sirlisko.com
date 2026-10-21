@@ -24,13 +24,14 @@ const posts = defineCollection({
 			pubDatetime: z.date(),
 			modDatetime: z.date().optional().nullable(),
 			bump: z.boolean().optional(),
-			featured: z.boolean().optional(),
 			draft: z.boolean().optional(),
-			tags: z.array(z.string()).default(["others"]),
+			tags: z.array(z.string()).default([]),
 			ogImage: image().or(z.string()).optional(),
 			canonicalURL: z.string().optional(),
 			timezone: z.string().optional(),
 			replyPrompt: z.string().optional(),
+			/** A table of contents, in the margin on wide screens and above the post on narrower ones. */
+			toc: z.boolean().optional(),
 			gpxFiles: z.array(track).optional(),
 		}),
 });

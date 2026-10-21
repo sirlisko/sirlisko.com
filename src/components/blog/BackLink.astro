@@ -16,26 +16,22 @@ const { href, label, remembered = false } = Astro.props;
 		data-remembered-back={remembered || undefined}
 	>
 		<span aria-hidden="true" class="pixel-arrow back"></span>
-		{label}
+		<span data-back-label>{label}</span>
 	</a>
 </nav>
 
-<style>
-nav {
-	margin-top: 1.5rem;
-}
-</style>
-
 <script>
-import { recallBackUrl } from "../../lib/blog/backUrl";
+import { backLabel, recallBackUrl } from "../../lib/blog/backUrl";
 
 document.addEventListener("astro:page-load", () => {
 	const link = document.querySelector<HTMLAnchorElement>(
 		"[data-remembered-back]",
 	);
 	const url = recallBackUrl();
-	if (link && url) {
+	const text = link?.querySelector("[data-back-label]");
+	if (link && text && url) {
 		link.href = url;
+		text.textContent = backLabel(url);
 	}
 });
 </script>

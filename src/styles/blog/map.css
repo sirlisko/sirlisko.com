@@ -8,6 +8,7 @@ html
 :is(
 	.leaflet-container,
 	[data-gpx-tracks],
+	[data-gpx-walks],
 	[data-gpx-map],
 	[data-route-map],
 	[data-map-state]
@@ -30,6 +31,7 @@ html
 html
 :is(
 	[data-gpx-tracks],
+	[data-gpx-walks],
 	[data-gpx-map],
 	[data-route-map],
 	[data-map-state]

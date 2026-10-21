@@ -27,13 +27,12 @@ gpxFiles:
     duration: "5h 18m"
 ogImage: ./images/seven_sisters/seven-sisters.jpeg
 replyPrompt: "Which part of the English coast should I walk next?"
+toc: true
 ---
 
 I've been walking a lot for over a year and a half now. About 20km on days I go into the office and ~10km on average the other days. At some point that stops being a commute and starts feeling like a habit worth keeping up. So I started looking for something bigger. Also influenced by some conversation with a [friend](https://cedmax.net), [more on that later](https://sirlisko.com/blog/100km).
 
 That's how I found the _England Coast Path_.[^1] Browsing through a hiking app, the Seven Sisters caught my eye. I zoomed out, saw Brighton to the west and Hastings to the east, and did the rough arithmetic: ~80km, three days, Easter weekend. I proposed it to [Ana](https://untepid.com). She said yes immediately, then spent the next two weeks researching kit, buying hiking poles, and a new waterproof jacket. I had some new trail shoes. What could go wrong.
-
-## Table of contents
 
 ## Day 1: Brighton to Seaford
 

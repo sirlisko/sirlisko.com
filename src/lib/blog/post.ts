@@ -23,3 +23,12 @@ export const addHeadingLinks = (article: HTMLElement) => {
 		heading.append(link);
 	}
 };
+
+const WORDS_PER_MINUTE = 220;
+
+/** Minutes to read the prose; code blocks are skimmed, not read, so they don't count. */
+export const readingMinutes = (markdown: string): number => {
+	const prose = markdown.replace(/^```[\s\S]*?^```/gm, "");
+	const words = prose.match(/[\p{L}\p{N}][\p{L}\p{N}'’-]*/gu)?.length ?? 0;
+	return Math.max(1, Math.round(words / WORDS_PER_MINUTE));
+};

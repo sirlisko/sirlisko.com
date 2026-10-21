@@ -1,0 +1,32 @@
+---
+import { getCollection } from "astro:content";
+import type { GetStaticPaths } from "astro";
+import BackLink from "../../../components/blog/BackLink.astro";
+import Main from "../../../components/blog/Main.astro";
+import PostIndex from "../../../components/blog/PostIndex.astro";
+import { AUTHOR } from "../../../config";
+import BlogLayout from "../../../layouts/BlogLayout.astro";
+import { hasTag, publishedPosts, tagsOf } from "../../../lib/blog/posts";
+
+export const getStaticPaths = (async () => {
+	const posts = publishedPosts(await getCollection("posts"));
+	return tagsOf(posts).map(({ slug, name }) => ({
+		params: { tag: slug },
+		props: { name, posts: posts.filter((post) => hasTag(post, slug)) },
+	}));
+}) satisfies GetStaticPaths;
+
+const { name, posts } = Astro.props;
+
+const count = `${posts.length} ${posts.length === 1 ? "post" : "posts"}`;
+---
+
+<BlogLayout
+	title={`Tag: ${name}`}
+	description={`${count} tagged "${name}" on ${AUTHOR.name}'s blog, newest first.`}
+>
+	<BackLink href="/blog/tags" label="/tags" />
+	<Main title={`/tags/${name}`} description={`${count} tagged "${name}".`}>
+		<PostIndex {posts} />
+	</Main>
+</BlogLayout>

@@ -2,14 +2,13 @@
 import { getCollection } from "astro:content";
 import AuthorCard from "../../components/blog/AuthorCard.astro";
 import PostCard from "../../components/blog/PostCard.astro";
+import PostIndex from "../../components/blog/PostIndex.astro";
 import { AUTHOR, BLOG, SITE_URL } from "../../config";
 import IconSearch from "../../images/blog/search.svg";
 import BlogLayout from "../../layouts/BlogLayout.astro";
 import { publishedPosts } from "../../lib/blog/posts";
 
 const posts = publishedPosts(await getCollection("posts"));
-const featured = posts.filter(({ data }) => data.featured);
-const recent = posts.filter(({ data }) => !data.featured);
 
 const INTRO =
 	"Mostly code, with travel, long walks, games and the odd bad decision in between. Written from London.";
@@ -63,28 +62,22 @@ const structuredData = {
 
 		<div aria-hidden="true" class="pixel-rule"></div>
 
-		{featured.length > 0 && (
-			<section class:list={["list", { divided: recent.length > 0 }]}>
-				<h2 class="pixel-label">Featured</h2>
-				<ul>{featured.map((post) => <PostCard {post} heading="h3" />)}</ul>
-			</section>
-		)}
-
-		{recent.length > 0 && (
+		{posts.length > 0 && (
 			<section class="list">
-				<h2 class="pixel-label">Recent posts</h2>
+				<h2 class="pixel-label">Latest</h2>
 				<ul>
-					{recent.slice(0, BLOG.perPage).map((post) => (
+					{posts.slice(0, BLOG.latest).map((post) => (
 						<PostCard {post} heading="h3" />
 					))}
 				</ul>
 			</section>
 		)}
 
-		{posts.length > BLOG.perPage && (
-			<div class="more">
-				<a href="/blog/posts/2" class="pixel-button">More posts</a>
-			</div>
+		{posts.length > BLOG.latest && (
+			<section class="list">
+				<h2 class="pixel-label">Every post</h2>
+				<PostIndex {posts} level={3} />
+			</section>
 		)}
 	</main>
 </BlogLayout>
@@ -132,19 +125,11 @@ h1 {
 }
 
 .list {
-	padding-block: 2rem 0.5rem;
+	padding-top: 2rem;
 
 	h2 {
 		font-size: 0.875rem;
 		line-height: 1.25rem;
 	}
-}
-
-.divided {
-	border-bottom: 2px solid var(--pea);
-}
-
-.more {
-	margin-block: 1.5rem;
 }
 </style>
