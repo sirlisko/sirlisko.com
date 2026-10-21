@@ -15,6 +15,7 @@ const links = [
 	{ label: "walks", href: "/blog/walks" },
 	{ label: "rss", href: "/blog/rss.xml", track: "rss-feed", reload: true },
 	{ label: "mail", href: `mailto:${me.email}`, track: "social-mail" },
+	{ label: "friends", href: "/friends", reload: true },
 	{ label: "style", href: "/blog/style" },
 ];
 ---
@@ -69,10 +70,10 @@ footer {
 	border-top: 2px dashed var(--blog-accent);
 }
 
-/* Three a row on phones, so no link is left alone on the second one. */
+/* Four a row on phones, so no link is left alone on the last one. */
 ul {
 	display: grid;
-	grid-template-columns: repeat(3, auto);
+	grid-template-columns: repeat(4, auto);
 	justify-content: center;
 	column-gap: 1.5rem;
 	font-family: var(--font-pixel);
@@ -107,8 +108,8 @@ a.menu-cursor {
 	flex-direction: column;
 	align-items: center;
 	gap: 0.75rem;
-	font-family: var(--font-pixel);
-	font-size: 10px;
+	/* Body mono, not pixel: the pixel face is unreadable this small. */
+	font-size: 13px;
 	line-height: 1.6;
 	color: var(--muted-foreground);
 

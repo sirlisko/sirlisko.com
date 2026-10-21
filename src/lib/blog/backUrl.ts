@@ -8,6 +8,26 @@ export const rememberBackUrl = (url: string) => {
 	} catch {}
 };
 
+export const forgetBackUrl = () => {
+	try {
+		sessionStorage.removeItem(KEY);
+	} catch {}
+};
+
+/**
+ * Lists remember themselves; posts keep whatever list led to them, so the
+ * back link survives hopping between posts. Any other page breaks the trail.
+ */
+export const trackBackUrl = (root: ParentNode = document) => {
+	const url =
+		root.querySelector<HTMLElement>("[data-back-url]")?.dataset.backUrl;
+	if (url) {
+		rememberBackUrl(url);
+	} else if (!root.querySelector("[data-remembered-back]")) {
+		forgetBackUrl();
+	}
+};
+
 export const recallBackUrl = (): string | null => {
 	try {
 		return sessionStorage.getItem(KEY);
