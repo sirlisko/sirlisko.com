@@ -368,8 +368,11 @@
 	padding-top: 1.75rem;
 }
 
-/* The badge from lib/blog/markdown.ts, with the power LED as its dot. */
-.file-name {
+/*
+ * The badge from lib/blog/markdown.ts, with the power LED as its dot. It sits
+ * inside the pre, so it needs the extra class to beat the code's span colour.
+ */
+.astro-code .file-name {
 	position: absolute;
 	top: -0.75rem;
 	left: 1rem;
