@@ -82,9 +82,5 @@ document.addEventListener("scroll", () => {
 
 document.addEventListener("astro:page-load", () => {
 	update();
-	// From the Paused menu, jumping to a section also resumes the game.
-	for (const link of document.querySelectorAll("dialog [data-toc] a")) {
-		link.addEventListener("click", () => link.closest("dialog")?.close());
-	}
 });
 </script>

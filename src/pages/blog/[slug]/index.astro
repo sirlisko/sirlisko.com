@@ -10,7 +10,6 @@ import GpxMap from "../../../components/blog/GpxMap.astro";
 import GpxStats from "../../../components/blog/GpxStats.astro";
 import PostDate from "../../../components/blog/PostDate.astro";
 import ReplyByEmail from "../../../components/blog/ReplyByEmail.astro";
-import TocList from "../../../components/blog/TocList.astro";
 import Webmentions from "../../../components/blog/Webmentions.astro";
 import { AUTHOR, BLOG, SITE_URL } from "../../../config";
 import BlogLayout from "../../../layouts/BlogLayout.astro";
@@ -108,12 +107,6 @@ const structuredData = {
 		/>
 	</Fragment>
 
-	{contents.length > 0 && (
-		<div slot="pause" class="pause-contents">
-			<TocList headings={contents} />
-		</div>
-	)}
-
 	<div class="reading-progress" aria-hidden="true"><div></div></div>
 
 	<BackLink href="/blog" label="/blog" remembered />
@@ -189,16 +182,6 @@ h1 {
 .prose {
 	width: 100%;
 	margin-top: 2rem;
-}
-
-.pause-contents {
-	max-height: 30svh;
-	margin-bottom: 1.5rem;
-	padding: 1rem 0 0 1rem;
-	overflow-y: auto;
-	border-top: 2px dashed var(--pea);
-	font-family: var(--font-app);
-	text-align: start;
 }
 
 .details {

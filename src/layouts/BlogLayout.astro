@@ -57,9 +57,7 @@ const imageSize =
 	themeColor={{ light: "#dde4c3", dark: "#142a12" }}
 >
 	<slot name="head" slot="head" />
-	<Header>
-		<slot name="pause" slot="pause" />
-	</Header>
+	<Header />
 	<slot />
 	<Footer clearBackToTop={backToTop} />
 </Layout>
