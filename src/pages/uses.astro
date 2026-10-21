@@ -31,9 +31,11 @@ const updated = formatMonth(USES_LAST_UPDATED);
 	theme="dark"
 	themeColor="#000"
 >
-	<Links page="uses" />
-	<FaceLink />
-	<p class="status">
+	<header>
+		<Links page="uses" />
+		<FaceLink />
+	</header>
+	<p class="status" aria-hidden="true">
 		<span>Desk, London</span>
 		<span>Moves: 5</span>
 	</p>
@@ -134,7 +136,7 @@ main {
 	padding-top: 2.5rem;
 }
 
-header {
+main > header {
 	position: relative;
 
 	/* The monitor warming up: black, then every other scanline, then the rest. */
