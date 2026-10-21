@@ -29,6 +29,9 @@ export async function loadLeaflet() {
 			const map = L.map(el, { scrollWheelZoom: false });
 			map.on("focus", () => map.scrollWheelZoom.enable());
 			map.on("blur", () => map.scrollWheelZoom.disable());
+			// Leaflet makes the map a tab stop for arrow-key panning but leaves it unnamed.
+			el.setAttribute("role", "region");
+			el.setAttribute("aria-label", "Map");
 
 			const theme = matchMedia("(prefers-color-scheme: dark)").matches
 				? "dark"
