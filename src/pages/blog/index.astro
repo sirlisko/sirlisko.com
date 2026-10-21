@@ -9,6 +9,8 @@ import BlogLayout from "../../layouts/BlogLayout.astro";
 import { publishedPosts } from "../../lib/blog/posts";
 
 const posts = publishedPosts(await getCollection("posts"));
+const latest = posts.slice(0, BLOG.latest);
+const rest = posts.slice(BLOG.latest);
 
 const INTRO =
 	"Mostly code, with travel, long walks, games and the odd bad decision in between. Written from London.";
@@ -66,17 +68,17 @@ const structuredData = {
 			<section class="list">
 				<h2 class="pixel-label">Latest</h2>
 				<ul>
-					{posts.slice(0, BLOG.latest).map((post) => (
+					{latest.map((post) => (
 						<PostCard {post} heading="h3" />
 					))}
 				</ul>
 			</section>
 		)}
 
-		{posts.length > BLOG.latest && (
+		{rest.length > 0 && (
 			<section class="list">
-				<h2 class="pixel-label">Every post</h2>
-				<PostIndex {posts} level={3} />
+				<h2 class="pixel-label">Every other post</h2>
+				<PostIndex posts={rest} level={3} />
 			</section>
 		)}
 	</main>

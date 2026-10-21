@@ -70,8 +70,9 @@ body.dark {
 .lives {
 	display: flex;
 	gap: 8px;
-	opacity: 0.3;
-	filter: grayscale(1);
+	opacity: 0.6;
+	/* Grey red is near black, so it needs lifting to read as spent lives on black. */
+	filter: grayscale(1) brightness(2.5);
 }
 
 .heart {

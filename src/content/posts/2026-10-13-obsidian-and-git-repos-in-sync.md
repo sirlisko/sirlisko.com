@@ -10,7 +10,7 @@ replyPrompt: "How do you keep your notes and repos in sync? Did I miss a simpler
 
 I want all of my knowledge in one place, on laptop and on mobile. I already write almost everything in Markdown, so Obsidian is the obvious place.[^1]
 
-The problem is that some of this writing lives in git repos, for example the posts of this blog, the documentation for my projects, and the notes site for RPG campaigns. For my blog for instance all the content is plain Markdown in a folder `~/dev/blog/src/content/posts`.
+The problem is that some of this writing lives in git repos, for example the posts of this blog, the documentation for my projects, and the notes site for RPG campaigns. For my blog for instance all the content is plain Markdown in a folder `~/dev/sirlisko.com/src/content/posts`.
 
 I wanted to see and edit this content inside my main vault without copying files around by hand. Changes on one side should appear on the other. For the blog it is also handy: I can read my old posts anywhere and update them from the phone.
 
@@ -90,7 +90,7 @@ Then one profile per repo:
 
 ```ini file=~/.unison/blog.prf
 include common
-root = /Users/me/dev/blog/src/content/posts
+root = /Users/me/dev/sirlisko.com/src/content/posts
 root = /Users/me/Library/Mobile Documents/iCloud~md~obsidian/Documents/Vault/Blog
 ```
 
@@ -145,7 +145,7 @@ tail -f ~/Library/Logs/unison-obsidian.log
 To find conflicts, which also show up in `git status` as new files:
 
 ```bash
-find ~/dev/blog/src/content/posts -name '*conflict_on_*'
+find ~/dev/sirlisko.com/src/content/posts -name '*conflict_on_*'
 ```
 
 When there is one, I merge what I need into the original file and delete the copy.
@@ -163,7 +163,7 @@ A few things to remember:
 After setting it up by hand twice, I wrote a small script, [obsidian-sync](https://github.com/sirlisko/dotfiles/blob/main/scripts/obsidian-sync), and put it in my dotfiles. It creates the plist, and adding a new folder is one command:
 
 ```bash
-obsidian-sync add blog ~/dev/blog/src/content/posts Blog
+obsidian-sync add blog ~/dev/sirlisko.com/src/content/posts Blog
 ```
 
 `obsidian-sync status` shows in one place when the last sync ran, when it last changed something, and any conflicts and errors. Its log only records the syncs that copied or deleted files, so it stays short and easy to read.
