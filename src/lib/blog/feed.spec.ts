@@ -35,10 +35,9 @@ describe("feedHtml", () => {
 		);
 	});
 
-	test("drops maps and the table of contents, which only work on the page", () => {
+	test("drops maps, which only work on the page", () => {
 		const html = feedHtml(
-			`<details><summary>Table of contents</summary><ul><li>a</li></ul></details>
-<div data-gpx-map="/blog/gpx/day1.gpx"></div>
+			`<div data-gpx-map="/blog/gpx/day1.gpx"></div>
 <div data-route-map="[]"></div>
 <p>Kept</p>`,
 			ORIGIN,
@@ -46,7 +45,7 @@ describe("feedHtml", () => {
 		expect(html.trim()).toBe("<p>Kept</p>");
 	});
 
-	test("keeps other collapsible sections", () => {
+	test("keeps collapsible sections", () => {
 		expect(
 			feedHtml("<details><summary>Spoiler</summary>x</details>", ORIGIN),
 		).toBe("<details><summary>Spoiler</summary>x</details>");

@@ -1,0 +1,90 @@
+---
+import type { MarkdownHeading } from "astro";
+
+interface Props {
+	headings: MarkdownHeading[];
+}
+
+const { headings } = Astro.props;
+---
+
+<ol class="toc" data-toc>
+	{headings.map(({ depth, slug, text }) => (
+		<li class:list={{ sub: depth > 2 }}>
+			<a href={`#${slug}`} class="menu-cursor">{text}</a>
+		</li>
+	))}
+</ol>
+
+<style>
+.toc {
+	display: flex;
+	flex-direction: column;
+	gap: 0.375rem;
+	font-size: 14px;
+	line-height: 1.4;
+}
+
+.sub {
+	padding-inline-start: 1rem;
+	font-size: 13px;
+}
+
+a {
+	display: inline-block;
+
+	&:hover,
+	&:focus-visible {
+		color: var(--accent);
+	}
+
+	/* The section being read keeps the cursor, like the selected line of a menu. */
+	&[aria-current="location"] {
+		font-weight: 600;
+	}
+}
+</style>
+
+<script>
+import { currentSection } from "../../lib/blog/toc";
+
+let frame = 0;
+const update = () => {
+	frame = 0;
+	const links = [
+		...document.querySelectorAll<HTMLAnchorElement>("[data-toc] a"),
+	];
+	if (links.length === 0) {
+		return;
+	}
+	const id = (link: HTMLAnchorElement) =>
+		decodeURIComponent(link.hash.slice(1));
+	const sections = links
+		.map((link) => document.getElementById(id(link)))
+		.filter((heading) => heading !== null)
+		.map((heading) => ({
+			id: heading.id,
+			top: heading.getBoundingClientRect().top,
+		}));
+	const current = currentSection(sections, window.innerHeight / 4);
+	for (const link of links) {
+		if (id(link) === current) {
+			link.setAttribute("aria-current", "location");
+		} else {
+			link.removeAttribute("aria-current");
+		}
+	}
+};
+
+document.addEventListener("scroll", () => {
+	frame ||= requestAnimationFrame(update);
+});
+
+document.addEventListener("astro:page-load", () => {
+	update();
+	// From the Paused menu, jumping to a section also resumes the game.
+	for (const link of document.querySelectorAll("dialog [data-toc] a")) {
+		link.addEventListener("click", () => link.closest("dialog")?.close());
+	}
+});
+</script>

@@ -30,6 +30,8 @@ const posts = defineCollection({
 			canonicalURL: z.string().optional(),
 			timezone: z.string().optional(),
 			replyPrompt: z.string().optional(),
+			/** A table of contents, in the margin on wide screens and in the Paused menu on phones. */
+			toc: z.boolean().optional(),
 			gpxFiles: z.array(track).optional(),
 		}),
 });

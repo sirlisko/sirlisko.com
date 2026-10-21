@@ -253,7 +253,8 @@ html:has(> .blog) {
 
 	&:hover::before,
 	&:focus-visible::before,
-	&[data-hover]::before {
+	&[data-hover]::before,
+	&[aria-current="location"]::before {
 		content: "";
 		position: absolute;
 		inset-inline-start: -15px;

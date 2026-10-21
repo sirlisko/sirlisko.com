@@ -10,7 +10,9 @@ import Links from "../Links.astro";
 <!-- The face and menu are pinned like on every page; this keeps their room in the flow. -->
 <header class="site-header">
 	<FaceLink />
-	<Links page="blog" />
+	<Links page="blog">
+		<slot name="pause" slot="pause" />
+	</Links>
 </header>
 
 <style>

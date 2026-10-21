@@ -5,10 +5,12 @@ import AdjacentPostNav from "../../../components/blog/AdjacentPostNav.astro";
 import AuthorCard from "../../../components/blog/AuthorCard.astro";
 import BackLink from "../../../components/blog/BackLink.astro";
 import BackToTop from "../../../components/blog/BackToTop.astro";
+import Contents from "../../../components/blog/Contents.astro";
 import GpxMap from "../../../components/blog/GpxMap.astro";
 import GpxStats from "../../../components/blog/GpxStats.astro";
 import PostDate from "../../../components/blog/PostDate.astro";
 import ReplyByEmail from "../../../components/blog/ReplyByEmail.astro";
+import TocList from "../../../components/blog/TocList.astro";
 import { AUTHOR, BLOG, SITE_URL } from "../../../config";
 import BlogLayout from "../../../layouts/BlogLayout.astro";
 import { OG_IMAGE_SIZE } from "../../../lib/blog/ogCard";
@@ -20,6 +22,7 @@ import {
 	publishedPosts,
 	tagUrl,
 } from "../../../lib/blog/posts";
+import { tocHeadings } from "../../../lib/blog/toc";
 import leafletCss from "../../../styles/blog/leaflet.css?url";
 
 export async function getStaticPaths() {
@@ -36,9 +39,10 @@ export async function getStaticPaths() {
 const { post, prev, next } = Astro.props;
 const { title, description, ogImage, canonicalURL, pubDatetime, modDatetime } =
 	post.data;
-const { timezone, tags, gpxFiles, replyPrompt } = post.data;
+const { timezone, tags, gpxFiles, replyPrompt, toc } = post.data;
 
-const { Content } = await render(post);
+const { Content, headings } = await render(post);
+const contents = toc ? tocHeadings(headings) : [];
 const hasMap =
 	!!gpxFiles?.length || /data-(gpx|route)-map/.test(post.body ?? "");
 
@@ -101,6 +105,12 @@ const structuredData = {
 		/>
 	</Fragment>
 
+	{contents.length > 0 && (
+		<div slot="pause" class="pause-contents">
+			<TocList headings={contents} />
+		</div>
+	)}
+
 	<div class="reading-progress" aria-hidden="true"><div></div></div>
 
 	<BackLink href="/blog" label="Go back" remembered />
@@ -121,9 +131,17 @@ const structuredData = {
 			</div>
 		)}
 
-		<article id="article" class="prose e-content">
-			<Content />
-		</article>
+		{contents.length > 0 ? (
+			<Contents headings={contents}>
+				<article id="article" class="prose e-content">
+					<Content />
+				</article>
+			</Contents>
+		) : (
+			<article id="article" class="prose e-content">
+				<Content />
+			</article>
+		)}
 
 		<hr class="dashed-rule">
 
@@ -168,6 +186,16 @@ h1 {
 .prose {
 	width: 100%;
 	margin-top: 2rem;
+}
+
+.pause-contents {
+	max-height: 30svh;
+	margin-bottom: 1.5rem;
+	padding: 1rem 0 0 1rem;
+	overflow-y: auto;
+	border-top: 2px dashed var(--pea);
+	font-family: var(--font-app);
+	text-align: start;
 }
 
 .tags {
