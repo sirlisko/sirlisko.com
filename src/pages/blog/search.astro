@@ -61,10 +61,10 @@ const initSearch = () => {
 				history.replaceState(history.state, "", location.pathname);
 			}
 		};
-		el.querySelector(".pagefind-ui__search-input")?.addEventListener(
-			"input",
-			clearParam,
-		);
+		const input = el.querySelector(".pagefind-ui__search-input");
+		// Pagefind names the input only with a title, which not every screen reader reads.
+		input?.setAttribute("aria-label", "Search posts");
+		input?.addEventListener("input", clearParam);
 		el.querySelector(".pagefind-ui__search-clear")?.addEventListener(
 			"click",
 			clearParam,

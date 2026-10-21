@@ -78,7 +78,8 @@ const DESCRIPTION = "Every long walk on the blog, on one map.";
 	&:focus-visible {
 		background: var(--foreground);
 		color: var(--background);
-		outline: none;
+		/* Transparent, not none: forced-colours mode paints it, and the colours above are lost there. */
+		outline: 2px solid transparent;
 
 		.distance {
 			color: inherit;

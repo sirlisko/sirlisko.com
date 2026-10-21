@@ -10,14 +10,14 @@ It's probably the most famous dilemma after the [chicken or the egg](https://en.
 
 Let's see what `npm` and `yarn` say about it:
 
-### NPM
+## NPM
 
 > `dependencies`: Packages required by your application in production.
 > `devDependencies`: Packages that are only needed for local development and testing.
 
 ([npm docs](https://docs.npmjs.com/specifying-dependencies-and-devdependencies-in-a-package-json-file))
 
-### Yarn
+## Yarn
 
 > `dependencies`: These are your normal dependencies, or rather ones that you need when running your code (e.g. React or ImmutableJS).
 > `devDependencies`: These are your development dependencies. Dependencies that you need at some point in the development workflow but not while running your code (e.g. Babel or Flow).
@@ -51,7 +51,7 @@ There is another scenario, though: you want to start your application without in
 
 Of the two scenarios, I think the first one (keeping the deployed package small) matters most. The second one is a niche: unless you install a lot of applications from scratch all the time, I don't see much benefit. This is also why I wouldn't copy `create-react-app`'s layout into a project with its own build step: it solves a specific deployment problem, not a rule to follow everywhere.
 
-### TL;DR
+## TL;DR
 
 Can you run your application without this package?
 

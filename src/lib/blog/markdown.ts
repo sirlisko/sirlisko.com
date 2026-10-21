@@ -41,6 +41,34 @@ const makeResponsive = (node: Node) => {
  */
 export const rehypeResponsiveImages = () => makeResponsive;
 
+const isCheckbox = (node: Node) =>
+	node.tagName === "input" && node.properties?.type === "checkbox";
+
+const isBlock = (node: Node) =>
+	node.tagName === "p" || node.tagName === "ul" || node.tagName === "ol";
+
+const labelTasks = (node: Node) => {
+	const children = node.children;
+	if (!children || node.tagName === "label") {
+		return;
+	}
+	const start = children.findIndex(isCheckbox);
+	if (start !== -1) {
+		const next = children.findIndex((child, i) => i > start && isBlock(child));
+		const end = next === -1 ? children.length : next;
+		children.splice(start, end - start, {
+			type: "element",
+			tagName: "label",
+			properties: {},
+			children: children.slice(start, end),
+		});
+	}
+	children.forEach(labelTasks);
+};
+
+/** Names each task list checkbox after its item's text, for screen readers. */
+export const rehypeTaskListLabels = () => labelTasks;
+
 /** ```ts file="astro.config.ts" puts a badge with the file name on the block. */
 export const transformerFileName = (): ShikiTransformer => ({
 	pre(node) {
