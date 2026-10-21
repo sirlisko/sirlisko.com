@@ -62,7 +62,7 @@ const [newer, older] = publishedPosts(await getCollection("posts")).map(
 	{newer && older && (
 		<Specimen name="<AdjacentPostNav>">
 			<div class="not-prose flush">
-				<AdjacentPostNav prev={older} next={newer} />
+				<AdjacentPostNav {newer} {older} />
 			</div>
 		</Specimen>
 	)}

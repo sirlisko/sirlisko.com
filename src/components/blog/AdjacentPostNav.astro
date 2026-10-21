@@ -4,31 +4,32 @@ interface Adjacent {
 	title: string;
 }
 
+/** Lists run newest first, so the newer post sits on the left, like going back. */
 interface Props {
-	prev: Adjacent | null;
-	next: Adjacent | null;
+	newer: Adjacent | null;
+	older: Adjacent | null;
 }
 
-const { prev, next } = Astro.props;
+const { newer, older } = Astro.props;
 ---
 
 <div data-pagefind-ignore class="adjacent">
-	{prev && (
-		<a href={prev.url}>
+	{newer && (
+		<a href={newer.url}>
 			<span class="pixel-label direction">
 				<span aria-hidden="true" class="pixel-arrow back"></span>
-				Previous
+				Newer
 			</span>
-			<span class="title">{prev.title}</span>
+			<span class="title">{newer.title}</span>
 		</a>
 	)}
-	{next && (
-		<a href={next.url} class="next">
+	{older && (
+		<a href={older.url} class="older">
 			<span class="pixel-label direction">
-				Next
+				Older
 				<span aria-hidden="true" class="pixel-arrow"></span>
 			</span>
-			<span class="title">{next.title}</span>
+			<span class="title">{older.title}</span>
 		</a>
 	)}
 </div>
@@ -54,7 +55,7 @@ a {
 	}
 }
 
-.next {
+.older {
 	text-align: end;
 
 	@media (min-width: 640px) {
