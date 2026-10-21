@@ -11,6 +11,7 @@ import GpxStats from "../../../components/blog/GpxStats.astro";
 import PostDate from "../../../components/blog/PostDate.astro";
 import ReplyByEmail from "../../../components/blog/ReplyByEmail.astro";
 import TocList from "../../../components/blog/TocList.astro";
+import Webmentions from "../../../components/blog/Webmentions.astro";
 import { AUTHOR, BLOG, SITE_URL } from "../../../config";
 import BlogLayout from "../../../layouts/BlogLayout.astro";
 import { OG_IMAGE_SIZE } from "../../../lib/blog/ogCard";
@@ -152,6 +153,8 @@ const structuredData = {
 		<hr class="dashed-rule">
 
 		<ReplyByEmail {title} prompt={replyPrompt} {editUrl} />
+
+		<Webmentions target={url} />
 
 		<BackToTop />
 

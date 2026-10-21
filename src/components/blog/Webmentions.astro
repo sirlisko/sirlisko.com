@@ -1,0 +1,225 @@
+---
+interface Props {
+	/** The post's canonical URL, which webmentions are sent to. */
+	target: string;
+}
+
+const { target } = Astro.props;
+---
+
+{/* Filled in the browser, and left hidden when nobody has replied yet. */}
+<section
+	class="webmentions"
+	data-webmentions={target}
+	aria-labelledby="webmentions-title"
+	data-pagefind-ignore
+	hidden
+>
+	<h2 id="webmentions-title" class="pixel-label">From the web</h2>
+	<div class="piles"></div>
+	<ol class="replies"></ol>
+</section>
+
+<style>
+.webmentions {
+	display: flex;
+	flex-direction: column;
+	gap: 1.25rem;
+	margin-block: 2rem;
+
+	&[hidden] {
+		display: none;
+	}
+}
+
+.piles {
+	display: flex;
+	flex-direction: column;
+	gap: 0.75rem;
+
+	&:empty {
+		display: none;
+	}
+
+	:global(.pile) {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0.75rem;
+		font-size: 0.875rem;
+		color: var(--muted-foreground);
+	}
+
+	:global(.count) {
+		min-width: 10ch;
+	}
+
+	:global(.faces) {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.25rem;
+	}
+}
+
+/* Avatars come in every colour; the Game Boy screen only shows its four greens. */
+.webmentions :global(.avatar) {
+	display: block;
+	width: 32px;
+	height: 32px;
+	object-fit: cover;
+	background: var(--muted);
+	filter: grayscale(1) contrast(1.15);
+	mix-blend-mode: multiply;
+
+	@media (prefers-color-scheme: dark) {
+		mix-blend-mode: screen;
+	}
+}
+
+.replies {
+	display: flex;
+	flex-direction: column;
+	gap: 1.25rem;
+
+	&:empty {
+		display: none;
+	}
+
+	:global(li) {
+		display: grid;
+		grid-template-columns: 32px minmax(0, 1fr);
+		column-gap: 0.75rem;
+	}
+
+	:global(.who) {
+		display: flex;
+		flex-wrap: wrap;
+		column-gap: 0.75rem;
+		font-size: 0.875rem;
+	}
+
+	:global(.who a:first-child) {
+		font-weight: 600;
+	}
+
+	:global(.who a + a) {
+		color: var(--muted-foreground);
+	}
+
+	:global(.who a:is(:hover, :focus-visible)) {
+		color: var(--accent);
+	}
+
+	:global(.text) {
+		grid-column: 2;
+		overflow-wrap: anywhere;
+	}
+}
+</style>
+
+<script>
+import { BLOG } from "../../config";
+import { formatPostDate } from "../../lib/blog/date";
+import {
+	groupMentions,
+	type Mention,
+	mentionsUrl,
+} from "../../lib/blog/webmentions";
+
+const link = (href: string, ...children: (Node | string)[]) => {
+	const a = Object.assign(document.createElement("a"), {
+		href,
+		rel: "nofollow ugc noopener",
+	});
+	a.append(...children);
+	return a;
+};
+
+const avatar = ({ author }: Mention) => {
+	if (!author.photo) {
+		return Object.assign(document.createElement("span"), {
+			className: "avatar",
+			ariaHidden: "true",
+		});
+	}
+	return Object.assign(document.createElement("img"), {
+		className: "avatar",
+		src: author.photo,
+		alt: "",
+		width: 32,
+		height: 32,
+		loading: "lazy",
+		referrerPolicy: "no-referrer",
+	});
+};
+
+const pile = (mentions: Mention[], one: string, many: string) => {
+	const row = Object.assign(document.createElement("div"), {
+		className: "pile",
+	});
+	const faces = Object.assign(document.createElement("ul"), {
+		className: "faces",
+	});
+	for (const mention of mentions) {
+		const face = link(mention.author.url ?? mention.url, avatar(mention));
+		face.title = mention.author.name;
+		face.ariaLabel = mention.author.name;
+		const item = document.createElement("li");
+		item.append(face);
+		faces.append(item);
+	}
+	const count = Object.assign(document.createElement("span"), {
+		className: "count",
+		textContent: `${mentions.length} ${mentions.length === 1 ? one : many}`,
+	});
+	row.append(count, faces);
+	return row;
+};
+
+const reply = (mention: Mention) => {
+	const who = Object.assign(document.createElement("p"), { className: "who" });
+	who.append(link(mention.author.url ?? mention.url, mention.author.name));
+	if (mention.published) {
+		who.append(
+			link(
+				mention.url,
+				formatPostDate(new Date(mention.published), BLOG.timezone),
+			),
+		);
+	}
+	const text = Object.assign(document.createElement("p"), {
+		className: "text",
+		textContent: mention.text ?? "",
+	});
+	const item = document.createElement("li");
+	item.append(avatar(mention), who, text);
+	return item;
+};
+
+document.addEventListener("astro:page-load", async () => {
+	const section = document.querySelector<HTMLElement>("[data-webmentions]");
+	const target = section?.dataset.webmentions;
+	if (!section || !target) {
+		return;
+	}
+	try {
+		const response = await fetch(mentionsUrl(target));
+		const { children = [] } = await response.json();
+		const { likes, reposts, replies } = groupMentions(children);
+		if (!section.isConnected) {
+			return;
+		}
+		const piles = section.querySelector(".piles");
+		if (likes.length > 0) {
+			piles?.append(pile(likes, "like", "likes"));
+		}
+		if (reposts.length > 0) {
+			piles?.append(pile(reposts, "repost", "reposts"));
+		}
+		section.querySelector(".replies")?.append(...replies.map(reply));
+		section.hidden = likes.length + reposts.length + replies.length === 0;
+	} catch {
+		// Offline or webmention.io is down: the post reads the same without them.
+	}
+});
+</script>
