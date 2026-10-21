@@ -47,7 +47,7 @@ const DESCRIPTION = "Every long walk on the blog, on one map.";
 		<ul class="walks">
 			{walks.map(({ title, url, distance }) => (
 				<li>
-					<a href={url} class="row">
+					<a href={url} class="row" data-menu-item>
 						<span class="title">{title}</span>
 						{distance > 0 && <span class="distance">{distance.toFixed(1)} km</span>}
 					</a>

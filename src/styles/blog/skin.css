@@ -96,6 +96,11 @@ html:has(> .blog) {
 	scroll-margin-block: 1rem;
 }
 
+/* Arrowing through a list keeps a few rows of context around the cursor. */
+.blog [data-menu-item] {
+	scroll-margin-block: 6rem;
+}
+
 .app-layout {
 	width: 100%;
 	max-width: 48rem;

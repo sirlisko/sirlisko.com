@@ -14,7 +14,7 @@ const { title, description, pubDatetime, modDatetime, timezone, bump } =
 
 <li class="card h-entry">
 	<PostDate {pubDatetime} {modDatetime} {timezone} {bump} />
-	<a href={postUrl(post)} class="title menu-cursor u-url">
+	<a href={postUrl(post)} class="title menu-cursor u-url" data-menu-item>
 		<Heading class="p-name" transition:name={`post-${post.id}`}
 			>{title}</Heading
 		>

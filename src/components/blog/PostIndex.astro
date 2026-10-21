@@ -35,7 +35,7 @@ const years = [
 						<ul>
 							{monthPosts.map((post) => (
 								<li class="h-entry">
-									<a href={postUrl(post)} class="row u-url">
+									<a href={postUrl(post)} class="row u-url" data-menu-item>
 										<time
 											class="day dt-published"
 											datetime={post.data.pubDatetime.toISOString()}

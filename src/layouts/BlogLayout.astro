@@ -66,6 +66,9 @@ const imageSize =
 
 <script>
 import { rememberBackUrl } from "../lib/blog/backUrl";
+import { handleMenuKeys } from "../lib/blog/menuNav";
+
+document.addEventListener("keydown", handleMenuKeys);
 
 // Lists mark themselves with data-back-url, so a post's back link returns to them.
 document.addEventListener("astro:page-load", () => {
