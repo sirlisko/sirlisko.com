@@ -7,7 +7,7 @@
 </div>
 
 <style>
-/* A round progress button on phones; a quiet text link floated by the tags on wider screens. */
+/* A round progress button on phones; a quiet text link at the end of the post on wider screens. */
 .back-to-top {
 	position: fixed;
 	right: 1rem;
@@ -24,8 +24,9 @@
 		translate: 0 0;
 	}
 
+	/* Stuck to the bottom of the screen it would sit on top of the text. */
 	@media (min-width: 768px) {
-		position: sticky;
+		position: static;
 		right: auto;
 		float: inline-end;
 		margin-inline-end: 0.25rem;
