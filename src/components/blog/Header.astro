@@ -1,6 +1,4 @@
 ---
-import IconRss from "../../images/blog/rss.svg";
-import IconSearch from "../../images/blog/search.svg";
 import FaceLink from "../FaceLink.astro";
 import Links from "../Links.astro";
 ---
@@ -12,23 +10,7 @@ import Links from "../Links.astro";
 <!-- The face and menu are pinned like on every page; this keeps their room in the flow. -->
 <header class="site-header">
 	<FaceLink />
-	<Links page="blog">
-		<div slot="pause" class="pause-extras">
-			<a href="/blog/tags">tags</a>
-			<a href="/blog/search" class="pixel-icon" aria-label="Search">
-				<IconSearch aria-hidden="true" />
-			</a>
-			<a
-				href="/blog/rss.xml"
-				class="pixel-icon"
-				aria-label="RSS feed"
-				data-track="rss-feed"
-				data-astro-reload
-			>
-				<IconRss aria-hidden="true" />
-			</a>
-		</div>
-	</Links>
+	<Links page="blog" />
 </header>
 
 <style>
@@ -48,30 +30,6 @@ import Links from "../Links.astro";
 
 	&:focus {
 		top: 1rem;
-	}
-}
-
-.pause-extras {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	gap: 0.5rem;
-	margin-bottom: 1.5rem;
-	padding-top: 1rem;
-	border-top: 2px dashed var(--blog-accent);
-	font-family: var(--font-app);
-	font-size: 15px;
-
-	> a:not(.pixel-icon) {
-		padding: 0.625rem 0.5rem;
-	}
-
-	.pixel-icon {
-		color: var(--background);
-
-		&:hover {
-			color: var(--pea);
-		}
 	}
 }
 </style>
