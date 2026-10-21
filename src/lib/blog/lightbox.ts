@@ -1,8 +1,10 @@
+import { prefersReducedMotion } from "../motion";
+
 const MAX_SCALE = 4;
 const DOUBLE_TAP_MS = 300;
 
-const reducedMotion = () =>
-	matchMedia("(prefers-reduced-motion: reduce)").matches;
+// Linked images go to their link, and map tiles belong to the map.
+const zoomable = (image: Element) => !image.closest("a, .leaflet-container");
 
 /** Article images open full screen, with pinch zoom and pan on touch screens. */
 export const initLightbox = (article: HTMLElement) => {
@@ -12,7 +14,7 @@ export const initLightbox = (article: HTMLElement) => {
 	// Deferred, so the attribute changes don't push back the LCP timestamp.
 	requestAnimationFrame(() => {
 		for (const image of article.querySelectorAll("img")) {
-			if (image.closest("a")) {
+			if (!zoomable(image)) {
 				continue;
 			}
 			image.setAttribute("role", "button");
@@ -62,7 +64,7 @@ export const initLightbox = (article: HTMLElement) => {
 		lastFocused?.focus();
 		lastFocused = null;
 
-		if (reducedMotion()) {
+		if (prefersReducedMotion()) {
 			el.remove();
 			return;
 		}
@@ -117,9 +119,7 @@ export const initLightbox = (article: HTMLElement) => {
 
 	const imageFrom = (e: Event) => {
 		const image = e.target instanceof Element ? e.target.closest("img") : null;
-		return image && article.contains(image) && !image.closest("a")
-			? image
-			: null;
+		return image && article.contains(image) && zoomable(image) ? image : null;
 	};
 
 	article.addEventListener("click", (e) => {

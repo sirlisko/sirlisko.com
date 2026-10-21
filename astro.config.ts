@@ -10,6 +10,7 @@ import { defineConfig } from "astro/config";
 import rehypeCallouts from "rehype-callouts";
 import {
 	rehypeResponsiveImages,
+	rehypeTaskListLabels,
 	transformerFileName,
 } from "./src/lib/blog/markdown";
 import gameBoyTheme from "./src/lib/blog/shikiGameBoy";
@@ -39,6 +40,7 @@ export default defineConfig({
 			rehypePlugins: [
 				[rehypeCallouts, { theme: "github" }],
 				rehypeResponsiveImages,
+				rehypeTaskListLabels,
 			],
 		}),
 		shikiConfig: {

@@ -13,7 +13,7 @@ tags:
 
 ![Gulp Blacklist Marker logo](./images/gulp-blacklist/icon.png)
 
-### A bit of history
+## A bit of history
 
 It has been a while since I moved from **Grunt** to **Gulp** in my day-to-day build routine. When I first switched, I tried to port my Grunt process one to one. I searched for all the equivalent Gulp plugins and ended up building a kind of Gulp Frankenstein. This was not the best way to migrate, but in the end everything was faster (thanks to streams) and worked without problems.
 
@@ -25,7 +25,7 @@ I really like the idea of keeping the Gulp plugin ecosystem clean. What I find a
 
 We do not live in an ideal world, so on a lazy Sunday afternoon I created a little Chrome extension that shows you all the blacklisted plugins at first glance.
 
-### In action
+## In action
 
 Gulp Blacklist Marker works on module pages and on search results.
 
@@ -41,6 +41,6 @@ GitHub package:
 GitHub repo:
 ![Marker on a GitHub repo](./images/gulp-blacklist/github_repo.png)
 
-### Where to get it
+## Where to get it
 
 The extension no longer works, but the source code is still on [GitHub](https://github.com/sirlisko/gulp-blacklist-marker).

@@ -16,9 +16,11 @@ const external = (url: string) =>
 	theme="dark"
 	themeColor="#000"
 >
-	<Links page="credits" />
-	<FaceLink />
-	<main class="roll" data-staff-roll>
+	<header>
+		<Links page="credits" />
+		<FaceLink />
+	</header>
+	<main id="main-content" class="roll" data-staff-roll>
 		<header>
 			<h1>sirlisko.com</h1>
 			<p>How this site is made.</p>
@@ -102,7 +104,7 @@ document.addEventListener("astro:page-load", () => {
 	}
 }
 
-header {
+main > header {
 	margin: 2rem 0 8rem;
 
 	h1 {

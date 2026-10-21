@@ -71,10 +71,10 @@ The format is the easy part. The hard part is knowing what to _say_.
 
 I think about it as a 2x2 matrix. Every meaningful commit message should cover four things:
 
-|                | What                                    | Why                                                |
-| -------------- | --------------------------------------- | -------------------------------------------------- |
-| **High-level** | **Intent** — What does this accomplish? | **Context** — Why does this code exist?            |
-| **Low-level**  | **Implementation** — What did you do?   | **Justification** — Why was this change necessary? |
+| <span class="sr-only">Level</span> | What                                    | Why                                                |
+| ---------------------------------- | --------------------------------------- | -------------------------------------------------- |
+| **High-level**                     | **Intent** — What does this accomplish? | **Context** — Why does this code exist?            |
+| **Low-level**                      | **Implementation** — What did you do?   | **Justification** — Why was this change necessary? |
 
 **Intent** goes in the subject line:
 

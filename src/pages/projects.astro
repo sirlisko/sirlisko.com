@@ -20,9 +20,11 @@ import Layout from "../layouts/Layout.astro";
 	theme="dark"
 	themeColor="#000"
 >
-	<Links page="projects" />
-	<FaceLink />
-	<main class="cart">
+	<header>
+		<Links page="projects" />
+		<FaceLink />
+	</header>
+	<main id="main-content" class="cart">
 		<header>
 			<h1>Projects</h1>
 			<p>Every side project on one cartridge.</p>
@@ -62,7 +64,7 @@ import Layout from "../layouts/Layout.astro";
 	color: var(--nes-white);
 }
 
-header {
+main > header {
 	text-align: center;
 	margin: 0 0 4rem;
 

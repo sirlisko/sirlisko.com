@@ -17,9 +17,11 @@ import { formatMonth } from "../lib/month";
 	theme="dark"
 	themeColor="#000"
 >
-	<Links page="now" />
-	<FaceLink />
-	<main class="page">
+	<header>
+		<Links page="now" />
+		<FaceLink />
+	</header>
+	<main id="main-content" class="page">
 		<header>
 			<div class="stats">
 				<p><span class="key">Loc</span> London, UK</p>
@@ -69,7 +71,7 @@ body.dark {
 	gap: 2.5rem;
 }
 
-header {
+main > header {
 	display: flex;
 	flex-direction: column;
 	gap: 1.25rem;
@@ -117,7 +119,7 @@ h1 {
 	line-height: 1.6;
 }
 
-header p {
+main > header p {
 	color: var(--pac-text);
 }
 
