@@ -292,6 +292,15 @@ a[aria-current]:not(:hover, :focus-visible)::before {
 		backdrop-filter: grayscale(1);
 	}
 
+	/* Stepped, like a game window popping open, not a smooth ease. */
+	@media (prefers-reduced-motion: no-preference) {
+		animation: pause-open 0.2s steps(4, jump-start);
+
+		&::backdrop {
+			animation: pause-fade 0.2s steps(4, jump-start);
+		}
+	}
+
 	.menu {
 		flex-direction: column;
 		align-items: center;
@@ -302,6 +311,18 @@ a[aria-current]:not(:hover, :focus-visible)::before {
 	.menu a {
 		--fg: var(--pause-fg);
 		--accent: var(--pause-accent);
+	}
+}
+
+@keyframes pause-open {
+	from {
+		scale: 1 0.1;
+	}
+}
+
+@keyframes pause-fade {
+	from {
+		opacity: 0;
 	}
 }
 
