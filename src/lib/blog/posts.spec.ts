@@ -26,7 +26,7 @@ const post = (data: {
 		modDatetime: data.modDatetime ? new Date(data.modDatetime) : undefined,
 		bump: data.bump,
 		draft: data.draft,
-		tags: data.tags ?? ["others"],
+		tags: data.tags ?? [],
 	},
 });
 
