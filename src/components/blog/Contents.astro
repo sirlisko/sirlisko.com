@@ -87,5 +87,10 @@ const { headings } = Astro.props;
 		overflow-y: auto;
 		padding-inline-start: 1rem;
 	}
+
+	/* Beside the text it stays in the background; only the section being read stands out. */
+	.margin :global(.toc a:not([aria-current], :hover, :focus-visible)) {
+		color: var(--muted-foreground);
+	}
 }
 </style>
