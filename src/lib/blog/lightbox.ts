@@ -1,8 +1,7 @@
+import { prefersReducedMotion } from "../motion";
+
 const MAX_SCALE = 4;
 const DOUBLE_TAP_MS = 300;
-
-const reducedMotion = () =>
-	matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 // Linked images go to their link, and map tiles belong to the map.
 const zoomable = (image: Element) => !image.closest("a, .leaflet-container");
@@ -65,7 +64,7 @@ export const initLightbox = (article: HTMLElement) => {
 		lastFocused?.focus();
 		lastFocused = null;
 
-		if (reducedMotion()) {
+		if (prefersReducedMotion()) {
 			el.remove();
 			return;
 		}
