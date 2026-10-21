@@ -1,11 +1,14 @@
 ---
 import BackLink from "../../../components/blog/BackLink.astro";
 import BackToTop from "../../../components/blog/BackToTop.astro";
+import Contents from "../../../components/blog/Contents.astro";
 import Main from "../../../components/blog/Main.astro";
 import BlogLayout from "../../../layouts/BlogLayout.astro";
+import { tocHeadings } from "../../../lib/blog/toc";
 import leafletCss from "../../../styles/blog/leaflet.css?url";
-import { Content } from "./_content.mdx";
+import { Content, getHeadings } from "./_content.mdx";
 
+const headings = tocHeadings(getHeadings());
 const DESCRIPTION = "Every element this blog can render, in one place.";
 ---
 
@@ -19,9 +22,11 @@ const DESCRIPTION = "Every element this blog can render, in one place.";
 		title="Style"
 		description={`${DESCRIPTION} I check it after changing the CSS or messing with the layout, and you're welcome to have a look too.`}
 	>
-		<article id="article" class="prose">
-			<Content />
-		</article>
+		<Contents {headings}>
+			<article id="article" class="prose">
+				<Content />
+			</article>
+		</Contents>
 		<BackToTop />
 	</Main>
 </BlogLayout>

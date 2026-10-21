@@ -36,7 +36,7 @@ const PAUSE_TITLES: Record<typeof game, string> = {
 	<button type="button" class="start" id="nav-start" aria-haspopup="dialog">
 		Start
 	</button>
-	<dialog class="pause" id="nav-pause" aria-label="Menu">
+	<dialog class="pause" id="nav-pause" aria-label="Menu" tabindex="-1">
 		<p class="pause-title" aria-hidden="true">{PAUSE_TITLES[game]}</p>
 		<ul class="menu">
 			{links.map((link) => (
@@ -292,6 +292,15 @@ a[aria-current]:not(:hover, :focus-visible)::before {
 		backdrop-filter: grayscale(1);
 	}
 
+	/* Stepped, like a game window popping open, not a smooth ease. */
+	@media (prefers-reduced-motion: no-preference) {
+		animation: pause-open 0.2s steps(4, jump-start);
+
+		&::backdrop {
+			animation: pause-fade 0.2s steps(4, jump-start);
+		}
+	}
+
 	.menu {
 		flex-direction: column;
 		align-items: center;
@@ -302,6 +311,18 @@ a[aria-current]:not(:hover, :focus-visible)::before {
 	.menu a {
 		--fg: var(--pause-fg);
 		--accent: var(--pause-accent);
+	}
+}
+
+@keyframes pause-open {
+	from {
+		scale: 1 0.1;
+	}
+}
+
+@keyframes pause-fade {
+	from {
+		opacity: 0;
 	}
 }
 

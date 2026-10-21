@@ -96,6 +96,11 @@ html:has(> .blog) {
 	scroll-margin-block: 1rem;
 }
 
+/* Arrowing through a list keeps a few rows of context around the cursor. */
+.blog [data-menu-item] {
+	scroll-margin-block: 6rem;
+}
+
 .app-layout {
 	width: 100%;
 	max-width: 48rem;
@@ -253,7 +258,8 @@ html:has(> .blog) {
 
 	&:hover::before,
 	&:focus-visible::before,
-	&[data-hover]::before {
+	&[data-hover]::before,
+	&[aria-current="location"]::before {
 		content: "";
 		position: absolute;
 		inset-inline-start: -15px;

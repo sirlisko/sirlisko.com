@@ -3,9 +3,38 @@ import { getCollection } from "astro:content";
 import { SOURCE } from "../../../../../data/credits";
 import AdjacentPostNav from "../../../../components/blog/AdjacentPostNav.astro";
 import ReplyByEmail from "../../../../components/blog/ReplyByEmail.astro";
+import Webmentions from "../../../../components/blog/Webmentions.astro";
 import { postUrl, publishedPosts } from "../../../../lib/blog/posts";
 import Specimen from "./Specimen.astro";
 import Specimens from "./Specimens.astro";
+
+// No outside avatars here: one is the site's own, the other shows the fallback.
+const MENTIONS = [
+	{
+		"wm-property": "like-of",
+		url: "https://example.com/like",
+		author: { name: "Luca", photo: "/images/avatar.png" },
+	},
+	{
+		"wm-property": "like-of",
+		url: "https://example.org/like",
+		author: { name: "Someone without an avatar" },
+	},
+	{
+		"wm-property": "repost-of",
+		url: "https://example.com/repost",
+		author: { name: "Luca", photo: "/images/avatar.png" },
+	},
+	{
+		"wm-property": "in-reply-to",
+		url: "https://example.com/reply",
+		published: "2026-10-18T10:00:00Z",
+		author: { name: "Luca", photo: "/images/avatar.png" },
+		content: {
+			text: "A reply from the fediverse or another blog, shortened after 280 characters.",
+		},
+	},
+];
 
 const [newer, older] = publishedPosts(await getCollection("posts")).map(
 	(post) => ({
@@ -25,10 +54,15 @@ const [newer, older] = publishedPosts(await getCollection("posts")).map(
 			/>
 		</div>
 	</Specimen>
+	<Specimen name="<Webmentions>">
+		<div class="not-prose flush">
+			<Webmentions target="https://sirlisko.com/blog/style" sample={MENTIONS} />
+		</div>
+	</Specimen>
 	{newer && older && (
 		<Specimen name="<AdjacentPostNav>">
 			<div class="not-prose flush">
-				<AdjacentPostNav prev={older} next={newer} />
+				<AdjacentPostNav {newer} {older} />
 			</div>
 		</Specimen>
 	)}

@@ -29,7 +29,8 @@ export const BLOG = {
 	title: "sirlisko blog",
 	description: "Luca's notes on code, travel, long walks and games.",
 	timezone: "Europe/London",
-	perPage: 10,
+	/** Shown with their descriptions above the full list. */
+	latest: 3,
 	// A post scheduled a little ahead still goes out with the build that publishes it.
 	scheduledPostMargin: 15 * 60 * 1000,
 	replyTo: "blog@sirlisko.com",

@@ -7,6 +7,7 @@ tags:
   - life
 ogImage: ./images/south-east-asia-2026-part-1/java-mount-bromo.jpeg
 replyPrompt: "Where in Southeast Asia should I go next time?"
+toc: true
 ---
 
 On the 1st of June I left London for five weeks in Southeast Asia, right in the middle of monsoon season. Ideally I would have gone at a different time of year, but because of a series of circumstances I ended up going in the middle of it. The first four weeks were with [Ana](https://untepid.com): Thailand, Malaysia, and Indonesia. After she flew home I did a loop on my own through northern Thailand and Laos, covered in [the second part](/blog/southeast-asia-2026-part-2) of this trip.[^1]
@@ -16,8 +17,6 @@ Most of the itinerary was Ana's work, a rough plan she put together before we le
 Here's roughly how it all connected, one leg at a time.
 
 <div data-route-map='[{"name":"Bangkok","lat":13.7563,"lng":100.5018},{"name":"Surat Thani","lat":9.1382,"lng":99.3215,"mode":"train"},{"name":"Khao Sok","lat":8.9202,"lng":98.8347,"mode":"bus"},{"name":"Georgetown, Penang","lat":5.4141,"lng":100.3288,"mode":"bus"},{"name":"Cameron Highlands","lat":4.4726,"lng":101.3776,"mode":"bus"},{"name":"Kuala Lumpur","lat":3.1390,"lng":101.6869,"mode":"bus"},{"name":"Ubud, Bali","lat":-8.5069,"lng":115.2625,"mode":"flight"},{"name":"Surabaya","lat":-7.2575,"lng":112.7521,"mode":"flight"},{"name":"Mount Bromo","lat":-7.9425,"lng":112.9530,"mode":"bus"},{"name":"Surabaya","lat":-7.2575,"lng":112.7521,"mode":"bus"},{"name":"Yogyakarta","lat":-7.7956,"lng":110.3695,"mode":"train"},{"name":"Jakarta","lat":-6.2088,"lng":106.8456,"mode":"train"},{"name":"Bangkok","lat":13.7563,"lng":100.5018,"mode":"flight"}]' style="height:420px" class="not-prose my-6 rounded-lg overflow-hidden"></div>
-
-## Table of contents
 
 ## Bangkok to Khao Sok, by night train
 

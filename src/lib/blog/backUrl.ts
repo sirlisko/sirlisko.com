@@ -15,3 +15,7 @@ export const recallBackUrl = (): string | null => {
 		return null;
 	}
 };
+
+/** The list a back link returns to, as a path under /blog: "/tags/dev", "/search", or "/blog" itself. */
+export const backLabel = (url: string): string =>
+	new URL(url, "https://example.com").pathname.replace(/^\/blog(?=\/.)/, "");

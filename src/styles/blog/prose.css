@@ -299,7 +299,8 @@
 	background-color: var(--shiki-light-bg);
 	color: var(--shiki-light);
 	margin-block: 1.7142857em;
-	padding: 0.8571429em 1.1428571em;
+	/* The end padding keeps scrolled-to-the-end lines clear of the copy button. */
+	padding: 0.8571429em 6em 0.8571429em 1.1428571em;
 	overflow-x: auto;
 	box-shadow: 6px 6px 0 var(--pea);
 	font-size: 0.875em;
@@ -368,8 +369,11 @@
 	padding-top: 1.75rem;
 }
 
-/* The badge from lib/blog/markdown.ts, with the power LED as its dot. */
-.file-name {
+/*
+ * The badge from lib/blog/markdown.ts, with the power LED as its dot. It sits
+ * inside the pre, so it needs the extra class to beat the code's span colour.
+ */
+.astro-code .file-name {
 	position: absolute;
 	top: -0.75rem;
 	left: 1rem;

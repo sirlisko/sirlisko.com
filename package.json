@@ -50,8 +50,6 @@
 		"leaflet-gpx": "1.7.0",
 		"lucide": "^1.52.0",
 		"rehype-callouts": "^2.2.0",
-		"remark-collapse": "^0.1.2",
-		"remark-toc": "^9.0.0",
 		"sanitize-html": "^2.18.1",
 		"satori": "^0.26.0"
 	},

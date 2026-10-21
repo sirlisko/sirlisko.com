@@ -1,0 +1,97 @@
+---
+import { getCollection } from "astro:content";
+import BackLink from "../../components/blog/BackLink.astro";
+import Main from "../../components/blog/Main.astro";
+import { AUTHOR } from "../../config";
+import BlogLayout from "../../layouts/BlogLayout.astro";
+import { boundsOf, readGpx } from "../../lib/blog/gpx";
+import { postUrl, publishedPosts } from "../../lib/blog/posts";
+import leafletCss from "../../styles/blog/leaflet.css?url";
+
+const walks = publishedPosts(await getCollection("posts"))
+	.filter(({ data }) => data.gpxFiles?.length)
+	.map((post) => {
+		const tracks = post.data.gpxFiles ?? [];
+		return {
+			title: post.data.title,
+			url: postUrl(post),
+			files: tracks.map(({ file }) => file),
+			distance: tracks.reduce((sum, { distance = 0 }) => sum + distance, 0),
+		};
+	});
+
+const tracks = walks.flatMap(({ title, url, files }) =>
+	files.map((file) => ({ file, title, url })),
+);
+const bounds = boundsOf(
+	await Promise.all(tracks.map(({ file }) => readGpx(file))),
+);
+const DESCRIPTION = "Every long walk on the blog, on one map.";
+---
+
+<BlogLayout
+	title="Walks"
+	description={`${DESCRIPTION} The tracks from ${AUTHOR.name}'s hiking posts, each linking to its post.`}
+>
+	<Fragment slot="head">
+		<link rel="preconnect" href="https://tile.openstreetmap.org">
+		<link rel="preload" as="style" href={leafletCss}>
+	</Fragment>
+	<BackLink href="/blog" label="/blog" />
+	<Main title="Walks" description={DESCRIPTION}>
+		<div
+			class="gpx-map"
+			data-gpx-walks={JSON.stringify(tracks)}
+			data-gpx-bounds={JSON.stringify(bounds)}
+		></div>
+		<ul class="walks">
+			{walks.map(({ title, url, distance }) => (
+				<li>
+					<a href={url} class="row" data-menu-item>
+						<span class="title">{title}</span>
+						{distance > 0 && <span class="distance">{distance.toFixed(1)} km</span>}
+					</a>
+				</li>
+			))}
+		</ul>
+	</Main>
+</BlogLayout>
+
+<style>
+.gpx-map {
+	position: relative;
+	z-index: 0;
+	width: 100%;
+	height: 480px;
+	margin-bottom: 1.5rem;
+	overflow: hidden;
+}
+
+.row {
+	display: flex;
+	justify-content: space-between;
+	gap: 1rem;
+	padding: 0.25rem 0.5rem;
+	margin-inline: -0.5rem;
+
+	&:hover,
+	&:focus-visible {
+		background: var(--foreground);
+		color: var(--background);
+		outline: none;
+
+		.distance {
+			color: inherit;
+		}
+	}
+}
+
+.distance {
+	flex-shrink: 0;
+	color: var(--muted-foreground);
+}
+</style>
+
+<script>
+import "../../lib/blog/maps";
+</script>

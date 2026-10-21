@@ -7,13 +7,12 @@ tags:
   - life
 ogImage: ./images/south-east-asia-2026-part-2/vang-vieng-nam-xay-viewpoint.jpeg
 replyPrompt: "Would you take the slow boat on the Mekong?"
+toc: true
 ---
 
 This is the second part of a five-week trip through Southeast Asia. The [first part](/blog/southeast-asia-2026-part-1) covered Thailand, Malaysia, and Indonesia with Ana. Once she flew home from Bangkok, I still had about ten days left before my own flight, so I did a loop on my own: north to Chiang Mai and Chiang Rai, across the border into Laos, down the Mekong by boat to Luang Prabang, then south by train through Vang Vieng to Vientiane, and back to Bangkok for one last night before flying home.
 
 <div data-route-map='[{"name":"Bangkok","lat":13.7563,"lng":100.5018},{"name":"Chiang Mai","lat":18.7883,"lng":98.9853,"mode":"train"},{"name":"Chiang Rai","lat":19.9105,"lng":99.8406,"mode":"bus"},{"name":"Huay Xai","lat":20.2718,"lng":100.4363,"mode":"bus"},{"name":"Pak Beng","lat":19.8833,"lng":101.1167,"mode":"boat"},{"name":"Luang Prabang","lat":19.8856,"lng":102.1347,"mode":"boat"},{"name":"Vang Vieng","lat":18.9233,"lng":102.4433,"mode":"train"},{"name":"Vientiane","lat":17.9757,"lng":102.6331,"mode":"train"},{"name":"Bangkok","lat":13.7563,"lng":100.5018,"mode":"train"}]' style="height:420px" class="not-prose my-6 rounded-lg overflow-hidden"></div>
-
-## Table of contents
 
 ## Chiang Mai, one temple too many
 

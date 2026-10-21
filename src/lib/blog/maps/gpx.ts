@@ -50,6 +50,29 @@ function initOverview(leaflet: Leaflet, el: HTMLElement) {
 	});
 }
 
+// Every walk on one map: each post keeps one colour, and its tracks lead to it.
+function initWalks(leaflet: Leaflet, el: HTMLElement) {
+	const tracks: { file: string; title: string; url: string }[] = JSON.parse(
+		el.dataset.gpxWalks ?? "[]",
+	);
+	const { gpxBounds } = el.dataset;
+	if (!tracks.length || !gpxBounds) return;
+
+	const map = leaflet.createMap(el);
+	map.fitBounds(JSON.parse(gpxBounds), { padding: [20, 20] });
+	const posts = [...new Set(tracks.map(({ url }) => url))];
+
+	for (const { file, title, url } of tracks) {
+		addGpxTrack(map, file, posts.indexOf(url), (e) => {
+			e.target
+				.bindTooltip(title, { sticky: true, className: "route-map-label" })
+				.on("click", () => {
+					window.location.href = url;
+				});
+		});
+	}
+}
+
 // Per-day inline maps sit in the prose, whose centred images would shift
 // tiles off their grid, so they opt out.
 function initInline(leaflet: Leaflet, el: HTMLElement) {
@@ -67,10 +90,11 @@ function initInline(leaflet: Leaflet, el: HTMLElement) {
 
 export async function initGpxMaps() {
 	const overview = document.querySelector<HTMLElement>("[data-gpx-tracks]");
+	const walks = document.querySelector<HTMLElement>("[data-gpx-walks]");
 	const inline = Array.from(
 		document.querySelectorAll<HTMLElement>("[data-gpx-map]"),
 	);
-	const els = overview ? [overview, ...inline] : inline;
+	const els = [overview, walks, ...inline].filter((el) => el !== null);
 	if (!els.length) return;
 
 	let leaflet: Leaflet;
@@ -83,6 +107,7 @@ export async function initGpxMaps() {
 	}
 
 	if (overview) initOverview(leaflet, overview);
+	if (walks) initWalks(leaflet, walks);
 	for (const el of inline) {
 		initInline(leaflet, el);
 	}

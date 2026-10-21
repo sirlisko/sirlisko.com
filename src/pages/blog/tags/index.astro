@@ -24,7 +24,7 @@ const top = tags
 		<ul class="tags">
 			{tags.map(({ slug, name, count }) => (
 				<li>
-					<a href={tagUrl(slug)} transition:name={`tag-${slug}`} class="tag-row">
+					<a href={tagUrl(slug)} transition:name={`tag-${slug}`} class="tag-row" data-menu-item>
 						<span>#{name}</span>
 						<span class="tag-bar" style={{ width: `${count * 14}px` }} aria-hidden="true"></span>
 						<span class="count font-pixel">

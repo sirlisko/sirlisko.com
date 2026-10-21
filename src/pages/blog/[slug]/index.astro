@@ -5,14 +5,17 @@ import AdjacentPostNav from "../../../components/blog/AdjacentPostNav.astro";
 import AuthorCard from "../../../components/blog/AuthorCard.astro";
 import BackLink from "../../../components/blog/BackLink.astro";
 import BackToTop from "../../../components/blog/BackToTop.astro";
+import Contents from "../../../components/blog/Contents.astro";
 import GpxMap from "../../../components/blog/GpxMap.astro";
 import GpxStats from "../../../components/blog/GpxStats.astro";
 import PostDate from "../../../components/blog/PostDate.astro";
 import ReplyByEmail from "../../../components/blog/ReplyByEmail.astro";
+import Webmentions from "../../../components/blog/Webmentions.astro";
 import { AUTHOR, BLOG, SITE_URL } from "../../../config";
 import BlogLayout from "../../../layouts/BlogLayout.astro";
 import { OG_IMAGE_SIZE } from "../../../lib/blog/ogCard";
 import { cropOgImage } from "../../../lib/blog/ogImage";
+import { readingMinutes } from "../../../lib/blog/post";
 import {
 	type Post,
 	postSlug,
@@ -20,6 +23,7 @@ import {
 	publishedPosts,
 	tagUrl,
 } from "../../../lib/blog/posts";
+import { tocHeadings } from "../../../lib/blog/toc";
 import leafletCss from "../../../styles/blog/leaflet.css?url";
 
 export async function getStaticPaths() {
@@ -29,16 +33,22 @@ export async function getStaticPaths() {
 
 	return posts.map((post, i) => ({
 		params: { slug: postSlug(post.id) },
-		props: { post, prev: adjacent(posts[i - 1]), next: adjacent(posts[i + 1]) },
+		props: {
+			post,
+			newer: adjacent(posts[i - 1]),
+			older: adjacent(posts[i + 1]),
+		},
 	}));
 }
 
-const { post, prev, next } = Astro.props;
+const { post, newer, older } = Astro.props;
 const { title, description, ogImage, canonicalURL, pubDatetime, modDatetime } =
 	post.data;
-const { timezone, tags, gpxFiles, replyPrompt } = post.data;
+const { timezone, tags, gpxFiles, replyPrompt, toc } = post.data;
 
-const { Content } = await render(post);
+const { Content, headings } = await render(post);
+const contents = toc ? tocHeadings(headings) : [];
+const minutes = readingMinutes(post.body ?? "");
 const hasMap =
 	!!gpxFiles?.length || /data-(gpx|route)-map/.test(post.body ?? "");
 
@@ -103,7 +113,7 @@ const structuredData = {
 
 	<div class="reading-progress" aria-hidden="true"><div></div></div>
 
-	<BackLink href="/blog" label="Go back" remembered />
+	<BackLink href="/blog" label="/blog" remembered />
 
 	<main id="main-content" class="app-layout post h-entry" data-pagefind-body>
 		<data class="u-url" value={url}></data>
@@ -113,6 +123,10 @@ const structuredData = {
 		<h1 class="p-name" transition:name={`post-${post.id}`}>{title}</h1>
 
 		<PostDate {pubDatetime} {modDatetime} {timezone} size="lg" showBoth />
+		<p class="details">
+			<span>{minutes} min read</span>
+			{tags.map((tag) => <a href={tagUrl(tag)} class="tag-link">#{tag}</a>)}
+		</p>
 
 		{gpxFiles && gpxFiles.length > 0 && (
 			<div class="tracks">
@@ -121,25 +135,29 @@ const structuredData = {
 			</div>
 		)}
 
-		<article id="article" class="prose e-content">
-			<Content />
-		</article>
+		{contents.length > 0 ? (
+			<Contents headings={contents}>
+				<article id="article" class="prose e-content">
+					<Content />
+				</article>
+			</Contents>
+		) : (
+			<article id="article" class="prose e-content">
+				<Content />
+			</article>
+		)}
 
 		<hr class="dashed-rule">
 
 		<ReplyByEmail {title} prompt={replyPrompt} {editUrl} />
 
+		<Webmentions target={url} />
+
 		<BackToTop />
 
-		<ul class="tags">
-			{tags.map((tag) => (
-				<li><a href={tagUrl(tag)} class="tag-link">#{tag}</a></li>
-			))}
-		</ul>
+		<hr class="dashed-rule end">
 
-		<hr class="dashed-rule">
-
-		<AdjacentPostNav {prev} {next} />
+		<AdjacentPostNav {newer} {older} />
 	</main>
 </BlogLayout>
 
@@ -170,34 +188,42 @@ h1 {
 	margin-top: 2rem;
 }
 
-.tags {
+.details {
 	display: flex;
 	flex-wrap: wrap;
-	gap: 1rem;
-	margin-block: 1rem 2rem;
-
-	@media (min-width: 640px) {
-		margin-block: 2rem;
-	}
+	column-gap: 0.875rem;
+	margin-top: 0.25rem;
+	font-size: 0.875rem;
+	line-height: 1.25rem;
+	color: var(--muted-foreground);
 
 	a {
-		font-size: 0.875rem;
-		line-height: 1.25rem;
+		color: var(--foreground);
 	}
 }
 
+/* Below the floated back-to-top link, not through it. */
+.end {
+	clear: both;
+}
+
+/* Fills a block at a time, like an HP bar, rather than sliding smoothly. */
 .reading-progress {
 	position: fixed;
 	top: 0;
 	z-index: 10;
 	width: 100%;
-	height: 4px;
+	height: 6px;
 	background: var(--background);
 
 	div {
-		width: var(--progress, 0%);
+		width: var(--progress, 0px);
 		height: 100%;
-		background: var(--accent);
+		background: repeating-linear-gradient(
+			90deg,
+			var(--accent) 0 8px,
+			transparent 8px 10px
+		);
 	}
 }
 </style>
@@ -223,6 +249,13 @@ document.addEventListener("astro:before-swap", () => closeLightbox?.());
 
 document.addEventListener("scroll", () => {
 	const bar = document.querySelector<HTMLElement>(".reading-progress");
-	bar?.style.setProperty("--progress", `${scrollPercent()}%`);
+	if (bar) {
+		const BLOCK = 10;
+		const filled = (bar.clientWidth * scrollPercent()) / 100;
+		bar.style.setProperty(
+			"--progress",
+			`${Math.floor(filled / BLOCK) * BLOCK}px`,
+		);
+	}
 });
 </script>
