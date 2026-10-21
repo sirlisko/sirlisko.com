@@ -1,5 +1,5 @@
 import { describe, expect, test } from "vitest";
-import { addHeadingLinks, scrollPercent } from "./post";
+import { addHeadingLinks, readingMinutes, scrollPercent } from "./post";
 
 describe("scrollPercent", () => {
 	const root = (
@@ -26,5 +26,20 @@ describe("addHeadingLinks", () => {
 		const links = article.querySelectorAll<HTMLAnchorElement>(".heading-link");
 		expect(links).toHaveLength(1);
 		expect(links[0]?.getAttribute("href")).toBe("#maps");
+	});
+});
+
+describe("readingMinutes", () => {
+	test("counts the prose at 220 words a minute", () => {
+		expect(readingMinutes("word ".repeat(1100))).toBe(5);
+	});
+
+	test("leaves code blocks out", () => {
+		const code = `\n\`\`\`ts\n${"const x = 1;\n".repeat(500)}\`\`\`\n`;
+		expect(readingMinutes(`${"word ".repeat(440)}${code}`)).toBe(2);
+	});
+
+	test("is at least a minute", () => {
+		expect(readingMinutes("Ciao")).toBe(1);
 	});
 });
