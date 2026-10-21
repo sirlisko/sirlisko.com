@@ -217,18 +217,23 @@ h1 {
 	clear: both;
 }
 
+/* Fills a block at a time, like an HP bar, rather than sliding smoothly. */
 .reading-progress {
 	position: fixed;
 	top: 0;
 	z-index: 10;
 	width: 100%;
-	height: 4px;
+	height: 6px;
 	background: var(--background);
 
 	div {
-		width: var(--progress, 0%);
+		width: var(--progress, 0px);
 		height: 100%;
-		background: var(--accent);
+		background: repeating-linear-gradient(
+			90deg,
+			var(--accent) 0 8px,
+			transparent 8px 10px
+		);
 	}
 }
 </style>
@@ -254,6 +259,13 @@ document.addEventListener("astro:before-swap", () => closeLightbox?.());
 
 document.addEventListener("scroll", () => {
 	const bar = document.querySelector<HTMLElement>(".reading-progress");
-	bar?.style.setProperty("--progress", `${scrollPercent()}%`);
+	if (bar) {
+		const BLOCK = 10;
+		const filled = (bar.clientWidth * scrollPercent()) / 100;
+		bar.style.setProperty(
+			"--progress",
+			`${Math.floor(filled / BLOCK) * BLOCK}px`,
+		);
+	}
 });
 </script>
