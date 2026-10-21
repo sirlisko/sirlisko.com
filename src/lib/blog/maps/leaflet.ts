@@ -30,7 +30,8 @@ export async function loadLeaflet() {
 			map.on("focus", () => map.scrollWheelZoom.enable());
 			map.on("blur", () => map.scrollWheelZoom.disable());
 			// Leaflet makes the map a tab stop for arrow-key panning but leaves it unnamed.
-			el.setAttribute("role", "region");
+			// A group, not a region: posts with several maps would repeat a landmark name.
+			el.setAttribute("role", "group");
 			el.setAttribute("aria-label", "Map");
 
 			const theme = matchMedia("(prefers-color-scheme: dark)").matches
