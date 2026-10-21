@@ -2,15 +2,18 @@
 interface Props {
 	/** The post's canonical URL, which webmentions are sent to. */
 	target: string;
+	/** webmention.io entries to show instead of fetching them, for /blog/style. */
+	sample?: object[];
 }
 
-const { target } = Astro.props;
+const { target, sample } = Astro.props;
 ---
 
 {/* Filled in the browser, and left hidden when nobody has replied yet. */}
 <section
 	class="webmentions"
 	data-webmentions={target}
+	data-webmentions-sample={sample && JSON.stringify(sample)}
 	aria-labelledby="webmentions-title"
 	data-pagefind-ignore
 	hidden
@@ -203,8 +206,10 @@ document.addEventListener("astro:page-load", async () => {
 		return;
 	}
 	try {
-		const response = await fetch(mentionsUrl(target));
-		const { children = [] } = await response.json();
+		const { webmentionsSample: sample } = section.dataset;
+		const { children = [] } = sample
+			? { children: JSON.parse(sample) }
+			: await (await fetch(mentionsUrl(target))).json();
 		const { likes, reposts, replies } = groupMentions(children);
 		if (!section.isConnected) {
 			return;
