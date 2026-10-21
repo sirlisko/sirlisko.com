@@ -21,6 +21,16 @@ from = "/blog/tags/code"
 to = "/blog/tags/dev"
 status = 301
 
+[[redirects]]
+from = "/blog/tag/code"
+to = "/blog/tags/dev"
+status = 301
+
+[[redirects]]
+from = "/blog/reasonsto-2015"
+to = "/blog/reasons-to-2015"
+status = 301
+
 # Every post is listed on the blog home, so the paged lists and archives are gone.
 [[redirects]]
 from = "/blog/posts"
@@ -52,6 +62,17 @@ status = 301
 from = "/blog/*"
 to = "/blog/404/index.html"
 status = 404
+
+# Feed readers guess these before finding the link tag.
+[[redirects]]
+from = "/feed"
+to = "/blog/rss.xml"
+status = 301
+
+[[redirects]]
+from = "/feeds"
+to = "/blog/rss.xml"
+status = 301
 
 # The light variants are gone; keep links already sent out working.
 [[redirects]]
