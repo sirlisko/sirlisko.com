@@ -196,7 +196,8 @@ const PAUSE_TITLES: Record<typeof game, string> = {
 	}
 
 	&:focus-visible {
-		outline: none;
+		/* Transparent, not none: forced-colours mode paints it, and the colours above are lost there. */
+		outline: 2px solid transparent;
 		color: var(--accent);
 	}
 }
