@@ -6,12 +6,14 @@ interface Props {
 const { descriptions } = Astro.props;
 ---
 
+<!-- Screen readers get the first phrase whole, not whatever half-typed word is showing. -->
 <span
 	class="greeting"
+	aria-hidden="true"
 	data-greeting
 	data-descriptions={JSON.stringify(descriptions)}
 	>{descriptions[0]}</span
->
+><span class="sr-only">{descriptions[0]}</span>
 
 <script>
 import { initGreeting } from "../lib/greeting";
