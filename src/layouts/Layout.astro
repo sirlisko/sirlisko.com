@@ -7,6 +7,7 @@ import "@fontsource/ibm-plex-mono/latin-600.css";
 import "../styles/tokens.css";
 import "../styles/shared.css";
 import { ClientRouter } from "astro:transitions";
+import SkipLink from "../components/SkipLink.astro";
 import {
 	ANALYTICS,
 	AUTHOR,
@@ -147,6 +148,7 @@ const formattedTitle = title ? `${title} | ${SITE.title}` : SITE.title;
 		<ClientRouter />
 	</head>
 	<body class:list={[theme]}>
+		<SkipLink />
 		<slot />
 	</body>
 </html>

@@ -1,0 +1,39 @@
+<a id="skip-to-content" href="#main-content" class="skip-link"
+	>Skip to content</a
+>
+
+<style>
+/* The blog palette sets these; the game pages fall back to black and yellow. */
+.skip-link {
+	position: absolute;
+	top: -100%;
+	left: 4rem;
+	z-index: 50;
+	padding: 0.5rem 0.75rem;
+	background: var(--background, #000);
+	color: var(--accent, var(--yellow));
+
+	&:focus {
+		top: 1rem;
+	}
+}
+</style>
+
+<script>
+// The router would land on #main-content without moving focus there.
+document.addEventListener("astro:page-load", () => {
+	document.getElementById("skip-to-content")?.addEventListener("click", (e) => {
+		const target = document.getElementById("main-content");
+		if (!target || e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) {
+			return;
+		}
+		e.preventDefault();
+		target.setAttribute("tabindex", "-1");
+		target.addEventListener("blur", () => target.removeAttribute("tabindex"), {
+			once: true,
+		});
+		target.focus();
+		target.scrollIntoView({ behavior: "smooth" });
+	});
+});
+</script>
