@@ -16,7 +16,7 @@ tags:
 
 Shazamify adds a small Spotify icon to every [Shazam](https://www.shazam.com) track page and allows you to play that track directly on [Spotify](https://www.spotify.com).
 
-### History
+## History
 
 - Released as a Chrome extension and a [user script](/blog/how-to-install-user-scripts).
 - Google took the extension down over a copyright issue with the Shazam name, even though I worked at Shazam at the time. I published it again as **Zamify**.
@@ -24,6 +24,6 @@ Shazamify adds a small Spotify icon to every [Shazam](https://www.shazam.com) tr
 - In mid-2017 Spotify blocked unauthenticated API calls, and the user script stopped working.
 - I published a new extension, but it kept being taken down without any explanation.
 
-### Older version
+## Older version
 
 ![Shazamify older version](./images/shazamify/old.png)

@@ -24,7 +24,7 @@ Converting a script is simple: you add a metadata block at the top of the file. 
 // ==/UserScript==
 ```
 
-### Install a user script manager
+## Install a user script manager
 
 Browsers do not run user scripts on their own. You need an extension, called a _user script manager_:
 
@@ -35,7 +35,7 @@ Browsers do not run user scripts on their own. You need an extension, called a _
 
 On Chrome and other Chromium browsers, you also need to allow the manager to run user scripts. Open the extension details page and turn on _Allow User Scripts_ (on older versions, turn on _Developer mode_ instead).
 
-### Install a script
+## Install a script
 
 1. Open a link to a file ending in `.user.js`.
 2. The manager shows the script's code and the sites it runs on.
