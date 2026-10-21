@@ -1,5 +1,5 @@
 ---
-import { type Post, postUrl, tagUrl } from "../../lib/blog/posts";
+import { type Post, postUrl } from "../../lib/blog/posts";
 import PostDate from "./PostDate.astro";
 
 interface Props {
@@ -8,7 +8,7 @@ interface Props {
 }
 
 const { post, heading: Heading = "h2" } = Astro.props;
-const { title, description, tags, pubDatetime, modDatetime, timezone, bump } =
+const { title, description, pubDatetime, modDatetime, timezone, bump } =
 	post.data;
 ---
 
@@ -20,11 +20,6 @@ const { title, description, tags, pubDatetime, modDatetime, timezone, bump } =
 		>
 	</a>
 	<p class="description p-summary">{description}</p>
-	{tags.length > 0 && (
-		<p class="tags">
-			{tags.map((tag) => <a href={tagUrl(tag)} class="tag-link">#{tag}</a>)}
-		</p>
-	)}
 </li>
 
 <style>
@@ -45,13 +40,5 @@ const { title, description, tags, pubDatetime, modDatetime, timezone, bump } =
 .description {
 	font-size: 15px;
 	color: var(--foreground-soft);
-}
-
-.tags {
-	display: flex;
-	flex-wrap: wrap;
-	column-gap: 0.875rem;
-	font-size: 0.875rem;
-	line-height: 1.25rem;
 }
 </style>
