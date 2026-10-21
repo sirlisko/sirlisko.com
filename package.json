@@ -34,6 +34,7 @@
 		"images": "node scripts/optimize-images.mjs",
 		"gpx": "node scripts/simplify-gpx.mjs",
 		"lighthouse": "node scripts/lighthouse.mjs",
+		"a11y": "node scripts/a11y.mjs",
 		"gsc": "node scripts/gsc-index-status.mjs"
 	},
 	"dependencies": {
