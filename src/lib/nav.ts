@@ -10,7 +10,13 @@ export const initNav = (root: ParentNode = document) => {
 
 	const mobileQuery = window.matchMedia(MOBILE_QUERY);
 
-	const onStart = () => pause.showModal();
+	const onStart = () => {
+		pause.showModal();
+		// With no current page to land on, the first link would look picked.
+		if (!pause.querySelector("[aria-current]")) {
+			pause.focus();
+		}
+	};
 	// Clicks on the dialog itself, not its contents, land on the backdrop.
 	const onPauseClick = (e: MouseEvent) => {
 		if (e.target === pause || (e.target as Element).closest("a")) {

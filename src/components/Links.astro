@@ -36,7 +36,7 @@ const PAUSE_TITLES: Record<typeof game, string> = {
 	<button type="button" class="start" id="nav-start" aria-haspopup="dialog">
 		Start
 	</button>
-	<dialog class="pause" id="nav-pause" aria-label="Menu">
+	<dialog class="pause" id="nav-pause" aria-label="Menu" tabindex="-1">
 		<p class="pause-title" aria-hidden="true">{PAUSE_TITLES[game]}</p>
 		<ul class="menu">
 			{links.map((link) => (
