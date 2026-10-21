@@ -54,7 +54,7 @@ footer {
 
 .clear-back-to-top {
 	@media (max-width: 767px) {
-		padding-bottom: 6rem;
+		padding-bottom: 3rem;
 	}
 }
 
@@ -63,7 +63,8 @@ footer {
 	display: flex;
 	flex-direction: column;
 	gap: 0.5rem;
-	margin-top: 2rem;
+	/* The only gap above the footer: pages end without a bottom margin of their own. */
+	margin-top: 3rem;
 	padding-block: 1rem 1.5rem;
 	border-top: 2px dashed var(--blog-accent);
 }
