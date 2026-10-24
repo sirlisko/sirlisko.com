@@ -22,7 +22,7 @@ function addGpxTrack(
 			className: `map-track map-track-${index % 3}`,
 			weight: 3,
 		},
-		marker_options: { startIconUrl: null, endIconUrl: null, shadowUrl: null },
+		markers: { startIcon: null, endIcon: null },
 	})
 		.on("loaded", onLoaded)
 		.addTo(map);
