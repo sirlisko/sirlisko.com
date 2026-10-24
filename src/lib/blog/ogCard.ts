@@ -124,6 +124,7 @@ export const renderGameBoyCard = async ({ title, subtitle, meta }: Card) => {
 			{
 				width: "100%",
 				height: "100%",
+				boxSizing: "border-box",
 				display: "flex",
 				background: LCD,
 				padding: "40px 56px 56px 40px",
