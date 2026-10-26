@@ -4,7 +4,6 @@ import AuthorCard from "../../components/blog/AuthorCard.astro";
 import PostCard from "../../components/blog/PostCard.astro";
 import PostIndex from "../../components/blog/PostIndex.astro";
 import { AUTHOR, BLOG, SITE_URL } from "../../config";
-import IconSearch from "../../images/blog/search.svg";
 import BlogLayout from "../../layouts/BlogLayout.astro";
 import { publishedPosts } from "../../lib/blog/posts";
 
@@ -39,26 +38,16 @@ const structuredData = {
 		<data class="p-name" value={BLOG.title}></data>
 		<AuthorCard />
 		<section class="hero">
-			<div class="title-row">
-				<h1 class="pixel-title">/blog</h1>
-				<script is:inline>
-				// The boot scroll plays on the first visit of a session, like powering on.
-				try {
-					if (!sessionStorage.getItem("booted")) {
-						sessionStorage.setItem("booted", "1");
-						document.currentScript.previousElementSibling.classList.add("boot");
-					}
-				} catch {}
-				</script>
-				<a
-					href="/blog/search"
-					class="pixel-icon search"
-					aria-label="Search"
-					title="Search"
-				>
-					<IconSearch aria-hidden="true" />
-				</a>
-			</div>
+			<h1 class="pixel-title">/blog</h1>
+			<script is:inline>
+			// The boot scroll plays on the first visit of a session, like powering on.
+			try {
+				if (!sessionStorage.getItem("booted")) {
+					sessionStorage.setItem("booted", "1");
+					document.currentScript.previousElementSibling.classList.add("boot");
+				}
+			} catch {}
+			</script>
 			<p class="intro">{INTRO}</p>
 		</section>
 
@@ -96,13 +85,6 @@ const structuredData = {
 	}
 }
 
-.title-row {
-	display: flex;
-	align-items: flex-end;
-	justify-content: space-between;
-	gap: 1rem;
-}
-
 h1 {
 	--boot-window: 1.5rem;
 	font-size: 44px;
@@ -110,15 +92,6 @@ h1 {
 	@media (min-width: 640px) {
 		--boot-window: 8rem;
 		font-size: 64px;
-	}
-}
-
-.search {
-	margin-inline-end: -0.625rem;
-	translate: 0 0.125rem;
-
-	@media (min-width: 640px) {
-		translate: 0 -1px;
 	}
 }
 

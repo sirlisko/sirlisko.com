@@ -1,4 +1,5 @@
 ---
+import { postKind } from "../../lib/blog/kind";
 import { type Post, postUrl } from "../../lib/blog/posts";
 
 interface Props {
@@ -42,6 +43,7 @@ const years = [
 										>
 											{String(post.data.pubDatetime.getDate()).padStart(2, "0")}
 										</time>
+										<span class="kind" data-kind={postKind(post)} aria-hidden="true"></span>
 										<span class="p-name">{post.data.title}</span>
 									</a>
 								</li>
@@ -94,7 +96,7 @@ ul {
 
 .row {
 	display: grid;
-	grid-template-columns: 2.75rem minmax(0, 1fr);
+	grid-template-columns: 1.75rem 1.25rem minmax(0, 1fr);
 	gap: 0.75rem;
 	padding: 0.25rem 0.5rem;
 	margin-inline: -0.5rem;
@@ -115,5 +117,51 @@ ul {
 
 .day {
 	color: var(--muted-foreground);
+}
+
+/* Pixel icons on whole 2px pixels, so the mixed archive can be scanned by kind. */
+.kind {
+	justify-self: center;
+	/* Centred on the first line, so wrapped titles don't pull it down. */
+	margin-top: calc(0.75em - var(--h) / 2);
+	width: var(--w);
+	height: var(--h);
+	background: var(--muted-foreground);
+	mask: var(--icon) center / 100% 100% no-repeat;
+}
+
+.row:hover .kind,
+.row:focus-visible .kind {
+	background: currentColor;
+}
+
+.kind[data-kind="code"] {
+	--w: 14px;
+	--h: 10px;
+	--icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 7 5' shape-rendering='crispEdges'%3E%3Cpath d='M0 0h1v1H0zM1 1h1v1H1zM2 2h1v1H2zM1 3h1v1H1zM0 4h1v1H0zM3 4h4v1H3z'/%3E%3C/svg%3E");
+}
+
+.kind[data-kind="walk"] {
+	--w: 14px;
+	--h: 14px;
+	--icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 7 7' shape-rendering='crispEdges'%3E%3Cpath d='M1 0h3v1H1zM1 1h3v1H1zM1 2h3v1H1zM1 3h4v1H1zM1 4h6v1H1zM0 5h7v1H0zM0 6h7v1H0z'/%3E%3C/svg%3E");
+}
+
+.kind[data-kind="travel"] {
+	--w: 14px;
+	--h: 14px;
+	--icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 7 7' shape-rendering='crispEdges'%3E%3Cpath d='M3 0h1v1H3zM3 1h1v1H3zM1 2h5v1H1zM0 3h7v1H0zM3 4h1v1H3zM3 5h1v1H3zM2 6h3v1H2z'/%3E%3C/svg%3E");
+}
+
+.kind[data-kind="game"] {
+	--w: 18px;
+	--h: 12px;
+	--icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 9 6' shape-rendering='crispEdges'%3E%3Cpath d='M1 0h7v1H1zM0 1h2v1H0zM3 1h3v1H3zM7 1h2v1H7zM0 2h1v1H0zM4 2h1v1H4zM6 2h3v1H6zM0 3h2v1H0zM3 3h3v1H3zM7 3h2v1H7zM0 4h3v1H0zM6 4h3v1H6zM0 5h2v1H0zM7 5h2v1H7z'/%3E%3C/svg%3E");
+}
+
+.kind[data-kind="life"] {
+	--w: 14px;
+	--h: 12px;
+	--icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 7 6' shape-rendering='crispEdges'%3E%3Cpath d='M1 0h2v1H1zM4 0h2v1H4zM0 1h7v1H0zM0 2h7v1H0zM1 3h5v1H1zM2 4h3v1H2zM3 5h1v1H3z'/%3E%3C/svg%3E");
 }
 </style>
