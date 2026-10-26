@@ -1,5 +1,6 @@
 ---
 import { type Post, postUrl } from "../../lib/blog/posts";
+import KindIcon from "./KindIcon.astro";
 import NotLiveBadge from "./NotLiveBadge.astro";
 import PostDate from "./PostDate.astro";
 
@@ -14,7 +15,10 @@ const { title, description, pubDatetime, modDatetime, timezone, bump } =
 ---
 
 <li class="card h-entry">
-	<PostDate {pubDatetime} {modDatetime} {timezone} {bump} />
+	<div class="meta">
+		<KindIcon {post} />
+		<PostDate {pubDatetime} {modDatetime} {timezone} {bump} />
+	</div>
 	<NotLiveBadge {post} />
 	<a href={postUrl(post)} class="title menu-cursor u-url" data-menu-item>
 		<Heading class="p-name" transition:name={`post-${post.id}`}
@@ -30,6 +34,12 @@ const { title, description, pubDatetime, modDatetime, timezone, bump } =
 	flex-direction: column;
 	gap: 0.25rem;
 	margin-block: 2rem;
+}
+
+.meta {
+	display: flex;
+	align-items: center;
+	gap: 0.625rem;
 }
 
 .title {
