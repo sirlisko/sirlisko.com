@@ -8,6 +8,7 @@ import BackToTop from "../../../components/blog/BackToTop.astro";
 import Contents from "../../../components/blog/Contents.astro";
 import GpxMap from "../../../components/blog/GpxMap.astro";
 import GpxStats from "../../../components/blog/GpxStats.astro";
+import NotLiveBadge from "../../../components/blog/NotLiveBadge.astro";
 import PostDate from "../../../components/blog/PostDate.astro";
 import ReplyByEmail from "../../../components/blog/ReplyByEmail.astro";
 import Webmentions from "../../../components/blog/Webmentions.astro";
@@ -119,6 +120,7 @@ const structuredData = {
 		<data class="u-url" value={url}></data>
 		<data class="p-summary" value={description}></data>
 		<AuthorCard />
+		<NotLiveBadge {post} />
 		{tags.map((tag) => <data class="p-category" value={tag}></data>)}
 		<h1 class="p-name" transition:name={`post-${post.id}`}>{title}</h1>
 

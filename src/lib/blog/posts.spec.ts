@@ -1,6 +1,7 @@
-import { describe, expect, test } from "vitest";
+import { describe, expect, test, vi } from "vitest";
 import {
 	isPublished,
+	notLive,
 	postSlug,
 	postUrl,
 	publishedPosts,
@@ -8,6 +9,9 @@ import {
 	tagsOf,
 	tagUrl,
 } from "./posts";
+
+// Vitest runs with DEV on, which lets drafts through; lists here are tested as the live site builds them.
+vi.stubEnv("DEV", false);
 
 const NOW = new Date("2026-06-01T12:00:00Z").getTime();
 
@@ -31,9 +35,10 @@ const post = (data: {
 });
 
 describe("isPublished", () => {
-	test("hides drafts, even in dev", () => {
+	test("hides drafts, except in dev", () => {
 		const draft = post({ pubDatetime: "2026-01-01", draft: true });
-		expect(isPublished(draft, NOW, true)).toBe(false);
+		expect(isPublished(draft, NOW, false)).toBe(false);
+		expect(isPublished(draft, NOW, true)).toBe(true);
 	});
 
 	test("hides a post scheduled after the build", () => {
@@ -45,6 +50,22 @@ describe("isPublished", () => {
 	test("lets out a post due within the margin", () => {
 		const soon = post({ pubDatetime: "2026-06-01T12:10:00Z" });
 		expect(isPublished(soon, NOW, false)).toBe(true);
+	});
+});
+
+describe("notLive", () => {
+	test("flags a draft, whatever its date", () => {
+		expect(notLive(post({ pubDatetime: "2026-01-01", draft: true }), NOW)).toBe(
+			"draft",
+		);
+	});
+
+	test("flags a post scheduled after now", () => {
+		expect(notLive(post({ pubDatetime: "2026-06-02" }), NOW)).toBe("scheduled");
+	});
+
+	test("is null once a post is out", () => {
+		expect(notLive(post({ pubDatetime: "2026-01-01" }), NOW)).toBeNull();
 	});
 });
 

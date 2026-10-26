@@ -1,5 +1,6 @@
 ---
 import { type Post, postUrl } from "../../lib/blog/posts";
+import NotLiveBadge from "./NotLiveBadge.astro";
 import PostDate from "./PostDate.astro";
 
 interface Props {
@@ -14,6 +15,7 @@ const { title, description, pubDatetime, modDatetime, timezone, bump } =
 
 <li class="card h-entry">
 	<PostDate {pubDatetime} {modDatetime} {timezone} {bump} />
+	<NotLiveBadge {post} />
 	<a href={postUrl(post)} class="title menu-cursor u-url" data-menu-item>
 		<Heading class="p-name" transition:name={`post-${post.id}`}
 			>{title}</Heading

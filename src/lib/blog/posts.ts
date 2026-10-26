@@ -4,14 +4,24 @@ import { slugify } from "./slug";
 
 export type Post = CollectionEntry<"posts">;
 
-/** Drafts never show; scheduled posts wait for their time, except in dev, where writing needs them. */
-export const isPublished = (
+export type NotLive = "draft" | "scheduled";
+
+export const notLive = (
 	{ data }: Pick<Post, "data">,
 	now = Date.now(),
+): NotLive | null => {
+	if (data.draft) return "draft";
+	if (now <= data.pubDatetime.getTime() - BLOG.scheduledPostMargin)
+		return "scheduled";
+	return null;
+};
+
+/** Dev shows drafts and scheduled posts too, flagged as not live, since writing needs them. */
+export const isPublished = (
+	post: Pick<Post, "data">,
+	now = Date.now(),
 	dev = import.meta.env.DEV,
-): boolean =>
-	!data.draft &&
-	(dev || now > data.pubDatetime.getTime() - BLOG.scheduledPostMargin);
+): boolean => dev || !notLive(post, now);
 
 /** An update only moves a post up the lists when it sets `bump: true`; otherwise it's just shown. */
 export const sortDate = ({
