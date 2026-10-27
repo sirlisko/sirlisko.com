@@ -1,0 +1,70 @@
+---
+interface Part {
+	url: string;
+	title: string;
+}
+
+interface Props {
+	name: string;
+	parts: Part[];
+	current: string;
+}
+
+const { name, parts, current } = Astro.props;
+---
+
+<nav data-pagefind-ignore class="series" aria-labelledby="series-name">
+	<h2 id="series-name" class="name">{name}</h2>
+	<ol>
+		{parts.map(({ url, title }, i) => (
+			<li>
+				<span class="number" aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
+				{url === current ? (
+					<span class="menu-cursor current" aria-current="page">{title}</span>
+				) : (
+					<a href={url} class="menu-cursor">{title}</a>
+				)}
+			</li>
+		))}
+	</ol>
+</nav>
+
+<style>
+.series {
+	margin-top: 3rem;
+	padding: 1rem 1.25rem;
+	border: 2px solid var(--foreground);
+	background: var(--muted);
+	box-shadow: 4px 4px 0 var(--pea);
+}
+
+.name {
+	margin-bottom: 0.75rem;
+	font-weight: 600;
+}
+
+li {
+	display: grid;
+	grid-template-columns: 1.5rem minmax(0, 1fr);
+	gap: 1.5rem;
+	padding-block: 0.25rem;
+	font-size: 15px;
+}
+
+.number {
+	color: var(--muted-foreground);
+}
+
+a {
+	text-decoration: underline dashed var(--pea) 2px;
+	text-underline-offset: 4px;
+
+	&:hover {
+		color: var(--accent);
+	}
+}
+
+.current {
+	font-weight: 600;
+}
+</style>

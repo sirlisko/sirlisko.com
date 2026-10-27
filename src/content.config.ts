@@ -33,6 +33,8 @@ const posts = defineCollection({
 			/** A table of contents, in the margin on wide screens and above the post on narrower ones. */
 			toc: z.boolean().optional(),
 			gpxFiles: z.array(track).optional(),
+			/** Posts sharing a series name are listed together, in publishing order, at the end of each. */
+			series: z.string().optional(),
 		}),
 });
 

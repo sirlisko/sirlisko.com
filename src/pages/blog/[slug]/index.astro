@@ -11,6 +11,7 @@ import GpxStats from "../../../components/blog/GpxStats.astro";
 import NotLiveBadge from "../../../components/blog/NotLiveBadge.astro";
 import PostDate from "../../../components/blog/PostDate.astro";
 import ReplyByEmail from "../../../components/blog/ReplyByEmail.astro";
+import SeriesList from "../../../components/blog/SeriesList.astro";
 import Webmentions from "../../../components/blog/Webmentions.astro";
 import { AUTHOR, BLOG, SITE_URL } from "../../../config";
 import BlogLayout from "../../../layouts/BlogLayout.astro";
@@ -24,13 +25,14 @@ import {
 	publishedPosts,
 	tagUrl,
 } from "../../../lib/blog/posts";
+import { seriesOf } from "../../../lib/blog/series";
 import { tocHeadings } from "../../../lib/blog/toc";
 import leafletCss from "../../../styles/blog/leaflet.css?url";
 
 export async function getStaticPaths() {
 	const posts = publishedPosts(await getCollection("posts"));
-	const adjacent = (post: Post | undefined) =>
-		post ? { url: postUrl(post), title: post.data.title } : null;
+	const link = (post: Post) => ({ url: postUrl(post), title: post.data.title });
+	const adjacent = (post: Post | undefined) => (post ? link(post) : null);
 
 	return posts.map((post, i) => ({
 		params: { slug: postSlug(post.id) },
@@ -38,11 +40,12 @@ export async function getStaticPaths() {
 			post,
 			newer: adjacent(posts[i - 1]),
 			older: adjacent(posts[i + 1]),
+			series: seriesOf(post, posts).map(link),
 		},
 	}));
 }
 
-const { post, newer, older } = Astro.props;
+const { post, newer, older, series } = Astro.props;
 const { title, description, ogImage, canonicalURL, pubDatetime, modDatetime } =
 	post.data;
 const { timezone, tags, gpxFiles, replyPrompt, toc } = post.data;
@@ -147,6 +150,10 @@ const structuredData = {
 			<article id="article" class="prose e-content">
 				<Content />
 			</article>
+		)}
+
+		{post.data.series && series.length > 0 && (
+			<SeriesList name={post.data.series} parts={series} current={postUrl(post)} />
 		)}
 
 		<hr class="dashed-rule">
