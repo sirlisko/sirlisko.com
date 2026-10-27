@@ -19,6 +19,7 @@ const PAUSE_TITLES: Record<typeof game, string> = {
 	credits: "The end",
 	friends: "Insert coin",
 	blog: "Paused",
+	stats: "Pit stop",
 };
 ---
 
@@ -145,6 +146,13 @@ const PAUSE_TITLES: Record<typeof game, string> = {
 .nav[data-game="credits"] {
 	--fg: var(--nes-white);
 	--accent: var(--nes-yellow);
+}
+
+.nav[data-game="stats"] {
+	--fg: #fff;
+	--accent: var(--outrun-hud);
+	--pause-title: var(--outrun-hud);
+	--pause-accent: var(--outrun-hud);
 }
 
 .nav[data-game="friends"] {
