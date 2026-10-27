@@ -7,6 +7,7 @@ tags:
   - react-native
 ogImage: https://images.unsplash.com/photo-1516635572575-84ee3373085c?fm=jpg&q=80&w=1280&h=720&fit=crop
 toc: true
+series: "A Year Building a React Native App with Expo"
 ---
 
 _This post is part of [A Year Building a React Native App with Expo](/blog/a-year-building-a-react-native-app-with-expo), a retrospective series on the decisions and patterns that shaped a production React Native app._

@@ -8,6 +8,7 @@ tags:
 ogImage: ./images/south-east-asia-2026-part-2/vang-vieng-nam-xay-viewpoint.jpeg
 replyPrompt: "Would you take the slow boat on the Mekong?"
 toc: true
+series: "Southeast Asia 2026"
 ---
 
 This is the second part of a five-week trip through Southeast Asia. The [first part](/blog/southeast-asia-2026-part-1) covered Thailand, Malaysia, and Indonesia with Ana. Once she flew home from Bangkok, I still had about ten days left before my own flight, so I did a loop on my own: north to Chiang Mai and Chiang Rai, across the border into Laos, down the Mekong by boat to Luang Prabang, then south by train through Vang Vieng to Vientiane, and back to Bangkok for one last night before flying home.

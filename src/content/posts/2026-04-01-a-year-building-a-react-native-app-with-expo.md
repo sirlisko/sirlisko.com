@@ -8,6 +8,7 @@ tags:
 ogImage: https://images.unsplash.com/photo-1767334850102-b37f04d4e2b0?fm=jpg&q=80&w=1280&h=720&fit=crop
 replyPrompt: "Are you using Expo in production? What surprised you?"
 toc: true
+series: "A Year Building a React Native App with Expo"
 ---
 
 In early 2025, I joined a team building a React Native app with Expo. The app was already underway: there was a codebase, a product direction, and a team. My job was to help shape the technical direction as we pushed toward a production launch.

@@ -8,6 +8,7 @@ tags:
 ogImage: ./images/south-east-asia-2026-part-1/java-mount-bromo.jpeg
 replyPrompt: "Where in Southeast Asia should I go next time?"
 toc: true
+series: "Southeast Asia 2026"
 ---
 
 On the 1st of June I left London for five weeks in Southeast Asia, right in the middle of monsoon season. Ideally I would have gone at a different time of year, but because of a series of circumstances I ended up going in the middle of it. The first four weeks were with [Ana](https://untepid.com): Thailand, Malaysia, and Indonesia. After she flew home I did a loop on my own through northern Thailand and Laos, covered in [the second part](/blog/southeast-asia-2026-part-2) of this trip.[^1]
