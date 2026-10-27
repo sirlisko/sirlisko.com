@@ -1,6 +1,7 @@
 import { defineCollection } from "astro:content";
 import { glob } from "astro/loaders";
 import { z } from "astro/zod";
+import { kinds } from "./lib/blog/kind";
 
 const track = z.object({
 	file: z.string(),
@@ -35,6 +36,8 @@ const posts = defineCollection({
 			gpxFiles: z.array(track).optional(),
 			/** Posts sharing a series name are listed together, in publishing order, at the end of each. */
 			series: z.string().optional(),
+			/** Overrides the archive icon picked from the tags. */
+			kind: z.enum(kinds).optional(),
 		}),
 });
 
