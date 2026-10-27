@@ -1,18 +1,17 @@
 ---
-import { postKind } from "../../lib/blog/kind";
-import type { Post } from "../../lib/blog/posts";
+import type { Kind } from "../../lib/blog/kind";
 
 interface Props {
-	post: Pick<Post, "data">;
+	kind: Kind;
 	class?: string;
 }
 
-const { post, class: className } = Astro.props;
+const { kind, class: className } = Astro.props;
 ---
 
 <span
 	class:list={["kind-icon", className]}
-	data-kind={postKind(post)}
+	data-kind={kind}
 	aria-hidden="true"
 ></span>
 

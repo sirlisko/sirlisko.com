@@ -1,4 +1,5 @@
 ---
+import { postKind } from "../../lib/blog/kind";
 import { type Post, postUrl } from "../../lib/blog/posts";
 import KindIcon from "./KindIcon.astro";
 import NotLiveBadge from "./NotLiveBadge.astro";
@@ -16,7 +17,7 @@ const { title, description, pubDatetime, modDatetime, timezone, bump } =
 
 <li class="card h-entry">
 	<div class="meta">
-		<KindIcon {post} />
+		<KindIcon kind={postKind(post)} />
 		<PostDate {pubDatetime} {modDatetime} {timezone} {bump} />
 	</div>
 	<NotLiveBadge {post} />

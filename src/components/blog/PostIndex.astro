@@ -1,4 +1,5 @@
 ---
+import { postKind } from "../../lib/blog/kind";
 import { type Post, postUrl } from "../../lib/blog/posts";
 import KindIcon from "./KindIcon.astro";
 
@@ -43,7 +44,7 @@ const years = [
 										>
 											{String(post.data.pubDatetime.getDate()).padStart(2, "0")}
 										</time>
-										<KindIcon {post} class="kind" />
+										<KindIcon kind={postKind(post)} class="kind" />
 										<span class="p-name">{post.data.title}</span>
 									</a>
 								</li>
