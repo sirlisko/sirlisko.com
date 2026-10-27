@@ -55,6 +55,12 @@
 	--blueprint-gold: #ffd166;
 	--blueprint-faded: #a9c7ec;
 
+	/* /stats: OutRun's first stage, a coast road under an arcade-blue sky. */
+	--outrun-sky: #2058f8;
+	--outrun-hud: #f8f800;
+	--outrun-hud-shadow: #c00000;
+	--outrun-kerb: #f80000;
+
 	/* 404 */
 	--game-over: #ff4d55;
 }

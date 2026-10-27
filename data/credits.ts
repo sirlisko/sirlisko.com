@@ -31,6 +31,7 @@ export const rolls: Roll[] = [
 			{ role: "Arcade high scores", name: "/friends", url: "/friends" },
 			{ role: "Game Boy", name: "/blog", url: "/blog" },
 			{ role: "Game Boy manual", name: "/blog/style", url: "/blog/style" },
+			{ role: "OutRun", name: "/stats", url: "/stats" },
 			{ role: "Game over", name: "/404", url: "/404" },
 		],
 	},

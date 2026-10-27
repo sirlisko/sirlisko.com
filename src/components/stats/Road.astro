@@ -1,0 +1,198 @@
+---
+interface Props {
+	years: number;
+	words: number;
+	posts: number;
+}
+
+const { years, words, posts } = Astro.props;
+const number = new Intl.NumberFormat("en-GB");
+---
+
+{/* OutRun's first stage: a coast road under an arcade-blue sky, kept to a banner. */}
+<section class="stage" aria-labelledby="title">
+	<dl class="hud">
+		<div>
+			<dt>Time</dt>
+			<dd>{years}<small> yrs</small></dd>
+		</div>
+		<div class="score">
+			<dt>Score</dt>
+			<dd>{number.format(words)}<small> words</small></dd>
+		</div>
+		<div>
+			<dt>Stage</dt>
+			<dd>{posts}<small> posts</small></dd>
+		</div>
+	</dl>
+
+	<h1 id="title">/stats</h1>
+
+	<div class="scenery" aria-hidden="true">
+		<div class="sea"></div>
+		<div class="ground">
+			<div class="plane">
+				<div class="kerb"></div>
+				<div class="road"></div>
+				<div class="line"></div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+.stage {
+	--sky-top: var(--outrun-sky);
+	--sky: #88c8f8;
+	--sea: #0838c0;
+	--sand: #f8d898;
+	--sand-dark: #e8c078;
+	--road: #787878;
+	--road-dark: #686868;
+	position: relative;
+	height: clamp(280px, 40svh, 360px);
+	overflow: hidden;
+	background: linear-gradient(to bottom, var(--sky-top), var(--sky) 55%);
+}
+
+.hud {
+	position: absolute;
+	top: 1.25rem;
+	inset-inline: 1.25rem;
+	z-index: 2;
+	display: flex;
+	justify-content: space-between;
+	gap: 1rem;
+	margin: 0;
+
+	.score {
+		text-align: center;
+	}
+
+	div:last-child {
+		text-align: end;
+	}
+}
+
+dt {
+	font-family: var(--font-display);
+	font-size: 12px;
+	color: var(--hud);
+	text-shadow: 2px 2px 0 var(--hud-shadow);
+
+	@media (min-width: 640px) {
+		font-size: 16px;
+	}
+}
+
+dd {
+	margin: 0.5rem 0 0;
+	font-family: var(--font-display);
+	font-size: 16px;
+	color: #fff;
+	text-shadow: 2px 2px 0 #000;
+
+	@media (min-width: 640px) {
+		font-size: 24px;
+	}
+
+	small {
+		font-family: var(--font-mono);
+		font-size: 14px;
+		font-weight: 600;
+	}
+}
+
+h1 {
+	position: absolute;
+	top: 54%;
+	inset-inline: 0;
+	z-index: 2;
+	margin: 0;
+	translate: 0 -100%;
+	padding-bottom: 0.75rem;
+	font-family: var(--font-display);
+	font-size: clamp(32px, 6vw, 64px);
+	font-weight: 400;
+	text-align: center;
+	color: var(--hud);
+	text-shadow:
+		4px 4px 0 var(--hud-shadow),
+		8px 8px 0 #000;
+}
+
+.scenery {
+	position: absolute;
+	inset: 56% 0 0;
+}
+
+.sea {
+	height: 12%;
+	background: var(--sea);
+}
+
+/* A long flat plane tipped back, so its stripes shrink toward the horizon. */
+.ground {
+	position: absolute;
+	inset: 12% 0 0;
+	overflow: hidden;
+	perspective: 160px;
+	perspective-origin: 50% 0;
+}
+
+.plane {
+	position: absolute;
+	inset: auto -400% 0;
+	height: 1200%;
+	transform-origin: 50% 100%;
+	rotate: x 82deg;
+	background: repeating-linear-gradient(
+		var(--sand) 0 40px,
+		var(--sand-dark) 40px 80px
+	);
+
+	> * {
+		position: absolute;
+		inset-block: 0;
+		background-size: 100% 80px;
+	}
+}
+
+.kerb {
+	inset-inline: 46.83%;
+	background-image: repeating-linear-gradient(
+		var(--kerb) 0 40px,
+		#fff 40px 80px
+	);
+}
+
+.road {
+	inset-inline: 47.08%;
+	background-image: repeating-linear-gradient(
+		var(--road) 0 40px,
+		var(--road-dark) 40px 80px
+	);
+}
+
+.line {
+	inset-inline: 49.9%;
+	background-image: repeating-linear-gradient(
+		#fff 0 40px,
+		transparent 40px 80px
+	);
+}
+
+/* Stepped, like scanlines scrolling on arcade hardware. */
+@media (prefers-reduced-motion: no-preference) {
+	.plane,
+	.plane > * {
+		animation: drive 0.5s steps(4) infinite;
+	}
+}
+
+@keyframes drive {
+	to {
+		background-position-y: 80px;
+	}
+}
+</style>

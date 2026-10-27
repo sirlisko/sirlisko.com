@@ -1,0 +1,94 @@
+---
+import { getCollection } from "astro:content";
+import FaceLink from "../components/FaceLink.astro";
+import Links from "../components/Links.astro";
+import Checkpoints from "../components/stats/Checkpoints.astro";
+import Road from "../components/stats/Road.astro";
+import { ogCard } from "../config";
+import Layout from "../layouts/Layout.astro";
+import { publishedPosts } from "../lib/blog/posts";
+import { blogStats } from "../lib/stats/blog";
+
+const built = new Date();
+const year = built.getFullYear();
+const day = new Intl.DateTimeFormat("en-GB", { dateStyle: "medium" });
+const blog = blogStats(publishedPosts(await getCollection("posts")), year);
+---
+
+<Layout
+	{...ogCard("stats")}
+	title="Stats"
+	description="Luca's years in numbers: posts, walks, countries, volunteering, music, films and books."
+	theme="dark"
+	themeColor="#000"
+>
+	<header>
+		<Links />
+		<FaceLink />
+	</header>
+	<main id="main-content">
+		<Road years={year - blog.first} words={blog.words} posts={blog.posts} />
+		<div class="content">
+			<Checkpoints {blog} {year} />
+
+			<footer class="goal">
+				<p class="credit">Goal</p>
+				<p>
+					The numbers refresh with every deploy; this lap finished on{" "}
+					<time datetime={built.toISOString().slice(0, 10)}
+						>{day.format(built)}</time
+					>.
+				</p>
+				<p>Roll the <a href="/credits">credits</a>.</p>
+			</footer>
+		</div>
+	</main>
+</Layout>
+
+<style>
+/* The arcade palette every part of the page shares. */
+main {
+	--kerb: var(--outrun-kerb);
+	--hud: var(--outrun-hud);
+	--hud-shadow: var(--outrun-hud-shadow);
+	color: #fff;
+	font-family: var(--font-mono);
+}
+
+.content {
+	max-width: 64rem;
+	margin-inline: auto;
+	padding-block: 3.5rem 0;
+}
+
+/* The finish line, under the chequered flag. */
+.goal {
+	margin-top: 4rem;
+	background:
+		repeating-conic-gradient(#fff 0 25%, #000 0 50%) top / 16px 16px repeat-x;
+	padding-top: 3rem;
+	text-align: center;
+	font-size: 16px;
+
+	p {
+		margin: 0;
+	}
+
+	a {
+		color: #fff;
+		text-decoration: underline dashed var(--hud) 2px;
+		text-underline-offset: 4px;
+
+		&:hover {
+			color: var(--hud);
+		}
+	}
+}
+
+.goal .credit {
+	margin-bottom: 1rem;
+	font-family: var(--font-display);
+	color: var(--hud);
+	text-shadow: 3px 3px 0 var(--hud-shadow);
+}
+</style>

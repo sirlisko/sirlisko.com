@@ -48,6 +48,12 @@ const THEMES = {
 		fg: "#f4f4f4",
 		accent: "#ff3b3b",
 	},
+	stats: {
+		bg: "var(--outrun-sky)",
+		fg: "var(--white)",
+		accent: "var(--outrun-hud)",
+		chequered: true,
+	},
 	404: {
 		bg: "#000",
 		fg: "var(--nes-white)",
@@ -71,7 +77,15 @@ const MONO = dataUri(
 );
 const FACE = dataUri("src/images/me.webp", "image/webp");
 
-const html = ({ title, tagline, bg, fg, accent, pellets }) => `<!doctype html>
+const html = ({
+	title,
+	tagline,
+	bg,
+	fg,
+	accent,
+	pellets,
+	chequered,
+}) => `<!doctype html>
 <html>
 <head>
 <style>
@@ -101,6 +115,10 @@ p { margin: 0; font: 400 34px/1.4 "IBM Plex Mono"; opacity: 0.9; }
 	background-image: radial-gradient(circle, var(--pac-pellet) 5px, transparent 5.5px);
 	background-size: 40px 16px;
 }
+.chequered {
+	height: 24px;
+	background: repeating-conic-gradient(#fff 0 25%, #000 0 50%) 0 0 / 24px 24px;
+}
 </style>
 </head>
 <body>
@@ -109,6 +127,7 @@ p { margin: 0; font: 400 34px/1.4 "IBM Plex Mono"; opacity: 0.9; }
 		<h1>${title}</h1>
 		<p>${tagline}</p>
 		${pellets ? '<div class="pellets"></div>' : ""}
+		${chequered ? '<div class="chequered"></div>' : ""}
 		<span class="site">sirlisko.com</span>
 	</div>
 </body>

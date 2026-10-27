@@ -9,5 +9,9 @@
 	"resume": { "title": "Resume", "tagline": "Senior software engineer" },
 	"credits": { "title": "Credits", "tagline": "How this site is made" },
 	"friends": { "title": "High scores", "tagline": "Friends around the web" },
+	"stats": {
+		"title": "/stats",
+		"tagline": "Posts, walks, films and books, in numbers"
+	},
 	"404": { "title": "404", "tagline": "Game over: this page does not exist" }
 }

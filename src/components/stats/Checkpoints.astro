@@ -1,0 +1,322 @@
+---
+import { foodcycle } from "../../../data/stats";
+import type { Kind } from "../../lib/blog/kind";
+import { fetchCountries } from "../../lib/stats/been";
+import type { BlogStats } from "../../lib/stats/blog";
+import { fetchBooks, GOODREADS_PROFILE } from "../../lib/stats/goodreads";
+import { fetchMusic, LASTFM_PROFILE } from "../../lib/stats/lastfm";
+import { fetchFilms, LETTERBOXD_PROFILE } from "../../lib/stats/letterboxd";
+import KindIcon from "../blog/KindIcon.astro";
+
+interface Props {
+	blog: BlogStats;
+	year: number;
+}
+
+const { blog, year } = Astro.props;
+const [countries, films, books, music] = await Promise.all([
+	fetchCountries(),
+	fetchFilms(year),
+	fetchBooks(),
+	fetchMusic(),
+]);
+
+const number = new Intl.NumberFormat("en-GB");
+const day = new Intl.DateTimeFormat("en-GB", { dateStyle: "medium" });
+const stars = (rating: number) =>
+	"★".repeat(Math.floor(rating)) + (rating % 1 ? "½" : "");
+const busiest = Math.max(...blog.years.map(({ posts }) => posts));
+const perYear = blog.years
+	.map(({ year, posts }) => `${year}: ${posts}`)
+	.join(", ");
+const KIND_LABELS: Record<Kind, string> = {
+	code: "code",
+	life: "life",
+	travel: "travel",
+	game: "games",
+	walk: "walks",
+};
+---
+
+{/* OutRun's checkpoints: each one a stretch of the road with its own tally. */}
+<section class="checkpoints" aria-labelledby="checkpoints-title">
+	<h2 id="checkpoints-title">Checkpoints</h2>
+	<ul>
+		<li class="blog">
+			<div class="summary">
+				<p class="value">{blog.posts}<span> posts</span></p>
+				<p>{number.format(blog.words)} words since {blog.first}.</p>
+				<ul class="kinds" aria-label="Posts by kind">
+					{blog.kinds.map(({ kind, count }) => (
+						<li>
+							<KindIcon {kind} />
+							{count} {KIND_LABELS[kind]}
+						</li>
+					))}
+				</ul>
+				<a href="/blog">Read the blog</a>
+			</div>
+			<div
+				class="rev"
+				style={`--max: ${busiest}`}
+				role="img"
+				aria-label={`Posts per year, ${perYear}`}
+			>
+				<div class="bars">
+					{blog.years.map(({ posts }) => (
+						<span style={`--n: ${posts}`}></span>
+					))}
+				</div>
+				<p class="ends" aria-hidden="true">
+					<span>{blog.first}</span><span>{year}</span>
+				</p>
+			</div>
+		</li>
+		<li>
+			<p class="value">{blog.km}<span> km walked</span></p>
+			<p>{number.format(blog.climbed)} m climbed on the long walks.</p>
+			<a href="/blog/walks">See every walk on the map</a>
+		</li>
+		{countries && (
+			<li>
+				<p class="value">{countries.count}<span> countries</span></p>
+				<p>{countries.percentage}% of the world, and counting.</p>
+				<a href={countries.profile}>See the map on Been</a>
+			</li>
+		)}
+		<li>
+			<p class="value">{foodcycle.hours}<span> hours</span></p>
+			<p>
+				Volunteering at FoodCycle, as of{" "}
+				<time datetime={foodcycle.asOf}
+					>{day.format(new Date(foodcycle.asOf))}</time
+				>.
+			</p>
+			<a href="/blog/500-hours-at-foodcycle">Read about the first 500</a>
+		</li>
+		{films && (
+			<li>
+				<p class="value">
+					{films.thisYear}{!films.complete && "+"}<span> films in {year}</span>
+				</p>
+				<p>
+					Last watched:{" "}
+					<a href={films.latest.url}>{films.latest.title}</a>
+					{films.latest.year && ` (${films.latest.year})`}
+					{films.latest.rating !== undefined && (
+						<span
+							class="stars"
+							role="img"
+							aria-label={`rated ${films.latest.rating} out of 5`}
+							>{stars(films.latest.rating)}</span
+						>
+					)}
+				</p>
+				<a href={LETTERBOXD_PROFILE}>Open the diary on Letterboxd</a>
+			</li>
+		)}
+		{books && (
+			<li>
+				<p class="value">{books.read}<span> books read</span></p>
+				<p>{number.format(books.pages)} pages, at least.</p>
+				<a href={GOODREADS_PROFILE}>Open the shelves on Goodreads</a>
+			</li>
+		)}
+		{music && (
+			<li>
+				<p class="value">
+					{number.format(music.scrobbles)}<span> plays</span>
+				</p>
+				<p>
+					Songs played since {music.since}.
+					{music.top.length > 0 && (
+						<>
+							{" "}Most played this past year:{" "}
+							{music.top.map(({ name, url }, i) => (
+								<>
+									{i > 0 && (i === music.top.length - 1 ? " and " : ", ")}
+									<a href={url}>{name}</a>
+								</>
+							))}
+							.
+						</>
+					)}
+				</p>
+				<a href={LASTFM_PROFILE}>Open the history on Last.fm</a>
+			</li>
+		)}
+	</ul>
+</section>
+
+<style>
+h2 {
+	margin: 0 0 2rem;
+	font-family: var(--font-display);
+	font-size: 24px;
+	font-weight: 400;
+	color: var(--hud);
+	text-shadow: 3px 3px 0 var(--hud-shadow);
+}
+
+ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+/*
+ * Six columns on wide screens: the blog across the top, then rows of three.
+ * A source that couldn't be read leaves a gap, so four or five cards widen to fill their rows.
+ */
+.checkpoints > ul {
+	display: grid;
+	gap: 1rem;
+
+	@media (min-width: 900px) {
+		grid-template-columns: repeat(6, minmax(0, 1fr));
+
+		> li {
+			grid-column: span 2;
+		}
+
+		> .blog {
+			grid-column: 1 / -1;
+		}
+
+		&:has(> li:nth-child(5):last-child) > li:not(.blog),
+		&:has(> li:nth-child(6):last-child) > li:nth-last-child(-n + 2) {
+			grid-column: span 3;
+		}
+	}
+
+	> li {
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+		padding: 1.25rem;
+		border: 3px solid #fff;
+		font-size: 16px;
+		line-height: 1.5;
+
+		> a {
+			margin-top: auto;
+		}
+	}
+}
+
+p {
+	margin: 0;
+}
+
+.value {
+	font-family: var(--font-display);
+	font-size: 28px;
+	line-height: 1.2;
+	color: var(--hud);
+	text-shadow: 3px 3px 0 var(--hud-shadow);
+
+	span {
+		font-family: var(--font-mono);
+		font-size: 16px;
+		font-weight: 600;
+		color: #fff;
+		text-shadow: none;
+	}
+}
+
+/* As specific as the card rule above, so its chart can sit beside the numbers. */
+.checkpoints > ul > .blog {
+	@media (min-width: 640px) {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+		align-items: end;
+		gap: 2rem;
+	}
+}
+
+.summary {
+	display: flex;
+	flex-direction: column;
+	gap: 0.75rem;
+	height: 100%;
+
+	> a {
+		margin-top: auto;
+	}
+}
+
+/* A rev counter in miniature: one block per post, green to red as it climbs. */
+.rev {
+	--block: 3px;
+	--gap: 1px;
+}
+
+.bars {
+	display: flex;
+	align-items: flex-end;
+	gap: 3px;
+	height: calc(var(--max) * (var(--block) + var(--gap)));
+
+	span {
+		flex: 1;
+		height: calc(var(--n) * (var(--block) + var(--gap)));
+		/* Quiet years keep a stub, so the gap reads as a stop, not missing data. */
+		min-height: 1px;
+		background:
+			linear-gradient(
+				to top,
+				#38d838 0 calc(var(--max) * 1.6px),
+				var(--hud) calc(var(--max) * 1.6px) calc(var(--max) * 2.8px),
+				var(--kerb) calc(var(--max) * 2.8px)
+			)
+			bottom / 100% calc(var(--max) * (var(--block) + var(--gap)));
+		mask: repeating-linear-gradient(
+			to top,
+			#000 0 var(--block),
+			transparent var(--block) calc(var(--block) + var(--gap))
+		);
+	}
+}
+
+.ends {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 0.375rem;
+	font-size: 13px;
+	color: #a1a1aa;
+}
+
+.kinds {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.25rem 1rem;
+	font-size: 14px;
+
+	li {
+		--muted-foreground: var(--hud);
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+	}
+}
+
+a {
+	color: #fff;
+	text-decoration: underline dashed var(--hud) 2px;
+	text-underline-offset: 4px;
+
+	&:hover {
+		color: var(--hud);
+	}
+
+	&:focus-visible {
+		outline: 2px dashed var(--hud);
+		outline-offset: 2px;
+	}
+}
+
+.stars {
+	margin-inline-start: 0.5rem;
+	color: var(--hud);
+}
+</style>
