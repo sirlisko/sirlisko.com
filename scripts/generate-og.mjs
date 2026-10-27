@@ -54,6 +54,11 @@ const THEMES = {
 		accent: "var(--outrun-hud)",
 		chequered: true,
 	},
+	slashes: {
+		bg: "var(--map-sea)",
+		fg: "var(--white)",
+		accent: "var(--map-level)",
+	},
 	404: {
 		bg: "#000",
 		fg: "var(--nes-white)",

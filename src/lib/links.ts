@@ -8,6 +8,7 @@ export type PageName =
 	| "credits"
 	| "friends"
 	| "stats"
+	| "slashes"
 	| "blog";
 
 const HOME: Link = { name: "home", url: "/", label: "home" };

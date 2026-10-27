@@ -61,6 +61,32 @@
 	--outrun-hud-shadow: #c00000;
 	--outrun-kerb: #f80000;
 
+	/* /slashes: a Super Mario World overworld by day, the same map after dark. */
+	--map-sea: #3070c8;
+	--map-deep: #102850;
+	--map-land: #a8d878;
+	--map-cliff: #d8a060;
+	--map-outline: #503018;
+	--map-road: #a86830;
+	--map-level: #f8d038;
+	--map-cleared: #e04020;
+	--map-ink: #282010;
+	--map-tree: #308838;
+	--map-leaf: #78c860;
+	--map-stone: #d8d0c0;
+	--map-foam: #fff;
+	--map-night-sea: #182c68;
+	--map-night-deep: #040c28;
+	--map-night-land: #2c5038;
+	--map-night-cliff: #7a5838;
+	--map-night-outline: #100c04;
+	--map-night-road: #e8b878;
+	--map-night-ink: #f0f0d8;
+	--map-night-tree: #1c3c28;
+	--map-night-leaf: #3c7048;
+	--map-night-stone: #8890a0;
+	--map-night-cloud: #b8c0d8;
+
 	/* 404 */
 	--game-over: #ff4d55;
 }

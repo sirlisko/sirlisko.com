@@ -1,4 +1,4 @@
-const MOBILE_QUERY = "(max-width: 760px)";
+const MOBILE_QUERY = "(max-width: 820px)";
 
 /** The dialog owns focus, Escape and inertness; this only opens and closes it. */
 export const initNav = (root: ParentNode = document) => {

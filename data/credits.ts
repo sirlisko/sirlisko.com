@@ -32,6 +32,7 @@ export const rolls: Roll[] = [
 			{ role: "Game Boy", name: "/blog", url: "/blog" },
 			{ role: "Game Boy manual", name: "/blog/style", url: "/blog/style" },
 			{ role: "OutRun", name: "/stats", url: "/stats" },
+			{ role: "World map", name: "/slashes", url: "/slashes" },
 			{ role: "Game over", name: "/404", url: "/404" },
 		],
 	},

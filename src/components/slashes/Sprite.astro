@@ -1,0 +1,73 @@
+---
+interface Props {
+	name: "tree" | "cloud" | "castle";
+}
+
+const { name } = Astro.props;
+
+const SIZES = { tree: [12, 16], cloud: [16, 8], castle: [14, 14] } as const;
+const [width, height] = SIZES[name];
+---
+
+<svg
+	class="sprite"
+	viewBox={`0 0 ${width} ${height}`}
+	width={width * 3}
+	height={height * 3}
+	shape-rendering="crispEdges"
+	aria-hidden="true"
+>
+	{name === "tree" && (
+		<>
+			<path class="tree" d="M3 0h6v1h2v2h1v6h-1v2h-2v1H3v-1H1V9H0V3h1V1h2z" />
+			<path class="leaf" d="M3 2h3v1H4v2H3z" />
+			<path class="trunk" d="M5 12h2v4H5z" />
+		</>
+	)}
+	{name === "cloud" && (
+		<>
+			<path class="foam" d="M5 0h4v1h2v1h3v1h1v1h1v3H0V4h1V2h2V1h2z" />
+			<path class="stone" d="M1 7h14v1H1z" />
+		</>
+	)}
+	{name === "castle" && (
+		<>
+			<path class="trunk" d="M6 0h2v2H6z" />
+			<path
+				class="stone"
+				d="M0 2h2v2h2V2h2v2h2V2h2v2h2V2h2v12H0z"
+			/>
+			<path class="outline" d="M5 8h4v6H5zM2 6h2v2H2zM10 6h2v2h-2z" />
+		</>
+	)}
+</svg>
+
+<style>
+.sprite {
+	display: block;
+}
+
+.tree {
+	fill: var(--map-tree);
+}
+
+.leaf {
+	fill: var(--map-leaf);
+}
+
+.trunk {
+	fill: var(--map-road);
+}
+
+.stone {
+	fill: var(--map-stone);
+}
+
+.foam {
+	fill: var(--map-foam);
+}
+
+.outline {
+	fill: var(--map-outline);
+}
+</style>

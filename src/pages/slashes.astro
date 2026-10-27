@@ -1,0 +1,382 @@
+---
+import "@fontsource/ibm-plex-mono/latin-400.css";
+import { SLASHES_ABOUT, slashes } from "../../data/slashes";
+import FaceLink from "../components/FaceLink.astro";
+import Links from "../components/Links.astro";
+import Sprite from "../components/slashes/Sprite.astro";
+import { ogCard } from "../config";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+	{...ogCard("slashes")}
+	title="Slashes"
+	description="Every slash page on sirlisko.com, from /now and /uses to /stats and /friends, laid out as a world map."
+	theme="dark"
+	themeColor={{ light: "#3070c8", dark: "#182c68" }}
+>
+	<header>
+		<Links page="slashes" />
+		<FaceLink />
+	</header>
+	<main id="main-content" class="map">
+		<header>
+			<p class="world" aria-hidden="true">World 1</p>
+			<h1>/slashes</h1>
+			<p class="intro">
+				Every page off the main road.
+				<br>
+				<a href={SLASHES_ABOUT} target="_blank" rel="noopener"
+					>What's a slash page?</a
+				>
+			</p>
+		</header>
+
+		<div class="island">
+			<ol class="levels">
+				{slashes.map(({ url, blurb }, i) => (
+					<li>
+						<a href={url} data-astro-reload>
+							{i === slashes.length - 1 ? (
+								<span class="node castle" aria-hidden="true">
+									<Sprite name="castle" />
+								</span>
+							) : (
+								<span class="node" aria-hidden="true"></span>
+							)}
+							<span class="stage" aria-hidden="true">1-{i + 1}</span>
+							<span class="name">{url}</span>
+							<span class="blurb">{blurb}</span>
+						</a>
+					</li>
+				))}
+			</ol>
+			<div class="scenery" aria-hidden="true">
+				<span class="grove"><Sprite name="tree" /><Sprite name="tree" /></span>
+				<span class="copse"><Sprite name="tree" /></span>
+				<span class="woods"
+					><Sprite name="tree" /><Sprite name="tree" />
+					<Sprite name="tree" /></span
+				>
+			</div>
+		</div>
+		<div class="clouds" aria-hidden="true">
+			<span><Sprite name="cloud" /></span>
+			<span><Sprite name="cloud" /></span>
+			<span><Sprite name="cloud" /></span>
+		</div>
+	</main>
+</Layout>
+
+<style>
+/* Bound to the theme class so it outranks the display font Layout sets on body. */
+body.dark {
+	--node: 28px;
+	--label: var(--map-outline);
+	/* Ripples on the sea, drawn as faint white tildes. */
+	--ripples: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='32'%3E%3Cpath d='M8 12q4-4 8 0t8 0M40 28q4-4 8 0t8 0' fill='none' stroke='%23fff' stroke-opacity='.18' stroke-width='2'/%3E%3C/svg%3E");
+	background: var(--map-sea) var(--ripples);
+	font-family: var(--font-mono);
+	font-size: 16px;
+	line-height: 1.7;
+}
+
+/* Clouds drift past the edge on windows just wide enough to show them. Both
+   elements need it, or the viewport takes body's clip and ignores it. */
+:global(html),
+body.dark {
+	overflow-x: clip;
+}
+
+/* After dark the same map, with starlight glinting on the water. */
+@media (prefers-color-scheme: dark) {
+	body.dark {
+		--map-sea: var(--map-night-sea);
+		--map-deep: var(--map-night-deep);
+		--map-land: var(--map-night-land);
+		--map-cliff: var(--map-night-cliff);
+		--map-outline: var(--map-night-outline);
+		--map-road: var(--map-night-road);
+		--map-ink: var(--map-night-ink);
+		--map-tree: var(--map-night-tree);
+		--map-leaf: var(--map-night-leaf);
+		--map-stone: var(--map-night-stone);
+		--label: var(--map-road);
+		--map-foam: var(--map-night-cloud);
+		--stars: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='224' height='176'%3E%3Cpath d='M30 20h2v6h-2zM28 22h6v2h-6zM150 64h2v2h-2zM96 130h2v6h-2zM94 132h6v2h-6zM190 150h2v2h-2zM60 96h2v2h-2z' fill='%23f8d038' fill-opacity='.7'/%3E%3C/svg%3E");
+		background:
+			var(--stars),
+			var(--ripples) var(--map-sea);
+	}
+}
+
+.map {
+	position: relative;
+	max-width: 640px;
+	margin: 0 auto;
+	padding: 0 1rem;
+	display: flex;
+	flex-direction: column;
+	gap: 3rem;
+}
+
+header {
+	text-align: center;
+}
+
+/* SNES text sits on the map with a hard dark outline. */
+:is(.world, h1) {
+	text-shadow:
+		2px 2px 0 var(--map-deep),
+		-2px 2px 0 var(--map-deep),
+		2px -2px 0 var(--map-deep),
+		-2px -2px 0 var(--map-deep);
+}
+
+.world {
+	margin: 0 0 1rem;
+	font-family: var(--font-display);
+	font-size: 12px;
+	color: var(--map-level);
+}
+
+h1 {
+	margin: 0 0 1.25rem;
+	font-family: var(--font-display);
+	font-weight: 400;
+	font-size: 40px;
+	line-height: 1.2;
+	color: var(--white);
+
+	@media (max-width: 600px) {
+		font-size: 24px;
+	}
+}
+
+.intro {
+	margin: 0;
+	font-size: 18px;
+	color: var(--white);
+}
+
+/* A grassy island raised on tan cliffs, with the road dotted down its side. */
+.island {
+	position: relative;
+	margin-bottom: 12px;
+	background: var(--map-land);
+	color: var(--map-ink);
+	border-radius: 48px 24px 56px 32px;
+	box-shadow:
+		0 0 0 4px var(--map-outline),
+		0 12px 0 4px var(--map-cliff),
+		0 12px 0 8px var(--map-outline);
+}
+
+.levels {
+	position: relative;
+	z-index: 1;
+	display: flex;
+	flex-direction: column;
+	gap: 2.5rem;
+	margin: 0;
+	padding: 2.5rem 2rem;
+	list-style: none;
+
+	@media (max-width: 600px) {
+		padding: 2rem 1.25rem;
+	}
+}
+
+/* Each level draws the stretch of road to the next, so it ends at the last one. */
+.levels li {
+	position: relative;
+
+	&:not(:last-child)::before {
+		content: "";
+		position: absolute;
+		left: calc(var(--node) / 2 - 4px);
+		top: calc(var(--node) / 2);
+		height: calc(100% + 2.5rem);
+		width: 8px;
+		background:
+			radial-gradient(circle, var(--map-road) 3.5px, transparent 4px) 0 0 / 8px
+			16px;
+	}
+}
+
+.levels a {
+	position: relative;
+	display: grid;
+	grid-template-columns: var(--node) auto 1fr;
+	gap: 0.25rem 1rem;
+	align-items: center;
+	color: inherit;
+	text-decoration: none;
+
+	&:hover .node,
+	&:focus-visible .node {
+		background: var(--map-cleared);
+
+		@media (prefers-reduced-motion: no-preference) {
+			animation: hop 0.6s steps(2) infinite;
+		}
+	}
+
+	&:hover .name,
+	&:focus-visible .name {
+		text-decoration: underline 3px;
+		text-underline-offset: 0.3em;
+	}
+
+	&:focus-visible {
+		outline: 3px solid var(--label);
+		outline-offset: 8px;
+	}
+}
+
+.node {
+	width: var(--node);
+	height: var(--node);
+	border: 4px solid var(--map-outline);
+	border-radius: 50%;
+	background: var(--map-level);
+}
+
+/* The last level is a castle, as worlds end in one. */
+.castle {
+	border: 0;
+	border-radius: 0;
+	background: none;
+
+	:global(svg) {
+		width: 100%;
+		height: auto;
+	}
+}
+
+.levels a:is(:hover, :focus-visible) .castle {
+	background: none;
+}
+
+/* Trees fill the open grass to the right of the road. */
+.scenery span {
+	position: absolute;
+	display: flex;
+	gap: 2px;
+}
+
+.grove {
+	top: 1.75rem;
+	right: 2rem;
+}
+
+.copse {
+	top: 42%;
+	right: 4.5rem;
+}
+
+.woods {
+	bottom: 1.75rem;
+	right: 2.5rem;
+}
+
+/* Out of the flex flow, so the empty layer doesn't add a gap below the island. */
+.clouds {
+	position: absolute;
+	inset: 0;
+}
+
+/* Clouds only where the sky has room beside the island. */
+.clouds span {
+	position: absolute;
+
+	/* One sprite pixel (3px) per step, so they drift like SNES sprites rather than glide. */
+	@media (prefers-reduced-motion: no-preference) {
+		animation: drift var(--drift) steps(16) infinite alternate;
+	}
+}
+
+.clouds span:nth-child(1) {
+	--drift: 24s;
+	top: 22rem;
+	left: -9rem;
+}
+
+.clouds span:nth-child(2) {
+	--drift: 32s;
+	top: 36rem;
+	right: -11rem;
+	animation-direction: alternate-reverse;
+}
+
+.clouds span:nth-child(3) {
+	--drift: 28s;
+	bottom: 6rem;
+	left: -6rem;
+	animation-delay: -10s;
+}
+
+@media (max-width: 960px) {
+	.clouds {
+		display: none;
+	}
+}
+
+/* A narrow island only has room for one tree, above the first level's short name. */
+@media (max-width: 600px) {
+	.scenery :is(.copse, .woods),
+	.grove :global(svg:last-child) {
+		display: none;
+	}
+
+	.grove {
+		top: 1.25rem;
+		right: 1.25rem;
+	}
+}
+
+.stage {
+	font-family: var(--font-display);
+	font-size: 12px;
+	color: var(--label);
+}
+
+.name {
+	font-family: var(--font-display);
+	font-size: 18px;
+	overflow-wrap: anywhere;
+
+	@media (max-width: 600px) {
+		font-size: 14px;
+	}
+}
+
+.blurb {
+	grid-column: 2 / -1;
+}
+
+.intro a {
+	color: inherit;
+
+	&:hover {
+		color: var(--map-level);
+	}
+
+	&:focus-visible {
+		outline: 3px solid var(--map-level);
+		outline-offset: 3px;
+	}
+}
+
+@keyframes drift {
+	to {
+		translate: 48px 0;
+	}
+}
+
+@keyframes hop {
+	50% {
+		translate: 0 -4px;
+	}
+}
+</style>

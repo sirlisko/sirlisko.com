@@ -17,7 +17,7 @@ import Layout from "../layouts/Layout.astro";
 import { navLinks } from "../lib/links";
 import { formatMonth } from "../lib/month";
 
-const EXITS = navLinks(me.links, "uses").filter(({ name }) => name !== "uses");
+const EXITS = navLinks(me.links, "uses");
 
 // Infocom serial numbers were the build date as YYMMDD.
 const serial = `${USES_LAST_UPDATED.slice(2).replace("-", "")}01`;

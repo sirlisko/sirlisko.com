@@ -13,5 +13,6 @@
 		"title": "/stats",
 		"tagline": "Posts, walks, films and books, in numbers"
 	},
+	"slashes": { "title": "/slashes", "tagline": "Every page off the main road" },
 	"404": { "title": "404", "tagline": "Game over: this page does not exist" }
 }

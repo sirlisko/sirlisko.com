@@ -44,9 +44,9 @@ const me = {
 			label: "now",
 		},
 		{
-			name: "uses",
-			url: "/uses",
-			label: "uses",
+			name: "slashes",
+			url: "/slashes",
+			label: "slashes",
 		},
 		{
 			name: "blog",
