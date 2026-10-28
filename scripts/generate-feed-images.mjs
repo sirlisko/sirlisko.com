@@ -1,9 +1,10 @@
 #!/usr/bin/env node
-// Usage: pnpm run generate:feed-images [base-url]
+// Usage: pnpm run generate:feed-images [base-url] [slug...]
 // Screenshots every map and diagram in a post body, in the light scheme, for
 // the RSS feed, which can't run Leaflet or read the page's CSS. Needs a build
 // and a server: pnpm run build && pnpm run preview, then run this and commit
-// public/blog/feed. Rerun after adding or editing a map or diagram.
+// public/blog/feed. Rerun after adding or editing a map or diagram; pass
+// slugs to reshoot only those posts, or none to rebuild the whole folder.
 import { mkdir, readdir, readFile, rm } from "node:fs/promises";
 import puppeteer from "puppeteer";
 
@@ -13,16 +14,17 @@ const SELECTOR =
 	"#article :is(figure.pele-diagram, [data-gpx-map], [data-route-map])";
 const MARKERS = ['class="pele-diagram"', "data-gpx-map=", "data-route-map="];
 
+const args = process.argv.slice(2).filter((arg) => arg !== "--");
 const base = (
-	process.argv.slice(2).find((arg) => arg !== "--") ?? "http://localhost:4321"
+	args.find((arg) => arg.startsWith("http")) ?? "http://localhost:4321"
 ).replace(/\/$/, "");
+const only = args.filter((arg) => !arg.startsWith("http"));
 
 // Post slugs, as postSlug() in src/lib/blog/posts.ts makes them
 const posts = (await readdir("src/content/posts"))
 	.filter((file) => /\.mdx?$/.test(file))
-	.map((file) =>
-		file.replace(/^\d{4}-\d{2}-\d{2}-/, "").replace(/\.mdx?$/, ""),
-	);
+	.map((file) => file.replace(/^\d{4}-\d{2}-\d{2}-/, "").replace(/\.mdx?$/, ""))
+	.filter((slug) => !only.length || only.includes(slug));
 
 const slugs = [];
 for (const slug of posts) {
@@ -32,8 +34,17 @@ for (const slug of posts) {
 	if (MARKERS.some((marker) => html.includes(marker))) slugs.push(slug);
 }
 
-await rm(OUTPUT_DIR, { recursive: true, force: true });
-await mkdir(OUTPUT_DIR, { recursive: true });
+// A full run starts from an empty folder so removed maps leave no orphans;
+// a partial one clears only its own posts' shots.
+if (only.length) {
+	const stale = (await readdir(OUTPUT_DIR)).filter((file) =>
+		slugs.some((slug) => new RegExp(`^${slug}-\\d+\\.webp$`).test(file)),
+	);
+	await Promise.all(stale.map((file) => rm(`${OUTPUT_DIR}/${file}`)));
+} else {
+	await rm(OUTPUT_DIR, { recursive: true, force: true });
+	await mkdir(OUTPUT_DIR, { recursive: true });
+}
 
 const browser = await puppeteer.launch();
 const page = await browser.newPage();
