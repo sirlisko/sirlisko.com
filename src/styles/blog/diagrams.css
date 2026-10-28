@@ -1,0 +1,35 @@
+/* Pele diagrams read the blog palette, so they follow the Game Boy screen in both schemes. */
+.blog {
+	--pele-bg: var(--background);
+	--pele-fg: var(--foreground);
+	--pele-muted: var(--foreground-soft);
+	--pele-line: var(--accent);
+	--pele-surface: var(--muted);
+	--pele-surface-alt: var(--background);
+	--pele-border: var(--foreground);
+	--pele-accent: var(--accent);
+	--pele-radius: 0;
+	--pele-font: var(--font-app);
+	--pele-font-mono: var(--font-app);
+}
+
+.pele-diagram {
+	margin-block: 1.7142857em;
+	padding: 1em;
+	overflow-x: auto;
+	border: 2px solid var(--foreground);
+	box-shadow: 6px 6px 0 var(--pea);
+
+	svg {
+		display: block;
+		max-width: 100%;
+		height: auto;
+		margin-inline: auto;
+	}
+}
+
+.pele-error {
+	padding: 1rem;
+	border: 2px dashed var(--led);
+	white-space: pre-wrap;
+}
