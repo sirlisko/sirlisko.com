@@ -42,10 +42,13 @@ function validationFeedback(file) {
   };
 }
 
-function validate(file) {
+function validate(file, done) {
   w3cjs.validate({
-    input: file.contents,
-    callback: validationFeedback(file),
+    input: file.contents.toString(),
+    callback: result => {
+      validationFeedback(file)(result);
+      done(null, file);
+    },
   });
 }
 
