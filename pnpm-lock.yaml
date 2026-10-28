@@ -190,6 +190,9 @@ importers:
       astro:
         specifier: ^7.4.2
         version: 7.4.2(@astrojs/markdown-remark@7.3.4)(@types/node@24.19.2)(yaml@2.9.1)
+      astro-pele:
+        specifier: 0.1.1
+        version: 0.1.1(astro@7.4.2(@astrojs/markdown-remark@7.3.4)(@types/node@24.19.2)(yaml@2.9.1))(pele@1.12.0)
       leaflet:
         specifier: ^1.9.4
         version: 1.9.4
@@ -202,6 +205,9 @@ importers:
       lucide:
         specifier: ^1.61.0
         version: 1.61.0
+      pele:
+        specifier: 1.12.0
+        version: 1.12.0
       rehype-callouts:
         specifier: ^2.2.0
         version: 2.2.0
@@ -1239,6 +1245,13 @@ packages:
     resolution: {integrity: sha512-LElXdjswlqjWrPpJFg1Fx4wpkOCxj1TDHlSV4PlaRxHGWko024xICaa97ZkMfs6DRKlCguiAI+rbXv5GWwXIkg==}
     hasBin: true
 
+  astro-pele@0.1.1:
+    resolution: {integrity: sha512-/Ld6jG8VatOcyIuBGvteQasv0l3WvRNraKXqvol819J3Q1TuvZ1hxybiuvzRO0qffqMRk4kgG+zExrUEJqaIDA==}
+    engines: {node: '>=22.23.4'}
+    peerDependencies:
+      astro: ^7.2.0
+      pele: ^1.10.0
+
   astro@7.4.2:
     resolution: {integrity: sha512-FAH4cdDlFaVnQGjazLTEIC5vJqGlo5XANc1wIbzQHIqAjJTll/RWTUs+SPNW1JdezG4YGxMZllaE5A41T2kzhA==}
     engines: {node: '>=22.23.4', npm: '>=9.6.5', pnpm: '>=7.1.0'}
@@ -1848,6 +1861,10 @@ packages:
   markdown-table@3.0.4:
     resolution: {integrity: sha512-wiYz4+JrLyb/DqW2hkFJxP7Vd7JuTDm77fvbM8VfEQdmSMqcImWeeRbHwZjBjIFki/VaMK2BhFi7oUUZeM5bqw==}
 
+  mdast-pele@0.1.1:
+    resolution: {integrity: sha512-7Y7qsuNuzaVO9UZXG2mk70jOGzsb3oTEwcDTs2dM/8PaDdAFa72esnUpfSEHIT9FGZGiwjeM0abkW/bMHosx3g==}
+    engines: {node: '>=20'}
+
   mdast-util-definitions@6.0.0:
     resolution: {integrity: sha512-scTllyX6pnYNZH/AIp/0ePz6s4cZtARxImwoPJ7kS42n+MnVsI4XbnG6d4ibehRIldYMWM2LD7ImQblVhUejVQ==}
 
@@ -2118,6 +2135,10 @@ packages:
 
   pdf-lib@1.17.1:
     resolution: {integrity: sha512-V/mpyJAoTsN4cnP31vc0wfNA1+p20evqqnap0KLoRUN0Yk/p3wN52DOEsL4oBFcLdb76hlpKPtzJIgo67j/XLw==}
+
+  pele@1.12.0:
+    resolution: {integrity: sha512-3OdOK6rvkaTB569R4/I8U0H82MqPRxj7vfkbowa2rRhgSBPFhvWlfFy5eae0jP+2A6hE8abE17nsdyxJz2VBiQ==}
+    engines: {node: '>=20'}
 
   piccolore@0.1.3:
     resolution: {integrity: sha512-o8bTeDWjE086iwKrROaDf31K0qC/BENdm15/uH9usSC/uZjJOKb2YGiVHfLY4GhwsERiPI1jmwI2XrA7ACOxVw==}
@@ -2472,6 +2493,9 @@ packages:
 
   unist-util-visit-parents@6.0.2:
     resolution: {integrity: sha512-goh1s1TBrqSqukSc8wrjwWhL0hiJxgA8m4kFxGlQ+8FYQ3C/m11FcTs4YYem7V664AhHVvgoQLk890Ssdsr2IQ==}
+
+  unist-util-visit@5.0.0:
+    resolution: {integrity: sha512-MR04uvD+07cwl/yhVuVWAtw+3GOR/knlL55Nd/wAdblk27GCVt3lqpTivy/tkJcZoNPzTwS1Y+KMojlLDhoTzg==}
 
   unist-util-visit@5.1.0:
     resolution: {integrity: sha512-m+vIdyeCOpdr/QeQCu2EzxX/ohgS8KbnPDgFni4dQsfSCtpz8UqDyY5GjRru8PDKuYn7Fq19j1CQ+nJSsGKOzg==}
@@ -3537,6 +3561,12 @@ snapshots:
 
   astring@1.9.0: {}
 
+  astro-pele@0.1.1(astro@7.4.2(@astrojs/markdown-remark@7.3.4)(@types/node@24.19.2)(yaml@2.9.1))(pele@1.12.0):
+    dependencies:
+      astro: 7.4.2(@astrojs/markdown-remark@7.3.4)(@types/node@24.19.2)(yaml@2.9.1)
+      mdast-pele: 0.1.1
+      pele: 1.12.0
+
   astro@7.4.2(@astrojs/markdown-remark@7.3.4)(@types/node@24.19.2)(yaml@2.9.1):
     dependencies:
       '@astrojs/compiler-rs': 0.5.2
@@ -4251,6 +4281,13 @@ snapshots:
 
   markdown-table@3.0.4: {}
 
+  mdast-pele@0.1.1:
+    dependencies:
+      '@types/mdast': 4.0.4
+      '@types/unist': 3.0.3
+      pele: 1.12.0
+      unist-util-visit: 5.0.0
+
   mdast-util-definitions@6.0.0:
     dependencies:
       '@types/mdast': 4.0.4
@@ -4810,6 +4847,8 @@ snapshots:
       pako: 1.0.11
       tslib: 1.14.1
 
+  pele@1.12.0: {}
+
   piccolore@0.1.3: {}
 
   picocolors@1.1.1: {}
@@ -5340,6 +5379,12 @@ snapshots:
     dependencies:
       '@types/unist': 3.0.3
       unist-util-is: 6.0.1
+
+  unist-util-visit@5.0.0:
+    dependencies:
+      '@types/unist': 3.0.3
+      unist-util-is: 6.0.1
+      unist-util-visit-parents: 6.0.2
 
   unist-util-visit@5.1.0:
     dependencies:

@@ -6,7 +6,16 @@ interface Stop {
 	lat: number;
 	lng: number;
 	mode?: string;
+	label?: Direction;
 }
+
+type Direction = "top" | "bottom" | "left" | "right";
+const LABEL_OFFSETS: Record<Direction, [number, number]> = {
+	top: [0, -6],
+	bottom: [0, 6],
+	left: [-6, 0],
+	right: [6, 0],
+};
 
 // Route overview maps: markers and lines between stops, styled by travel
 // mode, for multi-leg trip posts. Colours come from the route-leg-<mode>
@@ -51,19 +60,28 @@ function initRouteMap({ L, createMap }: Leaflet, el: HTMLElement) {
 	const map = createMap(el);
 	const bounds = L.latLngBounds([]);
 	const usedModes = new Set<string>();
+	const labelled = new Set<string>();
 
 	stops.forEach((stop, idx) => {
 		const latlng: LatLngTuple = [stop.lat, stop.lng];
 		bounds.extend(latlng);
 
-		L.circleMarker(latlng, { radius: 6, weight: 2, className: "route-stop" })
-			.addTo(map)
-			.bindTooltip(stop.name, {
+		const marker = L.circleMarker(latlng, {
+			radius: 6,
+			weight: 2,
+			className: "route-stop",
+		}).addTo(map);
+		// A round trip passes its start again; a second label would sit on the first.
+		if (!labelled.has(stop.name)) {
+			labelled.add(stop.name);
+			const direction = stop.label ?? "top";
+			marker.bindTooltip(stop.name, {
 				permanent: true,
-				direction: "top",
-				offset: [0, -6],
+				direction,
+				offset: LABEL_OFFSETS[direction] ?? LABEL_OFFSETS.top,
 				className: "route-map-label",
 			});
+		}
 
 		const prev = stops[idx - 1];
 		if (!prev) return;

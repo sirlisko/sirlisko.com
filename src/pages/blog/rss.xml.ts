@@ -1,4 +1,5 @@
 import { getCollection, render } from "astro:content";
+import { existsSync } from "node:fs";
 import rss from "@astrojs/rss";
 import { experimental_AstroContainer as AstroContainer } from "astro/container";
 import { BLOG, SITE_URL } from "../../config";
@@ -6,6 +7,7 @@ import { feedHtml } from "../../lib/blog/feed";
 import { cropOgImage } from "../../lib/blog/ogImage";
 import {
 	type Post,
+	postSlug,
 	postUrl,
 	publishedPosts,
 	sortDate,
@@ -29,6 +31,12 @@ const enclosure = async ({ data, ...post }: Post) => {
 	return { url: `${SITE_URL}${postUrl(post)}/index.png`, type: "image/png" };
 };
 
+// Written by scripts/generate-feed-images.mjs, which uses the same names.
+const screenshot = (post: Post) => (n: number) => {
+	const path = `/blog/feed/${postSlug(post.id)}-${n}.webp`;
+	return existsSync(`public${path}`) ? path : undefined;
+};
+
 export async function GET() {
 	const container = await AstroContainer.create();
 	const posts = publishedPosts(await getCollection("posts"));
@@ -42,7 +50,7 @@ export async function GET() {
 				title: post.data.title,
 				description: post.data.description,
 				pubDate: sortDate(post.data),
-				content: feedHtml(html, SITE_URL),
+				content: feedHtml(html, SITE_URL, screenshot(post)),
 				enclosure: { ...(await enclosure(post)), length: 0 },
 			};
 		}),
