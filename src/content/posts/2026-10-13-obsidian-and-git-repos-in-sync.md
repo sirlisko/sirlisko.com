@@ -53,6 +53,11 @@ While searching Homebrew, I found [Unison](https://github.com/bcpierce00/unison)
 
 When a file changed on both sides, it does not guess. With my settings, the newer version wins and the other one is saved next to it, as a copy with `conflict_on_` and the date in its name. Nothing is lost.
 
+```mermaid
+flowchart LR
+  P[iPhone] <--> I[iCloud] <--> V[Vault] <--> U["Unison<br>+ archive"] <--> R[Git repos]
+```
+
 Installing it is one command:
 
 ```bash
