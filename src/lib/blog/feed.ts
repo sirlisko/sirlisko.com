@@ -27,7 +27,8 @@ const absolute = (url: string, origin: string) =>
 
 /**
  * A rendered post, cleaned up for feed readers: maps only work on the page,
- * and every link and image needs the full URL.
+ * diagrams are inline SVG themed by the page's CSS, and every link and image
+ * needs the full URL.
  */
 export const feedHtml = (html: string, origin: string): string =>
 	sanitizeHtml(html, {
@@ -38,7 +39,9 @@ export const feedHtml = (html: string, origin: string): string =>
 			"summary",
 		],
 		exclusiveFilter: ({ attribs }) =>
-			"data-gpx-map" in attribs || "data-route-map" in attribs,
+			"data-gpx-map" in attribs ||
+			"data-route-map" in attribs ||
+			attribs.class === "pele-diagram",
 		transformTags: {
 			img: (tagName, { srcset, src = "", ...attribs }) => ({
 				tagName,

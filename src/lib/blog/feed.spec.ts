@@ -45,6 +45,15 @@ describe("feedHtml", () => {
 		expect(html.trim()).toBe("<p>Kept</p>");
 	});
 
+	test("drops diagrams, which need the page's CSS", () => {
+		const html = feedHtml(
+			`<figure class="pele-diagram"><svg><text>A</text></svg></figure>
+<p>Kept</p>`,
+			ORIGIN,
+		);
+		expect(html.trim()).toBe("<p>Kept</p>");
+	});
+
 	test("keeps collapsible sections", () => {
 		expect(
 			feedHtml("<details><summary>Spoiler</summary>x</details>", ORIGIN),
