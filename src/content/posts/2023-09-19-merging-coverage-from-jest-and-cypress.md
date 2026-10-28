@@ -103,7 +103,7 @@ const useBabel = process.env.BABEL_ENV === "true";
 
 module.exports = {
   transform: {
-    "\\.[j|t]s[x]?$": useBabel
+    "\\.[jt]sx?$": useBabel
       ? "babel-jest"
       : [
           "@swc/jest",
