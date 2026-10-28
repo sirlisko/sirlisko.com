@@ -25,23 +25,50 @@ export const pickCandidate = (srcset: string): string | undefined =>
 const absolute = (url: string, origin: string) =>
 	url.startsWith("/") ? `${origin}${url}` : url;
 
+type Attribs = Record<string, string>;
+
+// Maps and diagrams only work on the page: maps need Leaflet, and diagrams are
+// inline SVG themed by the page's CSS. The feed gets a screenshot of each one,
+// taken by scripts/generate-feed-images.mjs.
+const isVisual = (attribs: Attribs) =>
+	"data-gpx-map" in attribs ||
+	"data-route-map" in attribs ||
+	attribs.class === "pele-diagram";
+
+const visualAlt = (attribs: Attribs) => {
+	if (attribs.class === "pele-diagram") return "Diagram";
+	try {
+		const stops: { name: string }[] = JSON.parse(
+			attribs["data-route-map"] ?? "",
+		);
+		return `Route map: ${stops.map(({ name }) => name).join(" → ")}`;
+	} catch {
+		return "Map of the route";
+	}
+};
+
 /**
- * A rendered post, cleaned up for feed readers: maps only work on the page,
- * diagrams are inline SVG themed by the page's CSS, and every link and image
- * needs the full URL.
+ * A rendered post, cleaned up for feed readers: maps and diagrams become their
+ * screenshots, numbered from 1 in page order, or are dropped if there is none,
+ * and every link and image needs the full URL.
  */
-export const feedHtml = (html: string, origin: string): string =>
-	sanitizeHtml(html, {
+export const feedHtml = (
+	html: string,
+	origin: string,
+	screenshot: (n: number) => string | undefined = () => undefined,
+): string => {
+	let visuals = 0;
+	return sanitizeHtml(html, {
 		allowedTags: [
 			...sanitizeHtml.defaults.allowedTags,
 			"img",
 			"details",
 			"summary",
 		],
-		exclusiveFilter: ({ attribs }) =>
-			"data-gpx-map" in attribs ||
-			"data-route-map" in attribs ||
-			attribs.class === "pele-diagram",
+		// sanitize-html's defaults, which it doesn't export, plus svg: a diagram's
+		// text would otherwise be left behind as one run-on string.
+		nonTextTags: ["script", "style", "textarea", "option", "xmp", "svg"],
+		exclusiveFilter: ({ attribs }) => isVisual(attribs),
 		transformTags: {
 			img: (tagName, { srcset, src = "", ...attribs }) => ({
 				tagName,
@@ -54,5 +81,15 @@ export const feedHtml = (html: string, origin: string): string =>
 				tagName,
 				attribs: { ...attribs, href: absolute(href, origin) },
 			}),
+			"*": (tagName, attribs) => {
+				const src = isVisual(attribs) && screenshot(++visuals);
+				return src
+					? {
+							tagName: "img",
+							attribs: { src: absolute(src, origin), alt: visualAlt(attribs) },
+						}
+					: { tagName, attribs };
+			},
 		},
 	});
+};

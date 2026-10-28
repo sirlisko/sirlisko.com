@@ -31,6 +31,7 @@
 		"generate:cv": "node scripts/generate-cv.mjs",
 		"capture:screenshots": "node scripts/capture-screenshots.mjs",
 		"generate:og": "node scripts/generate-og.mjs",
+		"generate:feed-images": "node scripts/generate-feed-images.mjs",
 		"images": "node scripts/optimize-images.mjs",
 		"gpx": "node scripts/simplify-gpx.mjs",
 		"lighthouse": "node scripts/lighthouse.mjs",

@@ -35,23 +35,30 @@ describe("feedHtml", () => {
 		);
 	});
 
-	test("drops maps, which only work on the page", () => {
+	test("drops maps and diagrams without a screenshot", () => {
 		const html = feedHtml(
 			`<div data-gpx-map="/blog/gpx/day1.gpx"></div>
 <div data-route-map="[]"></div>
+<figure class="pele-diagram"><svg><text>A</text></svg></figure>
 <p>Kept</p>`,
 			ORIGIN,
 		);
 		expect(html.trim()).toBe("<p>Kept</p>");
 	});
 
-	test("drops diagrams, which need the page's CSS", () => {
+	test("swaps maps and diagrams for their screenshots, in page order", () => {
 		const html = feedHtml(
 			`<figure class="pele-diagram"><svg><text>A</text></svg></figure>
-<p>Kept</p>`,
+<div data-route-map='[{"name":"Prague"},{"name":"Brno"}]'></div>
+<div data-gpx-map="/blog/gpx/day1.gpx"></div>`,
 			ORIGIN,
+			(n) => `/blog/feed/post-${n}.png`,
 		);
-		expect(html.trim()).toBe("<p>Kept</p>");
+		expect(html.split("\n")).toEqual([
+			'<img src="https://sirlisko.com/blog/feed/post-1.png" alt="Diagram" />',
+			'<img src="https://sirlisko.com/blog/feed/post-2.png" alt="Route map: Prague → Brno" />',
+			'<img src="https://sirlisko.com/blog/feed/post-3.png" alt="Map of the route" />',
+		]);
 	});
 
 	test("keeps collapsible sections", () => {
