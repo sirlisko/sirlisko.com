@@ -57,7 +57,7 @@ The first major upgrade. The main challenges:
 - **Deprecated APIs**: Several React Native APIs were deprecated or moved. `EventEmitter` listeners changed signature, `DeviceEventEmitter` usage needed updating.
 - **Testing library updates**: `@testing-library/react-native` had breaking changes in its query APIs and event simulation.
 
-The process was always the same: run `expo install --fix`, see what breaks, fix it, run tests, repeat. The `expo install --fix` command updates packages to versions compatible with the current Expo SDK, which handles most of the mechanical work. The remaining work is everything it can't detect: runtime behaviour changes, test failures from API shifts, and native module incompatibilities that only surface when you actually build.
+The process was always the same: run `npx expo install --fix`, see what breaks, fix it, run tests, repeat. The `npx expo install --fix` command updates packages to versions compatible with the current Expo SDK, which handles most of the mechanical work. The remaining work is everything it can't detect: runtime behaviour changes, test failures from API shifts, and native module incompatibilities that only surface when you actually build.
 
 ## Expo 54
 
@@ -71,7 +71,7 @@ This is the hidden cost of patches: they solve a problem today, but they need to
 
 The biggest jump. Three files changed, but the lock file diff was massive, around 5 thousand lines of changes, but mostly dependency tree simplifications.
 
-This was also the version that completed the transition to the **new architecture** (Fabric renderer and TurboModules). The new architecture had been opt-in for several Expo versions, but Expo 55 made it the default. For our app, this meant:
+This was also the version that completed the transition to the **new architecture** (Fabric renderer and TurboModules). The new architecture had been the default since Expo 53, but Expo 55 removed the old one entirely. For our app, this meant:
 
 - Verifying that every native module supported the new architecture (most did by this point)
 - Testing gesture handling, animations, and native transitions for regressions
@@ -83,7 +83,7 @@ The payoff was real: faster startup, more efficient re-renders, and better inter
 
 After doing this three times, I settled into a pattern:
 
-**1. Start with `expo install --fix`.** Let it update compatible packages automatically. This handles 80% of the mechanical work.
+**1. Start with `npx expo install --fix`.** Let it update compatible packages automatically. This handles 80% of the mechanical work.
 
 **2. Run the build immediately.** Don't fix TypeScript errors first; build for iOS and Android and see what _actually_ breaks at the native level. TypeScript errors are easy to fix; native build failures are where the real work is.
 
@@ -121,6 +121,6 @@ The clean console might seem like a small thing, but it changed how the team wor
 
 ---
 
-_Note: If you're planning an Expo upgrade, the [Expo changelog](https://docs.expo.dev/changelog/) and the `expo install --fix` command are your best friends. Start there, and let the build failures guide you to everything else._
+_Note: If you're planning an Expo upgrade, the [Expo changelog](https://docs.expo.dev/changelog/) and the `npx expo install --fix` command are your best friends. Start there, and let the build failures guide you to everything else._
 
 [^1]: `pnpm patch <package>` opens the package source in a temp directory, lets you edit it, then saves a diff as a patch file that pnpm re-applies on every install. The npm equivalent is [patch-package](https://github.com/ds300/patch-package).
