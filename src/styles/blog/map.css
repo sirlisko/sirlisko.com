@@ -127,3 +127,8 @@ html
 		gap: 0.375rem;
 	}
 }
+
+/* Permanent stop labels crowd each other at trip-wide zoom, so keep them small */
+[data-route-map] .leaflet-tooltip.route-map-label {
+	padding: 1px 4px;
+}
