@@ -53,11 +53,12 @@ Video assets (onboarding sequences, background loops, explainer clips) are the h
 We use [ffmpeg](https://ffmpeg.org/) with a standard command for all bundled videos:
 
 ```bash
-ffmpeg -i input.mp4 -vf "scale=1080:-2" -crf 28 -an -movflags +faststart -y output.mp4
+ffmpeg -i input.mp4 -vf "scale=1080:-2" -crf 28 -pix_fmt yuv420p -an -movflags +faststart -y output.mp4
 ```
 
 - `scale=1080:-2` — scales to 1080px wide, which is near 1:1 on 3x retina devices. Don't go below 720px for foreground content.
 - `-crf 28` — the quality/size balance. Use 24–26 for detailed content, up to 30 for simple motion graphics.
+- `-pix_fmt yuv420p` — the pixel format every phone can decode. Some sources, like ProRes exports or screen recordings, otherwise produce files iOS won't play.
 - `-an` — strips audio. Most of our bundled videos are decorative and don't need a soundtrack.
 - `-movflags +faststart` — moves the MP4 metadata to the beginning of the file, enabling instant playback without buffering the whole file first.
 
@@ -86,7 +87,7 @@ If you're unsure, ask yourself: _"Is this a photograph?"_ If yes, WebP. _"Does t
 
 ## Implementation in Expo
 
-Our app uses three libraries, each matched to a format:
+Our app uses four libraries, each matched to a format:
 
 - [`expo-image`](https://docs.expo.dev/versions/latest/sdk/image/) for WebP (and any raster format)
 - [`react-native-svg`](https://github.com/software-mansion/react-native-svg) + [`react-native-svg-transformer`](https://github.com/kristerkari/react-native-svg-transformer) for SVG
@@ -103,7 +104,7 @@ import BullseyeIcon from "@/assets/vectors/bullseye.svg";
 <BullseyeIcon color="red" width={24} height={24} />
 ```
 
-This means SVGs can be styled dynamically: you can change their colour based on theme, resize them via props, and treat them like any other component. No need for multiple sizes or colour variants of the same icon.
+This means SVGs can be styled dynamically: you can change their colour based on theme (as long as the SVG uses `currentColor`), resize them via props, and treat them like any other component. No need for multiple sizes or colour variants of the same icon.
 
 ### WebP with expo-image
 
@@ -184,13 +185,13 @@ This is especially important for SVGs exported from Figma or Illustrator, which 
 [ffmpeg](https://ffmpeg.org/) handles video compression. The standard command for bundled assets:
 
 ```bash
-ffmpeg -i input.mp4 -vf "scale=1080:-2" -crf 28 -an -movflags +faststart -y output.mp4
+ffmpeg -i input.mp4 -vf "scale=1080:-2" -crf 28 -pix_fmt yuv420p -an -movflags +faststart -y output.mp4
 ```
 
 For background or decorative videos where quality is less critical:
 
 ```bash
-ffmpeg -i input.mp4 -vf "scale=720:-2" -crf 32 -r 20 -an -movflags +faststart -y output.mp4
+ffmpeg -i input.mp4 -vf "scale=720:-2" -crf 32 -pix_fmt yuv420p -r 20 -an -movflags +faststart -y output.mp4
 ```
 
 All three tools can be installed with Homebrew:
