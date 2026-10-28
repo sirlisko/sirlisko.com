@@ -36,7 +36,7 @@ One problem I ran into early was with carousels. The app had a custom carousel w
 
 ```typescript
 accessibilityElementsHidden={!isVisible}
-importantForAccessibility={isVisible ? "yes" : "no-hide-descendants"}
+importantForAccessibility={isVisible ? "auto" : "no-hide-descendants"}
 ```
 
 After we standardised on `react-native-reanimated-carousel`, this was handled by the library, but it's the kind of issue that only surfaces when you actually test with a screen reader.
@@ -103,7 +103,7 @@ I used this as a first pass on every screen. It's faster than running VoiceOver 
 
 ### VoiceOver (iOS)
 
-The real test. Turn on VoiceOver (Settings > Accessibility > VoiceOver on a device, or `Cmd+F5` in the simulator) and navigate your app without looking at the screen.
+The real test. Turn on VoiceOver (Settings > Accessibility > VoiceOver) on a real device, as the iOS Simulator doesn't support it, and navigate your app without looking at the screen.
 
 Things that Accessibility Inspector can't catch but VoiceOver reveals:
 
@@ -129,7 +129,7 @@ BrowserStack also provides automated accessibility audits that flag common issue
 There's no substitute for testing on a real device with actual accessibility settings enabled. Some issues only manifest on physical hardware:
 
 - Font scaling behaviour differs between simulator and device, especially at extreme scales
-- VoiceOver and TalkBack have subtly different behaviour on simulators vs real devices
+- VoiceOver doesn't run in the iOS Simulator at all, and TalkBack may need to be installed separately on Android emulators
 - Haptic feedback, which some accessibility users rely on, only works on physical devices
 
 We kept a test device with large text enabled and VoiceOver active specifically for accessibility testing.
@@ -152,7 +152,7 @@ Every `<Image>` component should have either an `accessibilityLabel` (if it conv
 
 ### Form Error Announcements
 
-When a form validation error appears, sighted users see a red message below the field. Screen reader users see nothing unless you explicitly announce the error. We used `accessibilityRole="alert"` on error containers, which triggers an automatic announcement when the error appears.
+When a form validation error appears, sighted users see a red message below the field. Screen reader users see nothing unless you explicitly announce the error. We used `accessibilityRole="alert"` on error containers, but the role alone doesn't make VoiceOver speak. Call `AccessibilityInfo.announceForAccessibility` when the error appears to make sure it's announced.
 
 ## Making It Stick
 
