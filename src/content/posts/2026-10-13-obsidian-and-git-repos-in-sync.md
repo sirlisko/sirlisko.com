@@ -63,7 +63,7 @@ Each folder pair is a _profile_ in `~/.unison`. The shared settings go in `commo
 
 ```ini file=~/.unison/common.prf
 ignore = Name .DS_Store
-ignore = Name *.icloud
+ignore = Name .*.icloud
 ignore = Name .trash
 batch = true
 auto = true
