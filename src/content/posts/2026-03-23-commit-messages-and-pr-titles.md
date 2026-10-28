@@ -2,6 +2,7 @@
 title: Commit Messages & PR Titles
 description: A practical guide to writing clearer commits and PRs. What I arrived at after almost two decades of questioning whether I was doing it right.
 pubDatetime: 2026-03-23
+modDatetime: 2026-10-28
 tags:
   - dev
   - git
@@ -79,13 +80,13 @@ I think about it as a 2x2 matrix. Every meaningful commit message should cover f
 **Intent** goes in the subject line:
 
 ```
-fix(auth): prevent concurrent token refresh race condition
+fix(auth): prevent token refresh race
 ```
 
 **Context, implementation, and justification** go in the body:
 
 ```
-fix(auth): prevent concurrent token refresh race condition
+fix(auth): prevent token refresh race
 
 When users have multiple tabs open, token refresh requests can race.
 Both requests see an expired token, both initiate refresh, and one
@@ -190,7 +191,7 @@ fix(api): handle null responses in user endpoint
 refactor(state): migrate from Redux to Zustand
 ```
 
-Keep it under 60 characters. The body is where context lives, not the title.
+Keep it under 50 characters, like the commit subject. The body is where context lives, not the title.
 
 One thing worth noting: **use imperative mood in the title** ("add two-factor authentication"), but **past tense in the body** ("implemented TOTP-based 2FA..."). The title describes what the PR does; the body narrates what you did.
 
@@ -230,10 +231,13 @@ Describe how you solved it. Link to relevant code sections if helpful.
 
 If you want to enforce this automatically, the setup takes about ten minutes:
 
+> [!NOTE]
+> I updated this section in October 2026 for Husky 9, which removed `husky install` and `husky add`.
+
 ```bash
-npm install --save-dev husky commitlint @commitlint/config-conventional
-npx husky install
-npx husky add .husky/commit-msg 'npx --no -- commitlint --edit "$1"'
+npm install --save-dev husky @commitlint/cli @commitlint/config-conventional
+npx husky init
+echo 'npx --no -- commitlint --edit "$1"' > .husky/commit-msg
 ```
 
 Create `commitlint.config.js`:
@@ -284,6 +288,7 @@ We follow [Conventional Commits](https://www.conventionalcommits.org/).
 - `docs` — Documentation
 - `chore` — Maintenance
 - `ci` — CI/CD changes
+- `style` — Formatting
 
 ### Scopes
 

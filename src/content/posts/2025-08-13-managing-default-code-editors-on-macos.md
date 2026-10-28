@@ -63,12 +63,11 @@ EXTENSIONS=(
   ".swift" ".dart"
 
   # Data/Database
-  ".sql" ".graphql" ".gql" ".r" ".R"
+  ".sql" ".graphql" ".gql" ".r"
 
   # Config files
   ".json" ".yml" ".yaml" ".toml" ".xml" ".md"
-  ".txt" ".ini" ".env" ".properties" ".conf"
-  ".gitignore" ".editorconfig" ".prettierrc"
+  ".txt" ".ini" ".properties" ".conf"
 
   # Infrastructure
   ".hcl" ".tf" ".lua"
@@ -85,6 +84,8 @@ done
 
 echo "Done! Editor should now be set as the default for all development files."
 ```
+
+Dotfiles like `.gitignore` or `.env` are not in the list: macOS sees them as files with no extension, so `duti` can't target them this way.
 
 ## Finding Bundle IDs
 

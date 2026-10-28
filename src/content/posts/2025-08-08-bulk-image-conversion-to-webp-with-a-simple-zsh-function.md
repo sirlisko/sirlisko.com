@@ -24,13 +24,15 @@ brew install imagemagick
 sudo apt-get install imagemagick
 ```
 
+Ubuntu and Debian still ship ImageMagick 6, which has no `magick` command: use `convert` instead in the function below.
+
 ## The Simple Solution
 
 Here's the function I use daily, simple, effective, and gets the job done:
 
 ```bash
 convert_to_webp() {
-  setopt null_glob  # prevent 'no matches found' errors
+  setopt local_options null_glob  # prevent 'no matches found' errors
   for ext in jpg jpeg png; do
     for f in *.$ext; do
       [ -e "$f" ] || continue
@@ -39,7 +41,6 @@ convert_to_webp() {
       echo "Converted: $f -> $output"
     done
   done
-  unsetopt null_glob  # clean up after ourselves
 }
 ```
 
@@ -63,8 +64,8 @@ Example output:
 
 ```bash
 Converted: photo1.jpg -> photo1.webp
-Converted: screenshot.png -> screenshot.webp
 Converted: banner.jpeg -> banner.webp
+Converted: screenshot.png -> screenshot.webp
 ```
 
 ## File Size Comparisons

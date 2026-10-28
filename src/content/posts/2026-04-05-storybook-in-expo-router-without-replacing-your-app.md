@@ -2,6 +2,7 @@
 title: Storybook in Expo Router Without Replacing Your App
 description: How to integrate on-device Storybook as an Expo Router route with three layers of production exclusion and zero bundle size impact.
 pubDatetime: 2026-04-05
+modDatetime: 2026-10-28
 tags:
   - dev
   - react-native
@@ -9,6 +10,9 @@ ogImage: https://images.unsplash.com/photo-1576153192396-180ecef2a715?fm=jpg&q=8
 toc: true
 series: "A Year Building a React Native App with Expo"
 ---
+
+> [!NOTE]
+> I updated this post in October 2026 for Storybook 10, which removed the `onDisabledRemoveStorybook` option.
 
 _This post is part of [A Year Building a React Native App with Expo](/blog/a-year-building-a-react-native-app-with-expo), a retrospective series on the decisions and patterns that shaped a production React Native app._
 
@@ -118,11 +122,10 @@ const {
 module.exports = withStorybook(config, {
   enabled: process.env.EXPO_PUBLIC_STORYBOOK_ENABLED === "true",
   configPath: path.resolve(__dirname, "./.storybook"),
-  onDisabledRemoveStorybook: true,
 });
 ```
 
-The `onDisabledRemoveStorybook: true` flag is the key. When Storybook is disabled, Metro resolves all Storybook imports to empty modules at the bundler level. This means **zero bytes** of Storybook code end up in the production bundle: not the Storybook UI, not the addons, not the story files. It's as if none of it exists.
+The `enabled` flag is the key. When it's `false`, Metro resolves all Storybook imports to empty modules at the bundler level. This means **zero bytes** of Storybook code end up in the production bundle: not the Storybook UI, not the addons, not the story files. It's as if none of it exists.
 
 ## Story Colocation
 
@@ -167,7 +170,7 @@ collectCoverageFrom: [
 A story file follows the standard `@storybook/react-native` format. Here's a real example from our `Badge` component:
 
 ```typescript file=Badge/Badge.stories.tsx
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-native";
 import { View } from "react-native";
 import Badge from "./Badge";
 
@@ -271,4 +274,4 @@ The setup is minimal (a one-line route file, a Metro config wrapper, and an env 
 
 ---
 
-_Note: This approach uses `@storybook/react-native` v10 with Expo Router v4. The `withStorybook` Metro wrapper and `onDisabledRemoveStorybook` option are specific to the React Native flavour of Storybook; the web version handles bundling differently._
+_Note: This approach uses `@storybook/react-native` v10 with Expo Router on Expo SDK 55. The `withStorybook` Metro wrapper is specific to the React Native flavour of Storybook; the web version handles bundling differently._

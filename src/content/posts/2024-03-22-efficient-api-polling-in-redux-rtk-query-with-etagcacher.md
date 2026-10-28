@@ -40,18 +40,19 @@ Here's how our `EtagCacher` works:
 
 ```mermaid
 sequenceDiagram
-  participant UI as Component
+  participant Q as RTK Query
   participant C as EtagCacher
   participant API
-  UI->>API: addTodo mutation
-  UI->>C: setPoll("global")
-  loop Until the ETag changes or retries run out
-    UI->>API: getTodos
-    API-->>UI: response + ETag
-    UI->>C: checkEtag(etag)
-    C-->>UI: same ETag, fetch again after delay
+  Q->>API: addTodo mutation
+  API-->>Q: 201 Created
+  Q->>C: setPoll("global")
+  loop While the ETag is unchanged or a todo is pending, up to maxRetries
+    Q->>API: getTodos
+    API-->>Q: todos + ETag
+    Q->>C: checkEtag(etag, todos)
+    C-->>Q: invalidate "Todos" after retryDelay
   end
-  C-->>UI: ETag changed, stop polling
+  Note over C: ETag changed and nothing pending, or retries exhausted: stop polling
 ```
 
 ## Implementation
@@ -96,7 +97,7 @@ export class EtagCacher<
   K = undefined,
   TagType extends string = string,
 > {
-  cache: Record<string, { etag: string; poll: boolean; retry: number }>;
+  cache: Record<string, { etag?: string; poll: boolean; retry: number }>;
 
   /**
    * Creates a new EtagCacher instance
@@ -233,26 +234,24 @@ export interface Todo {
 
 export const todosApi = createApi({
   reducerPath: "todosApi",
-  baseQuery: fetchBaseQuery({
-    baseUrl: "/api/",
-    responseHandler: async response => {
-      const data = await response.json();
-      return {
-        data,
-        meta: {
-          etag: response.headers.get("ETag") || "",
-        },
-      };
-    },
-  }),
+  baseQuery: fetchBaseQuery({ baseUrl: "/api/" }),
   tagTypes: ["Todos"],
   endpoints: builder => ({
-    getTodos: builder.query<{ data: Todo[]; meta: { etag: string } }, void>({
+    getTodos: builder.query<{ todos: Todo[]; etag: string }, void>({
       query: () => "todos",
+      transformResponse: (todos: Todo[], meta) => ({
+        todos,
+        etag: meta?.response?.headers.get("ETag") ?? "",
+      }),
       async onQueryStarted(_, { queryFulfilled, dispatch }) {
         try {
           const result = await queryFulfilled;
-          todosCacher.checkEtag(dispatch, "global", result.data.meta.etag);
+          todosCacher.checkEtag(
+            dispatch,
+            "global",
+            result.data.etag,
+            result.data.todos
+          );
         } catch (e) {
           console.error(e);
         }
@@ -297,8 +296,9 @@ export const todosApi = createApi({
   }),
 });
 
-// Initialize the EtagCacher with proper types
-export const todosCacher = new EtagCacher("Todos", todosApi);
+export const todosCacher = new EtagCacher("Todos", todosApi, {
+  isStatusPending: (todo: Todo) => todo.status === "pending",
+});
 
 export const {
   useGetTodosQuery,
@@ -309,11 +309,11 @@ export const {
 
 ### How It Works
 
-1. **Initial Setup**: We create an instance of `EtagCacher` with the API and tag name.
+1. **Initial Setup**: We create an instance of `EtagCacher` with the API, the tag name, and a check for todos the server is still working on.
 2. **Setting Up Polling**: After a mutation (like `addTodo`), we call `todosCacher.setPoll("global")` to mark that resource for polling.
-3. **Checking for Changes**: In the `getTodos` query, we call `todosCacher.checkEtag()` with the current ETag.
-4. **Smart Retries**: If the ETag hasn't changed and we're under the retry limit, it schedules another request after the delay period.
-5. **Automatic Termination**: Once the ETag changes (indicating the resource has updated) or we reach the retry limit, polling stops.
+3. **Checking for Changes**: In the `getTodos` query, we call `todosCacher.checkEtag()` with the current ETag and the todos.
+4. **Smart Retries**: If the ETag hasn't changed, or any todo is still pending, and we're under the retry limit, it schedules another request after the delay period.
+5. **Automatic Termination**: Once the ETag has changed and nothing is pending, or we reach the retry limit, polling stops.
 
 ## When to Use EtagCacher
 
@@ -332,6 +332,7 @@ EtagCacher has some limitations:
 2. **Memory Usage**: The utility keeps the state in memory, which could grow larger if tracking many resources.
 3. **Component Unmounting**: If a component unmounts, polling will continue until the retry limit is reached.
 4. **Network Issues**: Network interruptions can affect the polling mechanism.
+5. **Full Responses**: Each poll downloads the whole response and only compares the ETag on the client, so the savings come from polling less, not from smaller responses.
 
 ## Conclusion
 
