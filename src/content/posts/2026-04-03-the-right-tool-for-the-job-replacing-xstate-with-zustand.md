@@ -57,7 +57,7 @@ import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-interface CalculatorState {
+interface StoreState {
   forecast: number | null;
   // ... base and modified scenarios
 }
