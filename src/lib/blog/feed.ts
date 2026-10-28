@@ -25,27 +25,13 @@ export const pickCandidate = (srcset: string): string | undefined =>
 const absolute = (url: string, origin: string) =>
 	url.startsWith("/") ? `${origin}${url}` : url;
 
-type Attribs = Record<string, string>;
-
 // Maps and diagrams only work on the page: maps need Leaflet, and diagrams are
 // inline SVG themed by the page's CSS. The feed gets a screenshot of each one,
 // taken by scripts/generate-feed-images.mjs.
-const isVisual = (attribs: Attribs) =>
+const isVisual = (attribs: Record<string, string>) =>
 	"data-gpx-map" in attribs ||
 	"data-route-map" in attribs ||
 	attribs.class === "pele-diagram";
-
-const visualAlt = (attribs: Attribs) => {
-	if (attribs.class === "pele-diagram") return "Diagram";
-	try {
-		const stops: { name: string }[] = JSON.parse(
-			attribs["data-route-map"] ?? "",
-		);
-		return `Route map: ${stops.map(({ name }) => name).join(" → ")}`;
-	} catch {
-		return "Map of the route";
-	}
-};
 
 /**
  * A rendered post, cleaned up for feed readers: maps and diagrams become their
@@ -86,7 +72,10 @@ export const feedHtml = (
 				return src
 					? {
 							tagName: "img",
-							attribs: { src: absolute(src, origin), alt: visualAlt(attribs) },
+							attribs: {
+								src: absolute(src, origin),
+								alt: attribs.class === "pele-diagram" ? "Diagram" : "Map",
+							},
 						}
 					: { tagName, attribs };
 			},

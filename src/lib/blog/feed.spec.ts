@@ -56,8 +56,8 @@ describe("feedHtml", () => {
 		);
 		expect(html.split("\n")).toEqual([
 			'<img src="https://sirlisko.com/blog/feed/post-1.png" alt="Diagram" />',
-			'<img src="https://sirlisko.com/blog/feed/post-2.png" alt="Route map: Prague → Brno" />',
-			'<img src="https://sirlisko.com/blog/feed/post-3.png" alt="Map of the route" />',
+			'<img src="https://sirlisko.com/blog/feed/post-2.png" alt="Map" />',
+			'<img src="https://sirlisko.com/blog/feed/post-3.png" alt="Map" />',
 		]);
 	});
 
