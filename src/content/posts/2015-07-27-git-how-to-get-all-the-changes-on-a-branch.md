@@ -15,11 +15,13 @@ What you need is the last commit your branch has in common with `main`, called t
 git diff $(git merge-base HEAD main)
 ```
 
-Git also has a shortcut that does the same thing, using three dots:
+Git also has a shortcut that does nearly the same thing, using three dots:
 
 ```bash
 git diff main...HEAD
 ```
+
+The only difference: the first command also includes your uncommitted changes, while this one compares commits only.
 
 This works even if you merged `main` into your branch along the way. After a merge, the merge base moves forward, so the diff still shows only the changes made on the branch.
 
