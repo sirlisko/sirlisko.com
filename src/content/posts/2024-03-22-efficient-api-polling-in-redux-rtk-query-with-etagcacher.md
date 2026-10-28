@@ -38,6 +38,22 @@ Here's how our `EtagCacher` works:
 4. It has a retry limit to prevent infinite polling.
 5. It can optionally check the response data to decide if polling should continue.
 
+```mermaid
+sequenceDiagram
+  participant UI as Component
+  participant C as EtagCacher
+  participant API
+  UI->>API: addTodo mutation
+  UI->>C: setPoll("global")
+  loop Until the ETag changes or retries run out
+    UI->>API: getTodos
+    API-->>UI: response + ETag
+    UI->>C: checkEtag(etag)
+    C-->>UI: same ETag, fetch again after delay
+  end
+  C-->>UI: ETag changed, stop polling
+```
+
 ## Implementation
 
 ```typescript
