@@ -143,7 +143,7 @@ async enqueueMutation(
 
 ### Queue Processing
 
-When the network returns, we iterate through the queue sequentially, executing each mutation against the Apollo Client. Failed mutations get their retry count incremented and stay in the queue, up to a maximum of 5 retries. After that, they're discarded and logged as errors:
+When the network returns, we iterate through the queue sequentially, executing each mutation against the Apollo Client. Failed mutations get their retry count incremented and stay in the queue, for up to 5 attempts. After that, they're discarded and logged as errors:
 
 ```typescript
 async processQueue(): Promise<void> {
@@ -152,6 +152,7 @@ async processQueue(): Promise<void> {
 
   try {
     const queue = await this.getQueue();
+    const processedIds = new Set(queue.map(qm => qm.id));
     const remainingQueue: QueuedMutation[] = [];
 
     for (const queuedMutation of queue) {
@@ -165,14 +166,19 @@ async processQueue(): Promise<void> {
         queuedMutation.retryCount += 1;
         if (queuedMutation.retryCount < 5) {
           remainingQueue.push(queuedMutation);
+        } else {
+          console.error("Discarding queued mutation after 5 attempts", error);
         }
-        // After 5 retries, the mutation is discarded
       }
     }
 
+    // Keep mutations enqueued while the loop was running
+    const newMutations = (await this.getQueue()).filter(
+      (qm) => !processedIds.has(qm.id),
+    );
     await AsyncStorage.setItem(
       MUTATION_QUEUE_KEY,
-      JSON.stringify(remainingQueue),
+      JSON.stringify([...remainingQueue, ...newMutations]),
     );
   } finally {
     this.isProcessing = false;
@@ -180,7 +186,7 @@ async processQueue(): Promise<void> {
 }
 ```
 
-The `isProcessing` flag is important: without it, multiple network reconnection events could trigger concurrent queue processing, potentially executing the same mutation twice.
+The `isProcessing` flag is important: without it, multiple network reconnection events could trigger concurrent queue processing, potentially executing the same mutation twice. Re-reading the queue before saving matters too: a mutation enqueued while the loop is running would otherwise be overwritten.
 
 ## useOfflineMutation
 
@@ -345,11 +351,12 @@ The `update` function serves double duty: when online, Apollo calls it after the
 
 This approach has some known limitations worth calling out:
 
-1. **No user notification on permanent failure**: If a mutation fails after 5 retries, it's silently discarded. A notification system would improve this.
+1. **No user notification on permanent failure**: If a mutation fails 5 times, it's discarded with only a log entry. A notification system would improve this.
 2. **Potential for stale mutations**: If the server state changes significantly while mutations are queued, the queued mutations might conflict with the new state.
 3. **No conflict resolution**: We don't have a last-write-wins or merge strategy. The server's response on retry is final.
 4. **No queue expiration**: A mutation queued weeks ago will still attempt to execute. Adding a TTL based on the stored timestamp would prevent truly stale mutations from running.
 5. **Sequential processing**: Mutations are processed one at a time. For most apps this is fine, but high-throughput scenarios might benefit from batching.
+6. **Every error is retried in the queue**: unlike the hook, the queue doesn't check for 4xx errors, so a request the server rejects is still tried 5 times before it's discarded.
 
 ## Conclusion
 
