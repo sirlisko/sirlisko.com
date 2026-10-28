@@ -84,16 +84,17 @@ import { logError } from "./logger";
  *
  * ```ts
  * definitelyExists // string | null | undefined | false
- * invariant(definitelyExists) // Error if `definitelyExists` is null
+ * invariant(definitelyExists) // Error if `definitelyExists` is falsy
  * definitelyExists // string
  * ```
  */
 export function invariant(condition: unknown, msg?: string): asserts condition {
   if (!condition) {
+    const error = new Error(`Invariant failed${msg ? `: ${msg}` : "."}`);
     if (process.env.NODE_ENV !== "test") {
-      logError(new Error(`Invariant failed${msg ? `: ${msg}` : "."}`));
+      logError(error);
     }
-    throw Error(`Invariant failed${msg ? `: ${msg}` : "."}`);
+    throw error;
   }
 }
 ````
