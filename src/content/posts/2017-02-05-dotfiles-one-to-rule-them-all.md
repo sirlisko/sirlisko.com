@@ -51,21 +51,21 @@ It's the engine, where the magic happens. It creates `symlinks` from the repo to
 
 ```makefile
 symlinks:
-    @ln -sf $(DIR)/git/gitconfig ~/.gitconfig
-    @ln -sf $(DIR)/git/gitignore ~/.gitignore
-    @ln -sf $(DIR)/zsh/zshrc ~/.zshrc
+	@ln -sf $(DIR)/git/gitconfig ~/.gitconfig
+	@ln -sf $(DIR)/git/gitignore ~/.gitignore
+	@ln -sf $(DIR)/zsh/zshrc ~/.zshrc
 ```
 
 There is also a part that installs and upgrades the programs with `brew`:
 
 ```makefile
 brew:
-    brew update
-    brew upgrade
-    brew tap Homebrew/bundle
-    brew tap caskroom/versions
-    brew bundle
-    brew cleanup
+	brew update
+	brew upgrade
+	brew tap Homebrew/bundle
+	brew tap caskroom/versions
+	brew bundle
+	brew cleanup
 ```
 
 ### git/
