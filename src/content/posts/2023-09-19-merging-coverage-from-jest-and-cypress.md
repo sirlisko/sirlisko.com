@@ -184,6 +184,15 @@ To get a complete test coverage report, we need to combine results from **Jest**
    - We generate reports based on the merged coverages.
    - We sanitise the file paths contained in the coverage using `sed` (otherwise they are absolute paths on the runner, like `/home/runner/actions-runner/_work/...`).
 
+```mermaid
+flowchart TB
+  J[Jest] --> JA[coverage-jest]
+  B[build:coverage] --> C1[Cypress job 1] & CN[Cypress job N]
+  C1 --> A1[coverage-1]
+  CN --> AN[coverage-N]
+  JA & A1 & AN --> M["nyc merge + report<br>sed: clean paths"] --> D[Coverage diff on the PR]
+```
+
 With this approach, unit and end-to-end coverage are measured with the same tool, so the merged numbers are consistent.
 
 ### Jest Testing Workflow
