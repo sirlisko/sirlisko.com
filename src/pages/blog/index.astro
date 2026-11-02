@@ -78,8 +78,8 @@ const structuredData = {
 				Mostly <span><KindIcon kind="code" />code</span>, with{" "}
 				<span><KindIcon kind="travel" />travel</span>,{" "}
 				<span><KindIcon kind="walk" />long walks</span>,{" "}
-				<span><KindIcon kind="game" />games</span>
-				<br>
+				<span><KindIcon kind="game" />games</span>{" "}
+				<br class="wide-only">
 				and <span><KindIcon kind="life" />the odd bad decision</span> in
 				between. Written from London.
 			</p>
@@ -141,6 +141,13 @@ h1 {
 		display: inline-block;
 		margin-inline-end: 0.4ch;
 		vertical-align: -1px;
+	}
+}
+
+/* On phones the text wraps on its own; a forced break there strands the last word. */
+.wide-only {
+	@media (width < 640px) {
+		display: none;
 	}
 }
 
