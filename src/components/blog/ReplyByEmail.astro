@@ -13,62 +13,88 @@ const { title, prompt = "Thoughts?", editUrl } = Astro.props;
 const href = `mailto:${BLOG.replyTo}?subject=${encodeURIComponent(`Re: ${title}`)}`;
 ---
 
-<p data-pagefind-ignore class="reply">
-	{prompt}{" "}
-	<a href={href} data-track="reply-email">
-		<span aria-hidden="true" class="pixel-arrow"></span>
-		<span class="label">Reply via email</span>
-	</a>
-	{editUrl && (
-		<a
-			href={editUrl}
-			target="_blank"
-			rel="noopener noreferrer"
-			data-track="suggest-edit"
-		>
-			<span aria-hidden="true" class="pixel-arrow"></span>
-			<span class="label">Suggest an edit</span>
-		</a>
-	)}
-</p>
+{/* A Game Boy RPG text box: the post asks, the reader picks a choice. */}
+<div data-pagefind-ignore class="dialog">
+	<p>{prompt}</p>
+	<ul>
+		<li>
+			{/* Starts selected, as the first option of a game's menu does. */}
+			<a href={href} class="menu-cursor" data-hover data-track="reply-email"
+				>Reply via email</a
+			>
+		</li>
+		{editUrl && (
+			<li>
+				<a
+					href={editUrl}
+					target="_blank"
+					rel="noopener noreferrer"
+					class="menu-cursor"
+					data-track="suggest-edit">Suggest an edit</a
+				>
+			</li>
+		)}
+	</ul>
+</div>
 
 <style>
-.reply {
-	margin-bottom: 1rem;
-	color: var(--muted-foreground);
+/* Drawn in the pale green of the rules and photo frames, so it reads as a dialog without pulling the eye. */
+.dialog {
+	margin-block: 3rem 1rem;
+	padding: 1.125rem 1.375rem 0.625rem;
+	border: 6px double var(--pea);
+	/* A pixel off each corner, like a box drawn from tiles. */
+	clip-path: polygon(
+		2px 0,
+		calc(100% - 2px) 0,
+		100% 2px,
+		100% calc(100% - 2px),
+		calc(100% - 2px) 100%,
+		2px 100%,
+		0 calc(100% - 2px),
+		0 2px
+	);
 
 	@media (min-width: 640px) {
 		margin-bottom: 2rem;
 	}
 }
 
-a {
+p {
+	text-wrap: pretty;
+}
+
+ul {
+	display: flex;
+	flex-direction: column;
+	align-items: start;
+	margin-top: 0.5rem;
+	padding-inline-start: 1.25rem;
+}
+
+a.menu-cursor {
 	display: inline-flex;
+	min-height: 44px;
 	align-items: center;
-	gap: 0.5rem;
-	white-space: nowrap;
-	color: var(--foreground);
+
+	&::before {
+		top: calc(50% - 7px);
+	}
 
 	&:is(:hover, :focus-visible) {
 		color: var(--accent);
 	}
-
-	/* A second option goes underneath, like the next line of a Game Boy menu. */
-	& + & {
-		display: flex;
-		width: fit-content;
-		margin-top: 0.5rem;
-	}
 }
 
-.label {
-	text-decoration: underline;
-	text-underline-offset: 3px;
+/* Pointing at or tabbing to the other choice moves the cursor there. */
+ul:has(a:is(:hover, :focus-visible))
+[data-hover]:not(:hover, :focus-visible)::before {
+	content: none;
 }
 
-/* Blinks like a Game Boy menu cursor on the selected option. */
+/* Blinks like a Game Boy menu cursor on the option being pointed at. */
 @media (prefers-reduced-motion: no-preference) {
-	a:is(:hover, :focus-visible) .pixel-arrow {
+	a:is(:hover, :focus-visible)::before {
 		animation: blink 0.8s steps(1) infinite;
 	}
 }

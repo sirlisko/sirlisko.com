@@ -44,6 +44,31 @@
 		}
 	}
 
+	/* Notes under a short rule, as on a printed page, smaller than the text they annotate. */
+	.footnotes {
+		margin-top: 3em;
+		font-size: 0.875em;
+		color: var(--foreground-soft);
+
+		&::before {
+			content: "";
+			display: block;
+			width: 8rem;
+			height: 4px;
+			margin-bottom: 1.5em;
+			background:
+				linear-gradient(90deg, var(--pea) 50%, transparent 50%) 0 0 / 8px 4px;
+		}
+
+		:where(li) {
+			margin-block: 0.25em;
+		}
+
+		:where(p) {
+			margin-block: 0;
+		}
+	}
+
 	:where(h2, h3, h4):not(:where(.not-prose *)) {
 		margin-bottom: 0.75rem;
 		font-weight: 600;
@@ -72,8 +97,26 @@
 		overflow-x: clip;
 	}
 
+	/*
+	 * A number and its space are 1.8em of mono, 2.4em from 10 on. The list
+	 * clips past its edge, so its padding holds the whole number, and the
+	 * space alone sets it off from the text. Unlike bullets, numbers are read.
+	 */
 	:where(ol):not(:where(.not-prose, .not-prose *)) {
 		list-style: decimal;
+		padding-inline-start: 2em;
+
+		&:has(> li:nth-child(10)) {
+			padding-inline-start: 2.4em;
+		}
+
+		> li {
+			padding-inline-start: 0;
+
+			&::marker {
+				color: var(--muted-foreground);
+			}
+		}
 	}
 
 	:where(ul):not(:where(.not-prose, .not-prose *)) {
@@ -272,6 +315,16 @@
 		@media (prefers-reduced-motion: no-preference) {
 			animation: image-loading 1.2s steps(1) infinite;
 		}
+	}
+
+	/*
+	 * Capped by height too, so a portrait photo fits on a laptop screen whole.
+	 * Only once loaded: until then width: auto has no size to go on and would
+	 * collapse the image, losing the room its attributes hold.
+	 */
+	img[data-image-state="loaded"] {
+		width: auto;
+		max-height: 85svh;
 	}
 
 	/* SVG backgrounds can't read CSS variables, so the X repeats the palette. */

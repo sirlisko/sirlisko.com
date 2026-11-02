@@ -165,8 +165,6 @@ const structuredData = {
 			<SeriesList name={post.data.series} parts={series} current={postUrl(post)} />
 		)}
 
-		<hr class="dashed-rule">
-
 		<ReplyByEmail {title} prompt={replyPrompt} {editUrl} />
 
 		<Webmentions target={url} />
