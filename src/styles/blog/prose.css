@@ -33,6 +33,17 @@
 		}
 	}
 
+	/* A lone digit is too small to tap, so the hit area reaches past it. */
+	:where([data-footnote-ref]) {
+		position: relative;
+
+		&::after {
+			content: "";
+			position: absolute;
+			inset: -0.5rem -0.6rem;
+		}
+	}
+
 	:where(h2, h3, h4):not(:where(.not-prose *)) {
 		margin-bottom: 0.75rem;
 		font-weight: 600;

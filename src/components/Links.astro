@@ -1,6 +1,6 @@
 ---
 import me from "../../data/me";
-import { navLinks, type PageName } from "../lib/links";
+import { navLinks, navSection, type PageName } from "../lib/links";
 
 interface Props {
 	page?: PageName;
@@ -9,6 +9,9 @@ interface Props {
 const { page } = Astro.props;
 
 const links = navLinks(me.links, page);
+const section = navSection(links, page);
+const current = (name: string) =>
+	name === page ? "page" : name === section ? "true" : undefined;
 const game = page ?? "home";
 const PAUSE_TITLES: Record<typeof game, string> = {
 	home: "Paused",
@@ -28,10 +31,7 @@ const PAUSE_TITLES: Record<typeof game, string> = {
 	<ul class="menu">
 		{links.map((link) => (
 			<li>
-				<a
-					href={link.url}
-					aria-current={link.name === page ? "page" : undefined}>{link.label}</a
-				>
+				<a href={link.url} aria-current={current(link.name)}>{link.label}</a>
 			</li>
 		))}
 	</ul>
@@ -45,8 +45,8 @@ const PAUSE_TITLES: Record<typeof game, string> = {
 				<li>
 				<a
 					href={link.url}
-					aria-current={link.name === page ? "page" : undefined}
-					autofocus={link.name === page}>{link.label}</a
+					aria-current={current(link.name)}
+					autofocus={link.name === section}>{link.label}</a
 				>
 			</li>
 			))}

@@ -192,9 +192,32 @@ a {
 }
 
 .name {
+	position: relative;
 	font-weight: 600;
 	font-size: 17px;
 	line-height: 1.35;
+
+	/* The menu's cursor, so the title reads as a pick and not a heading. */
+	&::before {
+		content: "";
+		position: absolute;
+		top: 50%;
+		right: calc(100% + 0.35em);
+		width: 0.6em;
+		height: 0.75em;
+		background: var(--nes-red);
+		clip-path: polygon(0 0, 100% 50%, 0 100%);
+		translate: 0 -50%;
+		visibility: hidden;
+	}
+
+	&:is(:hover, :focus-visible)::before {
+		visibility: visible;
+	}
+}
+
+.project:has(.shot:hover) .name::before {
+	visibility: visible;
 }
 
 .big .name {

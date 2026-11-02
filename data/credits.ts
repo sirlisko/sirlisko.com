@@ -52,6 +52,11 @@ export const rolls: Roll[] = [
 				name: "Puppeteer & sharp",
 				url: "https://pptr.dev",
 			},
+			{
+				role: "Post cards",
+				name: "Satori",
+				url: "https://github.com/vercel/satori",
+			},
 			{ role: "Hosting", name: "Netlify", url: "https://www.netlify.com" },
 			{ role: "Stats", name: "Umami, self-hosted", url: "https://umami.is" },
 		],

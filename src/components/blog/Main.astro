@@ -12,7 +12,9 @@ const heading = /^\w+$/.test(title) ? `/${title.toLowerCase()}` : title;
 
 <main id="main-content" class="app-layout" data-back-url={Astro.url.pathname}>
 	<h1 class="pixel-title">{heading}</h1>
-	{description && <p class="description">{description}</p>}
+	{(description || Astro.slots.has("description")) && (
+		<p class="description"><slot name="description">{description}</slot></p>
+	)}
 	<slot />
 </main>
 

@@ -2,8 +2,9 @@
 import Face from "./Face.astro";
 ---
 
-<!-- Pinned opposite the nav on every page, so the face only moves when it morphs to or from home. -->
-<a href="/" class="face-link" aria-label="Home">
+<!-- Pinned opposite the nav on every page, so the face only moves when it morphs to or from home.
+     The nav's own home link is the tab stop, so keyboards don't meet home twice. -->
+<a href="/" class="face-link" aria-label="Home" tabindex="-1">
 	<Face width={48} densities={[1, 2]} loading="eager" />
 </a>
 

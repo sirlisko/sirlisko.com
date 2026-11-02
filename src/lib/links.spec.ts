@@ -1,6 +1,6 @@
 import { describe, expect, test } from "vitest";
 import me from "../../data/me";
-import { navLinks } from "./links";
+import { navLinks, navSection } from "./links";
 
 describe("navLinks", () => {
 	test("leaves the links untouched on the home page", () => {
@@ -23,5 +23,21 @@ describe("navLinks", () => {
 		for (const order of orders) {
 			expect(order).toEqual(["home", ...me.links.map(({ name }) => name)]);
 		}
+	});
+});
+
+describe("navSection", () => {
+	test("is the page itself when it has a menu entry", () => {
+		expect(navSection(navLinks(me.links, "now"), "now")).toBe("now");
+	});
+
+	test("is slashes for a slash page off the menu", () => {
+		for (const page of ["uses", "stats", "friends", "credits"] as const) {
+			expect(navSection(navLinks(me.links, page), page)).toBe("slashes");
+		}
+	});
+
+	test("is nothing on the home page", () => {
+		expect(navSection(navLinks(me.links))).toBeUndefined();
 	});
 });

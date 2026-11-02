@@ -1,5 +1,6 @@
 import type { Map as LeafletMap } from "leaflet";
 import leafletCss from "../../../styles/blog/leaflet.css?url";
+import { finePointer } from "../../pointer";
 
 // Astro hoists CSS from a dynamic import onto every page as a render-blocking
 // link, so the styles are linked here, only once a map needs them.
@@ -25,10 +26,18 @@ export async function loadLeaflet() {
 	return {
 		L,
 		createMap(el: HTMLElement): LeafletMap {
-			// Wheel zoom only once the map has focus, so scrolling past it scrolls the page
-			const map = L.map(el, { scrollWheelZoom: false });
-			map.on("focus", () => map.scrollWheelZoom.enable());
-			map.on("blur", () => map.scrollWheelZoom.disable());
+			// Wheel zoom, and on touch screens one-finger panning, only once the map
+			// has focus (a tap gives it), so scrolling past it scrolls the page
+			const touch = !finePointer().matches;
+			const map = L.map(el, { scrollWheelZoom: false, dragging: !touch });
+			map.on("focus", () => {
+				map.scrollWheelZoom.enable();
+				map.dragging.enable();
+			});
+			map.on("blur", () => {
+				map.scrollWheelZoom.disable();
+				if (touch) map.dragging.disable();
+			});
 			// Leaflet makes the map a tab stop for arrow-key panning but leaves it unnamed.
 			// A group, not a region: posts with several maps would repeat a landmark name.
 			el.setAttribute("role", "group");

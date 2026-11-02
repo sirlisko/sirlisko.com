@@ -63,8 +63,10 @@ const KIND_LABELS: Record<Kind, string> = {
 				aria-label={`Posts per year, ${perYear}`}
 			>
 				<div class="bars">
-					{blog.years.map(({ posts }) => (
-						<span style={`--n: ${posts}`}></span>
+					{blog.years.map(({ year, posts }) => (
+						<span class="year" title={`${year}: ${posts} ${posts === 1 ? "post" : "posts"}`}>
+							<span style={`--n: ${posts}`}></span>
+						</span>
 					))}
 				</div>
 				<p class="ends" aria-hidden="true">
@@ -253,9 +255,15 @@ p {
 
 .bars {
 	display: flex;
-	align-items: flex-end;
 	gap: 3px;
 	height: calc(var(--max) * (var(--block) + var(--gap)));
+}
+
+/* The full column hovers for its year's count, however short the bar. */
+.year {
+	flex: 1;
+	display: flex;
+	align-items: flex-end;
 
 	span {
 		flex: 1;

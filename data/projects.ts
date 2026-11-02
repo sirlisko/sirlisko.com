@@ -31,6 +31,7 @@ export const projects = [
 		screenshot: "talelock",
 		links: {
 			Website: "https://talelock.com",
+			Blog: "https://sirlisko.com/blog/talelock",
 		},
 		tech: [
 			"React",

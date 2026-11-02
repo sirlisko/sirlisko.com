@@ -125,13 +125,22 @@ const structuredData = {
 		<AuthorCard />
 		<NotLiveBadge {post} />
 		{tags.map((tag) => <data class="p-category" value={tag}></data>)}
-		<h1 class="p-name" transition:name={`post-${post.id}`}>{title}</h1>
+		{/* Kept out of search excerpts, which would otherwise open on the title and date. */}
+		<header data-pagefind-ignore>
+			<h1
+				class="p-name"
+				data-pagefind-meta="title"
+				transition:name={`post-${post.id}`}
+			>
+				{title}
+			</h1>
 
-		<PostDate {pubDatetime} {modDatetime} {timezone} size="lg" showBoth />
-		<p class="details">
-			<span>{minutes} min read</span>
-			{tags.map((tag) => <a href={tagUrl(tag)} class="tag-link">#{tag}</a>)}
-		</p>
+			<PostDate {pubDatetime} {modDatetime} {timezone} size="lg" showBoth />
+			<p class="details">
+				<span>{minutes} min read</span>
+				{tags.map((tag) => <a href={tagUrl(tag)} class="tag-link">#{tag}</a>)}
+			</p>
+		</header>
 
 		{gpxFiles && gpxFiles.length > 0 && (
 			<div class="tracks">

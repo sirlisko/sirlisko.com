@@ -10,9 +10,11 @@ interface Props {
 	tracks: Track[];
 }
 
-const withStats = Astro.props.tracks.filter(
-	(t) => t.distance || t.elevGain || t.duration,
-);
+// Each keeps its place among all the tracks, which picks its line on the map.
+const withStats = Astro.props.tracks
+	.map((t, track) => ({ ...t, track }))
+	.filter((t) => t.distance || t.elevGain || t.duration);
+const keyed = Astro.props.tracks.length > 1;
 const totalDistance = withStats.reduce((sum, t) => sum + (t.distance ?? 0), 0);
 const totalGain = withStats.reduce((sum, t) => sum + (t.elevGain ?? 0), 0);
 ---
@@ -21,7 +23,21 @@ const totalGain = withStats.reduce((sum, t) => sum + (t.elevGain ?? 0), 0);
 	<div class="stats">
 		{withStats.map((t, i) => (
 			<div class="row">
-				<div class="label">{t.label ?? `Day ${i + 1}`}</div>
+				<div class="label">
+					{keyed && (
+						<svg class="swatch" width="24" height="4" aria-hidden="true">
+							<line
+								class={`map-track map-track-${t.track % 3}`}
+								x1="0"
+								y1="2"
+								x2="24"
+								y2="2"
+								stroke-width="3"
+							/>
+						</svg>
+					)}
+					{t.label ?? `Day ${i + 1}`}
+				</div>
 				{t.distance && (
 					<div class="stat">
 						<span>Distance</span>
@@ -87,6 +103,18 @@ const totalGain = withStats.reduce((sum, t) => sum + (t.elevGain ?? 0), 0);
 	@media (min-width: 640px) {
 		grid-column: span 1;
 	}
+}
+
+.label:has(.swatch) {
+	display: flex;
+	align-items: start;
+	gap: 0.5rem;
+}
+
+/* Centred on the first line, which is 1.25rem tall. */
+.swatch {
+	flex-shrink: 0;
+	margin-top: calc(0.625rem - 2px);
 }
 
 .stat {

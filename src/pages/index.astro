@@ -95,7 +95,8 @@ body {
 	gap: 10vw;
 }
 
-@media (max-width: 650px) {
+/* Portrait screens stack too: side by side, a face sized by the height outgrows its column. */
+@media (max-width: 650px), (max-aspect-ratio: 1 / 1) {
 	.grid {
 		grid-template-columns: 1fr;
 	}
@@ -114,7 +115,9 @@ body {
 	display: block;
 }
 
+/* The lamp's beam reads it too, to take in the whole head. */
 .face {
+	--face-height: min(70vw, 70dvh);
 	text-align: center;
 }
 /* Positioned so the ghost passes behind the photo, but not behind the rest of its column. */
@@ -128,7 +131,7 @@ body {
 }
 .face img {
 	position: relative;
-	height: min(70vw, 70dvh);
+	height: var(--face-height);
 	/* the intrinsic width/height attributes are presentational hints, so the
 	   width has to be released explicitly for the aspect ratio to win */
 	width: auto;
@@ -208,13 +211,29 @@ body {
 	}
 }
 
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 650px), screen and (max-aspect-ratio: 1 / 1) {
 	.face {
 		max-height: 50dvh;
 	}
 	.intro span,
 	.intro h1 {
 		font-size: min(5vw, 5dvh);
+	}
+}
+
+/* Tall tablets: sized by the height, the face would leave no room for the text. */
+@media screen and (min-width: 651px) and (max-aspect-ratio: 1 / 1) {
+	.face {
+		--face-height: min(70vw, 40dvh);
+	}
+}
+
+/* Wide enough for the text menu, the lamp hangs right under it, so the head drops to clear the shade. */
+@media screen and (prefers-color-scheme: dark) and (min-width: 821px) and (
+		max-aspect-ratio: 1 / 1
+	) {
+	.main-content {
+		padding-top: calc(5dvh + 7.5rem);
 	}
 }
 </style>
