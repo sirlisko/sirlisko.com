@@ -304,6 +304,16 @@
 		}
 	}
 
+	/*
+	 * Capped by height too, so a portrait photo fits on a laptop screen whole.
+	 * Only once loaded: until then width: auto has no size to go on and would
+	 * collapse the image, losing the room its attributes hold.
+	 */
+	img[data-image-state="loaded"] {
+		width: auto;
+		max-height: 85svh;
+	}
+
 	/* SVG backgrounds can't read CSS variables, so the X repeats the palette. */
 	img[data-image-state="failed"] {
 		background:
