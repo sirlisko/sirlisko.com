@@ -60,13 +60,8 @@
 				linear-gradient(90deg, var(--pea) 50%, transparent 50%) 0 0 / 8px 4px;
 		}
 
-		/* The numbers key each note to its reference, so they need to read, unlike bullets. */
 		:where(li) {
 			margin-block: 0.25em;
-
-			&::marker {
-				color: var(--muted-foreground);
-			}
 		}
 
 		:where(p) {
@@ -102,8 +97,26 @@
 		overflow-x: clip;
 	}
 
+	/*
+	 * A number and its space are 1.8em of mono, 2.4em from 10 on. The list
+	 * clips past its edge, so its padding holds the whole number, and the
+	 * space alone sets it off from the text. Unlike bullets, numbers are read.
+	 */
 	:where(ol):not(:where(.not-prose, .not-prose *)) {
 		list-style: decimal;
+		padding-inline-start: 2em;
+
+		&:has(> li:nth-child(10)) {
+			padding-inline-start: 2.4em;
+		}
+
+		> li {
+			padding-inline-start: 0;
+
+			&::marker {
+				color: var(--muted-foreground);
+			}
+		}
 	}
 
 	:where(ul):not(:where(.not-prose, .not-prose *)) {
