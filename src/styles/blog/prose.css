@@ -44,6 +44,36 @@
 		}
 	}
 
+	/* Notes under a short rule, as on a printed page, smaller than the text they annotate. */
+	.footnotes {
+		margin-top: 3em;
+		font-size: 0.875em;
+		color: var(--foreground-soft);
+
+		&::before {
+			content: "";
+			display: block;
+			width: 8rem;
+			height: 4px;
+			margin-bottom: 1.5em;
+			background:
+				linear-gradient(90deg, var(--pea) 50%, transparent 50%) 0 0 / 8px 4px;
+		}
+
+		/* The numbers key each note to its reference, so they need to read, unlike bullets. */
+		:where(li) {
+			margin-block: 0.25em;
+
+			&::marker {
+				color: var(--muted-foreground);
+			}
+		}
+
+		:where(p) {
+			margin-block: 0;
+		}
+	}
+
 	:where(h2, h3, h4):not(:where(.not-prose *)) {
 		margin-bottom: 0.75rem;
 		font-weight: 600;
