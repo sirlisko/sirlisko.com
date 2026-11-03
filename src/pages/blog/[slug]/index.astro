@@ -79,7 +79,7 @@ const structuredData = {
 	publisher: { "@id": AUTHOR.id },
 	image: imageUrl,
 	datePublished: pubDatetime.toISOString(),
-	...(modDatetime && { dateModified: modDatetime.toISOString() }),
+	dateModified: (modDatetime ?? pubDatetime).toISOString(),
 	author: [
 		{ "@type": "Person", name: AUTHOR.name, "@id": AUTHOR.id, url: SITE_URL },
 	],
