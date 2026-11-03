@@ -1,6 +1,6 @@
 ---
 title: W3C Validation with Gulp
-description: How to validate your HTML with the W3C validator from a Gulp task.
+description: "How to validate your HTML with the W3C validator from a Gulp task. Note: gulp-util and w3cjs are now deprecated."
 pubDatetime: 2015-04-01
 tags:
   - dev

@@ -1,6 +1,6 @@
 ---
 title: Gulp Blacklist Marker
-description: Chrome extension that marks blacklisted Gulp modules when browsing NPM and GitHub.
+description: "Chrome extension that marks blacklisted Gulp modules when browsing NPM and GitHub. No longer maintained: Gulp v5 removed the blacklist."
 pubDatetime: 2015-03-09
 tags:
   - projects

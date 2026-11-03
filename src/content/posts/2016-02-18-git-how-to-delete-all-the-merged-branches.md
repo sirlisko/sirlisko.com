@@ -1,6 +1,6 @@
 ---
 title: "Git: How to Delete All the Merged Branches"
-description: A command to delete all the remote branches already merged into main.
+description: A command to delete all the remote branches already merged into main, for a tidy repository you can understand at a glance.
 pubDatetime: 2016-02-18
 tags:
   - dev

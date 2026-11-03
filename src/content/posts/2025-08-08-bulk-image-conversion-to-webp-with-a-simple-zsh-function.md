@@ -1,6 +1,6 @@
 ---
 title: Bulk Image Conversion to WebP with a Simple Zsh Function
-description: A practical Zsh function to batch convert images to WebP format with ImageMagick.
+description: A practical Zsh function to batch convert images to WebP format with ImageMagick, often cutting file sizes by 25-50%.
 pubDatetime: 2025-08-08
 tags:
   - dev

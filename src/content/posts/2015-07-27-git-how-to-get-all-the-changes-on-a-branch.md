@@ -1,6 +1,6 @@
 ---
 title: "Git: How to Get All the Changes on a Branch"
-description: How to see only the changes made on a branch since it was created from main.
+description: How to see only the changes made on a branch since it was created from main, using git merge-base. Handy during code reviews.
 pubDatetime: 2015-07-27
 tags:
   - dev

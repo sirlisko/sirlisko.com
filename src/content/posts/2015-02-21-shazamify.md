@@ -1,6 +1,6 @@
 ---
 title: Shazamify (a.k.a. Zamify)
-description: Shazamify allows you to play your Shazams in Spotify, directly from the browser.
+description: Shazamify allows you to play your Shazams in Spotify, directly from the browser. Discontinued since Spotify blocked unauthenticated API calls.
 pubDatetime: 2015-02-21
 modDatetime: 2018-04-15
 tags:

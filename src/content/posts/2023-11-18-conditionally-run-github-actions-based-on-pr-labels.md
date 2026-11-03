@@ -1,6 +1,6 @@
 ---
 title: Conditionally Run GitHub Actions Based on PR Labels
-description: How to run a GitHub Actions job only when a pull request has a specific label.
+description: How to run a GitHub Actions job only when a pull request has a specific label, like deploying a PR only when it's labelled deploy.
 pubDatetime: 2023-11-18
 tags:
   - dev
