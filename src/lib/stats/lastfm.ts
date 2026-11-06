@@ -13,7 +13,7 @@ export interface Artist {
 export interface Music {
 	scrobbles: number;
 	since: number;
-	/** Most played over the last 12 months, top first; Last.fm has no calendar-year period. */
+	/** Most played over the last 3 months, top first; vague enough to survive months between deploys. */
 	top: Artist[];
 }
 
@@ -51,7 +51,7 @@ export const fetchMusic = (key = import.meta.env.LASTFM_API_KEY) =>
 			call<UserInfo>({ method: "user.getinfo" }),
 			call<TopArtists>({
 				method: "user.gettopartists",
-				period: "12month",
+				period: "3month",
 				limit: "3",
 			}),
 		]);

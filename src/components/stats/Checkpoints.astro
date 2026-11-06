@@ -133,7 +133,7 @@ const KIND_LABELS: Record<Kind, string> = {
 					Songs played since {music.since}.
 					{music.top.length > 0 && (
 						<>
-							{" "}Most played this past year:{" "}
+							{" "}Most played these past few months:{" "}
 							{music.top.map(({ name, url }, i) => (
 								<>
 									{i > 0 && (i === music.top.length - 1 ? " and " : ", ")}
