@@ -17,6 +17,8 @@ export interface Film {
 
 export interface Films {
 	latest: Film;
+	/** This year's highest rated, the most recent on a tie; missing when nothing this year was rated. */
+	best?: Film;
 	thisYear: number;
 	/** False when the feed runs out before the year's first entry, so the count is a floor. */
 	complete: boolean;
@@ -41,8 +43,14 @@ export const parseDiary = (xml: string, year: number): Films | null => {
 	const [latest] = films;
 	if (!latest) return null;
 	const inYear = films.filter(({ watched }) => watched.startsWith(`${year}-`));
+	// The feed is newest first, so a strict comparison keeps the latest of a tie.
+	const best = inYear.reduce<Film | undefined>(
+		(top, film) => ((film.rating ?? 0) > (top?.rating ?? 0) ? film : top),
+		undefined,
+	);
 	return {
 		latest,
+		...(best && { best }),
 		thisYear: inYear.length,
 		complete: films.some(({ watched }) => Number(watched.slice(0, 4)) < year),
 	};

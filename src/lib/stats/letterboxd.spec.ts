@@ -24,9 +24,31 @@ describe("parseDiary", () => {
 				rating: 4.5,
 				watched: "2026-10-26",
 			},
+			best: {
+				title: "Heat",
+				year: "2000",
+				url: "https://letterboxd.com/sirlisko/film/heat/",
+				rating: 4.5,
+				watched: "2026-10-26",
+			},
 			thisYear: 2,
 			complete: true,
 		});
+	});
+
+	test("picks this year's best, the most recent on a tie", () => {
+		const xml = [
+			item("Heat", "2026-10-26", "3.5"),
+			item("Alien", "2026-07-01", "4.5"),
+			item("Jaws", "2026-06-01", "4.5"),
+			item("Up", "2025-12-30", "5.0"),
+		].join("");
+		expect(parseDiary(xml, 2026)?.best?.title).toBe("Alien");
+	});
+
+	test("has no best when nothing this year was rated", () => {
+		const xml = item("Heat", "2026-10-26") + item("Up", "2025-12-30", "5.0");
+		expect(parseDiary(xml, 2026)).not.toHaveProperty("best");
 	});
 
 	test("flags the count as a floor when the feed starts inside the year", () => {

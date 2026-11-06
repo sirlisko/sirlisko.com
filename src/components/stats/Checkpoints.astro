@@ -7,6 +7,7 @@ import { fetchBooks, GOODREADS_PROFILE } from "../../lib/stats/goodreads";
 import { fetchMusic, LASTFM_PROFILE } from "../../lib/stats/lastfm";
 import { fetchFilms, LETTERBOXD_PROFILE } from "../../lib/stats/letterboxd";
 import KindIcon from "../blog/KindIcon.astro";
+import FilmLine from "./FilmLine.astro";
 
 interface Props {
 	blog: BlogStats;
@@ -23,8 +24,6 @@ const [countries, films, books, music] = await Promise.all([
 
 const number = new Intl.NumberFormat("en-GB");
 const day = new Intl.DateTimeFormat("en-GB", { dateStyle: "medium" });
-const stars = (rating: number) =>
-	"★".repeat(Math.floor(rating)) + (rating % 1 ? "½" : "");
 const busiest = Math.max(...blog.years.map(({ posts }) => posts));
 const perYear = blog.years
 	.map(({ year, posts }) => `${year}: ${posts}`)
@@ -101,19 +100,10 @@ const KIND_LABELS: Record<Kind, string> = {
 				<p class="value">
 					{films.thisYear}{!films.complete && "+"}<span> films in {year}</span>
 				</p>
-				<p>
-					Last watched:{" "}
-					<a href={films.latest.url}>{films.latest.title}</a>
-					{films.latest.year && ` (${films.latest.year})`}
-					{films.latest.rating !== undefined && (
-						<span
-							class="stars"
-							role="img"
-							aria-label={`rated ${films.latest.rating} out of 5`}
-							>{stars(films.latest.rating)}</span
-						>
-					)}
-				</p>
+				<FilmLine label="Last watched" film={films.latest} />
+				{films.best && films.best !== films.latest && (
+					<FilmLine label="Best this year" film={films.best} />
+				)}
 				<a href={LETTERBOXD_PROFILE}>Open the diary on Letterboxd</a>
 			</li>
 		)}
@@ -321,10 +311,5 @@ a {
 		outline: 2px dashed var(--hud);
 		outline-offset: 2px;
 	}
-}
-
-.stars {
-	margin-inline-start: 0.5rem;
-	color: var(--hud);
 }
 </style>

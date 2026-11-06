@@ -1,0 +1,51 @@
+---
+import type { Film } from "../../lib/stats/letterboxd";
+
+interface Props {
+	label: string;
+	film: Film;
+}
+
+const { label, film } = Astro.props;
+const stars = (rating: number) =>
+	"★".repeat(Math.floor(rating)) + (rating % 1 ? "½" : "");
+---
+
+<p>
+	{label}: <a href={film.url}>{film.title}</a>
+	{film.year && ` (${film.year})`}
+	{film.rating !== undefined && (
+		<span
+			class="stars"
+			role="img"
+			aria-label={`rated ${film.rating} out of 5`}
+			>{stars(film.rating)}</span
+		>
+	)}
+</p>
+
+<style>
+p {
+	margin: 0;
+}
+
+a {
+	color: #fff;
+	text-decoration: underline dashed var(--hud) 2px;
+	text-underline-offset: 4px;
+
+	&:hover {
+		color: var(--hud);
+	}
+
+	&:focus-visible {
+		outline: 2px dashed var(--hud);
+		outline-offset: 2px;
+	}
+}
+
+.stars {
+	margin-inline-start: 0.5rem;
+	color: var(--hud);
+}
+</style>
