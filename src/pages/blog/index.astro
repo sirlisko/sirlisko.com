@@ -30,7 +30,10 @@ const structuredData = {
 };
 ---
 
-<BlogLayout title="Blog" description={`${AUTHOR.name}'s blog. ${INTRO}`}>
+<BlogLayout
+	title={`${AUTHOR.name}'s blog`}
+	description={`${AUTHOR.name}'s blog. ${INTRO}`}
+>
 	<script
 		slot="head"
 		type="application/ld+json"

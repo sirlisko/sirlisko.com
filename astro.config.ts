@@ -32,7 +32,7 @@ export default defineConfig({
 		mdx(),
 		pele({ measurer: plexMonoMeasurer }),
 		sitemap({
-			filter: (page) => !/\/blog\/(search|404)\/?$/.test(page),
+			filter: (page) => !/\/blog\/(search|404|style)\/?$/.test(page),
 			// The blog home is listed as /blog/, which redirects to /blog.
 			serialize: (item) => {
 				const url = item.url.replace(/\/$/, "");

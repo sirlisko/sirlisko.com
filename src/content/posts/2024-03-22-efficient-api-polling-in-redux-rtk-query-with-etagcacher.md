@@ -40,6 +40,7 @@ Here's how our `EtagCacher` works:
 
 ```mermaid
 sequenceDiagram
+  accTitle: EtagCacher polling getTodos after a mutation until the ETag changes
   participant Q as RTK Query
   participant C as EtagCacher
   participant API

@@ -55,6 +55,7 @@ When a file changed on both sides, it does not guess. With my settings, the newe
 
 ```mermaid
 flowchart LR
+  accTitle: Two-way sync from iPhone through iCloud, the vault and Unison to the Git repos
   P[iPhone] <--> I[iCloud] <--> V[Vault] <--> U["Unison<br>+ archive"] <--> R[Git repos]
 ```
 

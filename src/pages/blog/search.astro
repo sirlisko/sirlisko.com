@@ -17,11 +17,15 @@ import BlogLayout from "../../layouts/BlogLayout.astro";
 			transition:persist
 			data-bundle-path="/blog/pagefind/"
 		></div>
+		<p class="sr-only" role="status" data-search-status></p>
 	</Main>
 </BlogLayout>
 
 <script>
 import { rememberBackUrl } from "../../lib/blog/backUrl";
+import { debounce } from "../../lib/debounce";
+
+const ANNOUNCE_DELAY = 500;
 
 const initSearch = () => {
 	const el = document.querySelector<HTMLElement>("#pagefind-search");
@@ -53,6 +57,21 @@ const initSearch = () => {
 				rememberBackUrl(`${location.pathname}?${params}`);
 				return term;
 			},
+		});
+
+		// Pagefind's result count isn't a live region; debounced so typing doesn't read out every keystroke.
+		const announceResults = debounce(() => {
+			const status = document.querySelector("[data-search-status]");
+			const message =
+				el.querySelector(".pagefind-ui__message")?.textContent ?? "";
+			if (status && status.textContent !== message) {
+				status.textContent = message;
+			}
+		}, ANNOUNCE_DELAY);
+		new MutationObserver(announceResults).observe(el, {
+			subtree: true,
+			childList: true,
+			characterData: true,
 		});
 
 		const query = params.get("q");
@@ -134,6 +153,11 @@ document.addEventListener("astro:page-load", initSearch);
 		text-decoration-line: none;
 		outline-width: 2px;
 		outline-style: dashed;
+	}
+
+	/* Pagefind only fades out the empty box's Clear button, which leaves it a tab stop. */
+	.pagefind-ui__suppressed {
+		visibility: hidden;
 	}
 
 	.pagefind-ui__result:last-of-type {

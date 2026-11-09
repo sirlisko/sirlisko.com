@@ -35,7 +35,15 @@ const PAUSE_TITLES: Record<typeof game, string> = {
 			</li>
 		))}
 	</ul>
-	<button type="button" class="start" id="nav-start" aria-haspopup="dialog">
+	<button
+		type="button"
+		class="start"
+		id="nav-start"
+		aria-label="Start: open menu"
+		aria-haspopup="dialog"
+		commandfor="nav-pause"
+		command="show-modal"
+	>
 		Start
 	</button>
 	<dialog class="pause" id="nav-pause" aria-label="Menu" tabindex="-1">
