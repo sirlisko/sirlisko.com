@@ -186,6 +186,7 @@ To get a complete test coverage report, we need to combine results from **Jest**
 
 ```mermaid
 flowchart TB
+  accTitle: Jest and Cypress coverage merged into one report for the PR
   J[Jest] --> JA[coverage-jest]
   B[build:coverage] --> C1[Cypress job 1] & CN[Cypress job N]
   C1 --> A1[coverage-1]

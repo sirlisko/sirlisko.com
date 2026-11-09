@@ -45,6 +45,7 @@ const jsonLd = {
 };
 
 const analyticsOrigin = new URL(ANALYTICS.src).origin;
+const TITLE_LIMIT = 60;
 
 interface Props {
 	title?: string;
@@ -85,7 +86,10 @@ const canonicalURL =
 	new URL(Astro.url.pathname, Astro.site).toString().replace(/\/+$/, "");
 
 const metaDescription = description || SITE.description;
-const formattedTitle = title ? `${title} | ${SITE.title}` : SITE.title;
+const brandedTitle = title ? `${title} | ${SITE.title}` : SITE.title;
+// Search results cut titles at about 60 characters, so a long one drops the brand first.
+const formattedTitle =
+	title && brandedTitle.length > TITLE_LIMIT ? title : brandedTitle;
 ---
 
 <!doctype html>

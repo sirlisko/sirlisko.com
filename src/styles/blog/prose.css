@@ -18,6 +18,11 @@
 		font-weight: 600;
 	}
 
+	/* A long code name in a heading would otherwise widen the page on phones. */
+	:where(h2, h3, h4, h5, h6):not(:where(.not-prose *)) {
+		overflow-wrap: anywhere;
+	}
+
 	:where(a):not(:where(.not-prose *)) {
 		font-weight: 500;
 		overflow-wrap: break-word;

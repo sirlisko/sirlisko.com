@@ -12,7 +12,7 @@ const headings = tocHeadings(getHeadings());
 const DESCRIPTION = "Every element this blog can render, in one place.";
 ---
 
-<BlogLayout title="Style" description={DESCRIPTION} backToTop>
+<BlogLayout title="Style" description={DESCRIPTION} noindex backToTop>
 	<Fragment slot="head">
 		<link rel="preconnect" href="https://tile.openstreetmap.org">
 		<link rel="preload" as="style" href={leafletCss}>

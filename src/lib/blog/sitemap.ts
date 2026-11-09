@@ -14,14 +14,22 @@ export const lastmodOf = (frontmatter: string): string | undefined => {
 	return date && new Date(date).toISOString();
 };
 
+/** The slug a post sets for itself, which replaces its file name in the URL. */
+export const slugOf = (frontmatter: string): string | undefined =>
+	frontmatter.match(/^slug:\s*["']?([^"'\s]+)/m)?.[1];
+
 /** Post URL → lastmod, read from the files because the Astro config can't use astro:content. */
 export const postLastmods = (dir: string): Map<string, string> =>
 	new Map(
 		readdirSync(dir)
 			.filter((file) => /^[^_].*\.mdx?$/.test(file))
 			.flatMap((file) => {
-				const lastmod = lastmodOf(readFileSync(join(dir, file), "utf8"));
-				const id = file.replace(/\.mdx?$/, "");
+				const [, frontmatter = ""] = readFileSync(
+					join(dir, file),
+					"utf8",
+				).split(/^---$/m);
+				const lastmod = lastmodOf(frontmatter);
+				const id = slugOf(frontmatter) ?? file.replace(/\.mdx?$/, "");
 				return lastmod ? [[`${SITE_URL}${postUrl({ id })}`, lastmod]] : [];
 			}),
 	);

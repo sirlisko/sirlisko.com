@@ -1,5 +1,19 @@
 import { describe, expect, test } from "vitest";
-import { lastmodOf } from "./sitemap";
+import { lastmodOf, slugOf } from "./sitemap";
+
+describe("slugOf", () => {
+	test("reads a post's own slug", () => {
+		expect(slugOf("title: A\nslug: a-longer-url\n")).toBe("a-longer-url");
+	});
+
+	test("reads a quoted slug", () => {
+		expect(slugOf('slug: "a-longer-url"\n')).toBe("a-longer-url");
+	});
+
+	test("has nothing when the post sets no slug", () => {
+		expect(slugOf("title: A\npubDatetime: 2019-07-05\n")).toBeUndefined();
+	});
+});
 
 describe("lastmodOf", () => {
 	test("uses the publish date of a post never updated", () => {

@@ -41,7 +41,10 @@ export async function loadLeaflet() {
 			// Leaflet makes the map a tab stop for arrow-key panning but leaves it unnamed.
 			// A group, not a region: posts with several maps would repeat a landmark name.
 			el.setAttribute("role", "group");
-			el.setAttribute("aria-label", "Map");
+			el.setAttribute(
+				"aria-label",
+				`Map: ${document.querySelector("h1")?.textContent?.trim()}`,
+			);
 
 			const theme = matchMedia("(prefers-color-scheme: dark)").matches
 				? "dark"
