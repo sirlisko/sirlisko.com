@@ -1,0 +1,41 @@
+---
+import { getCollection } from "astro:content";
+import { postUrl, publishedPosts } from "../../lib/blog/posts";
+
+interface Props {
+	label: string;
+	class?: string;
+}
+
+// Recent ones only, so a lost reader lands on something still current.
+const RECENT = 10;
+
+const { label, class: className } = Astro.props;
+const urls = publishedPosts(await getCollection("posts"))
+	.slice(0, RECENT)
+	.map(postUrl);
+---
+
+{/* The blog until the script picks a post, so it still goes somewhere without JS. */}
+<a
+	href="/blog"
+	class={className}
+	data-random-posts={JSON.stringify(urls)}
+	data-track="random-encounter"
+	>{label}</a
+>
+
+<script>
+const pick = () => {
+	for (const link of document.querySelectorAll<HTMLAnchorElement>(
+		"[data-random-posts]",
+	)) {
+		const urls: string[] = JSON.parse(link.dataset.randomPosts ?? "[]");
+		const url = urls[Math.floor(Math.random() * urls.length)];
+		if (url) link.href = url;
+	}
+};
+
+pick();
+document.addEventListener("astro:page-load", pick);
+</script>

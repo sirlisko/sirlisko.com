@@ -1,4 +1,5 @@
 ---
+import RandomEncounter from "../components/blog/RandomEncounter.astro";
 import { ogCard } from "../config";
 import Layout from "../layouts/Layout.astro";
 
@@ -32,6 +33,7 @@ const LIVES = 3;
 				<a class="on" href="/">Go home</a>
 				<a href="/projects">See projects</a>
 				<a href="/blog">Read the blog</a>
+				<RandomEncounter label="Random encounter" />
 			</nav>
 		</div>
 	</main>
