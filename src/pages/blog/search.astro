@@ -133,6 +133,23 @@ document.addEventListener("astro:page-load", initSearch);
 		outline-offset: 6px;
 	}
 
+	/* Inside the input's 4px border, in its colours, like the pixel buttons. */
+	.pagefind-ui__search-clear {
+		top: 4px;
+		right: 4px;
+		/* Pagefind's input is 64px at its scale. */
+		height: calc(64px * var(--pagefind-ui-scale) - 8px);
+		padding-inline: 14px;
+		background: var(--muted);
+		font-family: var(--font-pixel);
+		font-size: 10px;
+
+		&:hover {
+			background: var(--foreground);
+			color: var(--background);
+		}
+	}
+
 	mark {
 		background: var(--pea);
 		color: var(--foreground);
