@@ -12,7 +12,7 @@ The more I grow as a software engineer, the more I love documenting things. I kn
 
 ## What Are ADRs?
 
-Architecture Decision Records (ADRs) are short documents that capture the reasoning behind significant technical decisions in a project. The concept was popularised by Michael Nygard in a [2011 blog post](http://thinkrelevance.com/blog/2011/11/15/documenting-architecture-decisions), and the idea is beautifully simple: every time you make a decision that affects the structure, dependencies, or direction of a project, you write it down.
+Architecture Decision Records (ADRs) are short documents that capture the reasoning behind significant technical decisions in a project. The concept was popularised by Michael Nygard in a [2011 blog post](https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions), and the idea is beautifully simple: every time you make a decision that affects the structure, dependencies, or direction of a project, you write it down.
 
 A typical ADR follows a straightforward structure:
 
