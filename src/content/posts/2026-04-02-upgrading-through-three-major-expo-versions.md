@@ -121,6 +121,6 @@ The clean console might seem like a small thing, but it changed how the team wor
 
 ---
 
-_Note: If you're planning an Expo upgrade, the [Expo changelog](https://docs.expo.dev/changelog/) and the `npx expo install --fix` command are your best friends. Start there, and let the build failures guide you to everything else._
+_Note: If you're planning an Expo upgrade, the [Expo changelog](https://expo.dev/changelog) and the `npx expo install --fix` command are your best friends. Start there, and let the build failures guide you to everything else._
 
 [^1]: `pnpm patch <package>` opens the package source in a temp directory, lets you edit it, then saves a diff as a patch file that pnpm re-applies on every install. The npm equivalent is [patch-package](https://github.com/ds300/patch-package).
