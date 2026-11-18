@@ -2,6 +2,12 @@
 // an image arrives, swapped for a missing-image mark if it never does.
 function settle(img: HTMLImageElement) {
 	img.dataset.imageState = img.naturalWidth > 0 ? "loaded" : "failed";
+	// `sizes` makes naturalWidth the column width, so width: auto would
+	// stretch a small image to fill it; the width attribute is its real size.
+	const width = img.getAttribute("width");
+	if (width) {
+		img.style.maxWidth = `min(100%, ${width}px)`;
+	}
 }
 
 function track(img: HTMLImageElement) {
