@@ -92,6 +92,8 @@ main > header {
 	font-family: var(--font-display);
 	color: var(--pac-yellow);
 	margin-right: 0.5rem;
+	/* Press Start 2P draws its glyphs 2px above the baseline. */
+	vertical-align: -0.125em;
 
 	/* As wide as the longest key, so the values line up when the stats stack. */
 	@media (max-width: 600px) {
